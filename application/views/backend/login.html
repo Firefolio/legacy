@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="{base_url}css/normalize.css">
         <link rel="stylesheet" href="{base_url}css/boilerplate.css">
         <link rel="stylesheet" href="{base_url}css/skeleton.css">
-        <link rel="stylesheet" href="{base_url}css/main.css">
+        <link rel="stylesheet" href="{base_url}css/firefolio.css">
     </head>
     <body>
         <!--[if lte IE 9]>
@@ -22,20 +22,33 @@
 
         <div class="container">
           <header class="row header">
-
+            <h1>Firefolio</h1>
+            <a href="../">Back to frontend</a>
           </header>
 
           <section class="row">
             <div class="one-half column">
-              <h1>Firefolio</h1>
-              <form class="">
-
+              <form>
+                <section class="row">
+                  <div class="one-half column">
+                    <input type="text" name="username" placeholder="Username">
+                  </div>
+                  <div class="one-half column">
+                    <input type="text" name="password" placeholder="Password">
+                  </div>
+                </section>
+                <section>
+                  <input type="submit" name="submit" value="Submit">
+                </section>
               </form>
             </div>
           </section>
 
           <footer class="row footer">
-
+            <small>
+              Firefolio Copyright &copy; Callum John 2018 <br>
+              Released under the terms of the MIT Open Source License
+            </small>
           </footer>
         </div>
 
