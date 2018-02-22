@@ -8,14 +8,6 @@
   margin-bottom: 32px;
 }
 
-.thumbnail {
-  text-decoration: none;
-}
-
-.thumbnail:hover {
-  text-decoration: underline;
-}
-
 .thumbnail > h2 {
   font-size: 3.0rem;
 }
