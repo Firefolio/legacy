@@ -21,8 +21,8 @@
         <![endif]-->
 
         <div class="container">
-          <header class="row">
-            <div class="one-half column">
+          <header class="row header">
+            <div class="one-full column">
               <a href="#">
                 <h1>{title}</h1>
               </a>
@@ -33,15 +33,18 @@
             <section class="row">
               {projects}
                 <div class="four columns">
-                  <h2>{title}</h2>
-                  <h3>{subtitle}</h3>
+                  <a href="#" class="thumbnail">
+                    <h2>{title}</h2>
+                    <h3>{subtitle}</h3>
+                    <small>{language}</small>
+                  </a>
                 </div>
               {/projects}
             </section>
           </div>
 
-          <footer class="row">
-            <small>Copyright LOLOLOL</small>
+          <footer class="row footer">
+            <small>Copyright &copy; {title} 2018</small>
           </footer>
         </div>
 
