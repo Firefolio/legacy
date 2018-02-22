@@ -19,6 +19,16 @@ class Portfolio extends CI_Controller {
       'projects' => $this->portfolio_model->get_projects()
     );
 
-    $this->parser->parse('portfolio.html', $data);
+    $this->parser->parse('frontend/portfolio.html', $data);
+  }
+
+  /**
+  * @param Uniform Resouce Indicator
+  */
+  public function project($uri)
+  {
+	$data = $this->portfolio_model->get_project($uri);
+
+	$this->parser->parse('frontend/project.html', $data);
   }
 }
