@@ -51,7 +51,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'portfolio';
 $route['project/(:any)'] = 'portfolio/project/$1';
-$route['login'] = 'dashboard/login';
+$route['login'] = 'dashboard/login_form';
+$route['login/attempt'] = 'dashboard/login';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
