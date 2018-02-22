@@ -3,7 +3,16 @@ $('document').ready(function () {
     form: $('#form'),
     url: $('#base-url').val(),
     validate: function (username, password) {
+      var valid = false;
 
+      if (username.length > 0 && username.length > 0) {
+        valid = true;
+      } else {
+        // TODO: replace with an animated DOM error
+        alert('Please fill in all form fields');
+      }
+
+      return valid;
     },
     attempt: function (username, password) {
   		var success = false;
@@ -44,6 +53,8 @@ $('document').ready(function () {
   	var username = $('#username').val();
   	var password = $('#password').val();
 
-  	login.attempt(username, password);
+  	if (login.validate(username, password)) {
+      login.attempt(username, password);
+    }
   });
 });

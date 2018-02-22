@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Dashboard extends CI_Controller
+class User extends CI_Controller
 {
   function __construct()
   {
@@ -12,7 +12,7 @@ class Dashboard extends CI_Controller
     $this->load->model('user_model');
   }
 
-  public function login_form()
+  public function form()
   {
     $data = array('base_url' => base_url());
     $this->parser->parse('backend/login.html', $data);
