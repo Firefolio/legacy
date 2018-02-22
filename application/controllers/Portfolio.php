@@ -5,10 +5,11 @@ class Portfolio extends CI_Controller {
   public function index()
   {
     $this->load->helper('url');
+    $this->load->library('parser');
+    
     $data = array(
       'base_url' => base_url()
     );
-    $this->load->library('parser');
     $this->parser->parse('portfolio.html', $data);
   }
 }
