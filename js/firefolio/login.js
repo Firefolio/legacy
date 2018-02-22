@@ -36,6 +36,7 @@ $('document').ready(function () {
           window.location.replace('http://localhost/index.php/backend/');
         } else {
           console.error(response.message);
+          login.form.effect('shake');
         }
       });
 
