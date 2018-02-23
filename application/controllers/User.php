@@ -18,7 +18,7 @@ class User extends CI_Controller
     $data = array(
       'base_url' => base_url(),
       'csrf_name' => $this->security->get_csrf_token_name(),
-      'csrf_name' => $this->security->get_csrf_hash()
+      'csrf_hash' => $this->security->get_csrf_hash()
     );
     $this->parser->parse('backend/login.html', $data);
   }
