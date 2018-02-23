@@ -37,13 +37,3 @@ nav > ul > .u-pull-right > li {
 	float: left;
 	padding: 16px 16px;
 }
-
-/* ==========================================================================
-   Dark classes
-   ========================================================================== */
-
-body.dark {
-	background-color: black;
-	width: auto;
-	height: auto;
-}

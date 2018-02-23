@@ -22,7 +22,7 @@ $('document').ready(function () {
       inputs.prop('disabled', true);
 
   		request = $.post(
-        this.url + 'index.php/login/attempt',
+        'login/attempt',
         data,
         "JSON"
       );
@@ -39,6 +39,10 @@ $('document').ready(function () {
           login.form.effect('shake');
         }
       });
+
+      request.fail(function (message) {
+        console.error(message);
+      })
 
       request.always(function () {
         inputs.prop('disabled', false);
