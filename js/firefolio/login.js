@@ -8,8 +8,7 @@ $('document').ready(function () {
       if (username.length > 0 && username.length > 0) {
         valid = true;
       } else {
-        // TODO: replace with an animated DOM error
-        alert('Please fill in all form fields');
+        $('#error').html('Please fill in all form fields');
       }
 
       return valid;
@@ -33,7 +32,9 @@ $('document').ready(function () {
         console.log(response);
 
         if (response.success) {
-          window.location.replace('http://localhost/firefolio/index.php/dashboard');
+          window.location.replace(
+            'http://localhost/firefolio/index.php/firefolio/projects'
+          );
         } else {
           console.error(response.message);
           login.form.effect('shake');

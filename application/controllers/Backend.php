@@ -13,8 +13,9 @@ class Backend extends CI_Controller
     $this->load->model('portfolio_model');
   }
 
-  public function dashboard()
+  public function projects()
   {
+    // Require user authentication
     session_start();
 
     if (isset($_SESSION['user']))
@@ -26,7 +27,7 @@ class Backend extends CI_Controller
         )
       );
 
-      $this->parser->parse('backend/dashboard.html', $data);
+      $this->parser->parse('backend/projects/projects.html', $data);
     }
     else
     {
