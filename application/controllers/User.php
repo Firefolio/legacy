@@ -15,7 +15,7 @@ class User extends CI_Controller
   public function form()
   {
     // Ensure that the user does not log in multiple times
-    if (isset($_SESSION['user']))
+    if (!isset($_SESSION['user']))
     {
       $data = array('base_url' => base_url());
       $this->parser->parse('backend/login.html', $data);
@@ -77,5 +77,15 @@ class User extends CI_Controller
 
     $json = json_encode($response);
     echo $json;
+  }
+
+  public function logout()
+  {
+    session_start();
+    unset($_SESSION['user']);
+
+    $url = base_url() . 'index.php/login';
+
+    header('Location: ' . $url);
   }
 }

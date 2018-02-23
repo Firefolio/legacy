@@ -53,6 +53,7 @@ $route['default_controller'] = 'portfolio';
 $route['project/(:any)'] = 'portfolio/project/$1';
 $route['login'] = 'user/form';
 $route['login/attempt'] = 'user/login';
+$route['logout'] = 'user/logout';
 $route['dashboard'] = 'backend/dashboard';
 
 $route['404_override'] = '';

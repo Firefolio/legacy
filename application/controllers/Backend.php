@@ -25,7 +25,7 @@ class Backend extends CI_Controller
     }
     else
     {
-      $url = base_url() . 'login';
+      $url = 'login';
 
       header('Location: ' . $url);
       exit();
