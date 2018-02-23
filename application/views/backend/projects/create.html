@@ -1,19 +1,19 @@
 <!doctype html>
 <html class="no-js" lang="">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Create Project - Firefolio</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <title>Create Project - Firefolio</title>
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="manifest" href="site.webmanifest">
-        <link rel="apple-touch-icon" href="icon.png">
+      <link rel="manifest" href="site.webmanifest">
+      <link rel="apple-touch-icon" href="icon.png">
 
-        <link rel="stylesheet" href="{base_url}css/normalize.css">
-        <link rel="stylesheet" href="{base_url}css/boilerplate.css">
-        <link rel="stylesheet" href="{base_url}css/skeleton.css">
-        <link rel="stylesheet" href="{base_url}css/firefolio.css">
+      <link rel="stylesheet" href="{base_url}css/normalize.css">
+      <link rel="stylesheet" href="{base_url}css/boilerplate.css">
+      <link rel="stylesheet" href="{base_url}css/skeleton.css">
+      <link rel="stylesheet" href="{base_url}css/firefolio.css">
     </head>
     <body>
         <!--[if lte IE 9]>
@@ -66,6 +66,16 @@
           <div class="content">
             <section class="row">
               <div class="one-half column">
+                <p>
+                  A Firefolio Project is any one piece of work that you would
+                  like an employer to see. Make it a good one!
+                </p>
+                <p>
+                  Don't worry if you're not entirely sure with the details, as
+                  these can be changed later.
+                </p>
+              </div>
+              <div class="one-half column">
                 <form action="index.html" method="post">
                   <div class="row">
                     <label for="title">Title</label>
@@ -74,26 +84,32 @@
                     type="text"
                     name="title"
                     value="">
+                  </div>
+                  <div class="row">
                     <label for="subtitle">Subtitle</label>
                     <input
                     class="u-full-width"
                     type="text"
                     name="subtitle"
                     value="">
+                  </div>
+                  <div class="row">
                     <label for="description">Description</label>
-                    <input
-                    class="u-full-width"
-                    type="textarea"
-                    name="description"
-                    value="">
+                    <textarea class="u-full-width" name="description"></textarea>
+                  </div>
+                  <div class="row">
+                    <label for="description">Description</label>
+                    <input type="date" name="date" value="{date}">
+                  </div>
+                  <div class="row">
+                    <label for="language"></label>
+                    <select class="u-full-width" name="language">
+                      {languages}
+                        <option value="{name}">{name}</option>
+                      {/languages}
+                    </select>
                   </div>
                 </form>
-              </div>
-              <div class="one-half column">
-                <p>
-                  A Firefolio Project is any one piece of work that you would
-                  like an employer to see. Make it a good one!
-                </p>
               </div>
             </section>
           </div>

@@ -30,6 +30,25 @@ class Portfolio_model extends CI_Model
     return $query->result_array();
   }
 
+  public function get_languages()
+  {
+    // Send a query to get all values from the 'language' column
+    // Note that this won't work with any values with commas in them
+    $query = $this->db->query(file_get_contents('sql/get_languages.sql'));
+    //
+    $type = $query->row(0)->Type;
+    preg_match("/^enum\(\'(.*)\'\)$/", $type, $matches);
+    $enum = explode("','", $matches[1]);
+    $languages = array();
+
+    foreach ($enum as $value)
+    {
+      array_push($languages, array('name' => $value));
+    }
+
+    return $languages;
+  }
+
   public function get_full_name()
   {
     $query = $this->db->query('SELECT * FROM `profile` LIMIT 1');

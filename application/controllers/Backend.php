@@ -25,6 +25,7 @@ class Backend extends CI_Controller
         case 'view':
           $data = array(
             'base_url' => base_url(),
+            'date' => date('d-m-Y'),
             'projects' => $this->security->xss_clean(
               $this->portfolio_model->get_projects()
             )
@@ -37,7 +38,8 @@ class Backend extends CI_Controller
             'base_url' => base_url(),
             'projects' => $this->security->xss_clean(
               $this->portfolio_model->get_projects()
-            )
+            ),
+            'languages' => $this->portfolio_model->get_languages()
           );
 
           $this->parser->parse('backend/projects/create.html', $data);
