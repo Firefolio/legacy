@@ -62,6 +62,28 @@ class Backend extends CI_Controller
 
   public function create_project()
   {
+    if (isset($_POST))
+    {
+      $project = array(
+        'title' => $_POST['title'],
+        'subtitle' => $_POST['subtitle'],
+        'description' => $_POST['description'],
+        'language' => $_POST['language'],
+        'date' => $_POST['date']
+      );
+      $this->portfolio_model->insert_project($project);
 
+      $url = '../../';
+
+      header('Location: ' . $url);
+      exit();
+    }
+    else
+    {
+      $url = '../';
+
+      header('Location: ' . $url);
+      exit();
+    }
   }
 }

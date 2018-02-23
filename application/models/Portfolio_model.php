@@ -52,6 +52,11 @@ class Portfolio_model extends CI_Model
     return $languages;
   }
 
+  public function insert_project(array $project)
+  {
+    $query = $this->db->query(file_get_contents('sql/insert_project.sql'));
+  }
+
   public function get_full_name()
   {
     $query = $this->db->query('SELECT * FROM `profile` LIMIT 1');
