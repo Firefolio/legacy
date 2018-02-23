@@ -54,7 +54,10 @@ class Portfolio_model extends CI_Model
 
   public function insert_project(array $project)
   {
-    $query = $this->db->query(file_get_contents('sql/insert_project.sql'));
+    $query = $this->db->query(
+      file_get_contents('sql/insert_project.sql'),
+      $project
+    );
   }
 
   public function get_full_name()
