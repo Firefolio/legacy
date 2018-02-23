@@ -28,11 +28,11 @@ class Portfolio extends CI_Controller {
   public function project($uri)
   {
   	$data = $this->security->xss_clean(
-      $this->portfolio_model->get_project($uri)
+      $this->project_model->get_project($uri)
     );
 
     $data['base_url'] = base_url();
-    $data['name'] = $this->project_model->get_full_name();
+    $data['name'] = $this->profile_model->get_full_name();
     $data['date'] = date(
       'd-m-Y',
       strtotime($data['date'])
