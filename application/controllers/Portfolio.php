@@ -18,9 +18,7 @@ class Portfolio extends CI_Controller {
     $data = array(
       'base_url' => base_url(),
       'title' => $this->portfolio_model->get_full_name(),
-      'projects' => $this->security->xss_clean(
-        $this->portfolio_model->get_projects()
-      )
+      'projects' => $this->portfolio_model->get_projects()
     );
 
     $this->parser->parse('frontend/portfolio.html', $data);
