@@ -9,6 +9,7 @@ class Backend extends CI_Controller
 
     $this->load->library('parser');
     $this->load->helper('url');
+    $this->load->model('portfolio_model');
   }
 
   public function dashboard()
@@ -18,7 +19,8 @@ class Backend extends CI_Controller
     if (isset($_SESSION['user']))
     {
       $data = array(
-        'base_url' => base_url()
+        'base_url' => base_url(),
+        'projects' => $this->portfolio_model->get_projects()
       );
 
       $this->parser->parse('backend/dashboard.html', $data);

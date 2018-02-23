@@ -1,5 +1,49 @@
+/* Firefolio Backend CSS MIT License */
+
+/* ==========================================================================
+   Login form
+   ========================================================================== */
+
 form.login {
 	border: 1px solid grey;
 	border-radius: 4px;
 	padding: 16px;
+}
+
+/* ==========================================================================
+   Navigation bar
+   ========================================================================== */
+
+nav {
+	overflow: hidden;
+}
+
+nav > ul {
+	list-style: none;
+	margin: auto;
+	height: 32px;
+}
+
+nav > ul > .u-pull-left > li {
+	display: block;
+	text-decoration: none;
+	float: left;
+	padding: 16px 16px;
+}
+
+nav > ul > .u-pull-right > li {
+	display: block;
+	text-decoration: none;
+	float: left;
+	padding: 16px 16px;
+}
+
+/* ==========================================================================
+   Dark classes
+   ========================================================================== */
+
+body.dark {
+	background-color: black;
+	width: auto;
+	height: auto;
 }

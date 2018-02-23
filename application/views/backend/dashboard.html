@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title></title>
+        <title>Firefolio Dashboard</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -20,21 +20,46 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
 
-        <div class="container">
-          <header class="row">
-            <div class="one-full column">
-              <h1>Firefolio Dashboard</h1>
+        <nav class="clearfix">
+          <ul>
+            <div class="u-pull-left">
+              <li>
+                <h1 style="font-size: 1.5em">
+                  <a href="https://firefolio.org/">Firefolio</a>
+                </h1>
+              </li>
+              <li>
+                <a>Projects</a>
+              </li>
+              <li>
+                <a>Profile</a>
+              </li>
+              <li>
+                <a>Administration</a>
+              </li>
             </div>
-          </header>
+            <div class="u-pull-right">
+              <li>
+                <a href="#">Preview</a>
+              </li>
+              <li>
+                <a href="logout">Logout</a>
+              </li>
+              <li class="hidden">
+                &#9776;
+                <span class="visuallyhidden">Open Navbar</span>
+              </li>
+            </div>
+          </ul>
+        </nav>
 
-          <section class="row">
-            <div class="one-full column">
-              <a href="logout">Logout</a>
-            </div>
-          </section>
+        <div class="container">
+          {projects}
+            <li>{title}</li>
+          {/projects}
 
           <footer class="row">
-            
+
           </footer>
         </div>
 
