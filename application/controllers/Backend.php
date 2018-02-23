@@ -30,7 +30,7 @@ class Backend extends CI_Controller
             )
           );
 
-          $this->parser->parse('backend/projects/projects.html', $data);
+          $this->parser->parse('backend/projects/view.html', $data);
           break;
         case 'create':
           $data = array(
@@ -41,6 +41,9 @@ class Backend extends CI_Controller
           );
 
           $this->parser->parse('backend/projects/create.html', $data);
+          break;
+        case 'delete':
+          // Add deletion code here
           break;
         default:
           show_404();
