@@ -33,7 +33,7 @@ $('document').ready(function () {
         console.log(response);
 
         if (response.success) {
-          window.location.replace('http://localhost/index.php/backend/');
+          window.location.replace('http://localhost/firefolio/index.php/dashboard');
         } else {
           console.error(response.message);
           login.form.effect('shake');

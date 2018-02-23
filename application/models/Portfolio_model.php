@@ -6,25 +6,26 @@ class Portfolio_model extends CI_Model
   function __construct()
   {
     $this->load->database();
+    $this->load->helper('url');
   }
-  
+
   public function get_project($uri)
   {
 	  $query = $this->db->query(
-		'SELECT * FROM `projects` WHERE `uri` = ?',
+		file_get_contents(base_url() . 'sql/get_project.sql'),
 		$uri
 	  );
-	  
+
 	  $project = $query->row_array();
-	  
+
 	  return $project;
   }
 
   public function get_projects()
   {
     $query = $this->db->query(
-		'SELECT * FROM `projects` ORDER BY `initiative` DESC'
-	);
+      file_get_contents(base_url() . 'sql/get_projects.sql')
+    );
 
     return $query->result_array();
   }

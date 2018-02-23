@@ -14,8 +14,17 @@ class User extends CI_Controller
 
   public function form()
   {
-    $data = array('base_url' => base_url());
-    $this->parser->parse('backend/login.html', $data);
+    // Ensure that the user does not log in multiple times
+    if (isset($_SESSION['user']))
+    {
+      $data = array('base_url' => base_url());
+      $this->parser->parse('backend/login.html', $data);
+    }
+    else
+    {
+      $url = base_url() . 'index.php/dashboard';
+      header('Location: ' . $url);
+    }
   }
 
   public function login()
@@ -37,9 +46,12 @@ class User extends CI_Controller
         if (strlen($username) > 0 AND
             strlen($password) > 0)
         {
-          if ($username == $user->username AND
+          if ($username === $user->username AND
               password_verify($password, $user->password))
           {
+            session_start();
+            $_SESSION['user'] = $username;
+
             $response['success'] = TRUE;
             $response['message'] = 'Login attempt successful';
           }
@@ -60,7 +72,7 @@ class User extends CI_Controller
     }
     else
     {
-      $response['message'] = 'No values posted';
+      $response['message'] = 'No values posted at all';
     }
 
     $json = json_encode($response);
