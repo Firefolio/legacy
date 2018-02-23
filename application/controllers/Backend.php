@@ -9,6 +9,7 @@ class Backend extends CI_Controller
 
     $this->load->library('parser');
     $this->load->helper('url');
+    $this->load->helper('security');
     $this->load->model('portfolio_model');
   }
 
@@ -20,7 +21,9 @@ class Backend extends CI_Controller
     {
       $data = array(
         'base_url' => base_url(),
-        'projects' => $this->portfolio_model->get_projects()
+        'projects' => $this->security->xss_clean(
+          $this->portfolio_model->get_projects()
+        )
       );
 
       $this->parser->parse('backend/dashboard.html', $data);

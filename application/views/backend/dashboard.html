@@ -40,7 +40,9 @@
             </div>
             <div class="u-pull-right">
               <li>
-                <a href="#">Preview</a>
+                <a href="{base_url}" target="_blank">
+                  Preview
+                </a>
               </li>
               <li>
                 <a href="logout">Logout</a>
@@ -55,11 +57,13 @@
 
         <div class="container">
           {projects}
-            <li>{title}</li>
+            <div class="row">
+              <strong>{title}</strong>
+            </div>
           {/projects}
 
           <footer class="row">
-
+            <small>Copyright &copy; Callum John @ItsSeaJay 2018</small>
           </footer>
         </div>
 

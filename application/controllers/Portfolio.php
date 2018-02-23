@@ -8,6 +8,7 @@ class Portfolio extends CI_Controller {
 
     $this->load->model('portfolio_model');
     $this->load->helper('date');
+    $this->load->helper('security');
     $this->load->helper('url');
     $this->load->library('parser');
   }
@@ -17,7 +18,9 @@ class Portfolio extends CI_Controller {
     $data = array(
       'base_url' => base_url(),
       'title' => $this->portfolio_model->get_full_name(),
-      'projects' => $this->portfolio_model->get_projects()
+      'projects' => $this->security->xss_clean(
+        $this->portfolio_model->get_projects()
+      )
     );
 
     $this->parser->parse('frontend/portfolio.html', $data);
@@ -25,7 +28,9 @@ class Portfolio extends CI_Controller {
 
   public function project($uri)
   {
-  	$data = $this->portfolio_model->get_project($uri);
+  	$data = $this->security->xss_clean(
+      $this->portfolio_model->get_project($uri)
+    );
 
     $data['base_url'] = base_url();
     $data['name'] = $this->portfolio_model->get_full_name();

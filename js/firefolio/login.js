@@ -52,9 +52,6 @@ $('document').ready(function () {
     }
   };
 
-  $('body').hide();
-  $('body').fadeIn();
-
   login.form.submit(function (event) {
     event.preventDefault();
 
