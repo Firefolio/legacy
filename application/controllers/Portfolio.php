@@ -6,7 +6,8 @@ class Portfolio extends CI_Controller {
   {
     parent::__construct();
 
-    $this->load->model('portfolio_model');
+    $this->load->model('profile_model');
+    $this->load->model('project_model');
     $this->load->helper('date');
     $this->load->helper('security');
     $this->load->helper('url');
@@ -17,8 +18,8 @@ class Portfolio extends CI_Controller {
   {
     $data = array(
       'base_url' => base_url(),
-      'title' => $this->portfolio_model->get_full_name(),
-      'projects' => $this->portfolio_model->get_projects()
+      'title' => $this->profile_model->get_full_name(),
+      'projects' => $this->project_model->get_projects()
     );
 
     $this->parser->parse('frontend/portfolio.html', $data);
@@ -31,7 +32,7 @@ class Portfolio extends CI_Controller {
     );
 
     $data['base_url'] = base_url();
-    $data['name'] = $this->portfolio_model->get_full_name();
+    $data['name'] = $this->project_model->get_full_name();
     $data['date'] = date(
       'd-m-Y',
       strtotime($data['date'])

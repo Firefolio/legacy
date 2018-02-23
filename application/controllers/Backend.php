@@ -7,10 +7,10 @@ class Backend extends CI_Controller
   {
     parent::__construct();
 
+    $this->load->model('project_model');
     $this->load->library('parser');
     $this->load->helper('url');
     $this->load->helper('security');
-    $this->load->model('portfolio_model');
   }
 
   public function projects($action = 'view')
@@ -27,7 +27,7 @@ class Backend extends CI_Controller
             'base_url' => base_url(),
             'date' => date('d-m-Y'),
             'projects' => $this->security->xss_clean(
-              $this->portfolio_model->get_projects()
+              $this->project_model->get_projects()
             )
           );
 
@@ -38,7 +38,7 @@ class Backend extends CI_Controller
             'base_url' => base_url(),
             'csrf_name' => $this->security->get_csrf_token_name(),
             'csrf_hash' => $this->security->get_csrf_hash(),
-            'languages' => $this->portfolio_model->get_languages()
+            'languages' => $this->project_model->get_languages()
           );
 
           $this->parser->parse('backend/projects/create.html', $data);
@@ -73,6 +73,7 @@ class Backend extends CI_Controller
         'language' => $_POST['language'],
         'date' => $_POST['date']
       );
+
       $this->db->insert('projects', $project);
 
       $url = '../view';
