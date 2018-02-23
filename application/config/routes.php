@@ -50,12 +50,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
+// Appliction Routes
 $route['project/(:any)'] = 'portfolio/project/$1';
 $route['login'] = 'user/form';
 $route['login/attempt'] = 'user/login';
 $route['logout'] = 'user/logout';
 $route['dashboard'] = 'backend/dashboard';
 
+// Reserved Routes
 $route['default_controller'] = 'portfolio';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
