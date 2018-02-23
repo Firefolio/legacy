@@ -23,7 +23,9 @@
         <div class="container">
           <header class="row header">
             <h1>Firefolio</h1>
-            <a href="../">&lt; Back to frontend</a>
+            <a href="../">
+              &lt; Back to frontend
+            </a>
           </header>
 
           <section class="row">
@@ -31,6 +33,13 @@
               <form class="login" id="form">
                 <section class="row">
                   <div class="twelve columns">
+                    <input
+                    class="hidden"
+                    type="hidden"
+                    text="text"
+                    name="{csrf_name}"
+                    value="{csrf_hash}">
+
 	                  <label for="username">Username</label>
                     <input id="username"
                     class="u-full-width"
