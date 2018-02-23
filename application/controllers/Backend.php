@@ -36,9 +36,8 @@ class Backend extends CI_Controller
         case 'create':
           $data = array(
             'base_url' => base_url(),
-            'projects' => $this->security->xss_clean(
-              $this->portfolio_model->get_projects()
-            ),
+            'csrf_name' => $this->security->get_csrf_token_name(),
+            'csrf_hash' => $this->security->get_csrf_hash(),
             'languages' => $this->portfolio_model->get_languages()
           );
 
@@ -59,5 +58,10 @@ class Backend extends CI_Controller
       header('Location: ' . $url);
       exit();
     }
+  }
+
+  public function create_project()
+  {
+
   }
 }
