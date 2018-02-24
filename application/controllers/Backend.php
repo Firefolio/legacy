@@ -49,12 +49,9 @@ class Backend extends CI_Controller
           );
 
           $data['base_url'] = base_url();
-          $data['date'] = date(
-            'd-m-Y',
-            strtotime($data['date'])
-          );
+          $data['languages'] = $this->project_model->get_languages();
 
-        	$this->parser->parse('backend/projects/update.html', $data);;
+        	$this->parser->parse('backend/projects/update.html', $data);
           break;
         case 'delete':
           // Add deletion code here

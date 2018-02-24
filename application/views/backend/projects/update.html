@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Edit {title} - Firefolio</title>
+        <title>Update {title} - Firefolio</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -88,13 +88,27 @@
                   class="u-full-width"
                   name="description">{description}</textarea>
                 </div>
+                <div class="row">
+                  <div class="one-half column">
+                    <label for="language">Language</label>
+                    <select class="u-full-width" name="language">
+                      {languages}
+                        <option value="{name}">{name}</option>
+                      {/languages}
+                    </select>
+                  </div>
+                  <div class="one-half column">
+                    <label for="language">Language</label>
+                    <input type="date" name="date" value="{date}">
+                  </div>
+                </div>
               </form>
             </div>
           </section>
 
           <footer class="row">
             <small>
-              Copyright &copy; 2018 Callum John @ItsSeaJay
+              Firefolio Copyright &copy; 2018 Callum John @ItsSeaJay
             </small>
           </footer>
         </div>
