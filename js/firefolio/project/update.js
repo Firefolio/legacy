@@ -1,7 +1,10 @@
 $('document').ready(function () {
   var update = {
     form: $('#form'),
-    url: $('#base-url').val(),
+    url: $('#base-url').val() +
+      'index.php/firefolio/projects/update/' +
+      $('#uri').val() +
+      '/submit',
     submit: function () {
       var inputs = this.form.find('input, textarea, button');
       var data = this.form.serialize();
@@ -38,6 +41,8 @@ $('document').ready(function () {
       });
     }
   };
+
+  console.log(update.url);
 
   update.form.submit(function (event) {
     event.preventDefault();

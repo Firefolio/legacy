@@ -68,7 +68,12 @@
           <section class="row">
             <div class="one-half column">
               <form id="form">
+                <!-- Anti CSRF -->
+                <input type="hidden" name="{csrf_name}" value="{csrf_hash}">
+
                 <input id="base-url" type="hidden" value="{base_url}">
+                <input type="hidden" name="id" value="{id}">
+                <input id="uri" type="hidden" name="uri" value="{uri}">
                 <div class="row">
                   <label for="title">Title</label>
                   <input

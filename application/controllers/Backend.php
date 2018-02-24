@@ -49,6 +49,8 @@ class Backend extends CI_Controller
           );
 
           $data['base_url'] = base_url();
+          $data['csrf_name'] = $this->security->get_csrf_token_name();
+          $data['csrf_hash'] = $this->security->get_csrf_hash();
           $data['languages'] = $this->project_model->get_languages();
 
         	$this->parser->parse('backend/projects/update.html', $data);
@@ -98,6 +100,48 @@ class Backend extends CI_Controller
       header('Location: ' . $url);
       exit();
     }
+  }
+
+  public function update_project()
+  {
+    $response = array(
+      'success' => FALSE,
+      'message' => 'Unspecified error'
+    );
+
+    if (isset($_POST))
+    {
+      if (isset($_POST['uri']))
+      {
+        $project = array(
+          'uri' => $this->to_ascii($_POST['title']),
+          'title' => $_POST['title'],
+          'subtitle' => $_POST['subtitle'],
+          'description' => $_POST['description'],
+          'language' => $_POST['language'],
+          'date' => $_POST['date']
+        );
+
+        $this->db->update(
+          'projects',
+           $project, array('uri' => $project['uri']
+         ));
+
+        $response['success'] = TRUE;
+        $response['message'] = 'Project updated successfully';
+      }
+      else
+      {
+        $response['message'] = 'Project data unsent';
+      }
+    }
+    else
+    {
+      $response['message'] = '$_POST superglobal unset';
+    }
+
+    $json = json_encode($response);
+    echo $json;
   }
 
   // From the Perfect Clean URL Generator

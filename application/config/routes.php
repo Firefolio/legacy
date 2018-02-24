@@ -52,13 +52,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 // Application Routes
 $route['project/(:any)'] = 'portfolio/project/$1';
+
 $route['login'] = 'user/form';
 $route['login/attempt'] = 'user/login';
 $route['logout'] = 'user/logout';
+
 $route['firefolio/projects'] = 'backend/projects';
 $route['firefolio/projects/(:any)'] = 'backend/projects/$1';
 $route['firefolio/projects/create/submit'] = 'backend/create_project';
 $route['firefolio/projects/update/(:any)'] = 'backend/projects/update/$1';
+$route['firefolio/projects/update/(:any)/submit'] = 'backend/update_project';
 
 // Reserved Routes
 $route['default_controller'] = 'portfolio';
