@@ -67,7 +67,7 @@
 
           <section class="row">
             <div class="one-half column">
-              <form>
+              <form id="form">
                 <div class="row">
                   <label for="title">Title</label>
                   <input
@@ -104,6 +104,17 @@
                     <input type="date" name="date" value="{date}">
                   </div>
                 </div>
+                <div class="row">
+                  <button type="submit" name="button">
+                    Finish
+                  </button>
+                  <button type="reset" name="button">
+                    Reset
+                  </button>
+                  <a class="button" href="#">
+                    Cancel
+                  </a>
+                </div>
               </form>
             </div>
           </section>
@@ -119,5 +130,6 @@
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
         <script>window.jQuery || document.write('<script src="{base_url}js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+        <script src="{base_url}js/firefolio/project/update.js"></script>
     </body>
 </html>
