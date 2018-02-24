@@ -13,7 +13,7 @@ class Backend extends CI_Controller
     $this->load->helper('security');
   }
 
-  public function projects($action = 'view')
+  public function projects($action = 'view', $uri = '')
   {
     // Require user authentication
     session_start();
@@ -42,6 +42,19 @@ class Backend extends CI_Controller
           );
 
           $this->parser->parse('backend/projects/create.html', $data);
+          break;
+        case 'update':
+          $data = $this->security->xss_clean(
+            $this->project_model->get_project($uri)
+          );
+
+          $data['base_url'] = base_url();
+          $data['date'] = date(
+            'd-m-Y',
+            strtotime($data['date'])
+          );
+
+        	$this->parser->parse('backend/projects/update.html', $data);;
           break;
         case 'delete':
           // Add deletion code here

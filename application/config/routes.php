@@ -58,6 +58,7 @@ $route['logout'] = 'user/logout';
 $route['firefolio/projects'] = 'backend/projects';
 $route['firefolio/projects/(:any)'] = 'backend/projects/$1';
 $route['firefolio/projects/create/submit'] = 'backend/create_project';
+$route['firefolio/projects/update/(:any)'] = 'backend/projects/update/$1';
 
 // Reserved Routes
 $route['default_controller'] = 'portfolio';
