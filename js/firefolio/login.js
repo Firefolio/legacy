@@ -14,7 +14,6 @@ $('document').ready(function () {
       return valid;
     },
     attempt: function (username, password) {
-  		var success = false;
       var inputs = this.form.find('input, button');
       var data = this.form.serialize();
 
@@ -50,8 +49,6 @@ $('document').ready(function () {
       request.always(function () {
         inputs.prop('disabled', false);
       });
-
-  		return success;
     }
   };
 
