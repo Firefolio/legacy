@@ -111,9 +111,10 @@ class Backend extends CI_Controller
 
     if (isset($_POST))
     {
-      if (isset($_POST['uri']))
+      if (isset($_POST['id']))
       {
         $project = array(
+          'id' => $_POST['id'],
           'uri' => $this->to_ascii($_POST['title']),
           'title' => $_POST['title'],
           'subtitle' => $_POST['subtitle'],
@@ -124,7 +125,7 @@ class Backend extends CI_Controller
 
         $this->db->update(
           'projects',
-           $project, array('uri' => $project['uri']
+           $project, array('id' => $project['id']
          ));
 
         $response['success'] = TRUE;
