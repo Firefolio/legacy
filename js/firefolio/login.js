@@ -20,8 +20,10 @@ $('document').ready(function () {
 
       inputs.prop('disabled', true);
 
+      console.log(this.url);
+
   		request = $.post(
-        'login/attempt',
+        this.url + 'index.php/login/attempt',
         data,
         "JSON"
       );
