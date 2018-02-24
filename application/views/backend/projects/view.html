@@ -29,7 +29,9 @@
                 </h1>
               </li>
               <li>
-                <a>Projects</a>
+                <a href="{base_url}index.php/firefolio/projects">
+                  Projects
+                </a>
               </li>
               <li>
                 <a>Profile</a>
@@ -65,7 +67,10 @@
           </header>
 
           <section class="row">
-            <a class="button" role="button" href="create">
+            <a
+            class="button"
+            role="button"
+            href="{base_url}index.php/firefolio/projects/create">
               Create
             </a>
             <a class="button" role="button" href="update">
@@ -94,7 +99,9 @@
           {projects}
             <div class="row">
               <input type="checkbox" name="" value="false">
-              <strong>{title}</strong>
+              <a href="projects/update/{uri}">
+                <strong>{title}</strong>
+              </a>
             </div>
           {/projects}
 

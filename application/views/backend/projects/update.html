@@ -62,6 +62,41 @@
             <h1>Update {title}</h1>
             <hr>
           </header>
+
+          <section class="row">
+            <div class="one-half column">
+              <form>
+                <div class="row">
+                  <label for="title">Title</label>
+                  <input
+                  class="u-full-width"
+                  type="text"
+                  name="title"
+                  value="{title}">
+                </div>
+                <div class="row">
+                  <label for="subtitle">Subtitle</label>
+                  <input
+                  class="u-full-width"
+                  type="text"
+                  name="subtitle"
+                  value="{subtitle}">
+                </div>
+                <div class="row">
+                  <label for="description">Description</label>
+                  <textarea
+                  class="u-full-width"
+                  name="description">{description}</textarea>
+                </div>
+              </form>
+            </div>
+          </section>
+
+          <footer class="row">
+            <small>
+              Copyright &copy; 2018 Callum John @ItsSeaJay
+            </small>
+          </footer>
         </div>
 
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"
