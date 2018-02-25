@@ -10,10 +10,10 @@
         <link rel="manifest" href="site.webmanifest">
         <link rel="apple-touch-icon" href="icon.png">
 
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/boilerplate.css">
-        <link rel="stylesheet" href="css/skeleton.css">
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="{base_url}css/normalize.css">
+        <link rel="stylesheet" href="{base_url}css/boilerplate.css">
+        <link rel="stylesheet" href="{base_url}css/skeleton.css">
+        <link rel="stylesheet" href="{base_url}css/main.css">
     </head>
     <body>
         <!--[if lte IE 9]>
@@ -29,8 +29,9 @@
             </div>
           </header>
 
-          <div class="content">
-            <section>
+          <!-- Search Bar -->
+          <section class="row">
+            <div class="one-full column">
               <input
               id="search"
               class="u-full-width"
@@ -38,7 +39,13 @@
               name="search"
               value=""
               placeholder="Search">
-            </section>
+            </div>
+          </section>
+
+          <hr>
+
+          <div class="content">
+            {rows}
             <section class="row">
               {projects}
                 <div class="four columns">
@@ -50,7 +57,10 @@
                 </div>
               {/projects}
             </section>
+            {/rows}
           </div>
+
+          <hr>
 
           <footer class="row footer">
             <small>Copyright &copy; {title} 2018</small>

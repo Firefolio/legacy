@@ -16,10 +16,20 @@ class Portfolio extends CI_Controller {
 
   public function index()
   {
+    $projects = $this->project_model->get_projects();
+    $rows = array();
+    $projects_per_row = 3;
+
+    // Split the projects into their own rows
+    foreach (array_chunk($projects, $projects_per_row, TRUE) as $row)
+    {
+      array_push($rows, array('projects' => $row));
+    }
+
     $data = array(
       'base_url' => base_url(),
       'title' => $this->profile_model->get_full_name(),
-      'projects' => $this->project_model->get_projects()
+      'rows' => $rows
     );
 
     $this->parser->parse('frontend/portfolio.html', $data);
