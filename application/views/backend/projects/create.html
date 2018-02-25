@@ -76,6 +76,10 @@
                   Don't worry if you're not entirely sure with the details, as
                   these can be changed later.
                 </p>
+                <p>
+                  Fields marked with an asterisk (<strong>*</strong>) are
+                  required.
+                </p>
               </div>
               <div class="one-half column">
                 <form action="create/submit" method="post">
@@ -83,7 +87,7 @@
                   <input type="hidden" name="{csrf_name}" value="{csrf_hash}">
 
                   <div class="row">
-                    <label for="title">Title</label>
+                    <label for="title">Title*</label>
                     <input
                     class="u-full-width"
                     type="text"

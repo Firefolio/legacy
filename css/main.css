@@ -1,3 +1,8 @@
+body,
+html {
+  background-color: #FAFAFA;
+}
+
 img.responsive {
   width: 100%;
   height: auto;
@@ -8,9 +13,18 @@ img.responsive {
   margin-bottom: 32px;
 }
 
+.content {
+  background-color: white;
+  padding: 32px;
+}
+
 .footer {
   margin-top: 32px;
   margin-bottom: 32px;
+}
+
+.thumbnail {
+  margin: 16px;
 }
 
 .thumbnail > h2 {
