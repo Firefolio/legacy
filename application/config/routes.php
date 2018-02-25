@@ -62,6 +62,7 @@ $route['firefolio/projects/(:any)'] = 'backend/projects/$1';
 $route['firefolio/projects/create/submit'] = 'backend/create_project';
 $route['firefolio/projects/update/(:any)'] = 'backend/projects/update/$1';
 $route['firefolio/projects/update/(:any)/submit'] = 'backend/update_project';
+$route['firefolio/projects/delete/(:any)'] = 'backend/projects/delete/$1';
 
 // Reserved Routes
 $route['default_controller'] = 'portfolio';

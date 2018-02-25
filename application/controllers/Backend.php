@@ -56,7 +56,16 @@ class Backend extends CI_Controller
         	$this->parser->parse('backend/projects/update.html', $data);
           break;
         case 'delete':
-          // Add deletion code here
+          $data = $this->security->xss_clean(
+            $this->project_model->get_project($uri)
+          );
+
+          $data['base_url'] = base_url();
+          $data['csrf_name'] = $this->security->get_csrf_token_name();
+          $data['csrf_hash'] = $this->security->get_csrf_hash();
+          $data['languages'] = $this->project_model->get_languages();
+
+          $this->parser->parse('backend/projects/delete.html', $data);
           break;
         default:
           show_404();
