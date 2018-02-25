@@ -27,6 +27,12 @@ img.responsive {
   margin: 16px;
 }
 
+.thumbnail > img {
+  border: 1px solid #F8F8F8;
+  border-radius: 4px;
+  padding: 2px;
+}
+
 .thumbnail > h2 {
   font-size: 3.0rem;
 }
