@@ -88,6 +88,7 @@ class Backend extends CI_Controller
       $project = array(
         'initiative' => 0,
         'uri' => $this->to_ascii($_POST['title']),
+        'thumbnail' => $_POST['thumbnail'],
         'title' => $_POST['title'],
         'subtitle' => $_POST['subtitle'],
         'description' => $_POST['description'],
@@ -125,6 +126,7 @@ class Backend extends CI_Controller
         $project = array(
           'id' => $_POST['id'],
           'uri' => $this->to_ascii($_POST['title']),
+          'thumbnail' => $_POST['thumbnail'],
           'title' => $_POST['title'],
           'subtitle' => $_POST['subtitle'],
           'description' => $_POST['description'],
