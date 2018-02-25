@@ -73,7 +73,7 @@
             href="{base_url}index.php/firefolio/projects/create">
               Create
             </a>
-            <a class="button" role="button" href="update">
+            <a id="update" class="button" role="button">
               Update
             </a>
             <a class="button" role="button" href="delete">
@@ -100,8 +100,9 @@
             <ul>
               {projects}
                 <li class="row">
-                  <input type="checkbox" name="" value="false">
-                  <a href="update/{uri}">
+                  <input type="checkbox" name="toggle" value="false">
+                  <input type="hidden" name="uri" value="{uri}">
+                  <a href="projects/update/{uri}">
                     <strong>{title}</strong>
                   </a>
                 </li>
@@ -118,5 +119,7 @@
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
         <script>window.jQuery || document.write('<script src="{base_url}js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+        <script src="{base_url}js/open_window.js"></script>
+        <script src="{base_url}js/firefolio/project/update.js"></script>
     </body>
 </html>

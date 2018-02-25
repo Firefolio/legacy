@@ -1,6 +1,7 @@
 $('document').ready(function () {
   var update = {
     form: $('#form'),
+    button: $('#update'),
     url: $('#base-url').val() +
       'index.php/firefolio/projects/update/' +
       $('#uri').val() +
@@ -39,16 +40,38 @@ $('document').ready(function () {
       request.always(function () {
         inputs.prop('disabled', false);
       });
+    },
+    open: function (checkboxes, uris) {
+      for (var checkbox = 0; checkbox < checkboxes.length; checkbox++) {
+        if (checkboxes[checkbox].checked) {
+          open_window('projects/update/' + uris[checkbox].value);
+        }
+      }
     }
   };
 
-  console.log(update.url);
+  // Save and exit
+  if (update.form != null) {
+    update.form.submit(function (event) {
+      event.preventDefault();
 
-  update.form.submit(function (event) {
-    event.preventDefault();
+      var project = update.form.serialize();
 
-    var project = update.form.serialize();
+      update.submit();
+    });
+  }
 
-    update.submit();
-  });
+  // Opening multiple tabs for updating projects
+  if (update.button != null) {
+    update.button.click(function (event) {
+      event.preventDefault();
+
+      var checkboxes = $('input[name=toggle]');
+      var uris = $('input[name=uri]');
+
+      console.log(uris);
+
+      update.open(checkboxes, uris);
+    });
+  }
 });
