@@ -68,7 +68,7 @@
 
           <section class="row">
             <a
-            class="button"
+            class="button button-primary"
             role="button"
             href="{base_url}index.php/firefolio/projects/create">
               Create
@@ -96,14 +96,18 @@
             </div>
           </section>
 
-          {projects}
-            <div class="row">
-              <input type="checkbox" name="" value="false">
-              <a href="projects/update/{uri}">
-                <strong>{title}</strong>
-              </a>
-            </div>
-          {/projects}
+          <div class="row">
+            <ul>
+              {projects}
+                <li class="row">
+                  <input type="checkbox" name="" value="false">
+                  <a href="update/{uri}">
+                    <strong>{title}</strong>
+                  </a>
+                </li>
+              {/projects}
+            </ul>
+          </div>
 
           <footer class="row">
             <small>Copyright &copy; Callum John @ItsSeaJay 2018</small>
