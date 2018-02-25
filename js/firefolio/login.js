@@ -1,7 +1,7 @@
 $('document').ready(function () {
   var login = {
     form: $('#form'),
-    url: $('#base-url').val(),
+    url: $('#base-url').val() + 'index.php/login/attempt',
     validate: function (username, password) {
       var valid = false;
 
@@ -19,10 +19,8 @@ $('document').ready(function () {
 
       inputs.prop('disabled', true);
 
-      console.log(this.url);
-
   		request = $.post(
-        this.url + 'index.php/login/attempt',
+        login.url,
         data,
         "JSON"
       );
