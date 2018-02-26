@@ -1,4 +1,4 @@
-$('document').ready(function () {
+$(document).ready(function () {
   var update = {
     form: $('#form'),
     button: {
@@ -60,7 +60,7 @@ $('document').ready(function () {
 
       var project = update.form.serialize();
 
-      if (update.attempt()) {
+      if (update.attempt() === true) {
         window.location.replace(
           $('#base-url').val() +
           'index.php/firefolio/projects'
@@ -71,11 +71,25 @@ $('document').ready(function () {
 
   // Save and keep editing
   if (update.button.save != null) {
+    // Save the project when the button is clicked
     update.button.save.click(function (event) {
       event.preventDefault();
 
-      if (update.attempt()) {
+      if (update.attempt() === true) {
         alert('Saved!');
+      }
+    });
+
+    // Override the keyboard shortcut to let them do that too
+    $(window).bind('keydown', function (event) {
+      if (event.ctrlKey || event.metaKey) {
+        switch (String.fromCharCode(event.which).toLowerCase()) {
+          case 's':
+            event.preventDefault();
+
+            update.attempt();
+            break;
+        }
       }
     });
   }
