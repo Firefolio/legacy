@@ -13,8 +13,11 @@ $('document').ready(function () {
       }
 
       var data = {
-        projects: JSON.stringify(projects_to_delete);
+        'projects': JSON.stringify(projects_to_delete)
       };
+      data[$('#csrf').attr('name')] = $('#csrf').val();
+
+      console.log(data);
 
       request = $.post(
         del.url,
@@ -22,12 +25,21 @@ $('document').ready(function () {
         'JSON'
       );
 
-      request.done(function (message) {
+      request.done(function (response) {
+        console.log(response);
+        response = JSON.parse(response);
+        console.log(response);
 
+        if (response.success) {
+          // TODO: Update the DOM
+          alert('Projects were deleted');
+        } else {
+          console.error(response.message);
+        }
       });
 
       request.fail(function (message) {
-        console.console.error(message);
+        console.error(message);
       });
     }
   };

@@ -26,6 +26,8 @@ class Backend extends CI_Controller
           $data = array(
             'base_url' => base_url(),
             'date' => date('d-m-Y'),
+            'csrf_name' => $this->security->get_csrf_token_name(),
+            'csrf_hash' => $this->security->get_csrf_hash(),
             'projects' => $this->security->xss_clean(
               $this->project_model->get_projects()
             )
@@ -56,16 +58,7 @@ class Backend extends CI_Controller
         	$this->parser->parse('backend/projects/update.html', $data);
           break;
         case 'delete':
-          $data = $this->security->xss_clean(
-            $this->project_model->get_project($uri)
-          );
-
-          $data['base_url'] = base_url();
-          $data['csrf_name'] = $this->security->get_csrf_token_name();
-          $data['csrf_hash'] = $this->security->get_csrf_hash();
-          $data['languages'] = $this->project_model->get_languages();
-
-          $this->parser->parse('backend/projects/delete.html', $data);
+          $this->delete_projects();
           break;
         default:
           show_404();
@@ -156,12 +149,57 @@ class Backend extends CI_Controller
     echo $json;
   }
 
+  public function delete_projects()
+  {
+    $response = array(
+      'success' => FALSE,
+      'message' => 'Unspecified error'
+    );
+
+    if (isset($_POST))
+    {
+      if (isset($_POST['projects']))
+      {
+        $projects = json_decode($_POST['projects']);
+
+        if (sizeof($_POST['projects'] > 0))
+        {
+          $response['message'] = 'Deleted';
+
+          foreach ($projects as $project)
+          {
+            $this->db->delete('projects', array('uri' => $project));
+
+            $response['message'] = $response['message'] . ', ' . $project;
+          }
+
+          $response['message'] = $response['message'] . ' ' . 'successfully';
+          $response['success'] = TRUE;
+        }
+        else {
+          $response['message'] = 'Projects to delete must be greater than zero';
+        }
+      }
+      else
+      {
+        $response['message'] = 'No projects were sent';
+      }
+    }
+    else
+    {
+      $response['message'] = '$_POST superglobal unset';
+    }
+
+    $json = json_encode($response);
+    echo $json;
+  }
+
   // From the Perfect Clean URL Generator
   // Source: http://cubiq.org/the-perfect-php-clean-url-generator
 
   function to_ascii($str, $replace = array(), $delimiter = '-')
   {
-    if(!empty($replace))
+    if (!empty($replace))
     {
       $str = str_replace((array)$replace, ' ', $str);
     }
