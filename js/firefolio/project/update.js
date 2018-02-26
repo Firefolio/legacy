@@ -1,12 +1,15 @@
 $('document').ready(function () {
   var update = {
     form: $('#form'),
-    button: $('#update'),
+    button: {
+      primary: $('#update'),
+      save: $('#save')
+    },
     url: $('#base-url').val() +
-      'index.php/firefolio/projects/update/' +
-      $('#uri').val() +
-      '/submit',
-    submit: function () {
+         'index.php/firefolio/projects/update/' +
+         $('#uri').val() +
+         '/submit',
+    attempt: function () {
       var inputs = this.form.find('input, textarea, button');
       var data = this.form.serialize();
 
@@ -25,9 +28,7 @@ $('document').ready(function () {
         console.log(response);
 
         if (response.success) {
-          window.location.replace(
-            'http://localhost/firefolio/index.php/firefolio/projects'
-          );
+          return true;
         } else {
           console.error(response.message);
         }
@@ -40,6 +41,8 @@ $('document').ready(function () {
       request.always(function () {
         inputs.prop('disabled', false);
       });
+
+      return false;
     },
     open: function (checkboxes, uris) {
       for (var checkbox = 0; checkbox < checkboxes.length; checkbox++) {
@@ -57,13 +60,29 @@ $('document').ready(function () {
 
       var project = update.form.serialize();
 
-      update.submit();
+      if (update.attempt()) {
+        window.location.replace(
+          $('#base-url').val() +
+          'index.php/firefolio/projects'
+        );
+      }
+    });
+  }
+
+  // Save and keep editing
+  if (update.button.save != null) {
+    update.button.save.click(function (event) {
+      event.preventDefault();
+
+      if (update.attempt()) {
+        alert('Saved!');
+      }
     });
   }
 
   // Opening multiple tabs for updating projects
-  if (update.button != null) {
-    update.button.click(function (event) {
+  if (update.button.primary != null) {
+    update.button.primary.click(function (event) {
       event.preventDefault();
 
       var checkboxes = $('input[name=toggle]');
