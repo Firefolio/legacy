@@ -31,6 +31,8 @@ class User extends CI_Controller
     );
     $user = $this->user_model->get_user();
 
+    session_start();
+
     if (isset($_POST))
     {
       if (isset($_POST['username']) AND
@@ -45,7 +47,6 @@ class User extends CI_Controller
           if ($username === $user->username AND
               password_verify($password, $user->password))
           {
-            session_start();
             $_SESSION['user'] = $username;
 
             $response['success'] = TRUE;
