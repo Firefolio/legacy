@@ -11,10 +11,8 @@ class User_model extends CI_Model
 
   public function get_user()
   {
-    $query = $this->db->query(
-      file_get_contents(base_url() . 'sql/get_user.sql')
-    );
-    $row = $query->row();
+    $query = $this->db->get('user');
+    $row = $query->row_array();
 
     return $row;
   }

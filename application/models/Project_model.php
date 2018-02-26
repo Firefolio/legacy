@@ -10,10 +10,9 @@ class Project_model extends CI_Model {
 
   public function get_project($uri)
   {
-	  $query = $this->db->query(
-		file_get_contents(base_url() . 'sql/get_project.sql'),
-		$uri
-	  );
+    // Find a project based on the URI
+    $this->db->where('uri', $uri);
+	  $query = $this->db->get('projects');
 
 	  $project = $query->row_array();
 
@@ -22,9 +21,7 @@ class Project_model extends CI_Model {
 
   public function get_projects()
   {
-    $query = $this->db->query(
-      file_get_contents(base_url() . 'sql/get_projects.sql')
-    );
+    $query = $this->db->get('projects');
 
     return $query->result_array();
   }

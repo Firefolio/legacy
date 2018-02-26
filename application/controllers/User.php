@@ -20,6 +20,7 @@ class User extends CI_Controller
       'csrf_name' => $this->security->get_csrf_token_name(),
       'csrf_hash' => $this->security->get_csrf_hash()
     );
+
     $this->parser->parse('backend/login.html', $data);
   }
 
@@ -29,53 +30,49 @@ class User extends CI_Controller
       'success' => FALSE,
       'message' => 'No error message specified'
     );
+
     $user = $this->user_model->get_user();
 
     session_start();
 
-    if (isset($_POST))
+    if (isset($_POST['username']) AND isset($_POST['password']))
     {
-      if (isset($_POST['username']) AND
-          isset($_POST['password']))
+      $username = $_POST['username'];
+      $password = $_POST['password'];
+
+      if (strlen($username) > 0 AND strlen($password) > 0)
       {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-
-        if (strlen($username) > 0 AND
-            strlen($password) > 0)
+        if ($username === $user['username'] AND
+            password_verify($password, $user['password']))
         {
-          if ($username === $user->username AND
-              password_verify($password, $user->password))
-          {
-            $_SESSION['user'] = $username;
+          $_SESSION['user'] = $username;
 
-            $response['success'] = TRUE;
-            $response['message'] = 'Login attempt successful';
-          }
-          else
-          {
-            $response['message'] = 'Incorrect login credentials';
-          }
+          $response['success'] = TRUE;
+          $response['message'] = 'Login attempt successful';
         }
         else
         {
-          $response['message'] = 'Login credentials contain blank fields';
+          $response['message'] = 'Incorrect login credentials';
         }
       }
       else
       {
-        $response['message'] = 'Login credentials not recieved';
+        $response['message'] = 'Login credentials contain blank fields';
       }
     }
     else
     {
-      $response['message'] = 'No values posted at all';
+      $response['message'] = 'Login credentials not recieved';
     }
 
+    // Return the result of the AJAX request in JSON
     $json = json_encode($response);
     echo $json;
   }
 
+  /**
+  * Logs the user out of the backend and destroys the session variable
+  */
   public function logout()
   {
     session_start();
