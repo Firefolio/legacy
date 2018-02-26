@@ -26,6 +26,25 @@ class Project_model extends CI_Model {
     return $query->result_array();
   }
 
+  public function insert_project($project)
+  {
+    $this->db->insert('projects', $project);
+  }
+
+  public function update_project($project)
+  {
+    $this->db->update(
+      'projects',
+      $project,
+      array('id' => $project['id'])
+    );
+  }
+
+  public function delete_project($uri)
+  {
+    $this->db->delete('projects', array('uri' => $uri));
+  }
+
   public function get_languages()
   {
     // Send a query to get all values from the 'language' column

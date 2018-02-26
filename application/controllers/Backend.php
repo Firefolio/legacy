@@ -76,29 +76,23 @@ class Backend extends CI_Controller
 
   public function create_project()
   {
-    if (isset($_POST))
+    $project = array(
+      'initiative' => 0,
+      'uri' => $this->to_ascii($_POST['title']),
+      'thumbnail' => $_POST['thumbnail'],
+      'title' => $_POST['title'],
+      'subtitle' => $_POST['subtitle'],
+      'description' => $_POST['description'],
+      'language' => $_POST['language'],
+      'date' => $_POST['date']
+    );
+
+    // The project given must have a name.
+    if (strlen($project['title']) > 0)
     {
-      $project = array(
-        'initiative' => 0,
-        'uri' => $this->to_ascii($_POST['title']),
-        'thumbnail' => $_POST['thumbnail'],
-        'title' => $_POST['title'],
-        'subtitle' => $_POST['subtitle'],
-        'description' => $_POST['description'],
-        'language' => $_POST['language'],
-        'date' => $_POST['date']
-      );
+      $this->project_model->insert_project($project);
 
-      $this->db->insert('projects', $project);
-
-      $url = '../view';
-
-      header('Location: ' . $url);
-      exit();
-    }
-    else
-    {
-      $url = '../';
+      $url = base_url() . 'index.php/firefolio/projects';
 
       header('Location: ' . $url);
       exit();
@@ -112,37 +106,34 @@ class Backend extends CI_Controller
       'message' => 'Unspecified error'
     );
 
-    if (isset($_POST))
+    if (isset($_POST['id']))
     {
-      if (isset($_POST['id']))
-      {
-        $project = array(
-          'id' => $_POST['id'],
-          'uri' => $this->to_ascii($_POST['title']),
-          'thumbnail' => $_POST['thumbnail'],
-          'title' => $_POST['title'],
-          'subtitle' => $_POST['subtitle'],
-          'description' => $_POST['description'],
-          'language' => $_POST['language'],
-          'date' => $_POST['date']
-        );
+      $project = array(
+        'id' => $_POST['id'],
+        'uri' => $this->to_ascii($_POST['title']),
+        'thumbnail' => $_POST['thumbnail'],
+        'title' => $_POST['title'],
+        'subtitle' => $_POST['subtitle'],
+        'description' => $_POST['description'],
+        'language' => $_POST['language'],
+        'date' => $_POST['date']
+      );
 
-        $this->db->update(
-          'projects',
-           $project, array('id' => $project['id']
-         ));
+      if (strlen($project['title']) > 0)
+      {
+        $this->project_model->update_project($project);
 
         $response['success'] = TRUE;
         $response['message'] = 'Project updated successfully';
       }
       else
       {
-        $response['message'] = 'Project data unsent';
+        $response['message'] = 'Project title must not be blank';
       }
     }
     else
     {
-      $response['message'] = '$_POST superglobal unset';
+      $response['message'] = 'Project data unsent';
     }
 
     $json = json_encode($response);
@@ -156,38 +147,31 @@ class Backend extends CI_Controller
       'message' => 'Unspecified error'
     );
 
-    if (isset($_POST))
+    if (isset($_POST['projects']))
     {
-      if (isset($_POST['projects']))
-      {
-        $projects = json_decode($_POST['projects']);
+      $projects = json_decode($_POST['projects']);
 
-        if (sizeof($_POST['projects'] > 0))
+      if (sizeof($_POST['projects'] > 0))
+      {
+        $response['message'] = 'Deleted';
+
+        foreach ($projects as $project)
         {
-          $response['message'] = 'Deleted';
+          $this->project_model->delete_project($project);
 
-          foreach ($projects as $project)
-          {
-            $this->db->delete('projects', array('uri' => $project));
-
-            $response['message'] = $response['message'] . ', ' . $project;
-          }
-
-          $response['message'] = $response['message'] . ' ' . 'successfully';
-          $response['success'] = TRUE;
+          $response['message'] = $response['message'] . ', ' . $project;
         }
-        else {
-          $response['message'] = 'Projects to delete must be greater than zero';
-        }
+
+        $response['message'] = $response['message'] . ' ' . 'successfully';
+        $response['success'] = TRUE;
       }
-      else
-      {
-        $response['message'] = 'No projects were sent';
+      else {
+        $response['message'] = 'Projects to delete must be greater than zero';
       }
     }
     else
     {
-      $response['message'] = '$_POST superglobal unset';
+      $response['message'] = 'No projects were sent';
     }
 
     $json = json_encode($response);
