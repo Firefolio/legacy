@@ -17,7 +17,6 @@ $(document).ready(function () {
       var inputs = this.form.find('input, textarea, button');
       var data = this.form.serialize();
 
-      console.log(data);
       inputs.prop('disabled', true);
 
       var request = $.post(
@@ -60,8 +59,6 @@ $(document).ready(function () {
       }
     }
   };
-
-  console.log(update.csrf);
 
   // Save and exit
   if (update.form != null) {
