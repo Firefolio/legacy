@@ -1,15 +1,20 @@
-# humanstxt.org/
-# The humans responsible & technology colophon
+/* Firefolio */
+/* http://firefolio.org/ */
+/* humanstxt.org */
+/* The humans responsible & technology colophon */
 
-# TEAM
+/* TEAM */
 
-    <name> Callum John <role> @ItsSeaJay <twitter>
+  Developer: Callum John
+  Twitter: @ItsSeaJay
 
-# THANKS
+/* THANKS */
 
-    <name>
+  Ned Hyett
+  Dan
 
-# TECHNOLOGY COLOPHON
+/* SITE */
 
-    CSS3, HTML5
-    Apache Server Configs, jQuery, Modernizr, Normalize.css
+  Language: English
+  Doctype: HTML5
+  IDE: Atom, XAMPP, Firefox

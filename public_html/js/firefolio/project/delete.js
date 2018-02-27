@@ -15,6 +15,7 @@ $('document').ready(function () {
       var data = {
         'projects': JSON.stringify(projects_to_delete)
       };
+
       data[$('#csrf').attr('name')] = $('#csrf').val();
 
       console.log(data);
@@ -31,8 +32,16 @@ $('document').ready(function () {
         console.log(response);
 
         if (response.success) {
-          // TODO: Update the DOM
-          alert('Projects were deleted');
+          $('#csrf').val(response.hash);
+
+          // Hide deleted inputs
+          for (var project = 0; project < projects_to_delete.length; project++) {
+            $(
+              'input[value=' +
+              projects_to_delete[project] +
+              ']'
+            ).parent().hide();
+          }
         } else {
           console.error(response.message);
         }
