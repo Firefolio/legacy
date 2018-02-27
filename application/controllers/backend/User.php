@@ -13,7 +13,7 @@ class User extends CI_Controller
     $this->load->model('user_model');
   }
 
-  public function form()
+  public function index()
   {
     $data = array(
       'base_url' => base_url(),

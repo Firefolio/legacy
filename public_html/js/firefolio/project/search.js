@@ -1,9 +1,34 @@
 $('document').ready(function () {
   var search = {
     bar: $('#search'),
-    url: $('#base-url').val(),
+    list: $('#projects'),
+    url: $('#base-url').val() + 'index.php/firefolio/projects/search',
     attempt: function () {
-      var request;
+      var data = {
+        query: search.bar.val()
+      };
+      data[$('#csrf').attr('name')] = $('#csrf').val();
+
+      var request = $.post(
+        search.url,
+        data,
+        'JSON'
+      );
+
+      request.done(function (response) {
+        response = JSON.parse(response);
+
+        if (response.success) {
+          $('#csrf').val(response.hash);
+          search.list.html(response.html);
+        } else {
+          console.error(response.message);
+        }
+      });
+
+      request.fail(function (message) {
+        console.error(message);
+      });
     }
   };
 

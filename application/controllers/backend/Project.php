@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Backend extends CI_Controller
+class Project extends CI_Controller
 {
   function __construct()
   {
@@ -13,7 +13,7 @@ class Backend extends CI_Controller
     $this->load->helper('security');
   }
 
-  public function projects($action = 'view', $uri = '')
+  public function index($action = 'view', $uri = '')
   {
     // Require user authentication
     session_start();
@@ -60,6 +60,9 @@ class Backend extends CI_Controller
         case 'delete':
           $this->delete_projects();
           break;
+        case 'search':
+          $this->search_projects();
+          break;
         default:
           show_404();
           break;
@@ -67,7 +70,7 @@ class Backend extends CI_Controller
     }
     else
     {
-      $url = 'login';
+      $url = base_url() . 'index.php/login';
 
       header('Location: ' . $url);
       exit();
@@ -175,6 +178,36 @@ class Backend extends CI_Controller
     else
     {
       $response['message'] = 'No projects were sent';
+    }
+
+    $json = json_encode($response);
+    echo $json;
+  }
+
+  public function search_projects()
+  {
+    $response = array(
+      'success' => FALSE,
+      'message' => 'No error message specified',
+      'hash' => $this->security->get_csrf_hash(),
+      'html' => 'Unspecified error'
+    );
+
+    if (isset($_POST['query']))
+    {
+      $title = $_POST['query'];
+
+      $data = array(
+        'projects' => $this->project_model->search_projects($title)
+      );
+
+      $response['success'] = TRUE;
+      $response['message'] = 'Found some projects from query';
+      $response['html'] = $this->parser->parse('backend/projects/project.html', $data, TRUE);
+    }
+    else
+    {
+      $response['message'] = '$_POST data unset';
     }
 
     $json = json_encode($response);

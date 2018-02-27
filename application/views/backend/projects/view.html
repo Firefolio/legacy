@@ -97,7 +97,8 @@
 
           <div class="row">
             <input id="csrf" type="hidden" name="{csrf_name}" value="{csrf_hash}">
-            <ul>
+            <input id="base-url" type="hidden" name="base_url" value="{base_url}">
+            <ul id="projects">
               {projects}
                 <li class="row">
                   <input type="checkbox" name="toggle" value="false">

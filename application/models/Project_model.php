@@ -45,6 +45,14 @@ class Project_model extends CI_Model {
     $this->db->delete('projects', array('uri' => $uri));
   }
 
+  public function search_projects($title)
+  {
+    $this->db->like('title', $title);
+    $query = $this->db->get('projects');
+
+    return $query->result_array();
+  }
+
   public function get_languages()
   {
     // Send a query to get all values from the 'language' column

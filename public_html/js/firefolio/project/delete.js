@@ -15,7 +15,6 @@ $('document').ready(function () {
       var data = {
         'projects': JSON.stringify(projects_to_delete)
       };
-
       data[$('#csrf').attr('name')] = $('#csrf').val();
 
       console.log(data);
