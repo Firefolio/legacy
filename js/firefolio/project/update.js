@@ -31,7 +31,9 @@ $(document).ready(function () {
         response = JSON.parse(response);
         console.log(response);
 
+        // Generate a new anti-CSRF hash
         update.csrf.hash = response.hash;
+        $('#csrf').val(response.hash);
 
         if (response.success) {
           return true;
