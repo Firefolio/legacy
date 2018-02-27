@@ -167,7 +167,8 @@ class Backend extends CI_Controller
         $response['message'] = $response['message'] . ' ' . 'successfully';
         $response['success'] = TRUE;
       }
-      else {
+      else
+      {
         $response['message'] = 'Projects to delete must be greater than zero';
       }
     }
@@ -180,7 +181,7 @@ class Backend extends CI_Controller
     echo $json;
   }
 
-  // From the Perfect Clean URL Generator
+  // From the 'Perfect Clean URL Generator'
   // Source: http://cubiq.org/the-perfect-php-clean-url-generator
 
   function to_ascii($str, $replace = array(), $delimiter = '-')
