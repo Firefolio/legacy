@@ -103,7 +103,8 @@ class Backend extends CI_Controller
   {
     $response = array(
       'success' => FALSE,
-      'message' => 'Unspecified error'
+      'message' => 'Unspecified error',
+      'hash' => $this->security->get_csrf_hash()
     );
 
     if (isset($_POST['id']))

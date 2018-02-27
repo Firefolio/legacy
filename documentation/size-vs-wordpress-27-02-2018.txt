@@ -1,0 +1,11 @@
+﻿Wordpress: 25.2 MB (Size)
+           27.7 MB (Size on Disk)
+
+Firefolio: 2.89 MB (Size)
+           3.47 MB (Size on Disk)
+
+Difference: 25.2 - 2.89 = 22.31 MB (Size)
+            27.7 - 3.47 = 24.23 MB (Size on Disk)
+
+Decrease: (22.31 / 25.2) * 100 = 88.532 % (Size, to 3 decimal places)
+          (24.23 / 27.7) * 100 = 87.473 % (Size on Disk, to 3 Decimal Places)

@@ -9,6 +9,10 @@ $(document).ready(function () {
          'index.php/firefolio/projects/update/' +
          $('#uri').val() +
          '/submit',
+    csrf: {
+      name: $('#csrf').attr('name'),
+      hash: $('#csrf').val()
+    },
     attempt: function () {
       var inputs = this.form.find('input, textarea, button');
       var data = this.form.serialize();
@@ -26,6 +30,8 @@ $(document).ready(function () {
         console.log(response);
         response = JSON.parse(response);
         console.log(response);
+
+        update.csrf.hash = response.hash;
 
         if (response.success) {
           return true;
@@ -53,6 +59,8 @@ $(document).ready(function () {
     }
   };
 
+  console.log(update.csrf);
+
   // Save and exit
   if (update.form != null) {
     update.form.submit(function (event) {
@@ -60,7 +68,7 @@ $(document).ready(function () {
 
       var project = update.form.serialize();
 
-      if (update.attempt() === true) {
+      if (update.attempt()) {
         window.location.replace(
           $('#base-url').val() +
           'index.php/firefolio/projects'
@@ -70,12 +78,12 @@ $(document).ready(function () {
   }
 
   // Save and keep editing
-  if (update.button.save != null) {
+  if (update.button.save !== null) {
     // Save the project when the button is clicked
     update.button.save.click(function (event) {
       event.preventDefault();
 
-      if (update.attempt() === true) {
+      if (update.attempt()) {
         alert('Saved!');
       }
     });
@@ -86,7 +94,6 @@ $(document).ready(function () {
         switch (String.fromCharCode(event.which).toLowerCase()) {
           case 's':
             event.preventDefault();
-
             update.attempt();
             break;
         }
