@@ -203,7 +203,17 @@ class Project extends CI_Controller
 
       $response['success'] = TRUE;
       $response['message'] = 'Found some projects from query';
-      $response['html'] = $this->parser->parse('backend/projects/project.html', $data, TRUE);
+
+      if (sizeof($data['projects']) > 0)
+      {
+        $response['html'] = $this->parser->parse('backend/projects/project.html', $data, TRUE);
+      }
+      else
+      {
+        $response['html'] = '<em>No projects like "' .
+                            $title .
+                            '" were found...</em>';
+      }
     }
     else
     {

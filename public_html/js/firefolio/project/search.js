@@ -18,8 +18,10 @@ $('document').ready(function () {
       request.done(function (response) {
         response = JSON.parse(response);
 
+        // Remember to always regenerate the anti-CSRF hash
+        $('#csrf').val(response.hash);
+
         if (response.success) {
-          $('#csrf').val(response.hash);
           search.list.html(response.html);
         } else {
           console.error(response.message);
