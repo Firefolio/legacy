@@ -51,18 +51,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 // Application Routes
-$route['project/(:any)'] = 'portfolio/project/$1';
+$route['project/(:any)'] = 'frontend/portfolio/project/$1';
 
-$route['login'] = 'user/form';
-$route['login/attempt'] = 'user/login';
-$route['logout'] = 'user/logout';
+$route['login'] = 'backend/user/form';
+$route['login/attempt'] = 'backend/user/login';
+$route['logout'] = 'backend/user/logout';
 
-$route['firefolio/projects'] = 'backend/projects';
-$route['firefolio/projects/(:any)'] = 'backend/projects/$1';
-$route['firefolio/projects/create/submit'] = 'backend/create_project';
-$route['firefolio/projects/update/(:any)'] = 'backend/projects/update/$1';
-$route['firefolio/projects/update/(:any)/submit'] = 'backend/update_project';
-$route['firefolio/projects/delete'] = 'backend/projects/delete';
+$route['firefolio/projects'] = 'backend/backend/projects';
+$route['firefolio/projects/(:any)'] = 'backend/backend/projects/$1';
+$route['firefolio/projects/create/submit'] = 'backend/backend/create_project';
+$route['firefolio/projects/update/(:any)'] = 'backend/backend/projects/update/$1';
+$route['firefolio/projects/update/(:any)/submit'] = 'backend/backend/update_project';
+$route['firefolio/projects/delete'] = 'backend/backend/projects/delete';
 
 // Reserved Routes
 $route['default_controller'] = 'portfolio';

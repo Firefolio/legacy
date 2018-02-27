@@ -1,11 +1,9 @@
 $('document').ready(function () {
   var search = {
     bar: $('#search'),
-    url: $('#base-url').val()
+    url: $('#base-url').val(),
     attempt: function () {
-      var request = $.post(
-        
-      );
+      var request;
     }
   };
 
