@@ -32,15 +32,14 @@ $('document').ready(function () {
         console.log(response);
 
         if (response.success) {
+          // Get a new anti-CSRF hash from the response
           $('#csrf').val(response.hash);
 
           // Hide deleted inputs
           for (var project = 0; project < projects_to_delete.length; project++) {
-            $(
-              'input[value=' +
+            $('input[value=' +
               projects_to_delete[project] +
-              ']'
-            ).parent().hide();
+              ']').parent().hide();
           }
         } else {
           console.error(response.message);

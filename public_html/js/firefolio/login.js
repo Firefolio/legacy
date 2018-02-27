@@ -32,7 +32,7 @@ $('document').ready(function () {
 
         if (response.success) {
           window.location.replace(
-            'http://localhost/firefolio/index.php/firefolio/projects'
+            $('#base-url').val() + 'index.php/firefolio/projects'
           );
         } else {
           console.error(response.message);
