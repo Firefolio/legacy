@@ -65,6 +65,8 @@ $route['firefolio/projects/update/(:any)/submit'] = 'backend/project/update_proj
 $route['firefolio/projects/delete'] = 'backend/project/index/delete';
 $route['firefolio/projects/search'] = 'backend/project/index/search';
 
+$route['firefolio/profile'] = 'backend/profile/index';
+
 // Reserved Routes
 $route['default_controller'] = 'portfolio';
 $route['404_override'] = '';

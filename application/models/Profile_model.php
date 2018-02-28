@@ -7,6 +7,21 @@ class Profile_model extends CI_Model {
     parent::__construct();
   }
 
+  public function get_first_name()
+  {
+
+  }
+
+  public function get_middle_name()
+  {
+
+  }
+
+  public function get_last_name()
+  {
+
+  }
+
   public function get_full_name()
   {
     $this->db->select('first_name, last_name, middle_name');

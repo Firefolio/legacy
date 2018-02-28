@@ -1,0 +1,89 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Profile - Firefolio</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="manifest" href="site.webmanifest">
+        <link rel="apple-touch-icon" href="icon.png">
+
+        <link rel="stylesheet" href="{base_url}css/normalize.css">
+        <link rel="stylesheet" href="{base_url}css/boilerplate.css">
+        <link rel="stylesheet" href="{base_url}css/skeleton.css">
+        <link rel="stylesheet" href="{base_url}css/firefolio.css">
+    </head>
+    <body>
+        <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+        <nav class="clearfix">
+          <ul>
+            <div class="u-pull-left">
+              <li>
+                <h1 style="font-size: 1.5em">
+                  <a href="https://firefolio.org/">Firefolio</a>
+                </h1>
+              </li>
+              <li>
+                <a>Projects</a>
+              </li>
+              <li>
+                <a>Profile</a>
+              </li>
+              <li>
+                <a>Administration</a>
+              </li>
+            </div>
+            <div class="u-pull-right">
+              <li>
+                <a href="{base_url}" target="_blank">
+                  Preview
+                </a>
+              </li>
+              <li>
+                <a href="../logout">Logout</a>
+              </li>
+              <li class="hidden">
+                &#9776;
+                <span class="visuallyhidden">Open Navbar</span>
+              </li>
+            </div>
+          </ul>
+        </nav>
+
+        <div class="container">
+          <section class="row">
+            <div class="one-full column">
+              <h1>Profile</h1>
+              <hr>
+            </div>
+          </section>
+          <section class="row">
+            <div class="one-full column">
+              <form id="form">
+                <div class="row">
+                  <div class="one-third column">
+                    <input class="u-full-width" type="text" name="first-name" value="{first_name}">
+                  </div>
+                  <div class="one-third column">
+                    <input class="u-full-width" type="text" name="first-name" value="{middle_name}">
+                  </div>
+                  <div class="one-third column">
+                    <input class="u-full-width" type="text" name="first-name" value="{last_name}">
+                  </div>
+                </div>
+              </form>
+            </div>
+          </section>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+        <script>window.jQuery || document.write('<script src="{base_url}js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+    </body>
+</html>
