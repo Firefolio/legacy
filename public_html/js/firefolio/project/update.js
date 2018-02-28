@@ -16,6 +16,7 @@ $(document).ready(function () {
     attempt: function () {
       var inputs = this.form.find('input, textarea, button');
       var data = this.form.serialize();
+      var success = false;
 
       inputs.prop('disabled', true);
 
@@ -35,7 +36,7 @@ $(document).ready(function () {
         $('#csrf').val(response.hash);
 
         if (response.success) {
-          return true;
+          console.log(response.message);
         } else {
           console.error(response.message);
         }
@@ -48,8 +49,6 @@ $(document).ready(function () {
       request.always(function () {
         inputs.prop('disabled', false);
       });
-
-      return false;
     },
     open: function (checkboxes, uris) {
       for (var checkbox = 0; checkbox < checkboxes.length; checkbox++) {

@@ -16,11 +16,49 @@ class Profile extends CI_Controller {
   {
     $data = array(
       'base_url' => base_url(),
+      'csrf_name' => $this->security->get_csrf_token_name(),
+      'csrf_hash' => $this->security->get_csrf_hash(),
       'first_name' => $this->profile_model->get_first_name(),
       'middle_name' => $this->profile_model->get_middle_name(),
       'last_name' => $this->profile_model->get_last_name(),
     );
 
     $this->parser->parse('backend/profile/update.html', $data);
+  }
+
+  public function update()
+  {
+    $response = array(
+      'success' => FALSE,
+      'message' => 'No error message specified',
+      'hash' => $this->security->get_csrf_hash()
+    );
+
+    if (isset($_POST['first_name']) AND
+        isset($_POST['middle_name']) AND
+        isset($_POST['last_name']))
+    {
+      $first_name = $_POST['first_name'];
+      $middle_name = $_POST['middle_name'];
+      $last_name = $_POST['last_name'];
+
+      $this->profile_model->update_profile(
+        array(
+          'first_name' => $first_name,
+          'middle_name' => $middle_name,
+          'last_name' => $last_name
+        )
+      );
+
+      $response['success'] = TRUE;
+      $response['message'] = 'Profile updated successfully';
+    }
+    else
+    {
+      $response['message'] = 'No profile data sent';
+    }
+
+    $json = json_encode($response);
+    echo $json;
   }
 }

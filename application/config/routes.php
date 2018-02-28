@@ -66,6 +66,7 @@ $route['firefolio/projects/delete'] = 'backend/project/index/delete';
 $route['firefolio/projects/search'] = 'backend/project/index/search';
 
 $route['firefolio/profile'] = 'backend/profile/index';
+$route['firefolio/profile/update'] = 'backend/profile/update';
 
 // Reserved Routes
 $route['default_controller'] = 'portfolio';

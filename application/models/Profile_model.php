@@ -44,4 +44,9 @@ class Profile_model extends CI_Model {
 
     return $full_name;
   }
+
+  public function update_profile($profile)
+  {
+    $this->db->update('profile', $profile);
+  }
 }
