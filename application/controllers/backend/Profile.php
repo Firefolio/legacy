@@ -14,16 +14,28 @@ class Profile extends CI_Controller {
 
   public function index()
   {
-    $data = array(
-      'base_url' => base_url(),
-      'csrf_name' => $this->security->get_csrf_token_name(),
-      'csrf_hash' => $this->security->get_csrf_hash(),
-      'first_name' => $this->profile_model->get_first_name(),
-      'middle_name' => $this->profile_model->get_middle_name(),
-      'last_name' => $this->profile_model->get_last_name(),
-    );
+    session_start();
 
-    $this->parser->parse('backend/profile/update.html', $data);
+    if (isset($_SESSION['user']))
+    {
+      $data = array(
+        'base_url' => base_url(),
+        'csrf_name' => $this->security->get_csrf_token_name(),
+        'csrf_hash' => $this->security->get_csrf_hash(),
+        'first_name' => $this->profile_model->get_first_name(),
+        'middle_name' => $this->profile_model->get_middle_name(),
+        'last_name' => $this->profile_model->get_last_name(),
+      );
+
+      $this->parser->parse('backend/profile/update.html', $data);
+    }
+    else
+    {
+      $url = base_url() . 'index.php/login';
+
+      header('Location: ' . $url);
+      exit();
+    }
   }
 
   public function update()
