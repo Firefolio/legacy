@@ -15,7 +15,10 @@ class Profile extends CI_Controller {
   public function index()
   {
     $data = array(
-      'base_url' => base_url()
+      'base_url' => base_url(),
+      'first_name' => $this->profile_model->get_first_name(),
+      'middle_name' => $this->profile_model->get_middle_name(),
+      'last_name' => $this->profile_model->get_last_name(),
     );
 
     $this->parser->parse('backend/profile/update.html', $data);

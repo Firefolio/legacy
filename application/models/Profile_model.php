@@ -9,17 +9,26 @@ class Profile_model extends CI_Model {
 
   public function get_first_name()
   {
+    $query = $this->db->get('profile');
+    $row = $query->row_array();
 
+    return $row['first_name'];
   }
 
   public function get_middle_name()
   {
+    $query = $this->db->get('profile');
+    $row = $query->row_array();
 
+    return $row['middle_name'];
   }
 
   public function get_last_name()
   {
+    $query = $this->db->get('profile');
+    $row = $query->row_array();
 
+    return $row['last_name'];
   }
 
   public function get_full_name()
