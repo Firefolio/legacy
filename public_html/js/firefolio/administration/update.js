@@ -3,8 +3,8 @@ $('document').ready(function () {
     attempt: {
       username: function () {
         var form = $('#update-username');
-        var input = $('#update-username :input');
-        var url = $('#base-url') +
+        var inputs = form.find('text, button');
+        var url = $('#base-url').val() +
                   'index.php/firefolio/administration/update/username';
 
         var data = {
@@ -12,7 +12,7 @@ $('document').ready(function () {
         }
         data[$('#csrf').attr('name')] = $('#csrf').val();
 
-        console.log(data);
+        inputs.prop('disabled', true);
 
         var request = $.post(
           url,
@@ -28,6 +28,10 @@ $('document').ready(function () {
 
         request.fail(function (message) {
           console.error(message);
+        });
+
+        request.always(function () {
+          inputs.prop('disabled', false);
         });
       },
       password: function () {
