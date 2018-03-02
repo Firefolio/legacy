@@ -68,6 +68,44 @@ class Administration extends CI_Controller {
 
   public function update_password()
   {
+    $response = array(
+      'success' => FALSE,
+      'message' => 'No error message specified',
+      'hash' => $this->security->get_csrf_hash()
+    );
 
+    if (isset($_POST['password']) AND isset($_POST['confirmation']))
+    {
+      $password = $_POST['password'];
+      $confirmation = $_POST['confirmation'];
+
+      if ($password === $confirmation)
+      {
+        $minimum_length = 8;
+
+        if (strlen($password) >= $minimum_length)
+        {
+          $this->user_model->update_password($password);
+
+          $response['success'] = TRUE;
+          $response['message'] = 'Changed password';
+        }
+        else
+        {
+          $response['message'] = 'New username is too short';
+        }
+      }
+      else
+      {
+        $response['message'] = 'Password and confirmation don\'t match';
+      }
+    }
+    else
+    {
+      $response['message'] = 'No username posted';
+    }
+
+    $json = json_encode($response);
+    echo $json;
   }
 }

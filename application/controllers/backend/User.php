@@ -28,7 +28,8 @@ class User extends CI_Controller
   {
     $response = array(
       'success' => FALSE,
-      'message' => 'No error message specified'
+      'message' => 'No error message specified',
+      'hash' => $this->security->get_csrf_hash()
     );
 
     $user = $this->user_model->get_user();

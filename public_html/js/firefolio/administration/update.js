@@ -20,9 +20,9 @@ $('document').ready(function () {
         );
 
         request.done(function (response) {
-          console.log(response);
           response = JSON.parse(response);
-          console.log(response);
+
+          $('#csrf').val(response.hash);
         });
 
         request.fail(function (message) {
@@ -39,9 +39,12 @@ $('document').ready(function () {
         var url = $('#base-url').val() +
                   'index.php/firefolio/administration/update/password';
         var data = {
-          'username': $('#new-username').val()
+          'password': $('#new-password').val(),
+          'confirmation': $('#new-password-confirmation').val()
         }
         data[$('#csrf').attr('name')] = $('#csrf').val();
+
+        console.log(data);
 
         inputs.prop('disabled', true);
 
@@ -55,6 +58,8 @@ $('document').ready(function () {
           console.log(response);
           response = JSON.parse(response);
           console.log(response);
+
+          $('#csrf').val(response.hash);
         });
 
         request.fail(function (message) {

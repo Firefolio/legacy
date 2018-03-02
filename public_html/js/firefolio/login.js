@@ -30,6 +30,8 @@ $('document').ready(function () {
         response = JSON.parse(response);
         console.log(response);
 
+        $('#csrf').val(response.hash);
+
         if (response.success) {
           window.location.replace(
             $('#base-url').val() + 'index.php/firefolio/projects'
