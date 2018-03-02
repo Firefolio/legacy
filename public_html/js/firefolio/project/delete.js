@@ -30,10 +30,10 @@ $('document').ready(function () {
         response = JSON.parse(response);
         console.log(response);
 
-        if (response.success) {
-          // Get a new anti-CSRF hash from the response
-          $('#csrf').val(response.hash);
+        // Get a new anti-CSRF hash from the response
+        $('#csrf').val(response.hash);
 
+        if (response.success) {
           // Hide deleted inputs
           for (var project = 0; project < projects_to_delete.length; project++) {
             $('input[value=' +

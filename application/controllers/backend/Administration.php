@@ -20,6 +20,8 @@ class Administration extends CI_Controller {
     {
       $data = $this->user_model->get_user();
       $data['base_url'] = base_url();
+      $data['csrf_name'] = $this->security->get_csrf_token_name();
+      $data['csrf_hash'] = $this->security->get_csrf_hash();
 
       $this->parser->parse('backend/administration/update.html', $data);
     }
@@ -33,7 +35,34 @@ class Administration extends CI_Controller {
 
   public function update_username()
   {
+    $response = array(
+      'success' => FALSE,
+      'message' => 'No error message specified',
+      'hash' => $this->security->get_csrf_hash()
+    );
 
+    if (isset($_POST['json']))
+    {
+      $data = json_decode($_POST['json']);
+
+      if (strlen($data['username']) >= 3)
+      {
+        $username = $data['username'];
+
+        // TODO: update username
+      }
+      else
+      {
+        $response['message'] = 'New username is too short';
+      }
+    }
+    else
+    {
+      $response['message'] = 'No username posted';
+    }
+
+    $json = json_encode($response);
+    echo $json;
   }
 
   public function update_password()

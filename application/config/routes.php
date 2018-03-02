@@ -69,6 +69,8 @@ $route['firefolio/profile'] = 'backend/profile/index';
 $route['firefolio/profile/update'] = 'backend/profile/update';
 
 $route['firefolio/administration'] = 'backend/administration/index';
+$route['firefolio/administration/update/username'] = 'backend/administration/update_username';
+$route['firefolio/administration/update/password'] = 'backend/administration/update_password';
 
 // Reserved Routes
 $route['default_controller'] = 'portfolio';

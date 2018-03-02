@@ -68,22 +68,30 @@
             </div>
           </header>
 
+          <!-- Hidden Inputs -->
+          <section class="row">
+            <input
+            id="base-url"
+            class="hidden"
+            type="hidden"
+            name="base_url"
+            value="{base_url}">
+            <input
+            id="csrf"
+            class="hidden"
+            type="hidden"
+            name="{csrf_name}"
+            value="{csrf_hash}">
+          </section>
+
           <section class="row">
             <div class="one-half column">
-              <h2>Update Username</h2>
               <form id="update-username">
-                <div class="row">
-                  <input
-                  id="base-url"
-                  class="hidden"
-                  type="hidden"
-                  name="base_url"
-                  value="{base_url}">
-                </div>
                 <div class="row">
                   <div class="one-full column">
                     <label for="username">Username</label>
                     <input
+                    id="new-username"
                     class="u-full-width"
                     type="text"
                     name="username"
@@ -95,13 +103,12 @@
                     <button
                     class="u-full-width"
                     type="submit"
-                    name="submit">Submit</button>
+                    name="submit">Update</button>
                   </div>
                 </div>
               </form>
             </div>
             <div class="one-half column">
-              <h2>Update Password</h2>
               <form id="update-password">
                 <div class="row">
                   <label for="new-password">Password</label>
@@ -124,7 +131,7 @@
                     <button
                     class="u-full-width"
                     type="submit"
-                    name="submit">Submit</button>
+                    name="submit">Update</button>
                   </div>
                 </div>
               </form>

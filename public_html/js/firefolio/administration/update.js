@@ -1,12 +1,67 @@
 $('document').ready(function () {
   var update = {
-    url: $('#base_url'),
     attempt: {
       username: function () {
-        console.log('username');
+        var form = $('#update-username');
+        var input = $('#update-username :input');
+        var url = $('#base-url') +
+                  'index.php/firefolio/administration/update/username';
+
+        var data = {
+          'username': $('#new-username').val()
+        }
+        data[$('#csrf').attr('name')] = $('#csrf').val();
+
+        console.log(data);
+
+        var request = $.post(
+          url,
+          data,
+          'JSON'
+        );
+
+        request.done(function (response) {
+          console.log(response);
+          response = JSON.parse(response);
+          console.log(response);
+        });
+
+        request.fail(function (message) {
+          console.error(message);
+        });
       },
       password: function () {
-        console.log('password');
+        var form = $('#update-password');
+        var input = $('#update-password :input');
+        var data = {};
+        var url = $('#base-url') +
+                  'index.php/firefolio/administration/update/username';
+
+        // Obtain form data
+        input.each(function () {
+          data[this.name] = $(this).val();
+        });
+        data.csrf = {
+          name: $('#csrf').attr('name'),
+          hash: $('#csrf').val()
+        };
+
+        console.log(data);
+        console.log(JSON.stringify(data));
+
+        var request = $.post(
+          url,
+          data,
+          'JSON'
+        );
+
+        request.done(function (response) {
+          console.log(response);
+          response = JSON.parse(response);
+          console.log(response);
+
+          $('#csrf').val(response.hash);
+        });
       }
     }
   };
