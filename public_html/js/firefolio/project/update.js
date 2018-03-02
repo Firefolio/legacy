@@ -13,7 +13,7 @@ $(document).ready(function () {
       name: $('#csrf').attr('name'),
       hash: $('#csrf').val()
     },
-    attempt: function () {
+    attempt: function (url) {
       var inputs = this.form.find('input, textarea, button');
       var data = this.form.serialize();
       var success = false;
@@ -37,6 +37,11 @@ $(document).ready(function () {
 
         if (response.success) {
           console.log(response.message);
+
+          // Only redirect the user if a URL is specified
+          if (url != null) {
+            window.location.replace(url);
+          }
         } else {
           console.error(response.message);
         }
@@ -65,13 +70,10 @@ $(document).ready(function () {
       event.preventDefault();
 
       var project = update.form.serialize();
+      var url = $('#base-url').val() +
+                'index.php/firefolio/projects';
 
-      if (update.attempt()) {
-        window.location.replace(
-          $('#base-url').val() +
-          'index.php/firefolio/projects'
-        );
-      }
+      update.attempt(url);
     });
   }
 
@@ -81,9 +83,7 @@ $(document).ready(function () {
     update.button.save.click(function (event) {
       event.preventDefault();
 
-      if (update.attempt()) {
-        alert('Saved!');
-      }
+      update.attempt();
     });
 
     // Override the keyboard shortcut to let them do that too
