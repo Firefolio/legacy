@@ -75,6 +75,16 @@ $(document).ready(function () {
 
       update.attempt(url);
     });
+
+    var title = {
+      original: $('input[name=title]').val(),
+      current: $('input[name=title]').val()
+    };
+
+    $('input[name=title]').on('input', function () {
+      title.current = $(this).val();
+      console.log(title);
+    });
   }
 
   // Save and keep editing
@@ -83,7 +93,14 @@ $(document).ready(function () {
     update.button.save.click(function (event) {
       event.preventDefault();
 
-      update.attempt();
+      if (title.current != title.original) {
+        update.attempt(
+          $('#base-url').val() +
+          'index.php/firefolio/projects'
+        );
+      } else {
+        update.attempt();
+      }
     });
 
     // Override the keyboard shortcut to let them do that too
