@@ -25,18 +25,18 @@
             <div class="u-pull-left">
               <li>
                 <h1 style="font-size: 1.5em">
-                  <a href="http://firefolio.org/">
+                  <a href="#firefolio-website-modal" rel="modal:open">
                     Firefolio
                   </a>
                 </h1>
               </li>
               <li>
-                <a href="{base_url}index.php/firefolio/projects">
+                <a href="#projects-modal" rel="modal:open">
                   Projects
                 </a>
               </li>
               <li>
-                <a href="{base_url}index.php/firefolio/profile">
+                <a href="#profile-modal" rel="modal:open">
                   Profile
                 </a>
               </li>
@@ -51,7 +51,9 @@
                 </a>
               </li>
               <li>
-                <a href="{base_url}index.php/logout">Logout</a>
+                <a href="#logout-modal" rel="modal:open">
+                  Logout
+                </a>
               </li>
               <li class="hidden">
                 &#9776;
@@ -68,35 +70,47 @@
           </header>
 
           <section class="row">
-            <div class="one-half column">
+            <div class="one-full column">
               <form id="form">
                 <!-- Anti CSRF -->
                 <input id="csrf" type="hidden" name="{csrf_name}" value="{csrf_hash}">
-
+                <!-- Base URL -->
                 <input id="base-url" type="hidden" value="{base_url}">
                 <input type="hidden" name="id" value="{id}">
                 <input id="uri" type="hidden" name="uri" value="{uri}">
                 <div class="row">
-                  <label for="title">Title</label>
-                  <input
-                  class="u-full-width"
-                  type="text"
-                  name="title"
-                  value="{title}">
+                  <div class="one-half column">
+                    <label for="title">Title</label>
+                    <input
+                    class="u-full-width"
+                    type="text"
+                    name="title"
+                    value="{title}"
+                    required>
+                  </div>
+                  <div class="one-half column">
+                    <label for="subtitle">Subtitle</label>
+                    <input
+                    class="u-full-width"
+                    type="text"
+                    name="subtitle"
+                    value="{subtitle}">
+                  </div>
                 </div>
                 <div class="row">
-                  <label for="subtitle">Subtitle</label>
-                  <input
-                  class="u-full-width"
-                  type="text"
-                  name="subtitle"
-                  value="{subtitle}">
-                </div>
-                <div class="row">
-                  <label for="description">Description</label>
-                  <textarea
-                  class="u-full-width"
-                  name="description">{description}</textarea>
+                  <div class="one-half column">
+                    <label for="description">Description (Code)</label>
+                    <textarea
+                    class="u-full-width"
+                    style="min-height: 256px"
+                    name="description">{description}</textarea>
+                  </div>
+                  <div class="one-half column">
+                    <label for="preview">Description (Preview)</label>
+                    <div class="">
+                      {description}
+                    </div>
+                  </div>
                 </div>
                 <div class="row">
                   <label for="thumbnail">Thumbnail</label>
@@ -120,22 +134,30 @@
                   </div>
                   <div class="one-half column">
                     <label for="date">Date</label>
-                    <input type="date" name="date" value="{date}">
+                    <input class="u-full-width" type="date" name="date" value="{date}">
                   </div>
                 </div>
                 <div class="row">
-                  <button class="button-primary" type="submit" name="button">
-                    Finish
-                  </button>
-                  <a id="save" class="button">
-                    Save
-                  </a>
-                  <button type="reset" name="button">
-                    Reset
-                  </button>
-                  <a class="button" href="{base_url}index.php/firefolio/projects">
-                    Cancel
-                  </a>
+                  <div class="three columns">
+                    <button class="button-primary u-full-width" type="submit" name="button">
+                      Finish
+                    </button>
+                  </div>
+                  <div class="three columns">
+                    <a id="save" class="button u-full-width">
+                      Save
+                    </a>
+                  </div>
+                  <div class="three columns">
+                    <button class="u-full-width" type="reset" name="button">
+                      Reset
+                    </button>
+                  </div>
+                  <div class="three columns">
+                    <a class="button u-full-width" href="{base_url}index.php/firefolio/projects">
+                      Cancel
+                    </a>
+                  </div>
                 </div>
               </form>
             </div>
@@ -148,10 +170,138 @@
           </footer>
         </div>
 
+        <!-- Modals -->
+        <!-- Firefolio Website -->
+        <div id="firefolio-website-modal" class="modal">
+          <div class="container">
+            <section class="row">
+              <div class="one-full column">
+                <h1>Warning!</h1>
+                <p>
+                  Are you sure you want to navigate away from the page?
+                  All unsaved changes will be lost...
+                </p>
+              </div>
+            </section>
+            <section class="row">
+              <div class="one-half column">
+                <a
+                href="http://firefolio.org/"
+                class="button button-primary u-full-width">
+                  Confirm
+                </a>
+              </div>
+              <div class="one-half column">
+                <a
+                href="#firefolio-website-modal"
+                rel="modal:close"
+                class="button u-full-width">
+                  Cancel
+                </a>
+              </div>
+            </section>
+          </div>
+        </div>
+        <!-- Logout -->
+        <div id="logout-modal" class="modal">
+          <div class="container">
+            <section class="row">
+              <div class="one-full column">
+                <h1>Warning!</h1>
+                <p>
+                  Are you sure you want to logout?
+                  All unsaved changes will be lost...
+                </p>
+              </div>
+            </section>
+            <section class="row">
+              <div class="one-half column">
+                <a
+                href="{base_url}index.php/logout"
+                class="button button-primary u-full-width">
+                  Confirm
+                </a>
+              </div>
+              <div class="one-half column">
+                <a
+                href="#firefolio-website-modal"
+                rel="modal:close"
+                class="button u-full-width">
+                  Cancel
+                </a>
+              </div>
+            </section>
+          </div>
+        </div>
+        <!-- Projects View -->
+        <div id="projects-modal" class="modal">
+          <div class="container">
+            <section class="row">
+              <div class="one-full column">
+                <h1>Warning!</h1>
+                <p>
+                  Are you sure you want to navigate away from the page?
+                  All unsaved changes will be lost...
+                </p>
+              </div>
+            </section>
+            <section class="row">
+              <div class="one-half column">
+                <a
+                href="{base_url}index.php/firefolio/projects"
+                class="button button-primary u-full-width">
+                  Confirm
+                </a>
+              </div>
+              <div class="one-half column">
+                <a
+                href="#firefolio-website-modal"
+                rel="modal:close"
+                class="button u-full-width">
+                  Cancel
+                </a>
+              </div>
+            </section>
+          </div>
+        </div>
+        <!-- Profile Update -->
+        <div id="profile-modal" class="modal">
+          <div class="container">
+            <section class="row">
+              <div class="one-full column">
+                <h1>Warning!</h1>
+                <p>
+                  Are you sure you want to navigate away from the page?
+                  All unsaved changes will be lost...
+                </p>
+              </div>
+            </section>
+            <section class="row">
+              <div class="one-half column">
+                <a
+                href="{base_url}index.php/firefolio/profile"
+                class="button button-primary u-full-width">
+                  Confirm
+                </a>
+              </div>
+              <div class="one-half column">
+                <a
+                href="#firefolio-website-modal"
+                rel="modal:close"
+                class="button u-full-width">
+                  Cancel
+                </a>
+              </div>
+            </section>
+          </div>
+        </div>
+
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
         <script>window.jQuery || document.write('<script src="{base_url}js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
         <script src="{base_url}js/firefolio/project/update.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     </body>
 </html>
