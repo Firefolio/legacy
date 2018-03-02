@@ -6,6 +6,7 @@ class Administration extends CI_Controller {
   {
     parent::__construct();
 
+    $this->load->model('user_model');
     $this->load->helper('url');
     $this->load->helper('security');
     $this->load->library('parser');
@@ -13,16 +14,18 @@ class Administration extends CI_Controller {
 
   public function index()
   {
-    $data = array(
-      'base_url' => base_url(),
-      'csrf_name' => $this->security->get_csrf_token_name(),
-      'csrf_hash' => $this->security->get_csrf_hash()
-    );
+    $data = $this->user_model->get_user();
+    $data['base_url'] = base_url();
 
     $this->parser->parse('backend/administration/update.html', $data);
   }
 
-  public function update()
+  public function update_username()
+  {
+
+  }
+
+  public function update_password()
   {
     
   }
