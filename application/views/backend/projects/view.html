@@ -81,7 +81,7 @@
             <a id="preview" class="button" role="button">
               Preview
             </a>
-            <a id="delete" class="button" role="button" href="delete">
+            <a class="button" role="button" href="#delete-modal" rel="modal:open">
               Delete
             </a>
           </section>
@@ -118,10 +118,52 @@
           </footer>
         </div>
 
+        <!-- Modals -->
+        <!-- Deletion Verification Check -->
+        <div id="delete-modal" class="modal">
+          <div class="container">
+            <section class="row">
+              <div class="one-full column">
+                <h1>Warning!</h1>
+              </div>
+            </section>
+            <section class="row">
+              <div class="one-full column">
+                <p>
+                  Once deleted, all data related to the project(s) will be lost.
+                  <br>
+                  Proceed?
+                </p>
+              </div>
+            </section>
+            <section class="row">
+              <div class="one-half column">
+                <a
+                id="delete"
+                class="button button-primary u-full-width"
+                href="#delete-modal"
+                rel="modal:close">
+                  Delete
+                </a>
+              </div>
+              <div class="one-half column">
+                <a
+                class="button u-full-width"
+                href="#delete-modal"
+                rel="modal:close">
+                  Cancel
+                </a>
+              </div>
+            </section>
+          </div>
+        </div>
+
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
         <script>window.jQuery || document.write('<script src="{base_url}js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
         <script src="{base_url}js/open_window.js"></script>
         <script src="{base_url}js/firefolio/project/update.js"></script>
         <script src="{base_url}js/firefolio/project/preview.js"></script>
