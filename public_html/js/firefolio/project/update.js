@@ -84,6 +84,7 @@ $(document).ready(function () {
     $('input[name=title]').on('input', function () {
       title.current = $(this).val();
       console.log(title);
+      console.log(to_ascii(title.current));
     });
   }
 
@@ -96,7 +97,8 @@ $(document).ready(function () {
       if (title.current != title.original) {
         update.attempt(
           $('#base-url').val() +
-          'index.php/firefolio/projects'
+          'index.php/firefolio/projects/update/' +
+          to_ascii(title.current)
         );
       } else {
         update.attempt();
