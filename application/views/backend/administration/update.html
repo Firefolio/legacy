@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Profile - Firefolio</title>
+        <title>Administration - Firefolio</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -25,7 +25,7 @@
             <div class="u-pull-left">
               <li>
                 <h1 style="font-size: 1.5em">
-                  <a href="http://firefolio.org/">Firefolio</a>
+                  <a href="https://firefolio.org/">Firefolio</a>
                 </h1>
               </li>
               <li>
@@ -47,7 +47,7 @@
             <div class="u-pull-right">
               <li>
                 <a href="{base_url}" target="_blank">
-                  Frontend
+                  Preview
                 </a>
               </li>
               <li>
@@ -62,68 +62,19 @@
         </nav>
 
         <div class="container">
-          <section class="row">
+          <header class="row">
             <div class="one-full column">
-              <h1>Profile</h1>
+              <h1>Administration</h1>
               <hr>
             </div>
-          </section>
-          <section class="row">
-            <div class="one-full column">
-              <form id="form">
-                <input
-                id="base-url"
-                type="hidden"
-                value="{base_url}">
-                <input
-                id="csrf"
-                type="hidden"
-                name="{csrf_name}"
-                value="{csrf_hash}">
-
-                <div class="row">
-                  <div class="one-third column">
-                    <label for="first_name">First Name</label>
-                    <input
-                    class="u-full-width"
-                    type="text"
-                    name="first_name"
-                    value="{first_name}">
-                  </div>
-                  <div class="one-third column">
-                    <label for="middle_name">Middle Name</label>
-                    <input
-                    class="u-full-width"
-                    type="text"
-                    name="middle_name"
-                    value="{middle_name}">
-                  </div>
-                  <div class="one-third column">
-                    <label for="last_name">Last Name</label>
-                    <input
-                    class="u-full-width"
-                    type="text"
-                    name="last_name"
-                    value="{last_name}">
-                  </div>
-                </div>
-                <div class="row">
-                  <button type="submit" name="submit">
-                    Update
-                  </button>
-                </div>
-              </form>
-            </div>
-          </section>
+          </header>
         </div>
 
-        <script
-        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
         <script>
           window.jQuery || document.write('<script src="{base_url}js/vendor/jquery-3.2.1.min.js"><\/script>')
         </script>
-        <script src="{base_url}js/firefolio/profile/update.js"></script>
     </body>
 </html>
