@@ -14,10 +14,21 @@ class Administration extends CI_Controller {
 
   public function index()
   {
-    $data = $this->user_model->get_user();
-    $data['base_url'] = base_url();
+    session_start();
 
-    $this->parser->parse('backend/administration/update.html', $data);
+    if (isset($_SESSION['user']))
+    {
+      $data = $this->user_model->get_user();
+      $data['base_url'] = base_url();
+
+      $this->parser->parse('backend/administration/update.html', $data);
+    }
+    else
+    {
+      $url = base_url() . 'index.php/login';
+      header('Location: ' . $url);
+      exit();
+    }
   }
 
   public function update_username()
@@ -27,6 +38,6 @@ class Administration extends CI_Controller {
 
   public function update_password()
   {
-    
+
   }
 }

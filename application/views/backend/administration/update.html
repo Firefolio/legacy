@@ -65,7 +65,6 @@
           <header class="row">
             <div class="one-full column">
               <h1>Administration</h1>
-              <hr>
             </div>
           </header>
 
@@ -73,6 +72,14 @@
             <div class="one-half column">
               <h2>Update Username</h2>
               <form id="update-username">
+                <div class="row">
+                  <input
+                  id="base-url"
+                  class="hidden"
+                  type="hidden"
+                  name="base_url"
+                  value="{base_url}">
+                </div>
                 <div class="row">
                   <div class="one-full column">
                     <label for="username">Username</label>
@@ -131,5 +138,6 @@
         <script>
           window.jQuery || document.write('<script src="{base_url}js/vendor/jquery-3.2.1.min.js"><\/script>')
         </script>
+        <script src="{base_url}index.php/js/administration/update.js">
     </body>
 </html>
