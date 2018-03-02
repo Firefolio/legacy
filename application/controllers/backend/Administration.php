@@ -41,15 +41,16 @@ class Administration extends CI_Controller {
       'hash' => $this->security->get_csrf_hash()
     );
 
-    if (isset($_POST['json']))
+    if (isset($_POST['username']))
     {
-      $data = json_decode($_POST['json']);
+      $username = $_POST['username'];
 
-      if (strlen($data['username']) >= 3)
+      if (strlen($username) >= 3)
       {
-        $username = $data['username'];
+        $this->user_model->update_username($username);
 
-        // TODO: update username
+        $response['success'] = TRUE;
+        $response['message'] = 'Changed username';
       }
       else
       {

@@ -16,4 +16,16 @@ class User_model extends CI_Model
 
     return $row;
   }
+
+  public function update_username($username)
+  {
+    $this->db->update('user', array('username' => $username));
+  }
+
+  public function update_password($password)
+  {
+    // Don't store the user's password in plain text!
+    $hash = password_hash($password, PASSWORD_DEFAULT);
+    $this->db->update('user', array('password' => $hash));
+  }
 }

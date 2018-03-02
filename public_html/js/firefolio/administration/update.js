@@ -6,7 +6,6 @@ $('document').ready(function () {
         var inputs = form.find('text, button');
         var url = $('#base-url').val() +
                   'index.php/firefolio/administration/update/username';
-
         var data = {
           'username': $('#new-username').val()
         }
@@ -36,22 +35,15 @@ $('document').ready(function () {
       },
       password: function () {
         var form = $('#update-password');
-        var input = $('#update-password :input');
-        var data = {};
-        var url = $('#base-url') +
-                  'index.php/firefolio/administration/update/username';
+        var inputs = form.find('text, button');
+        var url = $('#base-url').val() +
+                  'index.php/firefolio/administration/update/password';
+        var data = {
+          'username': $('#new-username').val()
+        }
+        data[$('#csrf').attr('name')] = $('#csrf').val();
 
-        // Obtain form data
-        input.each(function () {
-          data[this.name] = $(this).val();
-        });
-        data.csrf = {
-          name: $('#csrf').attr('name'),
-          hash: $('#csrf').val()
-        };
-
-        console.log(data);
-        console.log(JSON.stringify(data));
+        inputs.prop('disabled', true);
 
         var request = $.post(
           url,
@@ -63,8 +55,14 @@ $('document').ready(function () {
           console.log(response);
           response = JSON.parse(response);
           console.log(response);
+        });
 
-          $('#csrf').val(response.hash);
+        request.fail(function (message) {
+          console.error(message);
+        });
+
+        request.always(function () {
+          inputs.prop('disabled', false);
         });
       }
     }
