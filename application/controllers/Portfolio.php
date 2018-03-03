@@ -10,6 +10,7 @@ class Portfolio extends CI_Controller {
     $this->load->model('project_model');
     $this->load->helper('date');
     $this->load->helper('security');
+    $this->load->helper('video');
     $this->load->helper('url');
     $this->load->library('parser');
   }
@@ -39,10 +40,10 @@ class Portfolio extends CI_Controller {
   {
   	if (sizeof($this->project_model->get_project($uri)) > 0)
     {
-      $data = $this->security->xss_clean(
-        $this->project_model->get_project($uri)
-      );
+      $project = $this->project_model->get_project($uri);
 
+      $data = $this->security->xss_clean($project);
+      $data['trailer'] = get_embed_url($project['trailer']);
       $data['base_url'] = base_url();
       $data['name'] = $this->profile_model->get_full_name();
       $data['date'] = date(
