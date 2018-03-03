@@ -15,13 +15,25 @@ class User extends CI_Controller
 
   public function index()
   {
-    $data = array(
-      'base_url' => base_url(),
-      'csrf_name' => $this->security->get_csrf_token_name(),
-      'csrf_hash' => $this->security->get_csrf_hash()
-    );
+    session_start();
 
-    $this->parser->parse('backend/login.html', $data);
+    if (!isset($_SESSION['user']))
+    {
+      $data = array(
+        'base_url' => base_url(),
+        'csrf_name' => $this->security->get_csrf_token_name(),
+        'csrf_hash' => $this->security->get_csrf_hash()
+      );
+
+      $this->parser->parse('backend/login.html', $data);
+    }
+    else
+    {
+      $url = base_url() . 'index.php/firefolio/projects';
+
+      header('Location: ' . $url);
+      exit();
+    }
   }
 
   public function login()

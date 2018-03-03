@@ -53,10 +53,20 @@ class Project_model extends CI_Model {
     return $query->result_array();
   }
 
+  public function project_exists($uri)
+  {
+    $query = $this->db->get_where(
+      'projects',
+      array('uri' => $uri)
+    );
+
+    return $query->num_rows() > 0;
+  }
+
   public function get_languages()
   {
     // Send a query to get all values from the 'language' column
-    // Note that this won't work with any values with commas in them
+    // Note that this won't work with any values that have commas in them
     $query = $this->db->query(file_get_contents('sql/get_languages.sql'));
     // Get the type of column from the first row
     $type = $query->row(0)->Type;

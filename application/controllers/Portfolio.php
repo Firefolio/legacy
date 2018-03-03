@@ -37,17 +37,24 @@ class Portfolio extends CI_Controller {
 
   public function project($uri)
   {
-  	$data = $this->security->xss_clean(
-      $this->project_model->get_project($uri)
-    );
+  	if (sizeof($this->project_model->get_project($uri)) > 0)
+    {
+      $data = $this->security->xss_clean(
+        $this->project_model->get_project($uri)
+      );
 
-    $data['base_url'] = base_url();
-    $data['name'] = $this->profile_model->get_full_name();
-    $data['date'] = date(
-      'd-m-Y',
-      strtotime($data['date'])
-    );
+      $data['base_url'] = base_url();
+      $data['name'] = $this->profile_model->get_full_name();
+      $data['date'] = date(
+        'd-m-Y',
+        strtotime($data['date'])
+      );
 
-  	$this->parser->parse('frontend/project.html', $data);
+    	$this->parser->parse('frontend/project.html', $data);
+    }
+    else
+    {
+      show_404();
+    }
   }
 }

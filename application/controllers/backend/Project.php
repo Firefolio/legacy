@@ -1,8 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Project extends CI_Controller
-{
+class Project extends CI_Controller {
   function __construct()
   {
     parent::__construct();
@@ -15,7 +14,6 @@ class Project extends CI_Controller
 
   public function index($action = 'view', $uri = '')
   {
-    // Require user authentication
     session_start();
 
     if (isset($_SESSION['user']))
@@ -46,16 +44,23 @@ class Project extends CI_Controller
           $this->parser->parse('backend/projects/create.html', $data);
           break;
         case 'update':
-          $data = $this->security->xss_clean(
-            $this->project_model->get_project($uri)
-          );
+          if ($this->project_model->project_exists($uri))
+          {
+            $data = $this->security->xss_clean(
+              $this->project_model->get_project($uri)
+            );
 
-          $data['base_url'] = base_url();
-          $data['csrf_name'] = $this->security->get_csrf_token_name();
-          $data['csrf_hash'] = $this->security->get_csrf_hash();
-          $data['languages'] = $this->project_model->get_languages();
+            $data['base_url'] = base_url();
+            $data['csrf_name'] = $this->security->get_csrf_token_name();
+            $data['csrf_hash'] = $this->security->get_csrf_hash();
+            $data['languages'] = $this->project_model->get_languages();
 
-        	$this->parser->parse('backend/projects/update.html', $data);
+          	$this->parser->parse('backend/projects/update.html', $data);
+          }
+          else
+          {
+            show_404();
+          }
           break;
         case 'delete':
           $this->delete_projects();
@@ -79,24 +84,34 @@ class Project extends CI_Controller
 
   public function create_project()
   {
-    $project = array(
-      'initiative' => 0,
-      'uri' => $this->to_ascii($_POST['title']),
-      'thumbnail' => $_POST['thumbnail'],
-      'trailer' => $_POST['trailer'],
-      'title' => $_POST['title'],
-      'subtitle' => $_POST['subtitle'],
-      'description' => $_POST['description'],
-      'language' => $_POST['language'],
-      'date' => $_POST['date']
-    );
-
-    // The project given must have a name.
-    if (strlen($project['title']) > 0)
+    if (isset($_POST['title']))
     {
-      $this->project_model->insert_project($project);
+      $project = array(
+        'initiative' => 0,
+        'uri' => $this->to_ascii($_POST['title']),
+        'thumbnail' => $_POST['thumbnail'],
+        'trailer' => $_POST['trailer'],
+        'title' => $_POST['title'],
+        'subtitle' => $_POST['subtitle'],
+        'description' => $_POST['description'],
+        'language' => $_POST['language'],
+        'date' => $_POST['date']
+      );
 
-      $url = base_url() . 'index.php/firefolio/projects';
+      // The project given must have a name.
+      if (strlen($project['title']) > 0)
+      {
+        $this->project_model->insert_project($project);
+
+        $url = base_url() . 'index.php/firefolio/projects';
+
+        header('Location: ' . $url);
+        exit();
+      }
+    }
+    else
+    {
+      $url = base_url() . 'index.php/firefolio/projects/create';
 
       header('Location: ' . $url);
       exit();
@@ -127,10 +142,17 @@ class Project extends CI_Controller
 
       if (strlen($project['title']) > 0)
       {
-        $this->project_model->update_project($project);
+        if (!$this->project_model->project_exists($project['uri']))
+        {
+          $this->project_model->update_project($project);
 
-        $response['success'] = TRUE;
-        $response['message'] = 'Project updated successfully';
+          $response['success'] = TRUE;
+          $response['message'] = 'Project updated successfully';
+        }
+        else
+        {
+          $response['message'] = 'Project with that title/URI already exists';
+        }
       }
       else
       {
@@ -208,7 +230,11 @@ class Project extends CI_Controller
 
       if (sizeof($data['projects']) > 0)
       {
-        $response['html'] = $this->parser->parse('backend/projects/project.html', $data, TRUE);
+        $response['html'] = $this->parser->parse(
+          'backend/projects/project.html',
+          $data,
+          TRUE
+        );
       }
       else
       {
