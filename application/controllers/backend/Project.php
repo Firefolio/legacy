@@ -128,6 +128,9 @@ class Project extends CI_Controller {
 
     if (isset($_POST['id']))
     {
+      $original = array(
+        'uri' => $_POST['original_uri']
+      );
       $project = array(
         'id' => $_POST['id'],
         'uri' => $this->to_ascii($_POST['title']),
@@ -142,7 +145,8 @@ class Project extends CI_Controller {
 
       if (strlen($project['title']) > 0)
       {
-        if (!$this->project_model->project_exists($project['uri']))
+        if (!$this->project_model->project_exists($project['uri']) OR
+            $original['uri'] === $project['uri'])
         {
           $this->project_model->update_project($project);
 
