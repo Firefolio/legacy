@@ -259,7 +259,7 @@ class Project extends CI_Controller {
       else
       {
         $response['html'] = '<em>No projects like "' .
-                            $title .
+                            $this->security->xss_clean($title) .
                             '" were found...</em>';
       }
     }
