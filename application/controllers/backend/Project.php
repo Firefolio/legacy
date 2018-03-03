@@ -84,6 +84,12 @@ class Project extends CI_Controller {
 
   public function create_project()
   {
+    $response = array(
+      'success' => FALSE,
+      'message' => 'No error message specified',
+      'hash' => $this->security->get_csrf_hash()
+    );
+
     if (isset($_POST['title']))
     {
       $project = array(
@@ -98,35 +104,32 @@ class Project extends CI_Controller {
         'date' => $_POST['date']
       );
 
-      // The project must not already exist
-      if (!$this->project_model->project_exists($project['uri']))
+      if (strlen($project['title']) > 0)
       {
-        // The project given must have a name
-        if (strlen($project['title']) > 0)
+        if (!$this->project_model->project_exists($project['uri']))
         {
           $this->project_model->insert_project($project);
 
-          $url = base_url() . 'index.php/firefolio/projects';
-
-          header('Location: ' . $url);
-          exit();
+          $response['success'] = TRUE;
+          $response['message'] = 'Inserted ' . $project['title'] . 'into database';
+        }
+        else
+        {
+          $response['message'] = 'A project with that title already exists';
         }
       }
       else
       {
-        $url = base_url() . 'index.php/firefolio/projects/create';
-
-        header('Location: ' . $url);
-        exit();
+        $response['title'] = 'Project title cannot be blank';
       }
     }
     else
     {
-      $url = base_url() . 'index.php/firefolio/projects/create';
-
-      header('Location: ' . $url);
-      exit();
+      $response['message'] = 'No data posted';
     }
+
+    $json = json_encode($response);
+    echo $json;
   }
 
   public function update_project()
