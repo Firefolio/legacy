@@ -98,12 +98,23 @@ class Project extends CI_Controller {
         'date' => $_POST['date']
       );
 
-      // The project given must have a name.
-      if (strlen($project['title']) > 0)
+      // The project must not already exist
+      if (!$this->project_model->project_exists($project['uri']))
       {
-        $this->project_model->insert_project($project);
+        // The project given must have a name
+        if (strlen($project['title']) > 0)
+        {
+          $this->project_model->insert_project($project);
 
-        $url = base_url() . 'index.php/firefolio/projects';
+          $url = base_url() . 'index.php/firefolio/projects';
+
+          header('Location: ' . $url);
+          exit();
+        }
+      }
+      else
+      {
+        $url = base_url() . 'index.php/firefolio/projects/create';
 
         header('Location: ' . $url);
         exit();
@@ -128,6 +139,8 @@ class Project extends CI_Controller {
 
     if (isset($_POST['id']))
     {
+      // Store both the original and altered information
+      // for verification purposes.
       $original = array(
         'uri' => $_POST['original_uri']
       );
