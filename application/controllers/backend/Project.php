@@ -10,6 +10,7 @@ class Project extends CI_Controller {
     $this->load->library('parser');
     $this->load->helper('url');
     $this->load->helper('security');
+    $this->load->helper('html_purifier');
   }
 
   public function index($action = 'view', $uri = '')
@@ -26,9 +27,7 @@ class Project extends CI_Controller {
             'date' => date('d-m-Y'),
             'csrf_name' => $this->security->get_csrf_token_name(),
             'csrf_hash' => $this->security->get_csrf_hash(),
-            'projects' => $this->security->xss_clean(
-              $this->project_model->get_projects()
-            )
+            'projects' => html_purify($this->project_model->get_projects())
           );
 
           $this->parser->parse('backend/projects/view.html', $data);
@@ -46,9 +45,7 @@ class Project extends CI_Controller {
         case 'update':
           if ($this->project_model->project_exists($uri))
           {
-            $data = $this->security->xss_clean(
-              $this->project_model->get_project($uri)
-            );
+            $data = html_purify($this->project_model->get_project($uri));
 
             $data['base_url'] = base_url();
             $data['csrf_name'] = $this->security->get_csrf_token_name();
