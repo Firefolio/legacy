@@ -1,10 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 if (!function_exists('markdown_parse'))
 {
-
-  public function markdown_parse($markup)
+  function markdown_parse($input)
   {
+    require_once APPPATH . 'third_party/parsedown/Parsedown.php';
+
     $parsedown = new Parsedown;
+
+    return $parsedown->parse($input);
   }
 }
