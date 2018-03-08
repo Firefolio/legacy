@@ -25,6 +25,13 @@ class Portfolio extends CI_Controller {
     $rows = array();
     $projects_per_row = 3;
 
+    // Purify project data
+    foreach ($projects as $project)
+    {
+      $project['title'] = htmlentities($project['title']);
+      $project['subtitle'] = htmlentities($project['subtitle']);
+    }
+
     // Split the projects into their own rows
     foreach (array_chunk($projects, $projects_per_row, TRUE) as $row)
     {
@@ -48,7 +55,9 @@ class Portfolio extends CI_Controller {
       $project['description'] = markdown_parse($project['description']);
 
       $data = html_purify($project);
-      $data['trailer'] = get_embed_url($project['trailer']);
+      $data['trailer'] = html_purify(
+        get_embed_url($project['trailer'])
+      );
       $data['base_url'] = base_url();
       $data['name'] = htmlentities(
         $this->profile_model->get_full_name()

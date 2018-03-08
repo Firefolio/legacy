@@ -7,7 +7,9 @@ class Project extends CI_Controller {
     parent::__construct();
 
     $this->load->model('project_model');
+
     $this->load->library('parser');
+
     $this->load->helper('url');
     $this->load->helper('security');
     $this->load->helper('html_purifier');
@@ -30,6 +32,14 @@ class Project extends CI_Controller {
             'projects' => html_purify($this->project_model->get_projects())
           );
 
+          foreach ($data['projects'] as $project)
+          {
+            $project['title'] = htmlspecialchars($project['title']);
+            echo $project['title'];
+          }
+
+          $data['projects'][0]['title'] = htmlentities($data['projects'][0]['title']);
+
           $this->parser->parse('backend/projects/view.html', $data);
           break;
         case 'create':
@@ -45,7 +55,7 @@ class Project extends CI_Controller {
         case 'update':
           if ($this->project_model->project_exists($uri))
           {
-            $data = html_purify($this->project_model->get_project($uri));
+            $data = $this->project_model->get_project($uri);
 
             $data['base_url'] = base_url();
             $data['csrf_name'] = $this->security->get_csrf_token_name();
