@@ -13,6 +13,7 @@ class Project extends CI_Controller {
     $this->load->helper('url');
     $this->load->helper('security');
     $this->load->helper('html_purifier');
+    $this->load->helper('markdown');
   }
 
   public function index($action = 'view', $uri = '')
@@ -32,13 +33,12 @@ class Project extends CI_Controller {
             'projects' => html_purify($this->project_model->get_projects())
           );
 
-          foreach ($data['projects'] as $project)
+          for ($project = 0; $project < sizeof($data['projects']); $project++)
           {
-            $project['title'] = htmlspecialchars($project['title']);
-            echo $project['title'];
+            $dirty_title = $data['projects'][$project]['title'];
+            $clean_title = htmlentities($dirty_title);
+            $data['projects'][$project]['title'] = $clean_title;
           }
-
-          $data['projects'][0]['title'] = htmlentities($data['projects'][0]['title']);
 
           $this->parser->parse('backend/projects/view.html', $data);
           break;
@@ -55,8 +55,12 @@ class Project extends CI_Controller {
         case 'update':
           if ($this->project_model->project_exists($uri))
           {
+            // Really, we should use html_purify here,
+            // but that could possibly corrupt the data
             $data = $this->project_model->get_project($uri);
 
+            $data['header'] = htmlentities($data['title']);
+            $data['preview'] = html_purify(markdown_parse($data['description']));
             $data['base_url'] = base_url();
             $data['csrf_name'] = $this->security->get_csrf_token_name();
             $data['csrf_hash'] = $this->security->get_csrf_hash();
@@ -257,6 +261,14 @@ class Project extends CI_Controller {
 
       if (sizeof($data['projects']) > 0)
       {
+        // TODO: convert this to a function
+        for ($project = 0; $project < sizeof($data['projects']); $project++)
+        {
+          $dirty_title = $data['projects'][$project]['title'];
+          $clean_title = htmlentities($dirty_title);
+          $data['projects'][$project]['title'] = $clean_title;
+        }
+
         $response['html'] = $this->parser->parse(
           'backend/projects/project.html',
           $data,
@@ -277,6 +289,11 @@ class Project extends CI_Controller {
 
     $json = json_encode($response);
     echo $json;
+  }
+
+  private function escape_project_titles($data)
+  {
+    // TODO: use this function for escaping titles
   }
 
   // From the 'Perfect Clean URL Generator'

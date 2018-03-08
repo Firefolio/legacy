@@ -67,7 +67,8 @@
 
         <div class="container">
           <header class="row">
-            <h1>Update {title}</h1>
+            <!-- We use {header} instead of {title} here because it's had its markup escaped -->
+            <h1>Update {header}</h1>
             <hr>
           </header>
 
@@ -114,7 +115,9 @@
                   <div class="one-half column">
                     <label for="preview">Description (Preview)</label>
                     <div class="">
-                      {description}
+                      <!-- {preview} here is used instead of {description}
+                           because it's also been escaped -->
+                      {preview}
                     </div>
                   </div>
                 </div>
