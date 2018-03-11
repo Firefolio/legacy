@@ -90,25 +90,40 @@ class Portfolio extends CI_Controller {
     {
       $title = $_POST['query'];
 
-      $data = array(
-        'projects' => $this->project_model->search_projects($title)
-      );
-
       $response['success'] = TRUE;
       $response['message'] = 'Found some projects from query';
 
-      if (sizeof($data['projects']) > 0)
+      $projects = $this->project_model->search_projects($title);
+
+      if (sizeof($projects) > 0)
       {
-        // TODO: convert this to a function
-        for ($project = 0; $project < sizeof($data['projects']); $project++)
+        // TODO: Turn this into a function
+        $rows = array();
+        $projects_per_row = 3;
+
+        // Purify project data
+        foreach ($projects as $project)
         {
-          $dirty_title = $data['projects'][$project]['title'];
-          $clean_title = htmlentities($dirty_title);
-          $data['projects'][$project]['title'] = $clean_title;
+          $project['title'] = htmlentities($project['title']);
+          $project['subtitle'] = htmlentities($project['subtitle']);
         }
 
+        // Split the projects into their own rows
+        foreach (array_chunk($projects, $projects_per_row, TRUE) as $row)
+        {
+          array_push($rows, array('projects' => $row));
+        }
+
+        $data = array(
+          'base_url' => base_url(),
+          'title' => $this->profile_model->get_full_name(),
+          'csrf_name' => $this->security->get_csrf_token_name(),
+          'csrf_hash' => $this->security->get_csrf_hash(),
+          'rows' => $rows
+        );
+
         $response['html'] = $this->parser->parse(
-          'backend/projects/project.html',
+          'frontend/thumbnails.html',
           $data,
           TRUE
         );
