@@ -41,6 +41,8 @@ class Portfolio extends CI_Controller {
     $data = array(
       'base_url' => base_url(),
       'title' => $this->profile_model->get_full_name(),
+      'csrf_name' => $this->security->get_csrf_token_name(),
+      'csrf_hash' => $this->security->get_csrf_hash(),
       'rows' => $rows
     );
 
@@ -73,5 +75,57 @@ class Portfolio extends CI_Controller {
     {
       show_404();
     }
+  }
+
+  public function search()
+  {
+    $response = array(
+      'success' => true,
+      'message' => 'No error message specified',
+      'hash' => $this->security->get_csrf_hash(),
+      'html' => 'Unspecified error'
+    );
+
+    if (isset($_POST['query']))
+    {
+      $title = $_POST['query'];
+
+      $data = array(
+        'projects' => $this->project_model->search_projects($title)
+      );
+
+      $response['success'] = TRUE;
+      $response['message'] = 'Found some projects from query';
+
+      if (sizeof($data['projects']) > 0)
+      {
+        // TODO: convert this to a function
+        for ($project = 0; $project < sizeof($data['projects']); $project++)
+        {
+          $dirty_title = $data['projects'][$project]['title'];
+          $clean_title = htmlentities($dirty_title);
+          $data['projects'][$project]['title'] = $clean_title;
+        }
+
+        $response['html'] = $this->parser->parse(
+          'backend/projects/project.html',
+          $data,
+          TRUE
+        );
+      }
+      else
+      {
+        $response['html'] = '<em>No projects like "' .
+                            htmlentities($title) .
+                            '" were found...</em>';
+      }
+    }
+    else
+    {
+      $response['message'] = 'No data posted';
+    }
+
+    $json = json_encode($response);
+    echo $json;
   }
 }

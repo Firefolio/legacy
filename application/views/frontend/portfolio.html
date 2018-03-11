@@ -33,6 +33,18 @@
           <section class="row">
             <div class="one-full column">
               <input
+              id="base-url"
+              type="hidden"
+              name="base_url"
+              value="{base_url}"
+              placeholder="Search">
+              <input
+              id="csrf"
+              type="hidden"
+              name="{csrf_name}"
+              value="{csrf_hash}"
+              placeholder="Search">
+              <input
               id="search"
               class="u-full-width"
               type="text"
@@ -44,23 +56,25 @@
 
           <hr>
 
-          {rows}
-            <section class="row">
-              {projects}
-                <div class="four columns">
-                  <a href="index.php/project/{uri}" class="thumbnail">
-                    <h2>{title}</h2>
-                    <img
-                    class="responsive"
-                    src="{thumbnail}"
-                    alt="{title} Project Thumbnail">
-                    <h3>{subtitle}</h3>
-                    <small>{language}, {date}</small>
-                  </a>
-                </div>
-              {/projects}
-            </section>
-          {/rows}
+          <div id="projects">
+            {rows}
+              <section class="row">
+                {projects}
+                  <div class="four columns">
+                    <a href="index.php/project/{uri}" class="thumbnail">
+                      <h2>{title}</h2>
+                      <img
+                      class="responsive"
+                      src="{thumbnail}"
+                      alt="{title} Project Thumbnail">
+                      <h3>{subtitle}</h3>
+                      <small>{language}, {date}</small>
+                    </a>
+                  </div>
+                {/projects}
+              </section>
+            {/rows}
+          </div>
 
           <hr>
 
@@ -71,5 +85,7 @@
 
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+        <script src="{base_url}js/firefolio/portfolio/search.js">
+        </script>
     </body>
 </html>

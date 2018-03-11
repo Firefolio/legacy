@@ -52,6 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 // Application Routes
 $route['project/(:any)'] = 'portfolio/project/$1';
+$route['search'] = 'portfolio/search';
 
 $route['login'] = 'backend/user/index';
 $route['login/attempt'] = 'backend/user/login';

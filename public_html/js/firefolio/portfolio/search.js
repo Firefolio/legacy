@@ -1,8 +1,8 @@
 $('document').ready(function () {
   var search = {
     bar: $('#search'),
-    list: $('#projects'),
-    url: $('#base-url').val() + 'index.php/firefolio/projects/search',
+    grid: $('#projects'),
+    url: $('#base-url').val() + 'index.php/search',
     attempt: function () {
       var data = {
         query: search.bar.val()
@@ -22,7 +22,7 @@ $('document').ready(function () {
         $('#csrf').val(response.hash);
 
         if (response.success) {
-          search.list.html(response.html);
+          search.grid.html(response.html);
         } else {
           console.error(response.message);
         }
