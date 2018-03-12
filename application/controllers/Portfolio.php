@@ -98,6 +98,7 @@ class Portfolio extends CI_Controller {
       if (sizeof($projects) > 0)
       {
         // TODO: Turn this into a function
+        // Break the data back from the search into a responsive grid
         $rows = array();
         $projects_per_row = 3;
 
