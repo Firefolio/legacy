@@ -135,15 +135,16 @@ class Portfolio extends CI_Controller {
       {
         if ($language === "All")
         {
-          $response['html'] = 'No projects like ' .
+          $response['html'] = 'No projects like "' .
                                  htmlentities($title) .
-                                 ' were found.';
+                                 '" were found.';
         }
         else
         {
-          $response['html'] = 'No projects like ' .
+          // Include the language in the feedback
+          $response['html'] = 'No projects like "' .
                                  htmlentities($title) .
-                                 ' written in ' .
+                                 '" written in ' .
                                  htmlentities($language) .
                                  ' were found.';
         }

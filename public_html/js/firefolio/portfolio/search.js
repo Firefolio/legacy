@@ -45,4 +45,8 @@ $('document').ready(function () {
       search.attempt();
     });
   }
+
+  // Clear inputs if they were previously changed
+  search.bar.val('');
+  search.dropdown.val('All');
 });
