@@ -40,5 +40,9 @@ $('document').ready(function () {
     search.bar.on('input', function () {
       search.attempt();
     });
+
+    search.dropdown.on('input', function () {
+      search.attempt();
+    });
   }
 });

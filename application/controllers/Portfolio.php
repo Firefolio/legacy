@@ -90,6 +90,7 @@ class Portfolio extends CI_Controller {
     if (isset($_POST['query']) && isset($_POST['language']))
     {
       $title = $_POST['query'];
+      $language = $_POST['language'];
 
       $response['success'] = TRUE;
       $response['message'] = 'Found some projects from query';
@@ -132,9 +133,20 @@ class Portfolio extends CI_Controller {
       }
       else
       {
-        $response['html'] = '<em>No projects like "' .
-                            htmlentities($title) .
-                            '" were found...</em>';
+        if ($language === "All")
+        {
+          $response['html'] = 'No projects like ' .
+                                 htmlentities($title) .
+                                 ' were found.';
+        }
+        else
+        {
+          $response['html'] = 'No projects like ' .
+                                 htmlentities($title) .
+                                 ' written in ' .
+                                 htmlentities($language) .
+                                 ' were found.';
+        }
       }
     }
     else
