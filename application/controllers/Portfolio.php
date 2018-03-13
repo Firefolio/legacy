@@ -43,7 +43,8 @@ class Portfolio extends CI_Controller {
       'title' => $this->profile_model->get_full_name(),
       'csrf_name' => $this->security->get_csrf_token_name(),
       'csrf_hash' => $this->security->get_csrf_hash(),
-      'rows' => $rows
+      'rows' => $rows,
+      'languages' => $this->project_model->get_languages()
     );
 
     $this->parser->parse('frontend/portfolio.html', $data);
@@ -86,7 +87,7 @@ class Portfolio extends CI_Controller {
       'html' => 'Unspecified error'
     );
 
-    if (isset($_POST['query']))
+    if (isset($_POST['query']) && isset($_POST['language']))
     {
       $title = $_POST['query'];
 

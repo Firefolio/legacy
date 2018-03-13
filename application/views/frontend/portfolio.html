@@ -29,21 +29,26 @@
             </div>
           </header>
 
-          <!-- Search Bar -->
           <section class="row">
-            <div class="one-full column">
-              <input
-              id="base-url"
-              type="hidden"
-              name="base_url"
-              value="{base_url}"
-              placeholder="Search">
-              <input
-              id="csrf"
-              type="hidden"
-              name="{csrf_name}"
-              value="{csrf_hash}"
-              placeholder="Search">
+            <!-- Hidden Inputs -->
+            <input
+            id="base-url"
+            type="hidden"
+            name="base_url"
+            value="{base_url}"
+            placeholder="Search">
+            <input
+            id="csrf"
+            type="hidden"
+            name="{csrf_name}"
+            value="{csrf_hash}"
+            placeholder="Search">
+          </section>
+
+          <!-- Search Form -->
+          <section class="row">
+            <div class="eight columns">
+              <label for="language">Search</label>
               <input
               id="search"
               class="u-full-width"
@@ -51,6 +56,16 @@
               name="search"
               value=""
               placeholder="Search">
+            </div>
+            <div class="four columns">
+              <label for="language">Language</label>
+              <select id="language" class="u-full-width" name="language">
+                <option value="all">All</option>
+                {languages}
+                 <!-- TODO: add language options -->
+                 <option value="{name}">{name}</option>
+                {/languages}
+              </select>
             </div>
           </section>
 

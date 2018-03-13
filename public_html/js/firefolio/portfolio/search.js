@@ -1,11 +1,13 @@
 $('document').ready(function () {
   var search = {
     bar: $('#search'),
+    dropdown: $('#language'),
     grid: $('#projects'),
     url: $('#base-url').val() + 'index.php/search',
     attempt: function () {
       var data = {
-        query: search.bar.val()
+        query: search.bar.val(),
+        language: search.dropdown.val()
       };
       data[$('#csrf').attr('name')] = $('#csrf').val();
 
