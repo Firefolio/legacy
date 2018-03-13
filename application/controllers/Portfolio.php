@@ -81,7 +81,7 @@ class Portfolio extends CI_Controller {
   public function search()
   {
     $response = array(
-      'success' => true,
+      'success' => TRUE,
       'message' => 'No error message specified',
       'hash' => $this->security->get_csrf_hash(),
       'html' => 'Unspecified error'
@@ -95,58 +95,107 @@ class Portfolio extends CI_Controller {
       $response['success'] = TRUE;
       $response['message'] = 'Found some projects from query';
 
-      $projects = $this->project_model->search_projects($title);
-
-      if (sizeof($projects) > 0)
+      // Search differently depending on whether the user wants to filter
+      // by language
+      if ($language === 'All')
       {
-        // TODO: Turn this into a function
-        // Break the data back from the search into a responsive grid
-        $rows = array();
-        $projects_per_row = 3;
+        $projects = $this->project_model->search_projects($title);
 
-        // Purify project data
-        foreach ($projects as $project)
+        if (sizeof($projects) > 0)
         {
-          $project['title'] = htmlentities($project['title']);
-          $project['subtitle'] = htmlentities($project['subtitle']);
+          // TODO: Turn this into a function
+          // Break the data back from the search into a responsive grid
+          $rows = array();
+          $projects_per_row = 3;
+
+          // Purify project data
+          foreach ($projects as $project)
+          {
+            $project['title'] = htmlentities($project['title']);
+            $project['subtitle'] = htmlentities($project['subtitle']);
+          }
+
+          // Split the projects into their own rows
+          foreach (array_chunk($projects, $projects_per_row, TRUE) as $row)
+          {
+            array_push($rows, array('projects' => $row));
+          }
+
+          $data = array(
+            'base_url' => base_url(),
+            'title' => $this->profile_model->get_full_name(),
+            'csrf_name' => $this->security->get_csrf_token_name(),
+            'csrf_hash' => $this->security->get_csrf_hash(),
+            'rows' => $rows
+          );
+
+          $response['html'] = $this->parser->parse(
+            'frontend/thumbnails.html',
+            $data,
+            TRUE
+          );
         }
-
-        // Split the projects into their own rows
-        foreach (array_chunk($projects, $projects_per_row, TRUE) as $row)
-        {
-          array_push($rows, array('projects' => $row));
-        }
-
-        $data = array(
-          'base_url' => base_url(),
-          'title' => $this->profile_model->get_full_name(),
-          'csrf_name' => $this->security->get_csrf_token_name(),
-          'csrf_hash' => $this->security->get_csrf_hash(),
-          'rows' => $rows
-        );
-
-        $response['html'] = $this->parser->parse(
-          'frontend/thumbnails.html',
-          $data,
-          TRUE
-        );
-      }
-      else
-      {
-        if ($language === "All")
+        else
         {
           $response['html'] = 'No projects like "' .
                                  htmlentities($title) .
                                  '" were found.';
         }
+      }
+      else
+      {
+        $projects = $this->project_model->search_projects($title, $language);
+
+        if (sizeof($projects) > 0)
+        {
+          // TODO: Turn this into a function
+          // Break the data back from the search into a responsive grid
+          $rows = array();
+          $projects_per_row = 3;
+
+          // Purify project data
+          foreach ($projects as $project)
+          {
+            $project['title'] = htmlentities($project['title']);
+            $project['subtitle'] = htmlentities($project['subtitle']);
+          }
+
+          // Split the projects into their own rows
+          foreach (array_chunk($projects, $projects_per_row, TRUE) as $row)
+          {
+            array_push($rows, array('projects' => $row));
+          }
+
+          $data = array(
+            'base_url' => base_url(),
+            'title' => $this->profile_model->get_full_name(),
+            'csrf_name' => $this->security->get_csrf_token_name(),
+            'csrf_hash' => $this->security->get_csrf_hash(),
+            'rows' => $rows
+          );
+
+          $response['html'] = $this->parser->parse(
+            'frontend/thumbnails.html',
+            $data,
+            TRUE
+          );
+        }
         else
         {
-          // Include the language in the feedback
-          $response['html'] = 'No projects like "' .
-                                 htmlentities($title) .
-                                 '" written in ' .
-                                 htmlentities($language) .
-                                 ' were found.';
+          if (strlen($title) > 0)
+          {
+            $response['html'] = 'No projects like "' .
+                                htmlentities($title) .
+                                '" written in ' .
+                                htmlentities($language) .
+                                'were found.';
+          }
+          else
+          {
+            $response['html'] = 'No projects written in ' .
+                                htmlentities($language) .
+                                ' were found.';
+          }
         }
       }
     }
