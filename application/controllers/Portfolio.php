@@ -84,7 +84,7 @@ class Portfolio extends CI_Controller {
       'success' => TRUE,
       'message' => 'No error message specified',
       'hash' => $this->security->get_csrf_hash(),
-      'html' => 'Unspecified error'
+      'html' => 'No error message specified'
     );
 
     if (isset($_POST['query']) && isset($_POST['language']))
@@ -124,8 +124,6 @@ class Portfolio extends CI_Controller {
           $data = array(
             'base_url' => base_url(),
             'title' => $this->profile_model->get_full_name(),
-            'csrf_name' => $this->security->get_csrf_token_name(),
-            'csrf_hash' => $this->security->get_csrf_hash(),
             'rows' => $rows
           );
 
@@ -169,8 +167,6 @@ class Portfolio extends CI_Controller {
           $data = array(
             'base_url' => base_url(),
             'title' => $this->profile_model->get_full_name(),
-            'csrf_name' => $this->security->get_csrf_token_name(),
-            'csrf_hash' => $this->security->get_csrf_hash(),
             'rows' => $rows
           );
 
@@ -188,7 +184,7 @@ class Portfolio extends CI_Controller {
                                 htmlentities($title) .
                                 '" written in ' .
                                 htmlentities($language) .
-                                'were found.';
+                                ' were found.';
           }
           else
           {
