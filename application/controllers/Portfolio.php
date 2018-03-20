@@ -54,10 +54,13 @@ class Portfolio extends CI_Controller {
   {
   	if ($this->project_model->project_exists($uri))
     {
+      // Get the data for the project from the database
       $project = $this->project_model->get_project($uri);
       $project['description'] = markdown_parse($project['description']);
 
       $data = html_purify($project);
+
+      // Check to see if the trailer field has been filled in
       $data['trailer'] = html_purify(
         get_embed_url($project['trailer'])
       );

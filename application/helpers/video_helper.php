@@ -5,6 +5,10 @@ if (!function_exists('get_video_id'))
 {
   function get_video_id($url)
   {
+    // Set a default value so the function has something to return
+    $values = "jNQXAC9IVRw";
+
+    // Obtain the video ID through the use of regular expressions
     if (preg_match('/youtube\.com\/watch\?v=([^\&\?\/]+)/', $url, $id))
     {
       $values = $id[1];
