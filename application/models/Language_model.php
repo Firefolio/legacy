@@ -8,6 +8,13 @@ class Language_model extends CI_Model
 {
   function __construct()
   {
-    # code...
+    parent::__construct();
+  }
+
+  function get_languages()
+  {
+    $query = $this->db->get('languages')
+
+    return $query->result_array();
   }
 }
