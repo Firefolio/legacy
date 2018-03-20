@@ -151,7 +151,7 @@
                   </div>
                   <div class="one-half column">
                     <label for="date">Date</label>
-                    <input class="u-full-width" type="date" name="date" value="{date}">
+                    <input id="datepicker" class="u-full-width" type="text" name="date" value="{date}">
                   </div>
                 </div>
                 <div class="row">
@@ -316,9 +316,17 @@
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
-        <script>window.jQuery || document.write('<script src="{base_url}js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+        <script
+			  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+			  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+			  crossorigin="anonymous"></script>
+        <script>
+        window.jQuery || document.write('<script src="{base_url}js/vendor/jquery-3.2.1.min.js"><\/script>', 'js/vendor/jquery-ui-1.12.1/jquery-ui.min.js');
+        </script>
         <script src="{base_url}js/firefolio/project/update.js"></script>
         <script src="{base_url}js/to_ascii.js"></script>
+        <script src="{base_url}js/firefolio/datepicker.js"></script>
+        <link rel="stylesheet" href="{base_url}js/vendor/jquery-ui-1.12.1/jquery-ui.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     </body>
