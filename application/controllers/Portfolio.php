@@ -58,9 +58,11 @@ class Portfolio extends CI_Controller {
       $project = $this->project_model->get_project($uri);
       $project['description'] = markdown_parse($project['description']);
 
+      // Clean the output with HTML purifyer
       $data = html_purify($project);
 
       // Check to see if the trailer field has been filled in
+      // before purifying it
       $data['trailer'] = html_purify(
         get_embed_url($project['trailer'])
       );
