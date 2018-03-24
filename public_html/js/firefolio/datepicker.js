@@ -3,6 +3,6 @@ $('document').ready(function () {
     showOn: 'focus',
     changeMonth: true,
     changeYear: true,
-    dateFormat: 'mm-dd-yy'
+    dateFormat: 'yy-mm-dd' // Format text in a way that MySQL can understand
  });
 });
