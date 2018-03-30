@@ -72,21 +72,7 @@
 
           <div class="content">
             <section class="row">
-              <div class="one-half column">
-                <p>
-                  A Firefolio Project is any one piece of work that you would
-                  like an employer to see. Make it a good one!
-                </p>
-                <p>
-                  Don't worry if you're not entirely sure with the details, as
-                  these can be changed later.
-                </p>
-                <p>
-                  Fields marked with an asterisk (<strong>*</strong>) are
-                  required.
-                </p>
-              </div>
-              <div class="one-half column">
+              <div class="one-full column">
                 <form id="create">
                   <!-- Anti CSRF -->
                   <input
@@ -128,16 +114,6 @@
                     name="description"></textarea>
                   </div>
                   <div class="row">
-                    <div class="one-half column">
-                      <label for="language">Language</label>
-                      <input id="autocomplete" type="text" name="language" value="">
-                    </div>
-                    <div class="one-half column">
-                      <label for="date">Date</label>
-                      <input id="datepicker" type="text" name="date" value="">
-                    </div>
-                  </div>
-                  <div class="row">
                     <label for="thumbnail">Thumbnail</label>
                     <input
                     class="u-full-width"
@@ -155,8 +131,31 @@
                   </div>
                   <div class="row">
                     <div class="one-half column">
+                      <label for="language">Language</label>
+                      <input
+                      id="autocomplete"
+                      class="u-full-width"
+                      type="text"
+                      name="language"
+                      value="">
+                    </div>
+                    <div class="one-half column">
+                      <label for="date">Date</label>
+                      <input
+                      id="datepicker"
+                      class="u-full-width"
+                      type="text"
+                      name="date"
+                      value="">
+                    </div>
+                  </div>
+
+                  <hr>
+
+                  <div class="row">
+                    <div class="one-half column">
                       <button type="submit" name="button">
-                        Submit
+                        Create
                       </button>
                     </div>
                   </div>
