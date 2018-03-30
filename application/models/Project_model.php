@@ -65,10 +65,7 @@ class Project_model extends CI_Model {
 
   public function project_exists($uri)
   {
-    $query = $this->db->get_where(
-      'projects',
-      array('uri' => $uri)
-    );
+    $query = $this->db->get_where('projects', array('uri' => $uri));
 
     return $query->num_rows() > 0;
   }

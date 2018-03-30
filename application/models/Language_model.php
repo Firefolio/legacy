@@ -24,4 +24,11 @@ class Language_model extends CI_Model
 
     return $query->result_array();
   }
+
+  public function language_exists($name)
+  {
+    $query = $this->db->get_where('languages', array('name' => $name));
+
+    return $query->num_rows() > 0;
+  }
 }
