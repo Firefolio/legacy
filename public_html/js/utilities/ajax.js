@@ -5,7 +5,7 @@ var csrf = {
 var ajax = {
   request: {
     form: function (form, url, method, redirect) {
-      var input = form.find('input, textarea, button');
+      var inputs = form.find('input, textarea, button');
       var data = form.serialize();
 
       var request = $.ajax({

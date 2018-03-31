@@ -122,7 +122,9 @@ class Project extends CI_Controller {
           $this->project_model->insert_project($project);
 
           $response['success'] = TRUE;
-          $response['message'] = 'Inserted ' . $project['title'] . 'into database';
+          $response['message'] = 'Inserted ' .
+                                 $project['title'] .
+                                 ' into database';
         }
         else
         {

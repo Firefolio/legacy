@@ -93,10 +93,10 @@
 
                   <!-- Redirect URL -->
                   <input
-                  id="base-url"
+                  id="redirect-url"
                   type="hidden"
-                  name="base_url"
-                  value="{base_url}">
+                  name="redirect_url"
+                  value="{base_url}index.php/firefolio/projects">
 
                   <div class="row">
                     <label for="title">Title*</label>
@@ -190,17 +190,6 @@
         <script src="{base_url}js/utilities/ajax.js"></script>
         <script src="{base_url}js/firefolio/datepicker.js"></script>
         <script src="{base_url}js/firefolio/autocomplete.js"></script>
-        <script type="text/javascript">
-          $('#form').submit(function (event) {
-            event.preventDefault();
-
-            ajax.request.form(
-              $(this),
-              $(this).attr('action'),
-              $(this).attr('method'),
-              $('#redirect-url').val()
-            );
-          });
-        </script>
+        <script src="{base_url}js/firefolio/project/create.js"></script>
     </body>
 </html>
