@@ -73,7 +73,10 @@
           <div class="content">
             <section class="row">
               <div class="one-full column">
-                <form id="create">
+                <form
+                id="form"
+                action="{base_url}index.php/firefolio/projects/create/submit"
+                method="POST">
                   <!-- Anti CSRF -->
                   <input
                   id="csrf"
@@ -88,6 +91,13 @@
                   name="base_url"
                   value="{base_url}">
 
+                  <!-- Redirect URL -->
+                  <input
+                  id="base-url"
+                  type="hidden"
+                  name="base_url"
+                  value="{base_url}">
+
                   <div class="row">
                     <label for="title">Title*</label>
                     <input
@@ -95,8 +105,7 @@
                     type="text"
                     name="title"
                     value=""
-                    autofocus
-                    required>
+                    autofocus>
                   </div>
                   <div class="row">
                     <label for="subtitle">Subtitle</label>
@@ -178,8 +187,20 @@
             'js/vendor/jquery-ui-1.12.1/jquery-ui.min.js'
           );
         </script>
-        <script src="{base_url}js/firefolio/project/create.js"></script>
+        <script src="{base_url}js/utilities/ajax.js"></script>
         <script src="{base_url}js/firefolio/datepicker.js"></script>
         <script src="{base_url}js/firefolio/autocomplete.js"></script>
+        <script type="text/javascript">
+          $('#form').submit(function (event) {
+            event.preventDefault();
+
+            ajax.request.form(
+              $(this),
+              $(this).attr('action'),
+              $(this).attr('method'),
+              $('#redirect-url').val()
+            );
+          });
+        </script>
     </body>
 </html>

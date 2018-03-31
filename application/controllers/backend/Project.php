@@ -131,7 +131,7 @@ class Project extends CI_Controller {
       }
       else
       {
-        $response['title'] = 'Project title cannot be blank';
+        $response['message'] = 'Project title cannot be blank';
       }
     }
     else
