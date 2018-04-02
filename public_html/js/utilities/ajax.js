@@ -8,6 +8,8 @@ var ajax = {
       var inputs = form.find('input, textarea, button');
       var data = form.serialize();
 
+      console.log(data);
+
       var request = $.ajax({
         url: url,
         data: data,

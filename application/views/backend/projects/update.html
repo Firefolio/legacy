@@ -75,7 +75,7 @@
           <!-- Content -->
           <section class="row">
             <div class="one-full column">
-              <form id="form" action="{base_url}" method="POST">
+              <form id="form" action="{base_url}index.php/firefolio/projects/update/{uri}/submit" method="POST">
                 <!-- Hidden Inputs -->
                 <!-- Anti CSRF -->
                 <input
@@ -92,9 +92,9 @@
                 <input
                 id="redirect-url"
                 type="hidden"
-                value="{base_url}index.php/firefolio/projects/update/{uri}/submit">
+                value="{base_url}index.php/firefolio/projects">
                 <!-- ID -->
-                <!-- TODO: Find out why I'm storing this -->
+                <!-- This is used to verify the AJAX request -->
                 <input
                 type="hidden"
                 name="id"

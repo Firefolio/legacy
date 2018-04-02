@@ -69,11 +69,12 @@ $(document).ready(function () {
     update.form.submit(function (event) {
       event.preventDefault();
 
-      var project = update.form.serialize();
-      var url = $('#base-url').val() +
-                'index.php/firefolio/projects';
-
-      update.attempt(url);
+      ajax.request.form(
+        $('#form'),
+        $('#form').attr('action'),
+        $('#form').attr('method'),
+        $('#redirect-url').val()
+      );
     });
 
     var title = {

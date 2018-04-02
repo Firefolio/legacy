@@ -82,7 +82,7 @@
               <div class="one-full column">
                 <form
                 id="form"
-                action="{base_url}index.php/firefolio/projects/create/submit"
+                action="{base_url}index.php/firefolio/projects/update/{uri}/submit"
                 method="POST">
                   <!-- Anti CSRF -->
                   <input
@@ -90,14 +90,12 @@
                   type="hidden"
                   name="{csrf_name}"
                   value="{csrf_hash}">
-
                   <!-- Base URL -->
                   <input
                   id="base-url"
                   type="hidden"
                   name="base_url"
                   value="{base_url}">
-
                   <!-- Redirect URL -->
                   <input
                   id="redirect-url"
