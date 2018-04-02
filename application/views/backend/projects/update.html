@@ -72,19 +72,48 @@
             <hr>
           </header>
 
+          <!-- Content -->
           <section class="row">
             <div class="one-full column">
-              <form id="form">
+              <form id="form" action="{base_url}" method="POST">
+                <!-- Hidden Inputs -->
                 <!-- Anti CSRF -->
-                <input id="csrf" type="hidden" name="{csrf_name}" value="{csrf_hash}">
+                <input
+                id="csrf"
+                type="hidden"
+                name="{csrf_name}"
+                value="{csrf_hash}">
                 <!-- Base URL -->
-                <input id="base-url" type="hidden" value="{base_url}">
-                <input type="hidden" name="id" value="{id}">
+                <input
+                id="base-url"
+                type="hidden"
+                value="{base_url}">
+                <!-- Redirect URL -->
+                <input
+                id="redirect-url"
+                type="hidden"
+                value="{base_url}index.php/firefolio/projects/update/{uri}/submit">
+                <!-- ID -->
+                <!-- TODO: Find out why I'm storing this -->
+                <input
+                type="hidden"
+                name="id"
+                value="{id}">
                 <!-- URI -->
                 <!-- Original -->
-                <input id="original-uri" type="hidden" name="original_uri" value="{uri}">
+                <input
+                id="original-uri"
+                type="hidden"
+                name="original_uri"
+                value="{uri}">
                 <!-- Current -->
-                <input id="uri" type="hidden" name="uri" value="{uri}">
+                <input
+                id="uri"
+                type="hidden"
+                name="uri"
+                value="{uri}">
+
+                <!-- Visible Inputs -->
                 <div class="row">
                   <div class="one-half column">
                     <label for="title">Title</label>
@@ -313,7 +342,8 @@
           </div>
         </div>
 
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
         <script
@@ -328,6 +358,7 @@
         </script>
         <script src="{base_url}js/firefolio/project/update.js"></script>
         <script src="{base_url}js/utilities/to_ascii.js"></script>
+        <script src="{base_url}js/utilities/ajax.js"></script>
         <script src="{base_url}js/firefolio/datepicker.js"></script>
         <link rel="stylesheet" href="{base_url}js/vendor/jquery-ui-1.12.1/jquery-ui.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>

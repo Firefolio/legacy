@@ -72,6 +72,13 @@
 
           <div class="content">
             <section class="row">
+              <p>
+                A Firefolio project is any single piece of work that
+                you want an employer to see. Make it a good one!
+              </p>
+            </section>
+
+            <section class="row">
               <div class="one-full column">
                 <form
                 id="form"
@@ -99,28 +106,42 @@
                   value="{base_url}index.php/firefolio/projects">
 
                   <div class="row">
-                    <label for="title">Title*</label>
-                    <input
-                    class="u-full-width"
-                    type="text"
-                    name="title"
-                    value=""
-                    autofocus>
+                    <div class="one-half column">
+                      <label for="title">Title*</label>
+                      <input
+                      class="u-full-width"
+                      type="text"
+                      name="title"
+                      value=""
+                      autofocus>
+                    </div>
+                    <div class="one-half column">
+                      <label for="subtitle">Subtitle</label>
+                      <input
+                      class="u-full-width"
+                      type="text"
+                      name="subtitle"
+                      value="">
+                    </div>
                   </div>
                   <div class="row">
-                    <label for="subtitle">Subtitle</label>
-                    <input
-                    class="u-full-width"
-                    type="text"
-                    name="subtitle"
-                    value="">
-                  </div>
-                  <div class="row">
-                    <label for="description">Description</label>
-                    <textarea
-                    style="min-height: 256px"
-                    class="u-full-width"
-                    name="description"></textarea>
+                    <div class="one-half column">
+                      <label for="description">
+                        Description (Code)
+                      </label>
+                      <textarea
+                      style="min-height: 256px"
+                      class="u-full-width"
+                      name="description"></textarea>
+                    </div>
+                    <div class="one-half column">
+                      <label for="preview">
+                        Description (Preview)
+                      </label>
+                      <p>
+                        <em>[Insert Description Here]</em>
+                      </p>
+                    </div>
                   </div>
                   <div class="row">
                     <label for="thumbnail">Thumbnail</label>
