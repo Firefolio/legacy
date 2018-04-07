@@ -44,7 +44,7 @@ $('document').ready(function () {
 
       request.fail(function (message) {
         console.error(message);
-      })
+      });
 
       request.always(function () {
         inputs.prop('disabled', false);

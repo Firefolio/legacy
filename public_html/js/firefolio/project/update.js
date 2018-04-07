@@ -5,55 +5,23 @@ $(document).ready(function () {
       primary: $('#update'),
       save: $('#save')
     },
-    url: $('#base-url').val() +
-         'index.php/firefolio/projects/update/' +
-         $('#uri').val() +
-         '/submit',
-    csrf: {
-      name: $('#csrf').attr('name'),
-      hash: $('#csrf').val()
-    },
-    attempt: function (url) {
-      var inputs = this.form.find('input, textarea, button');
-      var data = this.form.serialize();
-      var success = false;
-
-      inputs.prop('disabled', true);
-
-      var request = $.post(
-        update.url,
-        data,
-        'JSON'
-      );
-
-      request.done(function (response) {
-        console.log(response);
-        response = JSON.parse(response);
-        console.log(response);
-
-        // Generate a new anti-CSRF hash
-        update.csrf.hash = response.hash;
-        $('#csrf').val(response.hash);
-
-        if (response.success) {
-          console.log(response.message);
-
-          // Only redirect the user if a URL is specified
-          if (url != null) {
-            window.location.replace(url);
-          }
-        } else {
-          console.error(response.message);
-        }
-      });
-
-      request.fail(function (message) {
-        console.error(message);
-      })
-
-      request.always(function () {
-        inputs.prop('disabled', false);
-      });
+    save: function () {
+      if (title.current != title.original) {
+        ajax.request.form(
+          $('#form'),
+          $('#form').attr('action'),
+          $('#form').attr('method'),
+          $('#base-url').val() +
+            'index.php/firefolio/projects/update/' +
+            to_ascii(title.current)
+        );
+      } else {
+        ajax.request.form(
+          $('#form'),
+          $('#form').attr('action'),
+          $('#form').attr('method'),
+        );
+      }
     },
     open: function (checkboxes, uris) {
       for (var checkbox = 0; checkbox < checkboxes.length; checkbox++) {
@@ -61,7 +29,8 @@ $(document).ready(function () {
           open_window('projects/update/' + uris[checkbox].value);
         }
       }
-    }
+    },
+    saved: true
   };
 
   // Save and exit
@@ -87,24 +56,15 @@ $(document).ready(function () {
       console.log(title);
       console.log(to_ascii(title.current));
     });
-  }
 
-  // Save and keep editing
-  if (update.button.save !== null) {
+    // Save and keep editing
+    if (update.button.save !== null) {
     // Save the project when the button is clicked
     update.button.save.click(function (event) {
       event.preventDefault();
-
-      if (title.current != title.original) {
-        update.attempt(
-          $('#base-url').val() +
-          'index.php/firefolio/projects/update/' +
-          to_ascii(title.current)
-        );
-      } else {
-        update.attempt();
-      }
+      update.save();
     });
+  }
 
     // Override the keyboard shortcut to let them do that too
     $(window).bind('keydown', function (event) {
@@ -112,7 +72,7 @@ $(document).ready(function () {
         switch (String.fromCharCode(event.which).toLowerCase()) {
           case 's':
             event.preventDefault();
-            update.attempt();
+            update.save();
             break;
         }
       }
