@@ -50,8 +50,8 @@ var ajax = {
         inputs.prop('disabled', false);
       });
     },
-    markup: function () {
-
+    html: function (input, node, url) {
+      // TODO: make an AJAX request that returns markup
     }
   }
 };
