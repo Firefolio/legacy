@@ -8,6 +8,7 @@ class Portfolio extends CI_Controller {
 
     $this->load->model('profile_model');
     $this->load->model('project_model');
+    $this->load->model('language_model');
 
     $this->load->helper('date');
     $this->load->helper('security');
@@ -44,7 +45,7 @@ class Portfolio extends CI_Controller {
       'csrf_name' => $this->security->get_csrf_token_name(),
       'csrf_hash' => $this->security->get_csrf_hash(),
       'rows' => $rows,
-      'languages' => $this->project_model->get_languages()
+      'languages' => $this->language_model->get_languages()
     );
 
     $this->parser->parse('frontend/portfolio.html', $data);

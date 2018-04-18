@@ -65,7 +65,7 @@ class Project extends CI_Controller {
             $data['base_url'] = base_url();
             $data['csrf_name'] = $this->security->get_csrf_token_name();
             $data['csrf_hash'] = $this->security->get_csrf_hash();
-            $data['languages'] = $this->project_model->get_languages();
+            $data['languages'] = $this->language_model->get_languages();
 
           	$this->parser->parse('backend/projects/update.html', $data);
           }
