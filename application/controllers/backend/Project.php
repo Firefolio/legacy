@@ -7,6 +7,7 @@ class Project extends CI_Controller {
     parent::__construct();
 
     $this->load->model('project_model');
+    $this->load->model('language_model');
 
     $this->load->library('parser');
 
@@ -47,7 +48,7 @@ class Project extends CI_Controller {
             'base_url' => base_url(),
             'csrf_name' => $this->security->get_csrf_token_name(),
             'csrf_hash' => $this->security->get_csrf_hash(),
-            'languages' => $this->project_model->get_languages()
+            'languages' => $this->language_model->get_languages()
           );
 
           $this->parser->parse('backend/projects/create.html', $data);

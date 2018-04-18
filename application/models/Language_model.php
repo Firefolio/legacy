@@ -13,14 +13,7 @@ class Language_model extends CI_Model
 
   function get_languages()
   {
-    $query = $this->db->get('languages')
-
-    return $query->result_array();
-  }
-
-  function get_distinct_languages()
-  {
-    $query = $this->db->get('languages')
+    $query = $this->db->get('languages');
 
     return $query->result_array();
   }

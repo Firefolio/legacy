@@ -69,26 +69,4 @@ class Project_model extends CI_Model {
 
     return $query->num_rows() > 0;
   }
-
-  public function get_languages()
-  {
-    // Send a query to get all values from the 'language' column
-    // Note that this won't work with any values that have commas in them
-    $query = $this->db->query(file_get_contents('sql/get_languages.sql'));
-    // Get the type of column from the first row
-    $type = $query->row(0)->Type;
-    // Parse those values as a regular expression
-    preg_match("/^enum\(\'(.*)\'\)$/", $type, $matches);
-    // Convert the matching values into an array
-    $enum = explode("','", $matches[1]);
-    $languages = array();
-
-    // Format that array for the template parser
-    foreach ($enum as $value)
-    {
-      array_push($languages, array('name' => $value));
-    }
-
-    return $languages;
-  }
 }
