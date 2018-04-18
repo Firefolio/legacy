@@ -52,6 +52,20 @@ var ajax = {
     },
     html: function (input, node, url) {
       // TODO: make an AJAX request that returns markup
+    },
+    json: function (url) {
+      var request = $.getJSON(url, function (data) {});
+      var result = null;
+
+      request.done(function (data) {
+        result = data;
+      });
+
+      request.fail(function (message) {
+        console.error(message);
+      });
+
+      return result;
     }
   }
 };
