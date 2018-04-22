@@ -54,7 +54,8 @@ var ajax = {
       var data = {
         input: input
       }
-      input[$('#csrf')].attr('name') = $('#csrf').val();
+      // Ensure that the current CSRF token is sent
+      data[$('#csrf').attr('name')] = $('#csrf').val();
 
       // Type is assumed to be POST
       var request = $.ajax({
@@ -65,12 +66,15 @@ var ajax = {
       });
 
       request.done(function (response) {
+        console.log(response);
         response = JSON.parse(response);
 
+        // Always remember to set the new hash after
+        // a complete request
         $('#csrf').val(response.hash);
 
         if (response.success) {
-          output.html(response.html);
+          $(output).html(response.html);
         } else {
           console.error(response.message);
         }

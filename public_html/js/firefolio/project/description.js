@@ -4,8 +4,8 @@ $('document').ready(function () {
 
   $('#description').on('input', function () {
     ajax.request.html(
-      $(this).val(),
-      $('#description-preview'),
+      $('#description').val(), // Input markdown
+      '#description-preview', // Output node
       url
     );
   });
