@@ -1,0 +1,7 @@
+- Clean up routing configuration
+- Squash XSS vulnerabilities
+- Write an AJAX function for markup
+- Programming language controller
+- Asynchronous preview
+- Frontend login feedback
+- Fallback script
