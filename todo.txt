@@ -1,7 +1,14 @@
 - Clean up routing configuration
-- Squash XSS vulnerabilities
+- Squash security vulnerabilities
+- Store and force changes on default password
 - Write an AJAX function for markup
 - Programming language controller
 - Asynchronous preview
 - Frontend login feedback
 - Fallback script
+- Fix backend project search
+- Make frontend language search distinct
+- Style backend
+- Details system
+- Gallery System
+- Unify AJAX requests

@@ -50,8 +50,35 @@ var ajax = {
         inputs.prop('disabled', false);
       });
     },
-    html: function (input, node, url) {
-      // TODO: make an AJAX request that returns markup
+    html: function (input, output, url) {
+      var data = {
+        input: input
+      }
+      input[$('#csrf')].attr('name') = $('#csrf').val();
+
+      // Type is assumed to be POST
+      var request = $.ajax({
+        url: url,
+        data: data,
+        method: 'POST',
+        type: 'JSON'
+      });
+
+      request.done(function (response) {
+        response = JSON.parse(response);
+
+        $('#csrf').val(response.hash);
+
+        if (response.success) {
+          output.html(response.html);
+        } else {
+          console.error(response.message);
+        }
+      });
+
+      request.fail(function (message) {
+        console.error(message);
+      });
     }
   }
 };

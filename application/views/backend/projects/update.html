@@ -140,13 +140,14 @@
                   <div class="one-half column">
                     <label for="description">Description (Code)</label>
                     <textarea
+                    id="description"
                     class="u-full-width"
                     style="min-height: 256px"
                     name="description">{description}</textarea>
                   </div>
                   <div class="one-half column">
                     <label for="preview">Description (Preview)</label>
-                    <div class="">
+                    <div id="description-preview">
                       <!-- {preview} here is used instead of {description}
                            because it's also been escaped -->
                       {preview}
@@ -358,6 +359,7 @@
         );
         </script>
         <script src="{base_url}js/firefolio/project/update.js"></script>
+        <script src="{base_url}js/firefolio/project/description.js"></script>
         <script src="{base_url}js/utilities/to_ascii.js"></script>
         <script src="{base_url}js/utilities/ajax.js"></script>
         <script src="{base_url}js/firefolio/datepicker.js"></script>
