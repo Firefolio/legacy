@@ -15,12 +15,16 @@ class Markdown extends CI_Controller {
     $response = array(
       'success' => FALSE,
       'message' => 'No error message specified',
-      'html' => '<p>Markdown parse failed</p>'
+      'html' => 'Markdown parse failed'
     );
 
     if (isset($_POST['data'])) {
-      'success' => TRUE,
-      $response['html'] = markdown_parse($_POST['input']);
+      $html = html_purify(
+        markdown_parse($_POST['input'])
+      );
+      $response['success'] = TRUE;
+      $response['message'] = 'Parsed Markdown successfully!';
+      $response['html'] = $html;
     }
 
     $json = json_encode($response);
