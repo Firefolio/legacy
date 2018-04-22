@@ -1,13 +1,13 @@
 - Clean up routing configuration
 - Squash security vulnerabilities
 - Store and force changes on default password
-- Write an AJAX function for markup
+- Write an AJAX function for markup ✓
 - Programming language controller
 - Asynchronous preview
 - Frontend login feedback
 - Fallback script
 - Fix backend project search
-- Make frontend language search distinct
+- Make frontend language search use distinct values from the database
 - Style backend
 - Details system
 - Gallery System
