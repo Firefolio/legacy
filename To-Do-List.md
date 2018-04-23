@@ -10,3 +10,4 @@
 - Add a screenshot gallery that allows the user to display their project
 - Unify AJAX requests to use the utility script instead of bespoke functions
 - Back up the current database configuration as `firefolio.sql`
+- Unify file names to use `snake_case`
