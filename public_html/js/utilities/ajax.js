@@ -66,7 +66,6 @@ var ajax = {
       });
 
       request.done(function (response) {
-        console.log(response);
         response = JSON.parse(response);
 
         // Always remember to set the new hash after

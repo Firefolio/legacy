@@ -250,9 +250,9 @@ class Project extends CI_Controller {
       'html' => 'Unspecified error'
     );
 
-    if (isset($_POST['query']))
+    if (isset($_POST['input']))
     {
-      $title = $_POST['query'];
+      $title = $_POST['input'];
 
       $data = array(
         'projects' => $this->project_model->search_projects($title)
