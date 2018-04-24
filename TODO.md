@@ -3,7 +3,6 @@
 - Store and force changes on the system's default password
 - Add a controller for programming languages so that autocomplete can happen on the database
 - Fallback script for loading libraries when CDN isn't available
-- Fix backend project title search from being refused by the server
 - Make frontend language search use distinct values from the database
 - Add cascading styles to the backend interface
 - Add a project details list that allows for hyperlinks as well as text with headers

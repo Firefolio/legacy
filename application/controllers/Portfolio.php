@@ -93,117 +93,54 @@ class Portfolio extends CI_Controller {
       'html' => 'No error message specified'
     );
 
-    if (isset($_POST['query']) && isset($_POST['language']))
+    if (isset($_POST['input']))
     {
-      $title = $_POST['query'];
-      $language = $_POST['language'];
+      $title = $_POST['input'];
 
       $response['success'] = TRUE;
       $response['message'] = 'Found some projects from query';
 
-      // Search differently depending on whether the user wants to filter
-      // by language
-      if ($language === 'All')
+      $projects = $this->project_model->search_projects($title);
+
+      if (sizeof($projects) > 0)
       {
-        $projects = $this->project_model->search_projects($title);
+        // TODO: Turn this into a function
+        // Break the data back from the search into a responsive grid
+        $rows = array();
+        $projects_per_row = 3;
 
-        if (sizeof($projects) > 0)
+        // Purify project data
+        foreach ($projects as $project)
         {
-          // TODO: Turn this into a function
-          // Break the data back from the search into a responsive grid
-          $rows = array();
-          $projects_per_row = 3;
-
-          // Purify project data
-          foreach ($projects as $project)
-          {
-            $project['title'] = htmlentities($project['title']);
-            $project['subtitle'] = htmlentities($project['subtitle']);
-          }
-
-          // Split the projects into their own rows
-          foreach (array_chunk($projects, $projects_per_row, TRUE) as $row)
-          {
-            array_push($rows, array('projects' => $row));
-          }
-
-          $data = array(
-            'base_url' => base_url(),
-            'title' => $this->profile_model->get_full_name(),
-            'rows' => $rows
-          );
-
-          $response['html'] = $this->parser->parse(
-            'frontend/thumbnails.html',
-            $data,
-            TRUE
-          );
+          $project['title'] = htmlentities($project['title']);
+          $project['subtitle'] = htmlentities($project['subtitle']);
+          $project['language'] = htmlentities($project['language']);
         }
-        else
+
+        // Split the projects into their own rows
+        foreach (array_chunk($projects, $projects_per_row, TRUE) as $row)
         {
-          $response['html'] = 'No projects like "' .
-                                 htmlentities($title) .
-                                 '" were found.';
+          array_push($rows, array('projects' => $row));
         }
+
+        $data = array(
+          'base_url' => base_url(),
+          'title' => $this->profile_model->get_full_name(),
+          'rows' => $rows
+        );
+
+        $response['html'] = $this->parser->parse(
+          'frontend/thumbnails.html',
+          $data,
+          TRUE
+        );
       }
       else
       {
-        $projects = $this->project_model->search_projects($title, $language);
-
-        if (sizeof($projects) > 0)
-        {
-          // TODO: Turn this into a function
-          // Break the data back from the search into a responsive grid
-          $rows = array();
-          $projects_per_row = 3;
-
-          // Purify project data
-          foreach ($projects as $project)
-          {
-            $project['title'] = htmlentities($project['title']);
-            $project['subtitle'] = htmlentities($project['subtitle']);
-          }
-
-          // Split the projects into their own rows
-          foreach (array_chunk($projects, $projects_per_row, TRUE) as $row)
-          {
-            array_push($rows, array('projects' => $row));
-          }
-
-          $data = array(
-            'base_url' => base_url(),
-            'title' => $this->profile_model->get_full_name(),
-            'rows' => $rows
-          );
-
-          $response['html'] = $this->parser->parse(
-            'frontend/thumbnails.html',
-            $data,
-            TRUE
-          );
-        }
-        else
-        {
-          if (strlen($title) > 0)
-          {
-            $response['html'] = 'No projects like "' .
-                                htmlentities($title) .
-                                '" written in ' .
-                                htmlentities($language) .
-                                ' were found.';
-          }
-          else
-          {
-            $response['html'] = 'No projects written in ' .
-                                htmlentities($language) .
-                                ' were found.';
-          }
-        }
+        $response['html'] = 'No projects like "' .
+                               htmlentities($title) .
+                               '" were found.';
       }
-    }
-    else
-    {
-      $response['message'] = 'No data posted';
     }
 
     $json = json_encode($response);
