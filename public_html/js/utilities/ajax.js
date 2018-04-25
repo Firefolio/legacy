@@ -14,7 +14,7 @@ var ajax = {
         url: url,
         data: data,
         method: method,
-        type: "JSON"
+        type: 'JSON'
       });
 
       inputs.prop('disabled', false);

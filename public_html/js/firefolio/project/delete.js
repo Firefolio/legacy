@@ -1,5 +1,5 @@
 $('document').ready(function () {
-  // Can't use 'delete' as that's a reserved keyword
+  // Can't use 'delete' as that's a reserved keyword in Javascript
   var del = {
     button: $('#delete'),
     url: 'projects/delete',

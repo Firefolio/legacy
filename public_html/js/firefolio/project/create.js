@@ -9,4 +9,12 @@ $('document').ready(function () {
       $('#redirect-url').val()
     );
   });
+
+  $('#description').on('input', debounce(function () {
+    ajax.request.html(
+      $('#description').val(),
+      '#description-preview',
+      $('#base-url').val() + 'index.php/markdown/parse'
+    );
+  }, 128));
 });
