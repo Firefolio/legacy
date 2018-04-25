@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 24, 2018 at 05:19 PM
--- Server version: 10.1.24-MariaDB
--- PHP Version: 7.1.6
+-- Generation Time: Apr 25, 2018 at 03:33 PM
+-- Server version: 10.1.30-MariaDB
+-- PHP Version: 7.2.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -39,29 +39,27 @@ CREATE TABLE `languages` (
 
 INSERT INTO `languages` (`id`, `name`) VALUES
 (1, 'C'),
-(2, 'C#'),
-(3, 'C++'),
-(4, 'D'),
-(5, 'Dart'),
-(6, 'Erlang'),
-(7, 'GLSL'),
-(8, 'HLSL'),
-(9, 'Go'),
-(10, 'Haskell'),
-(11, 'Haxe'),
-(12, 'Java'),
-(13, 'Javascript'),
-(14, 'Lua'),
-(15, 'Objective-C'),
-(16, 'Pascal'),
-(17, 'Perl'),
-(18, 'PHP'),
-(19, 'Python'),
-(20, 'Ruby'),
-(21, 'Rust'),
-(22, 'Spire-V'),
-(23, 'Swift'),
-(24, 'Visual Basic');
+(2, 'C++'),
+(3, 'D'),
+(4, 'Erlang'),
+(5, 'GLSL'),
+(6, 'HLSL'),
+(7, 'Go'),
+(8, 'Haskell'),
+(9, 'Haxe'),
+(10, 'Java'),
+(11, 'Javascript'),
+(12, 'Lua'),
+(13, 'Objective-C'),
+(14, 'Pascal'),
+(15, 'Perl'),
+(16, 'PHP'),
+(17, 'Python'),
+(18, 'Ruby'),
+(19, 'Rust'),
+(20, 'Spire-V'),
+(21, 'Swift'),
+(22, 'Visual Basic');
 
 -- --------------------------------------------------------
 
@@ -107,15 +105,15 @@ CREATE TABLE `projects` (
 --
 
 INSERT INTO `projects` (`id`, `initiative`, `uri`, `thumbnail`, `trailer`, `title`, `subtitle`, `description`, `language`, `date`) VALUES
-(2, 0, 'sol', 'https://via.placeholder.com/640x360', 'https://youtu.be/m2uTFF_3MaA', 'Sol', '', 'The Sun is the star at the center of the Solar System. It is a nearly perfect sphere of hot plasma, with internal convective motion that generates a magnetic field via a dynamo process.\r\n\r\nIt is by far the most important source of energy for life on Earth. Its diameter is about 1.39 million kilometers, i.e. 109 times that of Earth, and its mass is about 330,000 times that of Earth, accounting for about 99.86% of the total mass of the Solar System.\r\n\r\nAbout three quarters of the Sun\'s mass consists of hydrogen (~73%); the rest is mostly helium (~25%), with much smaller quantities of heavier elements, including oxygen, carbon, neon, and iron.', 'Unspecified', '2018-02-22'),
+(2, 0, 'sol', 'https://via.placeholder.com/640x360', 'https://www.youtube.com/embed/FNFuDKw_Q_E', 'Sol', '', 'The Sun is the star at the center of the Solar System. It is a nearly perfect sphere of hot plasma, with internal convective motion that generates a magnetic field via a dynamo process.\r\n\r\nIt is by far the most important source of energy for life on Earth. Its diameter is about 1.39 million kilometers, i.e. 109 times that of Earth, and its mass is about 330,000 times that of Earth, accounting for about 99.86% of the total mass of the Solar System.\r\n\r\nAbout three quarters of the Sun\'s mass consists of hydrogen (~73%); the rest is mostly helium (~25%), with much smaller quantities of heavier elements, including oxygen, carbon, neon, and iron.', 'Unspecified', '0000-00-00'),
 (3, 0, 'mercury', 'https://via.placeholder.com/640x360', 'https://www.youtube.com/embed/FNFuDKw_Q_E', 'Mercury', '', 'Mercury is the smallest and innermost planet in the Solar System. Its orbital period around the Sun of 88 days is the shortest of all the planets in the Solar System. It is named after the Roman deity Mercury, the messenger to the gods.', 'Unspecified', '2018-02-16'),
 (4, 0, 'venus', 'https://via.placeholder.com/640x360', 'https://www.youtube.com/embed/FNFuDKw_Q_E', 'Venus', '', 'Venus is the second planet from the Sun, orbiting it every 224.7 Earth days. It has the longest rotation period of any planet in the Solar System and rotates in the opposite direction to most other planets. It does not have any natural satellites. It is named after the Roman goddess of love and beauty.', 'Unspecified', '2018-02-25'),
 (5, 0, 'earth', 'https://via.placeholder.com/640x360', 'https://www.youtube.com/embed/FNFuDKw_Q_E', 'Earth', '', 'Earth is the third planet from the Sun and the only object in the Universe known to harbor life. According to radiometric dating and other sources of evidence, Earth formed over 4 billion years ago. Earth\'s gravity interacts with other objects in space, especially the Sun and the Moon, Earth\'s only natural satellite. Earth revolves around the Sun in 365.26 days, a period known as an Earth year. During this time, Earth rotates about its axis about 366.26 times.', 'Unspecified', '2018-02-14'),
-(6, 0, 'mars', 'https://via.placeholder.com/640x360', 'https://www.youtube.com/embed/FNFuDKw_Q_E', 'Mars', '', 'Mars is the fourth planet from the Sun and the second-smallest planet in the Solar System after Mercury. In English, Mars carries a name of the Roman god of war, and is often referred to as the \"Red Planet\" because the reddish iron oxide prevalent on its surface gives it a reddish appearance that is distinctive among the astronomical bodies visible to the naked eye.', 'Lua', '2018-02-03'),
+(6, 0, 'mars', 'https://via.placeholder.com/640x360', 'https://www.youtube.com/embed/FNFuDKw_Q_E', 'Mars', '', 'Mars is the fourth planet from the Sun and the second-smallest planet in the Solar System after Mercury. In English, Mars carries a name of the Roman god of war, and is often referred to as the \"Red Planet\" because the reddish iron oxide prevalent on its surface gives it a reddish appearance that is distinctive among the astronomical bodies visible to the naked eye.', 'Unspecified', '0000-00-00'),
 (7, 0, 'jupiter', 'https://via.placeholder.com/640x360', 'https://www.youtube.com/embed/FNFuDKw_Q_E', 'Jupiter', '', 'Jupiter is the fifth planet from the Sun and the largest in the Solar System. It is a giant planet with a mass one-thousandth that of the Sun, but two-and-a-half times that of all the other planets in the Solar System combined. Jupiter and Saturn are gas giants; the other two giant planets, Uranus and Neptune are ice giants.', 'Unspecified', '2018-02-16'),
-(8, 0, 'saturn', 'https://via.placeholder.com/640x360', 'https://www.youtube.com/embed/FNFuDKw_Q_E', 'Saturn', '', 'Saturn is the sixth planet from the Sun and the second-largest in the Solar System, after Jupiter. It is a gas giant with an average radius about nine times that of Earth. It has only one-eighth the average density of Earth, but with its larger volume Saturn is over 95 times more massive. Saturn is named after the Roman god of agriculture; its astronomical symbol represents the god\'s sickle.', 'Lua', '2018-02-04'),
+(8, 0, 'saturn', 'https://via.placeholder.com/640x360', 'https://www.youtube.com/embed/FNFuDKw_Q_E', 'Saturn', '', 'Saturn is the sixth planet from the Sun and the second-largest in the Solar System, after Jupiter. It is a gas giant with an average radius about nine times that of Earth. It has only one-eighth the average density of Earth, but with its larger volume Saturn is over 95 times more massive. Saturn is named after the Roman god of agriculture; its astronomical symbol represents the god\'s sickle.', 'Unspecified', '2018-02-04'),
 (9, 0, 'uranus', 'https://via.placeholder.com/640x360', 'https://www.youtube.com/embed/FNFuDKw_Q_E', 'Uranus', '', 'Uranus is the seventh planet from the Sun. It has the third-largest planetary radius and fourth-largest planetary mass in the Solar System. Uranus is similar in composition to Neptune, and both have different bulk chemical composition from that of the larger gas giants Jupiter and Saturn.', 'Unspecified', '2018-02-24'),
-(10, 0, 'neptune', 'https://via.placeholder.com/640x360', 'https://www.youtube.com/embed/FNFuDKw_Q_E', 'Neptune', '', 'Neptune is the eighth and farthest known planet from the Sun in the Solar System. In the Solar System, it is the fourth-largest planet by diameter, the third-most-massive planet, and the densest giant planet.', 'Lua', '2018-02-24');
+(10, 0, 'neptune', 'https://via.placeholder.com/640x360', 'https://www.youtube.com/embed/FNFuDKw_Q_E', 'Neptune', '', 'Neptune is the eighth and farthest known planet from the Sun in the Solar System. In the Solar System, it is the fourth-largest planet by diameter, the third-most-massive planet, and the densest giant planet.', 'Unspecified', '2018-02-24');
 
 -- --------------------------------------------------------
 
@@ -165,17 +163,20 @@ ALTER TABLE `projects`
 -- AUTO_INCREMENT for table `languages`
 --
 ALTER TABLE `languages`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
 --
 -- AUTO_INCREMENT for table `profile`
 --
 ALTER TABLE `profile`
   MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;COMMIT;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
