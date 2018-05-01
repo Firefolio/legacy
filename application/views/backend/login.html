@@ -30,16 +30,21 @@
 
           <section class="row">
             <div class="one-half column">
-              <form class="login" id="form">
+              <form
+              id="login"
+              class="login"
+              action="{base_url}index.php/login/attempt"
+              method="POST">
                 <section class="row">
                   <div class="twelve columns">
+                    <!-- Hidden Inputs -->
                     <input
                     id="base-url"
                     class="hidden"
                     type="hidden"
                     text="text"
                     value="{base_url}">
-                    
+
                     <input
                     id="csrf"
                     class="hidden"
@@ -48,8 +53,18 @@
                     name="{csrf_name}"
                     value="{csrf_hash}">
 
+                    <input
+                    id="redirect-url"
+                    class="hidden"
+                    type="hidden"
+                    text="text"
+                    name="redirect_url"
+                    value="{base_url}index.php/firefolio/projects">
+
+                    <!-- Username and Password Inputs -->
 	                  <label for="username">Username</label>
-                    <input id="username"
+                    <input
+                    id="username"
                     class="u-full-width"
                     type="text"
                     name="username"
@@ -58,7 +73,8 @@
                     <br>
 
                     <label for="password">Password</label>
-                    <input id="password"
+                    <input
+                    id="password"
                     class="u-full-width"
                     type="password"
                     name="password"
@@ -66,7 +82,8 @@
                   </div>
                 </section>
                 <section>
-                  <input id="submit"
+                  <input
+                  id="submit"
                   type="submit"
                   name="submit"
                   value="Submit">
@@ -92,7 +109,12 @@
 			  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
 			  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
 			  crossorigin="anonymous"></script>
-        <script>window.jQuery || document.write('<script src="{base_url}js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+        <script>
+        window.jQuery || document.write(
+          '<script src="{base_url}js/vendor/jquery-3.2.1.min.js"><\/script>'
+        );
+        </script>
+        <script src="{base_url}js/utilities/ajax.js"></script>
         <script src="{base_url}js/firefolio/login.js"></script>
     </body>
 </html>

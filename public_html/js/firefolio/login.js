@@ -1,7 +1,5 @@
 $('document').ready(function () {
   var login = {
-    form: $('#form'),
-    url: $('#base-url').val() + 'index.php/login/attempt',
     validate: function (username, password) {
       var valid = false;
 
@@ -12,54 +10,25 @@ $('document').ready(function () {
       }
 
       return valid;
-    },
-    attempt: function (username, password) {
-      var inputs = this.form.find('input, button');
-      var data = this.form.serialize();
-
-      inputs.prop('disabled', true);
-
-  		request = $.post(
-        login.url,
-        data,
-        "JSON"
-      );
-
-      request.done(function (response) {
-        console.log(response);
-        response = JSON.parse(response);
-        console.log(response);
-
-        $('#csrf').val(response.hash);
-
-        if (response.success) {
-          window.location.replace(
-            $('#base-url').val() + 'index.php/firefolio/projects'
-          );
-        } else {
-          console.error(response.message);
-          login.form.effect('shake');
-        }
-      });
-
-      request.fail(function (message) {
-        console.error(message);
-      });
-
-      request.always(function () {
-        inputs.prop('disabled', false);
-      });
     }
   };
 
-  login.form.submit(function (event) {
+  $('#form').submit(function (event) {
     event.preventDefault();
 
   	var username = $('#username').val();
   	var password = $('#password').val();
 
   	if (login.validate(username, password)) {
-      login.attempt(username, password);
+      ajax.request.form(
+        $('#form'),
+        $('#form').attr('action'),
+        $('#form').attr('method'),
+        $('#redirect-url').val()
+      );
+    } else {
+      // Reset the password field
+      $('#password').val('');
     }
   });
 });
