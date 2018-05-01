@@ -48,7 +48,7 @@ class User extends CI_Controller
 
     session_start();
 
-    if (isset($_POST['username']) AND isset($_POST['password']))
+    if (isset($_POST['data']))
     {
       $username = $_POST['username'];
       $password = $_POST['password'];

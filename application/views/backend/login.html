@@ -31,9 +31,9 @@
           <section class="row">
             <div class="one-half column">
               <form
-              id="login"
+              id="form"
               class="login"
-              action="{base_url}index.php/login/attempt"
+              action="{base_url}index.php/firefolio/projects"
               method="POST">
                 <div class="row">
                   <div class="one-full column">
@@ -44,7 +44,6 @@
                     type="hidden"
                     text="text"
                     value="{base_url}">
-
                     <input
                     id="csrf"
                     class="hidden"
@@ -52,7 +51,6 @@
                     text="text"
                     name="{csrf_name}"
                     value="{csrf_hash}">
-
                     <input
                     id="redirect-url"
                     class="hidden"
@@ -69,9 +67,6 @@
                     type="text"
                     name="username"
                     placeholder="Username">
-
-                    <br>
-
                     <label for="password">Password</label>
                     <input
                     id="password"

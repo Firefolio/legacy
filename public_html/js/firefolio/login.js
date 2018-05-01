@@ -16,10 +16,7 @@ $('document').ready(function () {
   $('#form').submit(function (event) {
     event.preventDefault();
 
-  	var username = $('#username').val();
-  	var password = $('#password').val();
-
-  	if (login.validate(username, password)) {
+  	if (login.validate($('#username').val(), $('#password').val())) {
       ajax.request.form(
         $('#form'),
         $('#form').attr('action'),
@@ -27,8 +24,9 @@ $('document').ready(function () {
         $('#redirect-url').val()
       );
     } else {
-      // Reset the password field
+      // Reset the password field for another attempt
       $('#password').val('');
+      $('form').effect('shake');
     }
   });
 });
