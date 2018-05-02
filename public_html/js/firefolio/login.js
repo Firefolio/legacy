@@ -26,7 +26,6 @@ $('document').ready(function () {
     } else {
       // Reset the password field for another attempt
       $('#password').val('');
-      $('form').effect('shake');
     }
   });
 });
