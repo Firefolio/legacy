@@ -4,35 +4,45 @@
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>Error 512 - Firefolio</title>
-        <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="manifest" href="site.webmanifest">
         <link rel="apple-touch-icon" href="icon.png">
+
+        <link rel="stylesheet" href="public_html/css/skeleton.css">
     </head>
     <body>
         <!--[if lte IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
-          <header>
+
+        <div class="container">
+          <header row>
             <h1>Incorrect Web Root</h1>
           </header>
 
           <div class="content">
             <section class="row">
               <p>
-                Please ensure that the root directory of the website points to
-                the <code>public_html</code> folder.
+                If you're reading this, it probably means that the webmaster
+                has put their root directory in the wrong place.
+                <strong>Firefolio</strong>
+                seperates out the files that the user interacts with from the
+                files that make it work on purpose. It stops people from peeking
+                at your configuration files and triggering possibly dangerous
+                scripts without permission.
+              </p>
+              <p>
+                The server should point to the <code>public_html</code> folder,
+                and not the <code>firefolio</code> folder included in the
+                download.
+              </p>
+              <p>
+                In any case, the site should be available
+                <a href="public_html">here</a>.
               </p>
             </section>
-            <section class="row">
-              <h2>Error 512</h2>
-            </section>
           </div>
-
-          <footer>
-
-          </footer>
         </div>
     </body>
 </html>
