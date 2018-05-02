@@ -3,100 +3,36 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Error 418 - Firefolio</title>
+        <title>Error 512 - Firefolio</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="manifest" href="site.webmanifest">
         <link rel="apple-touch-icon" href="icon.png">
-
-        <link rel="stylesheet" href="public_html/css/normalize.css">
-        <link rel="stylesheet" href="public_html/css/boilerplate.css">
-        <link rel="stylesheet" href="public_html/css/skeleton.css">
     </head>
     <body>
         <!--[if lte IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
-
-        <div class="container">
-          <header class="row">
-            <h1>Oh dear.</h1>
+          <header>
+            <h1>Incorrect Web Root</h1>
           </header>
 
-          <section class="row">
-            <div class="one-full column">
-              <h2 style="font-size: 2.5REM">
-                There are a couple of reasons why you might be seeing this:
-              </h2>
+          <div class="content">
+            <section class="row">
+              <p>
+                Please ensure that the root directory of the website points to
+                the <code>public_html</code> folder.
+              </p>
+            </section>
+            <section class="row">
+              <h2>Error 512</h2>
+            </section>
+          </div>
 
-              <ol>
-                <li>
-                  <b>The site owner's web root is configured incorrectly</b>
-                  <p>
-                    Firefolio is configured to be secure by default. As such,
-                    the bits and pieces that make it work are seperated out from
-                    the things you need to see the end result, so:
-                  </p>
-                  <ul>
-                    <li>
-                      Please tell them (or yourself) that any site using
-                      Firefolio should point to the <code>public_html</code>
-                      folder, and not the <code>firefolio-x.x.x</code> folder
-                      included in the download.
-                    </li>
-                    <li>
-                      If you can, ask them to
-                      <a href="documentation">
-                        read the documentation
-                      </a>
-                      in case they get stuck.
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <b>A 'bad actor' has compromised the site/server</b>
-                  <p>
-                    This is unlikely, but totally possible that a weak point has
-                    allowed someone to do bad things behind the scenes.
-                    In which case:
-                  </p>
-                  <ul>
-                    <li>
-                      Contact the host.
-                    </li>
-                    <li>
-                      Contact the developer.
-                    </li>
-                    <ul>
-                      <li>
-                        You should only do this if this message didn't show up
-                        before.
-                      </li>
-                      <li>
-                        If you think you know what's wrong, tell them.
-                      </li>
-                      <li>
-                        As per the
-                        <a href="https://opensource.org/licenses/MIT">
-                          MIT Open Source License,
-                        </a>
-                        the developer can't be held liable for any damage, but
-                        you have their heartfelt apologies!
-                      </li>
-                    </ul>
-                  </ul>
-                </li>
-              </ol>
-            </div>
-          </section>
+          <footer>
 
-          <section class="row">
-            <p>
-              In any case, don't panic! The actual site should still be available
-              <a href="public_html">here</a>.
-            </p>
-          </section>
+          </footer>
         </div>
     </body>
 </html>
