@@ -1,3 +1,5 @@
+$('#logo').hide();
+
 $('document').ready(function () {
   var login = {
     validate: function (username, password) {
@@ -12,6 +14,9 @@ $('document').ready(function () {
       return valid;
     }
   };
+
+  $('#form').show('fade');
+  $('#logo').show('fade');
 
   $('#form').submit(function (event) {
     event.preventDefault();
