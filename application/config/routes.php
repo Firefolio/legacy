@@ -58,10 +58,6 @@ $route['search'] = 'portfolio/search';
 // Login
 $route['logout'] = 'login/logout';
 
-$route['firefolio/administration'] = 'backend/administration/index';
-$route['firefolio/administration/update/username'] = 'backend/administration/update_username';
-$route['firefolio/administration/update/password'] = 'backend/administration/update_password';
-
 // Reserved Routes
 $route['default_controller'] = 'portfolio';
 $route['404_override'] = '';
