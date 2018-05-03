@@ -51,16 +51,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 // Application Routes
+// Portfolio
 $route['project/(:any)'] = 'portfolio/project/$1';
 $route['search'] = 'portfolio/search';
 
-$route['firefolio/projects'] = 'backend/project/index';
-$route['firefolio/projects/(:any)'] = 'backend/project/index/$1';
-$route['firefolio/projects/create/submit'] = 'backend/project/create_project';
-$route['firefolio/projects/update/(:any)'] = 'backend/project/index/update/$1';
-$route['firefolio/projects/update/(:any)/submit'] = 'backend/project/update_project';
-$route['firefolio/projects/delete'] = 'backend/project/index/delete';
-$route['firefolio/projects/search'] = 'backend/project/index/search';
+// Login
+$route['logout'] = 'login/logout';
+
+// Projects
+// $route['firefolio/projects'] = 'backend/project/index';
+// $route['firefolio/projects/(:any)'] = 'backend/project/index/$1';
+// $route['firefolio/projects/create/submit'] = 'backend/project/create_project';
+// $route['firefolio/projects/update/(:any)'] = 'backend/project/index/update/$1';
+// $route['firefolio/projects/update/(:any)/submit'] = 'backend/project/update_project';
+// $route['firefolio/projects/delete'] = 'backend/project/index/delete';
+// $route['firefolio/projects/search'] = 'backend/project/index/search';
 
 $route['firefolio/profile'] = 'backend/profile/index';
 $route['firefolio/profile/update'] = 'backend/profile/update';

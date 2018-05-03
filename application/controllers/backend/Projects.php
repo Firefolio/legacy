@@ -1,6 +1,6 @@
 <?php
 
-class Project extends CI_Controller {
+class Projects extends CI_Controller {
   function __construct()
   {
     parent::__construct();
@@ -24,24 +24,6 @@ class Project extends CI_Controller {
     {
       switch ($action)
       {
-        case 'view':
-          $data = array(
-            'base_url' => base_url(),
-            'date' => date('d-m-Y'),
-            'csrf_name' => $this->security->get_csrf_token_name(),
-            'csrf_hash' => $this->security->get_csrf_hash(),
-            'projects' => html_purify($this->project_model->get_projects())
-          );
-
-          for ($project = 0; $project < sizeof($data['projects']); $project++)
-          {
-            $dirty_title = $data['projects'][$project]['title'];
-            $clean_title = htmlentities($dirty_title);
-            $data['projects'][$project]['title'] = $clean_title;
-          }
-
-          $this->parser->parse('backend/projects/view.html', $data);
-          break;
         case 'create':
           $data = array(
             'base_url' => base_url(),
@@ -91,6 +73,26 @@ class Project extends CI_Controller {
       header('Location: ' . $url);
       exit();
     }
+  }
+
+  public function view()
+  {
+    $data = array(
+      'base_url' => base_url(),
+      'date' => date('d-m-Y'),
+      'csrf_name' => $this->security->get_csrf_token_name(),
+      'csrf_hash' => $this->security->get_csrf_hash(),
+      'projects' => html_purify($this->project_model->get_projects())
+    );
+
+    for ($project = 0; $project < sizeof($data['projects']); $project++)
+    {
+      $dirty_title = $data['projects'][$project]['title'];
+      $clean_title = htmlentities($dirty_title);
+      $data['projects'][$project]['title'] = $clean_title;
+    }
+
+    $this->parser->parse('backend/projects/view.html', $data);
   }
 
   public function create_project()
