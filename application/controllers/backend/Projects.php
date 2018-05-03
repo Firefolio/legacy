@@ -26,25 +26,6 @@ class Projects extends CI_Controller {
       switch ($action)
       {
         case 'update':
-          if ($this->project_model->project_exists($uri))
-          {
-            // Really, we should use html_purify here,
-            // but that could possibly corrupt the data
-            $data = $this->project_model->get_project($uri);
-
-            $data['header'] = htmlentities($data['title']);
-            $data['preview'] = html_purify(markdown_parse($data['description']));
-            $data['base_url'] = base_url();
-            $data['csrf_name'] = $this->security->get_csrf_token_name();
-            $data['csrf_hash'] = $this->security->get_csrf_hash();
-            $data['languages'] = $this->language_model->get_languages();
-
-          	$this->parser->parse('backend/projects/update.html', $data);
-          }
-          else
-          {
-            show_404();
-          }
           break;
         case 'delete':
           $this->delete_projects();
@@ -97,6 +78,29 @@ class Projects extends CI_Controller {
     );
 
     $this->parser->parse('backend/projects/create.html', $data);
+  }
+
+  public function update($uri)
+  {
+    if ($this->project_model->project_exists($uri))
+    {
+      // Really, we should use html_purify here,
+      // but that could possibly corrupt the data
+      $data = $this->project_model->get_project($uri);
+
+      $data['header'] = htmlentities($data['title']);
+      $data['preview'] = html_purify(markdown_parse($data['description']));
+      $data['base_url'] = base_url();
+      $data['csrf_name'] = $this->security->get_csrf_token_name();
+      $data['csrf_hash'] = $this->security->get_csrf_hash();
+      $data['languages'] = $this->language_model->get_languages();
+
+      $this->parser->parse('backend/projects/update.html', $data);
+    }
+    else
+    {
+      show_404();
+    }
   }
 
   public function create_project()
