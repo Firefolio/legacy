@@ -1,4 +1,5 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Projects extends CI_Controller {
   function __construct()
@@ -24,16 +25,6 @@ class Projects extends CI_Controller {
     {
       switch ($action)
       {
-        case 'create':
-          $data = array(
-            'base_url' => base_url(),
-            'csrf_name' => $this->security->get_csrf_token_name(),
-            'csrf_hash' => $this->security->get_csrf_hash(),
-            'languages' => $this->language_model->get_languages()
-          );
-
-          $this->parser->parse('backend/projects/create.html', $data);
-          break;
         case 'update':
           if ($this->project_model->project_exists($uri))
           {
@@ -85,6 +76,7 @@ class Projects extends CI_Controller {
       'projects' => html_purify($this->project_model->get_projects())
     );
 
+    // Clean the project titles using htmlentities
     for ($project = 0; $project < sizeof($data['projects']); $project++)
     {
       $dirty_title = $data['projects'][$project]['title'];
@@ -93,6 +85,18 @@ class Projects extends CI_Controller {
     }
 
     $this->parser->parse('backend/projects/view.html', $data);
+  }
+
+  public function create($value='')
+  {
+    $data = array(
+      'base_url' => base_url(),
+      'csrf_name' => $this->security->get_csrf_token_name(),
+      'csrf_hash' => $this->security->get_csrf_hash(),
+      'languages' => $this->language_model->get_languages()
+    );
+
+    $this->parser->parse('backend/projects/create.html', $data);
   }
 
   public function create_project()
