@@ -58,18 +58,6 @@ $route['search'] = 'portfolio/search';
 // Login
 $route['logout'] = 'login/logout';
 
-// Projects
-// $route['firefolio/projects'] = 'backend/project/index';
-// $route['firefolio/projects/(:any)'] = 'backend/project/index/$1';
-// $route['firefolio/projects/create/submit'] = 'backend/project/create_project';
-// $route['firefolio/projects/update/(:any)'] = 'backend/project/index/update/$1';
-// $route['firefolio/projects/update/(:any)/submit'] = 'backend/project/update_project';
-// $route['firefolio/projects/delete'] = 'backend/project/index/delete';
-// $route['firefolio/projects/search'] = 'backend/project/index/search';
-
-$route['firefolio/profile'] = 'backend/profile/index';
-$route['firefolio/profile/update'] = 'backend/profile/update';
-
 $route['firefolio/administration'] = 'backend/administration/index';
 $route['firefolio/administration/update/username'] = 'backend/administration/update_username';
 $route['firefolio/administration/update/password'] = 'backend/administration/update_password';

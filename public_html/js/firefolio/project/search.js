@@ -1,6 +1,6 @@
 $('document').ready(function () {
   var url = $('#base-url').val() +
-            'index.php/firefolio/projects/search';
+            'index.php/backend/projects/search';
   var limit = 64; // Milliseconds
 
   $('#search').on('input', debounce(function () {
