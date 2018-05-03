@@ -1,216 +1,214 @@
 <!doctype html>
-<html class="no-js" lang="">
-    <head>
-      <meta charset="utf-8">
-      <meta http-equiv="x-ua-compatible" content="ie=edge">
-      <title>Create Project - Firefolio</title>
-      <meta name="description" content="">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
+<html class="no-js">
+  <head>
+    <title>Create Project - Firefolio</title>
 
-      <link rel="manifest" href="site.webmanifest">
-      <link rel="apple-touch-icon" href="icon.png">
+    <!-- Meta Data -->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <link rel="stylesheet" href="{base_url}css/normalize.css">
-      <link rel="stylesheet" href="{base_url}css/boilerplate.css">
-      <link rel="stylesheet" href="{base_url}css/skeleton.css">
-      <link rel="stylesheet" href="{base_url}css/firefolio.css">
-      <link rel="stylesheet" href="{base_url}js/vendor/jquery-ui-1.12.1/jquery-ui.min.css">
-    </head>
-    <body>
-        <!--[if lte IE 9]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong>
-            browser. Please <a href="https://browsehappy.com/">upgrade your
-            browser</a> to improve your experience and security.</p>
-        <![endif]-->
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" href="icon.png">
 
-        <nav class="clearfix">
-          <ul>
-            <div class="u-pull-left">
-              <li>
-                <h1 style="font-size: 1.5em">
-                  <a href="http://firefolio.org/">Firefolio</a>
-                </h1>
-              </li>
-              <li>
-                <a href="{base_url}index.php/firefolio/projects">
-                  Projects
-                </a>
-              </li>
-              <li>
-                <a href="{base_url}index.php/firefolio/profile">
-                  Profile
-                </a>
-              </li>
-              <li>
-                <a href="{base_url}index.php/firefolio/administration">
-                  Administration
-                </a>
-              </li>
-            </div>
-            <div class="u-pull-right">
-              <li>
-                <a href="{base_url}" target="_blank">
-                  Frontend
-                </a>
-              </li>
-              <li>
-                <a href="{base_url}index.php/logout">Logout</a>
-              </li>
-              <li class="hidden">
-                &#9776;
-                <span class="visuallyhidden">Open Navbar</span>
-              </li>
-            </div>
-          </ul>
-        </nav>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{base_url}css/normalize.css">
+    <link rel="stylesheet" href="{base_url}css/boilerplate.css">
+    <link rel="stylesheet" href="{base_url}css/skeleton.css">
+    <link rel="stylesheet" href="{base_url}css/firefolio.css">
+  </head>
+  <body>
+    <!--[if lte IE 9]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong>
+        browser. Please <a href="https://browsehappy.com/">upgrade your
+        browser</a> to improve your experience and security.</p>
+    <![endif]-->
 
-        <div class="container">
-          <header class="row">
-            <h1>Create Project</h1>
-            <hr>
-          </header>
-
-          <div class="content">
-            <section class="row">
-              <p>
-                A Firefolio project is any single piece of work that
-                you want an employer to see. Make it a good one!
-              </p>
-            </section>
-
-            <section class="row">
-              <div class="one-full column">
-                <form
-                id="form"
-                action="{base_url}index.php/firefolio/projects/create/submit"
-                method="POST">
-                  <!-- Anti CSRF -->
-                  <input
-                  id="csrf"
-                  type="hidden"
-                  name="{csrf_name}"
-                  value="{csrf_hash}">
-                  <!-- Base URL -->
-                  <input
-                  id="base-url"
-                  type="hidden"
-                  name="base_url"
-                  value="{base_url}">
-                  <!-- Redirect URL -->
-                  <input
-                  id="redirect-url"
-                  type="hidden"
-                  name="redirect_url"
-                  value="{base_url}index.php/firefolio/projects">
-
-                  <div class="row">
-                    <div class="one-half column">
-                      <label for="title">Title*</label>
-                      <input
-                      class="u-full-width"
-                      type="text"
-                      name="title"
-                      value=""
-                      autofocus>
-                    </div>
-                    <div class="one-half column">
-                      <label for="subtitle">Subtitle</label>
-                      <input
-                      class="u-full-width"
-                      type="text"
-                      name="subtitle"
-                      value="">
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="one-half column">
-                      <label for="description">
-                        Description (Code)
-                      </label>
-                      <textarea
-                      id="description"
-                      style="min-height: 256px"
-                      class="u-full-width"
-                      name="description"></textarea>
-                    </div>
-                    <div class="one-half column">
-                      <label for="preview">
-                        Description (Preview)
-                      </label>
-                      <p id="description-preview">
-                        <!-- Contents will be taken from the textarea above -->
-                      </p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <label for="thumbnail">Thumbnail</label>
-                    <input
-                    class="u-full-width"
-                    type="text"
-                    name="thumbnail"
-                    value="">
-                  </div>
-                  <div class="row">
-                    <label for="thumbnail">Trailer</label>
-                    <input
-                    class="u-full-width"
-                    type="text"
-                    name="trailer"
-                    value="">
-                  </div>
-                  <div class="row">
-                    <div class="one-half column">
-                      <label for="language">Language</label>
-                      <input
-                      id="autocomplete"
-                      class="u-full-width"
-                      type="text"
-                      name="language"
-                      value="">
-                    </div>
-                    <div class="one-half column">
-                      <label for="date">Date</label>
-                      <input
-                      id="datepicker"
-                      class="u-full-width"
-                      type="text"
-                      name="date"
-                      value="">
-                    </div>
-                  </div>
-
-                  <hr>
-
-                  <div class="row">
-                    <div class="one-half column">
-                      <button type="submit" name="button">
-                        Create
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </section>
-          </div>
+    <nav class="clearfix">
+      <ul>
+        <div class="u-pull-left">
+          <li>
+            <h1 style="font-size: 1.5em">
+              <a href="http://firefolio.org/">Firefolio</a>
+            </h1>
+          </li>
+          <li>
+            <a href="{base_url}index.php/backend/projects">
+              Projects
+            </a>
+          </li>
+          <li>
+            <a href="{base_url}index.php/backend/profile">
+              Profile
+            </a>
+          </li>
+          <li>
+            <a href="{base_url}index.php/backend/administration">
+              Administration
+            </a>
+          </li>
         </div>
+        <div class="u-pull-right">
+          <li>
+            <a href="{base_url}" target="_blank">
+              Frontend
+            </a>
+          </li>
+          <li>
+            <a href="{base_url}index.php/logout">Logout</a>
+          </li>
+          <li class="hidden">
+            &#9776;
+            <span class="visuallyhidden">Open Navbar</span>
+          </li>
+        </div>
+      </ul>
+    </nav>
 
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js"
-        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous"></script>
-        <script
-			  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-			  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-			  crossorigin="anonymous"></script>
-        <script>
-          window.jQuery || document.write(
-            '<script src="{base_url}js/vendor/jquery-3.2.1.min.js"><\/script>',
-            'js/vendor/jquery-ui-1.12.1/jquery-ui.min.js'
-          );
-        </script>
-        <script src="{base_url}js/utilities/ajax.js"></script>
-        <script src="{base_url}js/utilities/debounce.js"></script>
-        <script src="{base_url}js/firefolio/datepicker.js"></script>
-        <script src="{base_url}js/firefolio/languages/autocomplete.js"></script>
-        <script src="{base_url}js/firefolio/project/create.js"></script>
-    </body>
+    <div class="container">
+      <header class="row">
+        <h1>Create Project</h1>
+        <hr>
+      </header>
+
+      <div class="content">
+        <section class="row">
+          <p>
+            A Firefolio project is any single piece of work that
+            you want an employer to see. Make it a good one!
+          </p>
+        </section>
+
+        <section class="row">
+          <div class="one-full column">
+            <form
+            id="form"
+            action="{base_url}index.php/backend/projects/create/submit"
+            method="POST">
+              <!-- Anti CSRF -->
+              <input
+              id="csrf"
+              type="hidden"
+              name="{csrf_name}"
+              value="{csrf_hash}">
+              <!-- Base URL -->
+              <input
+              id="base-url"
+              type="hidden"
+              name="base_url"
+              value="{base_url}">
+              <!-- Redirect URL -->
+              <input
+              id="redirect-url"
+              type="hidden"
+              name="redirect_url"
+              value="{base_url}index.php/backend/projects">
+
+              <div class="row">
+                <div class="one-half column">
+                  <label for="title">Title*</label>
+                  <input
+                  class="u-full-width"
+                  type="text"
+                  name="title"
+                  value=""
+                  autofocus>
+                </div>
+                <div class="one-half column">
+                  <label for="subtitle">Subtitle</label>
+                  <input
+                  class="u-full-width"
+                  type="text"
+                  name="subtitle"
+                  value="">
+                </div>
+              </div>
+              <div class="row">
+                <div class="one-half column">
+                  <label for="description">
+                    Description (Code)
+                  </label>
+                  <textarea
+                  id="description"
+                  style="min-height: 256px"
+                  class="u-full-width"
+                  name="description"></textarea>
+                </div>
+                <div class="one-half column">
+                  <label for="preview">
+                    Description (Preview)
+                  </label>
+                  <p id="description-preview">
+                    <!-- Contents will be taken from the textarea above -->
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <label for="thumbnail">Thumbnail</label>
+                <input
+                class="u-full-width"
+                type="text"
+                name="thumbnail"
+                value="">
+              </div>
+              <div class="row">
+                <label for="thumbnail">Trailer</label>
+                <input
+                class="u-full-width"
+                type="text"
+                name="trailer"
+                value="">
+              </div>
+              <div class="row">
+                <div class="one-half column">
+                  <label for="language">Language</label>
+                  <input
+                  id="autocomplete"
+                  class="u-full-width"
+                  type="text"
+                  name="language"
+                  value="">
+                </div>
+                <div class="one-half column">
+                  <label for="date">Date</label>
+                  <input
+                  id="datepicker"
+                  class="u-full-width"
+                  type="text"
+                  name="date"
+                  value="">
+                </div>
+              </div>
+
+              <hr>
+
+              <div class="row">
+                <div class="one-half column">
+                  <button type="submit" name="button">
+                    Create
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+    <script
+	  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+	  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+	  crossorigin="anonymous"></script>
+    <script src="{base_url}js/utilities/fallback.js"></script>
+    <script src="{base_url}js/utilities/ajax.js"></script>
+    <script src="{base_url}js/utilities/debounce.js"></script>
+    <script src="{base_url}js/firefolio/datepicker.js"></script>
+    <script src="{base_url}js/firefolio/languages/autocomplete.js"></script>
+    <script src="{base_url}js/firefolio/project/create.js"></script>
+  </body>
 </html>
