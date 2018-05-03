@@ -1,70 +1,69 @@
 <!doctype html>
-<html class="no-js" lang="">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>{title}</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html class="no-js">
+  <head>
+    <title>{title}</title>
 
-        <link rel="manifest" href="site.webmanifest">
-        <link rel="apple-touch-icon" href="icon.png">
+    <!-- Meta Data -->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="{base_url}css/normalize.css">
-        <link rel="stylesheet" href="{base_url}css/boilerplate.css">
-        <link rel="stylesheet" href="{base_url}css/skeleton.css">
-        <link rel="stylesheet" href="{base_url}css/main.css">
-    </head>
-    <body>
-        <!--[if lte IE 9]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-        <![endif]-->
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" href="icon.png">
 
-        <div class="container content">
-          <header class="row header">
-            <a href="{base_url}">
-              <h1>{name}</h1>
-            </a>
-          </header>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{base_url}css/normalize.css">
+    <link rel="stylesheet" href="{base_url}css/boilerplate.css">
+    <link rel="stylesheet" href="{base_url}css/skeleton.css">
+    <link rel="stylesheet" href="{base_url}css/main.css">
+  </head>
+  <body>
+    <!--[if lte IE 9]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong>
+        browser. Please <a href="https://browsehappy.com/">upgrade your
+        browser</a> to improve your experience and security.</p>
+    <![endif]-->
 
-          <section class="row">
-            <div class="one-half column">
-              <h2>{title}</h2>
-              <h3>{subtitle}</h3>
-              <h4>Details</h4>
-              <ul>
-                <li>
-                  <strong>Written in: </strong>
-                  {language}
-                </li>
-                <li>
-                  <strong>Date: </strong>
-                  {date}
-                </li>
-              </ul>
-            </div>
-            <div class="one-half column">
-              <iframe
-              width="100%"
-              height="256px"
-              src="{trailer}"
-              frameborder="0"
-              allow="autoplay; encrypted-media"
-              allowfullscreen></iframe>
-              <h4>Description</h4>
-              <p>{description}</p>
-            </div>
-          </section>
+    <div class="container content">
+      <header class="row header">
+        <a href="{base_url}">
+          <h1>{name}</h1>
+        </a>
+      </header>
 
-          <footer class="row footer">
-            <small>Copyright &copy; {name}</small>
-          </footer>
+      <section class="row">
+        <div class="one-half column">
+          <h2>{title}</h2>
+          <h3>{subtitle}</h3>
+          <h4>Details</h4>
+          <ul>
+            <li>
+              <strong>Written in:&nbsp;</strong>
+              {language}
+            </li>
+            <li>
+              <strong>Date:&nbsp;</strong>
+              {date}
+            </li>
+          </ul>
         </div>
+        <div class="one-half column">
+          <iframe
+          width="100%"
+          height="256px"
+          src="{trailer}"
+          frameborder="0"
+          allow="autoplay; encrypted-media"
+          allowfullscreen></iframe>
+          <h4>Description</h4>
+          <p>{description}</p>
+        </div>
+      </section>
 
-        <script
-        src="https://code.jquery.com/jquery-3.2.1.min.js"
-        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
-    </body>
+      <footer class="row footer">
+        <small>Copyright &copy; {name}</small>
+      </footer>
+    </div>
+  </body>
 </html>

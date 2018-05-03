@@ -1,154 +1,159 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Administration - Firefolio</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Administration - Firefolio</title>
+      <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="manifest" href="site.webmanifest">
-        <link rel="apple-touch-icon" href="icon.png">
+      <link rel="manifest" href="site.webmanifest">
+      <link rel="apple-touch-icon" href="icon.png">
 
-        <link rel="stylesheet" href="{base_url}css/normalize.css">
-        <link rel="stylesheet" href="{base_url}css/boilerplate.css">
-        <link rel="stylesheet" href="{base_url}css/skeleton.css">
-        <link rel="stylesheet" href="{base_url}css/firefolio.css">
+      <link rel="stylesheet" href="{base_url}css/normalize.css">
+      <link rel="stylesheet" href="{base_url}css/boilerplate.css">
+      <link rel="stylesheet" href="{base_url}css/skeleton.css">
+      <link rel="stylesheet" href="{base_url}css/firefolio.css">
     </head>
     <body>
-        <!--[if lte IE 9]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-        <![endif]-->
+      <!--[if lte IE 9]>
+          <p class="browserupgrade">You are using an <strong>outdated</strong>
+          browser. Please <a href="https://browsehappy.com/">upgrade your
+          browser</a> to improve your experience and security.</p>
+      <![endif]-->
 
-        <nav class="clearfix">
-          <ul>
-            <div class="u-pull-left">
-              <li>
-                <h1 style="font-size: 1.5em">
-                  <a href="https://firefolio.org/">Firefolio</a>
-                </h1>
-              </li>
-              <li>
-                <a href="{base_url}index.php/firefolio/projects">
-                  Projects
-                </a>
-              </li>
-              <li>
-                <a href="{base_url}index.php/firefolio/profile">
-                  Profile
-                </a>
-              </li>
-              <li>
-                <a href="{base_url}index.php/firefolio/administration">
-                  Administration
-                </a>
-              </li>
-            </div>
-            <div class="u-pull-right">
-              <li>
-                <a href="{base_url}" target="_blank">
-                  Frontend
-                </a>
-              </li>
-              <li>
-                <a href="../logout">Logout</a>
-              </li>
-              <li class="hidden">
-                &#9776;
-                <span class="visuallyhidden">Open Navbar</span>
-              </li>
-            </div>
-          </ul>
-        </nav>
+      <!-- Navigation Bar -->
+      <nav class="clearfix">
+        <ul>
+          <div class="u-pull-left">
+            <li>
+              <h1 style="font-size: 1.5em">
+                <a href="{base_url}index.php/backend">Firefolio</a>
+              </h1>
+            </li>
+            <li>
+              <a href="{base_url}index.php/backend/projects">
+                Projects
+              </a>
+            </li>
+            <li>
+              <a href="{base_url}index.php/backend/profile">
+                Profile
+              </a>
+            </li>
+            <li>
+              <a href="{base_url}index.php/backend/administration">
+                Administration
+              </a>
+            </li>
+          </div>
+          <div class="u-pull-right">
+            <li>
+              <a href="{base_url}" target="_blank">
+                Frontend
+              </a>
+            </li>
+            <li>
+              <a href="../logout">Logout</a>
+            </li>
+            <li class="hidden">
+              &#9776;
+              <span class="visuallyhidden">Open Navbar</span>
+            </li>
+          </div>
+        </ul>
+      </nav>
 
-        <div class="container">
-          <header class="row">
-            <div class="one-full column">
-              <h1>Administration</h1>
-            </div>
-          </header>
+      <!-- Content -->
+      <div class="container">
+        <!-- Header -->
+        <header class="row">
+          <div class="one-full column">
+            <h1>Administration</h1>
+          </div>
+        </header>
 
-          <!-- Hidden Inputs -->
-          <section class="row">
-            <input
-            id="base-url"
-            class="hidden"
-            type="hidden"
-            name="base_url"
-            value="{base_url}">
-            <input
-            id="csrf"
-            class="hidden"
-            type="hidden"
-            name="{csrf_name}"
-            value="{csrf_hash}">
-          </section>
+        <!-- Hidden Inputs -->
+        <section class="row">
+          <input
+          id="base-url"
+          class="hidden"
+          type="hidden"
+          name="base_url"
+          value="{base_url}">
+          <input
+          id="csrf"
+          class="hidden"
+          type="hidden"
+          name="{csrf_name}"
+          value="{csrf_hash}">
+        </section>
 
-          <section class="row">
-            <div class="one-half column">
-              <form id="update-username">
-                <div class="row">
-                  <div class="one-full column">
-                    <label for="username">Username</label>
-                    <input
-                    id="new-username"
-                    class="u-full-width"
-                    type="text"
-                    name="username"
-                    value="{username}"
-                    required>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="one-third column">
-                    <button
-                    class="u-full-width"
-                    type="submit"
-                    name="submit">Update</button>
-                  </div>
-                </div>
-              </form>
-            </div>
-            <div class="one-half column">
-              <form id="update-password">
-                <div class="row">
-                  <label for="new-password">Password</label>
+        <!-- Project Controls -->
+        <section class="row">
+          <div class="one-half column">
+            <form id="update-username">
+              <div class="row">
+                <div class="one-full column">
+                  <label for="username">Username</label>
                   <input
-                  id="new-password"
+                  id="new-username"
                   class="u-full-width"
-                  type="password" name="new-password"
-                  value=""
+                  type="text"
+                  name="username"
+                  value="{username}"
                   required>
                 </div>
-                <div class="row">
-                  <label for="new-password">Confirm Password</label>
-                  <input
-                  id="new-password-confirmation"
+              </div>
+              <div class="row">
+                <div class="one-third column">
+                  <button
                   class="u-full-width"
-                  type="password" name="confirm-new-password"
-                  value=""
-                  required>
+                  type="submit"
+                  name="submit">Update</button>
                 </div>
-                <div class="row">
-                  <div class="one-third column">
-                    <button
-                    class="u-full-width"
-                    type="submit"
-                    name="submit">Update</button>
-                  </div>
+              </div>
+            </form>
+          </div>
+          <div class="one-half column">
+            <form id="update-password">
+              <div class="row">
+                <label for="new-password">Password</label>
+                <input
+                id="new-password"
+                class="u-full-width"
+                type="password" name="new-password"
+                value=""
+                required>
+              </div>
+              <div class="row">
+                <label for="new-password">Confirm Password</label>
+                <input
+                id="new-password-confirmation"
+                class="u-full-width"
+                type="password" name="confirm-new-password"
+                value=""
+                required>
+              </div>
+              <div class="row">
+                <div class="one-third column">
+                  <button
+                  class="u-full-width"
+                  type="submit"
+                  name="submit">Update</button>
                 </div>
-              </form>
-            </div>
-          </section>
-        </div>
+              </div>
+            </form>
+          </div>
+        </section>
+      </div>
 
-        <script
-        src="https://code.jquery.com/jquery-3.2.1.min.js"
-        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous"></script>
-        <script>
-          window.jQuery || document.write('<script src="{base_url}js/vendor/jquery-3.2.1.min.js"><\/script>')
-        </script>
-        <script src="{base_url}js/firefolio/administration/update.js"></script>
+      <!-- Scripts -->
+      <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
+      <script src="{base_url}js/utilities/fallback.js"></script>
+      <script src="{base_url}js/firefolio/administration/update.js"></script>
     </body>
 </html>

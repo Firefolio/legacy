@@ -29,7 +29,7 @@ class Login extends CI_Controller
     }
     else
     {
-      $url = base_url() . 'index.php/firefolio/projects';
+      $url = base_url() . 'index.php/backend/projects';
 
       header('Location: ' . $url);
       exit();

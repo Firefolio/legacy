@@ -1,126 +1,129 @@
 <!doctype html>
-<html class="no-js" lang="">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>{title}</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html class="no-js">
+  <head>
+    <title>{title}</title>
 
-        <link rel="manifest" href="site.webmanifest">
-        <link rel="apple-touch-icon" href="icon.png">
+    <!-- Meta Data -->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="{base_url}css/normalize.css">
-        <link rel="stylesheet" href="{base_url}css/boilerplate.css">
-        <link rel="stylesheet" href="{base_url}css/skeleton.css">
-        <link rel="stylesheet" href="{base_url}css/main.css">
-    </head>
-    <body>
-        <!--[if lte IE 9]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-        <![endif]-->
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" href="icon.png">
 
-        <div class="container content">
-          <header class="row header">
-            <div class="one-full column">
-              <a href="#">
-                <h1>{title}</h1>
-              </a>
-            </div>
-          </header>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{base_url}css/normalize.css">
+    <link rel="stylesheet" href="{base_url}css/boilerplate.css">
+    <link rel="stylesheet" href="{base_url}css/skeleton.css">
+    <link rel="stylesheet" href="{base_url}css/main.css">
+  </head>
+  <body>
+    <!--[if lte IE 9]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong>
+        browser. Please <a href="https://browsehappy.com/">upgrade your
+        browser</a> to improve your experience and security.</p>
+    <![endif]-->
 
-          <section class="row">
-            <!-- Hidden Inputs -->
-            <input
-            id="base-url"
-            type="hidden"
-            name="base_url"
-            value="{base_url}"
-            placeholder="Search">
-            <input
-            id="csrf"
-            type="hidden"
-            name="{csrf_name}"
-            value="{csrf_hash}"
-            placeholder="Search">
-          </section>
-
-          <!-- Search Form -->
-          <section class="row">
-            <div class="eight columns">
-              <label for="language">Search</label>
-              <input
-              id="search"
-              class="u-full-width"
-              type="text"
-              name="search"
-              value=""
-              placeholder="Search">
-            </div>
-            <div class="four columns">
-              <label for="language">Language</label>
-              <select id="language" class="u-full-width" name="language">
-                <option value="All">All</option>
-                {languages}
-                 <option value="{name}">{name}</option>
-                {/languages}
-              </select>
-            </div>
-          </section>
-
-          <hr>
-
-          <div id="projects">
-            {rows}
-              <section class="row">
-                {projects}
-                  <div class="four columns">
-                    <a href="index.php/project/{uri}" class="thumbnail">
-                      <h2>{title}</h2>
-                      <img
-                      class="responsive"
-                      src="{thumbnail}"
-                      alt="{title} Project Thumbnail">
-                      <h3>{subtitle}</h3>
-                      <small>{language}, {date}</small>
-                    </a>
-                  </div>
-                {/projects}
-              </section>
-            {/rows}
-          </div>
-
-          <hr>
-
-          <footer class="row footer">
-            <div class="u-pull-left">
-              <small>Copyright &copy; {title} 2018</small>
-            </div>
-            <div class="u-pull-right">
-              <small>
-                <a href="{base_url}index.php/login">
-                  <img
-                  width="16px"
-                  height="16px"
-                  src="{base_url}img/open-iconic/svg/account-login.svg"
-                  alt="Icon">
-                  Login
-                </a>
-              </small>
-            </div>
-          </footer>
+    <div class="container content">
+      <header class="row header">
+        <div class="one-full column">
+          <a href="#">
+            <h1>{title}</h1>
+          </a>
         </div>
+      </header>
 
-        <script
-        src="https://code.jquery.com/jquery-3.2.1.min.js"
-        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous"></script>
-        <script>
-          window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')
-        </script>
-        <script src="{base_url}js/firefolio/portfolio/search.js">
-        </script>
-        <script src="{base_url}js/utilities/ajax.js"></script>
-        <script src="{base_url}js/utilities/debounce.js"></script>
-    </body>
+      <section class="row">
+        <!-- Hidden Inputs -->
+        <input
+        id="base-url"
+        type="hidden"
+        name="base_url"
+        value="{base_url}"
+        placeholder="Search">
+        <input
+        id="csrf"
+        type="hidden"
+        name="{csrf_name}"
+        value="{csrf_hash}"
+        placeholder="Search">
+      </section>
+
+      <!-- Search Form -->
+      <section class="row">
+        <div class="eight columns">
+          <label for="language">Search</label>
+          <input
+          id="search"
+          class="u-full-width"
+          type="text"
+          name="search"
+          value=""
+          placeholder="Search">
+        </div>
+        <div class="four columns">
+          <label for="language">Language</label>
+          <select id="language" class="u-full-width" name="language">
+            <option value="All">All</option>
+            {languages}
+             <option value="{name}">{name}</option>
+            {/languages}
+          </select>
+        </div>
+      </section>
+
+      <hr>
+
+      <div id="projects">
+        {rows}
+          <section class="row">
+            {projects}
+              <div class="four columns">
+                <a href="index.php/project/{uri}" class="thumbnail">
+                  <h2>{title}</h2>
+                  <img
+                  class="responsive"
+                  src="{thumbnail}"
+                  alt="{title} Project Thumbnail">
+                  <h3>{subtitle}</h3>
+                  <small>{language}, {date}</small>
+                </a>
+              </div>
+            {/projects}
+          </section>
+        {/rows}
+      </div>
+
+      <hr>
+
+      <footer class="row footer">
+        <div class="u-pull-left">
+          <small>Copyright &copy; {title} 2018</small>
+        </div>
+        <div class="u-pull-right">
+          <small>
+            <a href="{base_url}index.php/login">
+              <img
+              width="16px"
+              height="16px"
+              src="{base_url}img/open-iconic/svg/account-login.svg"
+              alt="Icon">
+              Login
+            </a>
+          </small>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+    <script src="{base_url}js/firefolio/utilities/fallback.js"></script>
+    <script src="{base_url}js/firefolio/portfolio/search.js"></script>
+    <script src="{base_url}js/utilities/ajax.js"></script>
+    <script src="{base_url}js/utilities/debounce.js"></script>
+  </body>
 </html>

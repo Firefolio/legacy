@@ -1,4 +1,3 @@
-- Squash security vulnerabilities
 - Store and force changes on the system's default password
 - Add a controller for programming languages so that autocomplete can happen on the database
 - Fallback script for loading libraries when CDN isn't available

@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Portfolio extends CI_Controller {
+
   public function __construct()
   {
     parent::__construct();
@@ -22,18 +23,31 @@ class Portfolio extends CI_Controller {
 
   public function index()
   {
-    $projects = $this->project_model->get_projects();
+    $projects = html_purify($this->project_model->get_projects());
     $rows = array();
     $projects_per_row = 3;
 
-    // Purify project data
-    foreach ($projects as $project)
+    for ($project = 0; $project < count($projects); $project++)
     {
-      $project['title'] = htmlentities($project['title']);
-      $project['subtitle'] = htmlentities($project['subtitle']);
+      // Remove styles from visible data
+      $projects[$project]['title'] = htmlentities(
+        $projects[$project]['title']
+      );
+      $projects[$project]['subtitle'] = htmlentities(
+        $projects[$project]['subtitle']
+      );
+      $projects[$project]['language'] = htmlentities(
+        $projects[$project]['language']
+      );
+
+      // Process the date to show the year only
+      $projects[$project]['date'] = date(
+        'Y',
+        strtotime($projects[$project]['date'])
+      );
     }
 
-    // Split the projects into their own rows
+    // Split the projects into their own rows on the responsive grid
     foreach (array_chunk($projects, $projects_per_row, TRUE) as $row)
     {
       array_push($rows, array('projects' => $row));
@@ -72,7 +86,7 @@ class Portfolio extends CI_Controller {
         $this->profile_model->get_full_name()
       );
       $data['date'] = date(
-        'd-m-Y',
+        'd.m.Y',
         strtotime($data['date'])
       );
 
@@ -138,8 +152,8 @@ class Portfolio extends CI_Controller {
       else
       {
         $response['html'] = 'No projects like "' .
-                               htmlentities($title) .
-                               '" were found.';
+                             htmlentities($title) .
+                             '" were found.';
       }
     }
 
