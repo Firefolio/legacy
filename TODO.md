@@ -9,3 +9,5 @@
 - Unify file names to use `snake_case`
 - Provide validation on backend forms
 - Expand the amount of information the profile is able to store
+- Add an `About` controller that credits people and libraries who worked on this
+- Tweak `projects` table design

@@ -1,4 +1,6 @@
+// Hide all elements so their entrance can be animated later
 $('#logo').hide();
+$('#form').hide();
 
 $('document').ready(function () {
   var login = {

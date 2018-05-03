@@ -12,6 +12,7 @@ class Projects extends CI_Controller {
 
     $this->load->library('parser');
 
+    $this->load->helper('authentication');
     $this->load->helper('url');
     $this->load->helper('uri');
     $this->load->helper('security');
@@ -21,6 +22,8 @@ class Projects extends CI_Controller {
 
   public function index()
   {
+    require_authentication();
+
     $data = array(
       'base_url' => base_url(),
       'date' => date('d-m-Y'),
@@ -35,6 +38,8 @@ class Projects extends CI_Controller {
 
   public function create($action = 'form')
   {
+    require_authentication();
+
     switch ($action)
     {
       case 'form':
