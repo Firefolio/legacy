@@ -28,14 +28,7 @@ class Projects extends CI_Controller {
       'csrf_hash' => $this->security->get_csrf_hash(),
       'projects' => html_purify($this->project_model->get_projects())
     );
-
-    // Clean the project titles using htmlentities
-    for ($project = 0; $project < sizeof($data['projects']); $project++)
-    {
-      $dirty_title = $data['projects'][$project]['title'];
-      $clean_title = htmlentities($dirty_title);
-      $data['projects'][$project]['title'] = $clean_title;
-    }
+    $data['projects'] = $this->clean_project_titles($data['projects']);
 
     $this->parser->parse('backend/projects/view.html', $data);
   }
@@ -188,7 +181,7 @@ class Projects extends CI_Controller {
     {
       $projects = json_decode($_POST['projects']);
 
-      if (sizeof($_POST['projects'] > 0))
+      if (count($_POST['projects'] > 0))
       {
         $response['message'] = 'Deleted';
 
@@ -235,10 +228,9 @@ class Projects extends CI_Controller {
       $response['success'] = TRUE;
       $response['message'] = 'Found some projects from query';
 
-      if (sizeof($data['projects']) > 0)
+      if (count($data['projects']) > 0)
       {
         $data['projects'] = $this->clean_project_titles($data['projects']);
-
         $response['html'] = $this->parser->parse(
           'backend/projects/project.html',
           $data,
@@ -254,7 +246,7 @@ class Projects extends CI_Controller {
     }
     else
     {
-      $response['message'] = '$_POST data unset';
+      $response['message'] = '$_POST data unset or no projects exist at all';
     }
 
     $json = json_encode($response);

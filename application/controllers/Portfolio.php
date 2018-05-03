@@ -102,7 +102,7 @@ class Portfolio extends CI_Controller {
 
       $projects = $this->project_model->search_projects($title);
 
-      if (sizeof($projects) > 0)
+      if (count($projects) > 0)
       {
         // TODO: Turn this into a function
         // Break the data back from the search into a responsive grid
