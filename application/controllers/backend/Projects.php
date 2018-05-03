@@ -100,6 +100,8 @@ class Projects extends CI_Controller {
 
   public function update($uri = '', $action = 'form')
   {
+    require_authentication();
+
     switch ($action)
     {
       case 'form':
@@ -176,6 +178,8 @@ class Projects extends CI_Controller {
 
   public function delete()
   {
+    require_authentication();
+
     $response = array(
       'success' => FALSE,
       'message' => 'Unspecified error',

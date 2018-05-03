@@ -7,39 +7,34 @@ class Profile extends CI_Controller {
     parent::__construct();
 
     $this->load->model('profile_model');
+
     $this->load->library('parser');
+
+    $this->load->helper('authentication');
     $this->load->helper('url');
     $this->load->helper('security');
   }
 
   public function index()
   {
-    session_start();
+    require_authentication();
 
-    if (isset($_SESSION['user']))
-    {
-      $data = array(
-        'base_url' => base_url(),
-        'csrf_name' => $this->security->get_csrf_token_name(),
-        'csrf_hash' => $this->security->get_csrf_hash(),
-        'first_name' => $this->profile_model->get_first_name(),
-        'middle_name' => $this->profile_model->get_middle_name(),
-        'last_name' => $this->profile_model->get_last_name(),
-      );
+    $data = array(
+      'base_url' => base_url(),
+      'csrf_name' => $this->security->get_csrf_token_name(),
+      'csrf_hash' => $this->security->get_csrf_hash(),
+      'first_name' => $this->profile_model->get_first_name(),
+      'middle_name' => $this->profile_model->get_middle_name(),
+      'last_name' => $this->profile_model->get_last_name(),
+    );
 
-      $this->parser->parse('backend/profile/update.html', $data);
-    }
-    else
-    {
-      $url = base_url() . 'index.php/login';
-
-      header('Location: ' . $url);
-      exit();
-    }
+    $this->parser->parse('backend/profile/update.html', $data);
   }
 
   public function update()
   {
+    require_authentication();
+
     $response = array(
       'success' => FALSE,
       'message' => 'No error message specified',
