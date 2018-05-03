@@ -6,7 +6,6 @@
 - Add cascading styles to the backend interface
 - Add a project details list that allows for hyperlinks as well as text with headers
 - Add a screenshot gallery that allows the user to display their project
-- Unify AJAX requests to use the utility script instead of bespoke functions
 - Unify file names to use `snake_case`
 - Provide validation on backend forms
 - Expand the amount of information the profile is able to store
