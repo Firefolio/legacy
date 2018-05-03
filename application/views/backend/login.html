@@ -24,90 +24,90 @@
         <![endif]-->
 
         <div class="container">
-          <header class="row header">
-            <a href="../">
-              <img
-              src="{base_url}img/open-iconic/svg/arrow-left.svg"
-              width="16px"
-              height="16px"
-              alt="Left Arrow">
-              Back to frontend
-            </a>
-          </header>
+          <section class="row">
+            <div class="one-half column">
+              <div class="u-view-height">
+                <a href="../">
+                  <img
+                  src="{base_url}img/open-iconic/svg/arrow-left.svg"
+                  width="16px"
+                  height="16px"
+                  alt="Left Arrow">
+                  Back to frontend
+                </a>
 
-          <section class="row" style="display: table; min-height: 100%">
-            <div class="one-half column" style="display: table-cell; vertical-align: middle;">
-              <form
-              id="form"
-              class="login"
-              action="{base_url}index.php/login/attempt"
-              method="POST">
-                <div class="row">
-                  <div class="one-full column">
-                    <!-- Hidden Inputs -->
-                    <input
-                    id="base-url"
-                    class="hidden"
-                    type="hidden"
-                    text="text"
-                    value="{base_url}">
-                    <input
-                    id="csrf"
-                    class="hidden"
-                    type="hidden"
-                    text="text"
-                    name="{csrf_name}"
-                    value="{csrf_hash}">
-                    <input
-                    id="redirect-url"
-                    class="hidden"
-                    type="hidden"
-                    text="text"
-                    name="redirect_url"
-                    value="{base_url}index.php/backend/projects">
+                <form
+                id="form"
+                class="login u-center-vertical"
+                action="{base_url}index.php/login/attempt"
+                method="POST">
+                  <div class="row">
+                    <div class="one-full column">
+                      <!-- Hidden Inputs -->
+                      <input
+                      id="base-url"
+                      class="hidden"
+                      type="hidden"
+                      text="text"
+                      value="{base_url}">
+                      <input
+                      id="csrf"
+                      class="hidden"
+                      type="hidden"
+                      text="text"
+                      name="{csrf_name}"
+                      value="{csrf_hash}">
+                      <input
+                      id="redirect-url"
+                      class="hidden"
+                      type="hidden"
+                      text="text"
+                      name="redirect_url"
+                      value="{base_url}index.php/backend/projects">
 
-                    <!-- Visible Inputs -->
-	                  <label for="username">Username</label>
-                    <input
-                    id="username"
-                    class="u-full-width"
-                    type="text"
-                    name="username"
-                    placeholder="Username">
-                    <label for="password">Password</label>
-                    <input
-                    id="password"
-                    class="u-full-width"
-                    type="password"
-                    name="password"
-                    placeholder="Password">
+                      <!-- Visible Inputs -->
+  	                  <label for="username">Username</label>
+                      <input
+                      id="username"
+                      class="u-full-width"
+                      type="text"
+                      name="username"
+                      placeholder="Username">
+                      <label for="password">Password</label>
+                      <input
+                      id="password"
+                      class="u-full-width"
+                      type="password"
+                      name="password"
+                      placeholder="Password">
+                    </div>
                   </div>
-                </div>
-                <div class="row">
-                  <input
-                  id="submit"
-                  type="submit"
-                  name="submit"
-                  value="Submit">
-                </div>
-              </form>
+                  <div class="row">
+                    <input
+                    id="submit"
+                    type="submit"
+                    name="submit"
+                    value="Submit">
+                  </div>
+                  <small>
+                    Firefolio Copyright &copy; Callum John 2018 <br>
+                    Released under the terms of the MIT Open Source License
+                  </small>
+                </form>
+              </div>
             </div>
             <div class="one-half column">
-              <img
-              width="100%"
-              height="auto"
-              src="{base_url}img/firefolio/icon.svg"
-              alt="Left Arrow">
-              <div id="error" class=""></div>
+              <div class="u-view-height">
+                <img
+                class="u-center-both"
+                style="text-align: center"
+                width="100%"
+                height="auto"
+                src="{base_url}img/firefolio/icon.svg"
+                alt="Left Arrow">
+                <div id="error" class=""></div>
+              </div>
             </div>
-          </section>
-
-          <footer class="row footer">
-            <small>
-              Firefolio Copyright &copy; Callum John 2018 <br>
-              Released under the terms of the MIT Open Source License
-            </small>
-          </footer>
         </div>
 
         <!-- Scripts -->

@@ -5,8 +5,8 @@
    ========================================================================== */
 
 form.login {
-	border: 1px solid grey;
-	border-radius: 4px;
+	width: 100%;
+	border: 1px solid lightgrey;
 	padding: 16px;
 }
 
@@ -44,4 +44,24 @@ nav > ul > .u-pull-right > li {
 
 .project {
 	/* TODO: add styles to projects */
+}
+
+.u-view-height {
+	height: 100vh;
+	position: relative;
+}
+
+.u-center-vertical {
+	position: absolute;
+	top: 50%;
+	transform: translate(0%, -50%);
+}
+
+.u-center-both {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-right: -50%;
+	transform: translate(-50%, -50%);
+	text-align: 50%;
 }
