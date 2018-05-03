@@ -54,10 +54,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['project/(:any)'] = 'portfolio/project/$1';
 $route['search'] = 'portfolio/search';
 
-$route['login'] = 'backend/user/index';
-$route['login/attempt'] = 'backend/user/login';
-$route['logout'] = 'backend/user/logout';
-
 $route['firefolio/projects'] = 'backend/project/index';
 $route['firefolio/projects/(:any)'] = 'backend/project/index/$1';
 $route['firefolio/projects/create/submit'] = 'backend/project/create_project';
