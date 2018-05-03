@@ -61,7 +61,7 @@ class Projects extends CI_Controller {
 
         if (isset($_POST['title']))
         {
-          $project = get_from_post();
+          $project = $this->get_from_post();
 
           if (strlen($project['title']) > 0)
           {
@@ -140,7 +140,7 @@ class Projects extends CI_Controller {
             'uri' => $_POST['original_uri']
           );
 
-          $project = get_from_post();
+          $project = $this->get_from_post();
 
           if (strlen($project['title']) > 0)
           {
@@ -266,7 +266,7 @@ class Projects extends CI_Controller {
   {
     $project = array(
       'id' => $_POST['id'],
-      'uri' => $this->to_ascii($_POST['title']),
+      'uri' => to_ascii($_POST['title']),
       'thumbnail' => $_POST['thumbnail'],
       'trailer' => $_POST['trailer'],
       'title' => $_POST['title'],

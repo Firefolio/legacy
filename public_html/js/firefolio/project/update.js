@@ -12,7 +12,7 @@ $(document).ready(function () {
           $('#form').attr('action'),
           $('#form').attr('method'),
           $('#base-url').val() +
-            'index.php/firefolio/projects/update/' +
+            'index.php/backend/projects/update/' +
             to_ascii(title.current)
         );
       } else {

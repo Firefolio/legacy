@@ -1,6 +1,6 @@
 $('document').ready(function () {
   var update = {
-    url: $('#base-url').val() + 'index.php/firefolio/profile/update',
+    url: $('#base-url').val() + 'index.php/backend/profile/update',
     form: $('#form'),
     attempt: function () {
       var data = update.form.serialize();
