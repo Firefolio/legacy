@@ -81,11 +81,11 @@ $('document').ready(function () {
     });
   }
 
-  if ($('#update-password') != null) {
-    $('#update-password').submit(function (event) {
-      event.preventDefault();
+  $('#update-password').submit(function (event) {
+    event.preventDefault();
 
-      update.attempt.password();
-    });
-  }
+    ajax.request.form(
+      d
+    );
+  });
 });

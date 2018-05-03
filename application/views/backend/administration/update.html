@@ -89,7 +89,7 @@
           value="{csrf_hash}">
         </section>
 
-        <!-- Project Controls -->
+        <!-- Administration Controls -->
         <section class="row">
           <div class="one-half column">
             <form id="update-username">
@@ -122,7 +122,8 @@
                 <input
                 id="new-password"
                 class="u-full-width"
-                type="password" name="new-password"
+                type="password"
+                name="new-password"
                 value=""
                 required>
               </div>
@@ -153,6 +154,7 @@
       src="https://code.jquery.com/jquery-3.2.1.min.js"
       integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
       crossorigin="anonymous"></script>
+      <script src="{base_url}js/utilities/ajax.js"></script>
       <script src="{base_url}js/utilities/fallback.js"></script>
       <script src="{base_url}js/firefolio/administration/update.js"></script>
     </body>

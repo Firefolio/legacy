@@ -35,7 +35,8 @@ class Administration extends CI_Controller {
 
   public function update($target)
   {
-    switch ($target) {
+    switch ($target)
+    {
       case 'username':
         $response = array(
           'success' => FALSE,
