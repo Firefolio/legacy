@@ -33,79 +33,84 @@ class Administration extends CI_Controller {
     }
   }
 
-  public function update_username()
+  public function update($target)
   {
-    $response = array(
-      'success' => FALSE,
-      'message' => 'No error message specified',
-      'hash' => $this->security->get_csrf_hash()
-    );
+    switch ($target) {
+      case 'username':
+        $response = array(
+          'success' => FALSE,
+          'message' => 'No error message specified',
+          'hash' => $this->security->get_csrf_hash()
+        );
 
-    if (isset($_POST['username']))
-    {
-      $username = $_POST['username'];
-
-      if (strlen($username) >= 3)
-      {
-        $this->user_model->update_username($username);
-
-        $response['success'] = TRUE;
-        $response['message'] = 'Changed username';
-      }
-      else
-      {
-        $response['message'] = 'New username is too short';
-      }
-    }
-    else
-    {
-      $response['message'] = 'No username posted';
-    }
-
-    $json = json_encode($response);
-    echo $json;
-  }
-
-  public function update_password()
-  {
-    $response = array(
-      'success' => FALSE,
-      'message' => 'No error message specified',
-      'hash' => $this->security->get_csrf_hash()
-    );
-
-    if (isset($_POST['password']) AND isset($_POST['confirmation']))
-    {
-      $password = $_POST['password'];
-      $confirmation = $_POST['confirmation'];
-
-      if ($password === $confirmation)
-      {
-        $minimum_length = 8;
-
-        if (strlen($password) >= $minimum_length)
+        if (isset($_POST['password']) AND isset($_POST['confirmation']))
         {
-          $this->user_model->update_password($password);
+          $password = $_POST['password'];
+          $confirmation = $_POST['confirmation'];
 
-          $response['success'] = TRUE;
-          $response['message'] = 'Changed password';
+          if ($password === $confirmation)
+          {
+            $minimum_length = 8;
+
+            if (strlen($password) >= $minimum_length)
+            {
+              $this->user_model->update_password($password);
+
+              $response['success'] = TRUE;
+              $response['message'] = 'Changed password';
+            }
+            else
+            {
+              $response['message'] = 'New username is too short';
+            }
+          }
+          else
+          {
+            $response['message'] = 'Password and confirmation don\'t match';
+          }
         }
         else
         {
-          $response['message'] = 'New username is too short';
+          $response['message'] = 'No username posted';
         }
-      }
-      else
-      {
-        $response['message'] = 'Password and confirmation don\'t match';
-      }
-    }
-    else
-    {
-      $response['message'] = 'No username posted';
-    }
 
-    $json = json_encode($response);
-    echo $json;
+        $json = json_encode($response);
+        echo $json;
+        break;
+      case 'password':
+        $response = array(
+          'success' => FALSE,
+          'message' => 'No error message specified',
+          'hash' => $this->security->get_csrf_hash()
+        );
+
+        if (isset($_POST['username']))
+        {
+          $username = $_POST['username'];
+
+          if (strlen($username) >= 3)
+          {
+            $this->user_model->update_username($username);
+
+            $response['success'] = TRUE;
+            $response['message'] = 'Changed username';
+          }
+          else
+          {
+            $response['message'] = 'New username is too short';
+          }
+        }
+        else
+        {
+          $response['message'] = 'No username posted';
+        }
+
+        $json = json_encode($response);
+        echo $json;
+        break;
+      default:
+        show_404();
+        break;
+    }
   }
 }
