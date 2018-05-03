@@ -241,7 +241,7 @@ class Projects extends CI_Controller {
       {
         $data['projects'] = $this->clean_project_titles($data['projects']);
         $response['html'] = $this->parser->parse(
-          'backend/projects/project.html',
+          'backend/projects/list.html',
           $data,
           TRUE
         );
@@ -262,7 +262,7 @@ class Projects extends CI_Controller {
     echo $json;
   }
 
-  public function get_from_post()
+  private function get_from_post()
   {
     $project = array(
       'id' => $_POST['id'],
