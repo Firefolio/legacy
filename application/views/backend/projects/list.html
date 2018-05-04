@@ -1,13 +1,15 @@
-<!-- This is used during a search.js request -->
+<!-- This is used during a search.js AJAX request -->
 {projects}
-  <div class="project u-full-width">
-    <input
-    type="checkbox"
-    name="toggle"
-    value="false">
-    <input type="hidden" name="uri" value="{uri}">
-    <a href="projects/update/{uri}">
-      <strong>{title}</strong>
-    </a>
-  </div>
+  <tr>
+    <td>
+      <input
+      type="checkbox"
+      name="toggle"
+      value="false">
+      <input type="hidden" name="uri" value="{uri}">
+      <a href="projects/update/{uri}">
+        <strong>{title}</strong>
+      </a>
+    </td>
+  </tr>
 {/projects}

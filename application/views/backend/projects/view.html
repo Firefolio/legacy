@@ -140,30 +140,39 @@
         </div>
       </section>
 
-      <div class="row">
-        <div class="one-full column">
+      <section class="row">
+        <div class="one-half column">
+          <!-- Hidden Inputs -->
           <input id="csrf" type="hidden" name="{csrf_name}" value="{csrf_hash}">
           <input id="base-url" type="hidden" name="base_url" value="{base_url}">
-          <div id="projects">
-            {projects}
-              <div class="project u-full-width">
-                <input
-                type="checkbox"
-                name="toggle"
-                value="false">
-                <input type="hidden" name="uri" value="{uri}">
-                <a href="projects/update/{uri}">
-                  <strong>{title}</strong>
-                </a>
-              </div>
-            {/projects}
+          <input id="index-page" type="hidden" name="index_page" value="{index_page}">
+
+          <!-- Projects List -->
+          <table id="projects" class="u-full-width">
+            <thead>
+              <!-- TODO: Describe project list with a header -->
+            </thead>
+            <tbody>
+              {projects}
+                <tr>
+                  <td>
+                    <input
+                    type="checkbox"
+                    name="toggle"
+                    value="false">
+                    <input type="hidden" name="uri" value="{uri}">
+                    <a href="projects/update/{uri}">
+                      <strong>{title}</strong>
+                    </a>
+                  </td>
+                </tr>
+              {/projects}
+            </tbody>
           </div>
         </div>
-      </div>
+      </section>
 
-      <footer class="row">
-        <small>Copyright &copy; Callum John @ItsSeaJay 2018</small>
-      </footer>
+      <!-- TODO: Add footer -->
     </div>
 
     <!-- Modals -->

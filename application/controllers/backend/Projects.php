@@ -199,7 +199,7 @@ class Projects extends CI_Controller {
 
   public function search()
   {
-    $response = prepare_response();
+    $response = $this->prepare_response();
 
     if (isset($_POST['input']))
     {
@@ -253,7 +253,7 @@ class Projects extends CI_Controller {
       $data['projects'] = $this->project_model->get_projects();
     }
 
-    // Then add all of the other data on top
+    // Then add all of the other data we might need on top
     $data['base_url'] = base_url();
     $data['index_page'] = index_page();
     $data['csrf_name'] = $this->security->get_csrf_token_name();
