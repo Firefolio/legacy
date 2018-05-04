@@ -1,7 +1,7 @@
 <!doctype html>
 <html class="no-js">
   <head>
-    <title>Firefolio Dashboard</title>
+    <title>Projects - Firefolio</title>
 
     <!-- Meta Data -->
     <meta charset="utf-8">
@@ -30,7 +30,10 @@
         <div class="u-pull-left">
           <li>
             <h1 style="font-size: 1.5em">
-              <a href="http://firefolio.org/">Firefolio</a>
+              <a href="http://firefolio.org/">
+                {application_name}
+                <small>v{major_version}.{minor_version}.{patch}</small>
+              </a>
             </h1>
           </li>
           <li>
@@ -76,7 +79,7 @@
       </header>
 
       <section class="row">
-        <div class="three columns">
+        <div class="two columns">
           <a
           class="button button-primary u-full-width"
           role="button"
@@ -84,7 +87,7 @@
             Create
           </a>
         </div>
-        <div class="three columns">
+        <div class="two columns">
           <a
           id="update"
           class="button u-full-width"
@@ -92,7 +95,7 @@
             Update
           </a>
         </div>
-        <div class="three columns">
+        <div class="two columns">
           <a
           id="preview"
           class="button u-full-width"
@@ -100,12 +103,28 @@
             Preview
           </a>
         </div>
-        <div class="three columns">
+        <div class="two columns">
           <a class="button u-full-width"
           role="button"
           href="#delete-modal"
           rel="modal:open">
             Delete
+          </a>
+        </div>
+        <div class="two columns">
+          <a
+          id="import"
+          class="button u-full-width"
+          role="button">
+            Import
+          </a>
+        </div>
+        <div class="two columns">
+          <a
+          id="export"
+          class="button u-full-width"
+          role="button">
+            Export
           </a>
         </div>
       </section>

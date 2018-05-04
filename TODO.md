@@ -8,3 +8,4 @@
 - Expand the amount of information the profile is able to store
 - Add an `About` controller that credits people and libraries who worked on this
 - Tweak `projects` table design
+- Incorporate the application's index page into URLs.

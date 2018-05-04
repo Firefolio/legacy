@@ -27,9 +27,14 @@ class Projects extends CI_Controller {
 
     $data = array(
       'base_url' => base_url(),
+      'index_page' => index_page(),
       'date' => date('d-m-Y'),
       'csrf_name' => $this->security->get_csrf_token_name(),
       'csrf_hash' => $this->security->get_csrf_hash(),
+      'application_name' => $this->application_model->get_name(),
+      'major_version' => $this->application_model->get_major_version(),
+      'minor_version' => $this->application_model->get_minor_version(),
+      'patch' => $this->application_model->get_patch(),
       'projects' => html_purify($this->project_model->get_projects())
     );
     $data['projects'] = $this->clean_project_titles($data['projects']);
@@ -108,10 +113,11 @@ class Projects extends CI_Controller {
       case 'form':
         if ($this->project_model->project_exists($uri))
         {
-          // Really, we should use html_purify here,
-          // but that could possibly corrupt the data
+          // Really, we should use html_purify on everything here,
+          // but that could possibly corrupt the data input
           $data = $this->project_model->get_project($uri);
 
+          // Instead, we configure each output manually
           $data['header'] = htmlentities($data['title']);
           $data['preview'] = html_purify(markdown_parse($data['description']));
           $data['base_url'] = base_url();
