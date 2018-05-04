@@ -89,7 +89,7 @@
           <div class="one-full column">
             <form
             id="form"
-            action="{base_url}index.php/backend/projects/create/submit"
+            action="{base_url}index.php/backend/projects/create/attempt"
             method="POST">
               <!-- Anti CSRF -->
               <input
@@ -138,7 +138,8 @@
                   id="description"
                   style="min-height: 256px"
                   class="u-full-width"
-                  name="description"></textarea>
+                  name="description"
+                  disabled></textarea>
                 </div>
                 <div class="one-half column">
                   <label for="preview">
@@ -214,7 +215,7 @@
     <script src="{base_url}js/utilities/ajax.js"></script>
     <script src="{base_url}js/utilities/debounce.js"></script>
     <script src="{base_url}js/firefolio/datepicker.js"></script>
-    
+
     <script src="{base_url}js/firefolio/languages/autocomplete.js"></script>
     <script src="{base_url}js/firefolio/project/create.js"></script>
   </body>

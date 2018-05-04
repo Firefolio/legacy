@@ -10,6 +10,8 @@ $('document').ready(function () {
     );
   });
 
+  $('#description').removeAttr('disabled');
+
   $('#description').on('input', debounce(function () {
     ajax.request.html(
       $('#description').val(),

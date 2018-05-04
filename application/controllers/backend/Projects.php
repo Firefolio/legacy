@@ -271,15 +271,15 @@ class Projects extends CI_Controller {
   private function get_from_post()
   {
     $project = array(
-      'id' => $_POST['id'],
-      'uri' => to_ascii($_POST['title']),
-      'thumbnail' => $_POST['thumbnail'],
-      'trailer' => $_POST['trailer'],
-      'title' => $_POST['title'],
-      'subtitle' => $_POST['subtitle'],
-      'description' => $_POST['description'],
-      'language' => $_POST['language'],
-      'date' => $_POST['date']
+      'id' => $_POST['id'] ?? '',
+      'uri' => to_ascii($_POST['title']) ?? '',
+      'thumbnail' => $_POST['thumbnail'] ?? '',
+      'trailer' => $_POST['trailer'] ?? '',
+      'title' => $_POST['title'] ?? '',
+      'subtitle' => $_POST['subtitle'] ?? '',
+      'description' => $_POST['description'] ?? '',
+      'language' => $_POST['language'] ?? '',
+      'date' => $_POST['date'] ?? ''
     );
 
     return $project;
