@@ -22,6 +22,9 @@ class Project_model extends CI_Model {
 
   public function get_projects()
   {
+    // Get all of the projects in the database,
+    // then sort them such that the newest goes first
+    $this->db->order_by('id', 'DESC');
     $query = $this->db->get('projects');
 
     return $query->result_array();
