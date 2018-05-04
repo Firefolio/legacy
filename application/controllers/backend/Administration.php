@@ -2,13 +2,17 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Administration extends CI_Controller {
+
   function __construct()
   {
     parent::__construct();
 
     $this->load->model('user_model');
+    $this->load->model('application_model');
+
     $this->load->helper('url');
     $this->load->helper('security');
+
     $this->load->library('parser');
   }
 
@@ -18,10 +22,7 @@ class Administration extends CI_Controller {
 
     if (isset($_SESSION['user']))
     {
-      $data = $this->user_model->get_user();
-      $data['base_url'] = base_url();
-      $data['csrf_name'] = $this->security->get_csrf_token_name();
-      $data['csrf_hash'] = $this->security->get_csrf_hash();
+      $data = $this->get_parser_data();
 
       $this->parser->parse('backend/administration/update.html', $data);
     }
@@ -113,5 +114,26 @@ class Administration extends CI_Controller {
         show_404();
         break;
     }
+  }
+
+  private function get_parser_data()
+  {
+    $data = $this->user_model->get_user();
+    $data['base_url'] = base_url();
+    $data['index_page'] = index_page();
+    $data['csrf_name'] = $this->security->get_csrf_token_name();
+    $data['csrf_hash'] = $this->security->get_csrf_hash();
+    $data['application_name'] = $this->application_model->get_name();
+    $data['major_version'] = $this->application_model->get_major_version();
+    $data['minor_version'] = $this->application_model->get_minor_version();
+    $data['patch'] = $this->application_model->get_patch();
+    $data['website'] = $this->application_model->get_website();
+    $data['navbar'] = $this->parser->parse(
+      'backend/navbar.html',
+      $data,
+      TRUE
+    );
+
+    return $data;
   }
 }
