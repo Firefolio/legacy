@@ -100,9 +100,9 @@ class Projects extends CI_Controller {
           $data = $this->get_parser_data($uri);
 
           // Instead, we configure each output manually
-          $data['header'] = htmlentities($data['project']['title']);
+          $data['header'] = htmlentities($data['title']);
           $data['preview'] = html_purify(
-            markdown_parse($data['project']['description'])
+            markdown_parse($data['description'])
           );
 
           $this->parser->parse('backend/projects/update.html', $data);
@@ -240,20 +240,40 @@ class Projects extends CI_Controller {
   {
     // WARNING: the following function does not purify user output on its own.
     // Use htmlentities and html_purify to prevent XSS attacks from user data!
-    $data = array(
-      'base_url' => base_url(),
-      'index_page' => index_page(),
-      'csrf_name' => $this->security->get_csrf_token_name(),
-      'csrf_hash' => $this->security->get_csrf_hash(),
-      'application_name' => $this->application_model->get_name(),
-      'major_version' => $this->application_model->get_major_version(),
-      'minor_version' => $this->application_model->get_minor_version(),
-      'patch' => $this->application_model->get_patch(),
-      'website' => $this->application_model->get_website(),
-      'projects' => $this->project_model->get_projects(),
-      'project' => $this->project_model->get_project($uri),
-      'languages' => $this->language_model->get_languages()
-    );
+
+    // Determine whether a single project, or multiple projects are needed
+    if ($uri != '')
+    {
+      // Single project
+      $data = $this->project_model->get_project($uri);
+      $data['base_url'] = base_url();
+      $data['index_page'] = index_page();
+      $data['csrf_name'] = $this->security->get_csrf_token_name();
+      $data['csrf_hash'] = $this->security->get_csrf_hash();
+      $data['application_name'] = $this->application_model->get_name();
+      $data['major_version'] = $this->application_model->get_major_version();
+      $data['minor_version'] = $this->application_model->get_minor_version();
+      $data['patch'] = $this->application_model->get_patch();
+      $data['website'] = $this->application_model->get_website();
+      $data['languages'] = $this->language_model->get_languages();
+    }
+    else
+    {
+      // Multiple projects
+      $data = array(
+        'base_url' => base_url(),
+        'index_page' => index_page(),
+        'csrf_name' => $this->security->get_csrf_token_name(),
+        'csrf_hash' => $this->security->get_csrf_hash(),
+        'application_name' => $this->application_model->get_name(),
+        'major_version' => $this->application_model->get_major_version(),
+        'minor_version' => $this->application_model->get_minor_version(),
+        'patch' => $this->application_model->get_patch(),
+        'website' => $this->application_model->get_website(),
+        'projects' => $this->project_model->get_projects(),
+        'languages' => $this->language_model->get_languages()
+      );
+    }
 
     return $data;
   }
