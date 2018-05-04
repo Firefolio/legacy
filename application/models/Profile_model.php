@@ -2,10 +2,17 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Profile_model extends CI_Model {
-  
+
   function __construct()
   {
     parent::__construct();
+  }
+
+  public function get_profile()
+  {
+    $query = $this->db->get('profile');
+
+    return $query->row_array();
   }
 
   public function get_first_name()

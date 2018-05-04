@@ -264,6 +264,13 @@ class Projects extends CI_Controller {
     $data['patch'] = $this->application_model->get_patch();
     $data['website'] = $this->application_model->get_website();
     $data['languages'] = $this->language_model->get_languages();
+    // The navigation bar should be parsed last because it
+    // relies on the above information
+    $data['navbar'] = $this->parser->parse(
+      'backend/navbar.html',
+      $data,
+      TRUE
+    );
 
     return $data;
   }
