@@ -28,27 +28,31 @@
     <div class="container content">
       <header class="row header">
         <div class="one-full column">
-          <a href="#">
+          <a href="{base_url}">
             <h1>{full_name}</h1>
           </a>
         </div>
       </header>
 
-      <section class="row">
-        <!-- Hidden Inputs -->
-        <input
-        id="base-url"
-        type="hidden"
-        name="base_url"
-        value="{base_url}"
-        placeholder="Search">
-        <input
-        id="csrf"
-        type="hidden"
-        name="{csrf_name}"
-        value="{csrf_hash}"
-        placeholder="Search">
-      </section>
+      <!-- Hidden Inputs -->
+      <!-- Base URL -->
+      <input
+      id="base-url"
+      type="hidden"
+      name="base_url"
+      value="{base_url}">
+      <!-- Index Page -->
+      <input
+      id="index-page"
+      type="hidden"
+      name="index_page"
+      value="{index_page}">
+      <!-- Anti CSRF -->
+      <input
+      id="csrf"
+      type="hidden"
+      name="{csrf_name}"
+      value="{csrf_hash}">
 
       <!-- Search Form -->
       <section class="row">
@@ -82,7 +86,7 @@
           <section class="row">
             {projects}
               <div class="four columns">
-                <a href="{index_page}/project/{uri}" class="thumbnail">
+                <a href="{base_url}{index_page}/project/{uri}" class="thumbnail">
                   <h2>{title}</h2>
                   <img
                   class="responsive"
@@ -123,9 +127,9 @@
     src="https://code.jquery.com/jquery-3.2.1.min.js"
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script>
-    <script src="{base_url}js/firefolio/utilities/fallback.js"></script>
     <script src="{base_url}js/firefolio/portfolio/search.js"></script>
     <script src="{base_url}js/utilities/ajax.js"></script>
     <script src="{base_url}js/utilities/debounce.js"></script>
+    <script src="{base_url}js/utilities/fallback.js"></script>
   </body>
 </html>

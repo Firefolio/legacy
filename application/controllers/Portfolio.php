@@ -45,6 +45,10 @@ class Portfolio extends CI_Controller {
         'Y',
         strtotime($projects[$project]['date'])
       );
+
+      // Include URL data
+      $projects[$project]['base_url'] = base_url();
+      $projects[$project]['index_page'] = index_page();
     }
 
     // Split the projects into their own rows on the responsive grid
