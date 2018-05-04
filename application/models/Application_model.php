@@ -40,6 +40,14 @@ class Application_model extends CI_Model {
     return $row['patch'];
   }
 
+  public function get_website()
+  {
+    $query = $this->db->get('application');
+    $row = $query->row_array();
+
+    return $row['website'];
+  }
+
   public function get_default_password()
   {
     $query = $this->db->get('application');

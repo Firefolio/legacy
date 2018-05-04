@@ -25,19 +25,10 @@ class Projects extends CI_Controller {
   {
     require_authentication();
 
-    $data = array(
-      'base_url' => base_url(),
-      'index_page' => index_page(),
-      'date' => date('d-m-Y'),
-      'csrf_name' => $this->security->get_csrf_token_name(),
-      'csrf_hash' => $this->security->get_csrf_hash(),
-      'application_name' => $this->application_model->get_name(),
-      'major_version' => $this->application_model->get_major_version(),
-      'minor_version' => $this->application_model->get_minor_version(),
-      'patch' => $this->application_model->get_patch(),
-      'projects' => html_purify($this->project_model->get_projects())
+    $data = $this->get_parser_data();
+    $data['projects'] = $this->clean_project_titles(
+      html_purify($data['projects'])
     );
-    $data['projects'] = $this->clean_project_titles($data['projects']);
 
     $this->parser->parse('backend/projects/view.html', $data);
   }
@@ -49,21 +40,12 @@ class Projects extends CI_Controller {
     switch ($action)
     {
       case 'form':
-        $data = array(
-          'base_url' => base_url(),
-          'csrf_name' => $this->security->get_csrf_token_name(),
-          'csrf_hash' => $this->security->get_csrf_hash(),
-          'languages' => $this->language_model->get_languages()
-        );
+        $data = $this->get_parser_data();
 
         $this->parser->parse('backend/projects/create.html', $data);
         break;
       case 'attempt':
-        $response = array(
-          'success' => FALSE,
-          'message' => 'No error message specified',
-          'hash' => $this->security->get_csrf_hash()
-        );
+        $response = $this->prepare_response();
 
         if (isset($_POST['title']))
         {
@@ -133,11 +115,7 @@ class Projects extends CI_Controller {
         }
         break;
       case 'attempt':
-        $response = array(
-          'success' => FALSE,
-          'message' => 'Unspecified error',
-          'hash' => $this->security->get_csrf_hash()
-        );
+        $response = $this->prepare_response();
 
         if (isset($_POST['id']))
         {
@@ -187,11 +165,7 @@ class Projects extends CI_Controller {
   {
     require_authentication();
 
-    $response = array(
-      'success' => FALSE,
-      'message' => 'Unspecified error',
-      'hash' => $this->security->get_csrf_hash()
-    );
+    $response = $this->prepare_response();
 
     if (isset($_POST['projects']))
     {
@@ -227,12 +201,7 @@ class Projects extends CI_Controller {
 
   public function search()
   {
-    $response = array(
-      'success' => FALSE,
-      'message' => 'No error message specified',
-      'hash' => $this->security->get_csrf_hash(),
-      'html' => 'Unspecified error'
-    );
+    $response = prepare_response();
 
     if (isset($_POST['input']))
     {
@@ -269,6 +238,28 @@ class Projects extends CI_Controller {
     echo $json;
   }
 
+  private function get_parser_data($uri = '')
+  {
+    // WARNING: the following function does not purify user output on its own.
+    // Use htmlentities and html_purify to prevent XSS attacks from user data!
+    $data = array(
+      'base_url' => base_url(),
+      'index_page' => index_page(),
+      'csrf_name' => $this->security->get_csrf_token_name(),
+      'csrf_hash' => $this->security->get_csrf_hash(),
+      'languages' => $this->language_model->get_languages(),
+      'application_name' => $this->application_model->get_name(),
+      'major_version' => $this->application_model->get_major_version(),
+      'minor_version' => $this->application_model->get_minor_version(),
+      'patch' => $this->application_model->get_patch(),
+      'website' => $this->application_model->get_website(),
+      'projects' => $this->project_model->get_projects(),
+      'project' => $this->project_model->get_project($uri)
+    );
+
+    return $data;
+  }
+
   private function get_from_post()
   {
     $project = array(
@@ -284,6 +275,18 @@ class Projects extends CI_Controller {
     );
 
     return $project;
+  }
+
+  private function prepare_response()
+  {
+    $response = array(
+      'success' => FALSE,
+      'message' => 'No error message specified',
+      'hash' => $this->security->get_csrf_hash(),
+      'html' => 'No HTML data set'
+    );
+
+    return $response;
   }
 
   private function clean_project_titles($projects)
