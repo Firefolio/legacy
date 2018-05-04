@@ -49,7 +49,7 @@ class Projects extends CI_Controller {
 
         if (isset($_POST['title']))
         {
-          $project = $this->get_from_post();
+          $project = $this->get_post_data();
 
           if (strlen($project['title']) > 0)
           {
@@ -123,7 +123,7 @@ class Projects extends CI_Controller {
             'uri' => $_POST['original_uri']
           );
 
-          $project = $this->get_from_post();
+          $project = $this->get_post_data();
 
           if (strlen($project['title']) > 0)
           {
@@ -275,9 +275,9 @@ class Projects extends CI_Controller {
     return $data;
   }
 
-  private function get_from_post()
+  private function get_post_data()
   {
-    $project = array(
+    $data = array(
       'id' => $_POST['id'] ?? '',
       'uri' => to_ascii($_POST['title']) ?? '',
       'thumbnail' => $_POST['thumbnail'] ?? '',
@@ -289,7 +289,7 @@ class Projects extends CI_Controller {
       'date' => $_POST['date'] ?? ''
     );
 
-    return $project;
+    return $data;
   }
 
   private function prepare_response()
