@@ -97,15 +97,13 @@ class Projects extends CI_Controller {
         {
           // Really, we should use html_purify on everything here,
           // but that could possibly corrupt the data input
-          $data = $this->project_model->get_project($uri);
+          $data = $this->get_parser_data($uri);
 
           // Instead, we configure each output manually
-          $data['header'] = htmlentities($data['title']);
-          $data['preview'] = html_purify(markdown_parse($data['description']));
-          $data['base_url'] = base_url();
-          $data['csrf_name'] = $this->security->get_csrf_token_name();
-          $data['csrf_hash'] = $this->security->get_csrf_hash();
-          $data['languages'] = $this->language_model->get_languages();
+          $data['header'] = htmlentities($data['project']['title']);
+          $data['preview'] = html_purify(
+            markdown_parse($data['project']['description'])
+          );
 
           $this->parser->parse('backend/projects/update.html', $data);
         }
@@ -247,14 +245,14 @@ class Projects extends CI_Controller {
       'index_page' => index_page(),
       'csrf_name' => $this->security->get_csrf_token_name(),
       'csrf_hash' => $this->security->get_csrf_hash(),
-      'languages' => $this->language_model->get_languages(),
       'application_name' => $this->application_model->get_name(),
       'major_version' => $this->application_model->get_major_version(),
       'minor_version' => $this->application_model->get_minor_version(),
       'patch' => $this->application_model->get_patch(),
       'website' => $this->application_model->get_website(),
       'projects' => $this->project_model->get_projects(),
-      'project' => $this->project_model->get_project($uri)
+      'project' => $this->project_model->get_project($uri),
+      'languages' => $this->language_model->get_languages()
     );
 
     return $data;
