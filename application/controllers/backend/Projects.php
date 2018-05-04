@@ -7,6 +7,7 @@ class Projects extends CI_Controller {
   {
     parent::__construct();
 
+    $this->load->model('application_model');
     $this->load->model('project_model');
     $this->load->model('language_model');
 
