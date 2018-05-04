@@ -4,7 +4,10 @@ $('document').ready(function () {
     open: function (checkboxes, uris) {
       for (var checkbox = 0; checkbox < checkboxes.length; checkbox++) {
         if (checkboxes[checkbox].checked) {
-          open_window('../../index.php/project/' + uris[checkbox].value);
+          open_window(
+            $('#base-url').val() +
+            $('#index-page').val() + '/project/' + uris[checkbox].value
+          );
         }
       }
     }

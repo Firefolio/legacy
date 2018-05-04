@@ -23,6 +23,7 @@
             browser</a> to improve your experience and security.</p>
         <![endif]-->
 
+        <!-- Content -->
         <div class="container">
           <section class="row">
             <div class="one-half column">
@@ -36,20 +37,30 @@
                   Back to frontend
                 </a>
 
+                <!-- Login Form -->
                 <form
                 id="form"
                 class="login u-center-vertical"
-                action="{base_url}index.php/login/attempt"
+                action="{base_url}{index_page}/login/attempt"
                 method="POST">
                   <div class="row">
                     <div class="one-full column">
                       <!-- Hidden Inputs -->
+                      <!-- Base URL -->
                       <input
                       id="base-url"
                       class="hidden"
                       type="hidden"
                       text="text"
                       value="{base_url}">
+                      <!-- Index Page -->
+                      <input
+                      id="index-page"
+                      class="hidden"
+                      type="hidden"
+                      text="text"
+                      value="{index_page}">
+                      <!-- Anti CSRF -->
                       <input
                       id="csrf"
                       class="hidden"
@@ -57,13 +68,14 @@
                       text="text"
                       name="{csrf_name}"
                       value="{csrf_hash}">
+                      <!-- Redirect URL -->
                       <input
                       id="redirect-url"
                       class="hidden"
                       type="hidden"
                       text="text"
                       name="redirect_url"
-                      value="{base_url}index.php/backend/projects">
+                      value="{base_url}{index_page}/backend/projects">
 
                       <!-- Visible Inputs -->
   	                  <label for="username">Username</label>

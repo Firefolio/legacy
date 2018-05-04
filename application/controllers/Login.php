@@ -7,10 +7,12 @@ class Login extends CI_Controller
   {
     parent::__construct();
 
+    $this->load->model('user_model');
+
     $this->load->helper('url');
     $this->load->helper('security');
+
     $this->load->library('parser');
-    $this->load->model('user_model');
   }
 
   public function index()
@@ -21,6 +23,7 @@ class Login extends CI_Controller
     {
       $data = array(
         'base_url' => base_url(),
+        'index_page' => index_page(),
         'csrf_name' => $this->security->get_csrf_token_name(),
         'csrf_hash' => $this->security->get_csrf_hash()
       );
@@ -29,7 +32,7 @@ class Login extends CI_Controller
     }
     else
     {
-      $url = base_url() . 'index.php/backend/projects';
+      $url = base_url() . index_page() . '/backend/projects';
 
       header('Location: ' . $url);
       exit();
@@ -91,7 +94,7 @@ class Login extends CI_Controller
     session_start();
     unset($_SESSION['user']);
 
-    $url = base_url() . 'index.php/login';
+    $url = base_url() . index_page() . '/login';
 
     header('Location: ' . $url);
   }

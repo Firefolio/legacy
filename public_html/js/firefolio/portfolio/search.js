@@ -3,7 +3,7 @@ $('document').ready(function () {
     ajax.request.html(
       $('#search').val(),
       '#projects',
-      $('#base-url').val() + 'index.php/search'
+      $('#base-url').val() + $('#index_page') + '/search'
     );
   }, 128));
 

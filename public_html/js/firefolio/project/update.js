@@ -12,7 +12,8 @@ $(document).ready(function () {
           $('#form').attr('action'),
           $('#form').attr('method'),
           $('#base-url').val() +
-            'index.php/backend/projects/update/' +
+            $('#index-page').val() +
+            '/backend/projects/update/' +
             to_ascii(title.current)
         );
       } else {

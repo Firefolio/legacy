@@ -16,7 +16,7 @@ $('document').ready(function () {
     ajax.request.html(
       $('#description').val(),
       '#description-preview',
-      $('#base-url').val() + 'index.php/markdown/parse'
+      $('#base-url').val() + $('#index-page').val() + '/markdown/parse'
     );
   }, 128));
 });

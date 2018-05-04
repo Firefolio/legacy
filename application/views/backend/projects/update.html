@@ -58,7 +58,7 @@
         </div>
         <div class="u-pull-right">
           <li>
-            <a href="{base_url}index.php/project/{uri}" target="_blank">
+            <a href="{base_url}{index_page}/project/{uri}" target="_blank">
               Preview
             </a>
           </li>
@@ -87,25 +87,30 @@
         <div class="one-full column">
           <form
           id="form"
-          action="{base_url}index.php/backend/projects/update/{uri}/attempt"
+          action="{base_url}{index_page}/backend/projects/update/{uri}/attempt"
           method="POST">
             <!-- Hidden Inputs -->
+            <!-- Base URL -->
+            <input
+            id="base-url"
+            type="hidden"
+            value="{base_url}">
+            <!-- Index Page -->
+            <input
+            id="index-page"
+            type="hidden"
+            value="{index_page}">
             <!-- Anti CSRF -->
             <input
             id="csrf"
             type="hidden"
             name="{csrf_name}"
             value="{csrf_hash}">
-            <!-- Base URL -->
-            <input
-            id="base-url"
-            type="hidden"
-            value="{base_url}">
             <!-- Redirect URL -->
             <input
             id="redirect-url"
             type="hidden"
-            value="{base_url}index.php/backend/projects">
+            value="{base_url}{index_page}/backend/projects">
             <!-- ID -->
             <!-- This is used to verify the AJAX request -->
             <input
@@ -212,7 +217,9 @@
                 </button>
               </div>
               <div class="three columns">
-                <a class="button u-full-width" href="{base_url}index.php/backend/projects">
+                <a
+                class="button u-full-width"
+                href="{base_url}{index_page}/backend/projects">
                   Cancel
                 </a>
               </div>
@@ -275,7 +282,7 @@
         <section class="row">
           <div class="one-half column">
             <a
-            href="{base_url}index.php/logout"
+            href="{base_url}{index_page}/logout"
             class="button button-primary u-full-width">
               Confirm
             </a>
@@ -306,7 +313,7 @@
         <section class="row">
           <div class="one-half column">
             <a
-            href="{base_url}index.php/backend/projects"
+            href="{base_url}{index_page}/backend/projects"
             class="button button-primary u-full-width">
               Confirm
             </a>
@@ -337,7 +344,7 @@
         <section class="row">
           <div class="one-half column">
             <a
-            href="{base_url}index.php/backend/profile"
+            href="{base_url}{index_page}/backend/profile"
             class="button button-primary u-full-width">
               Confirm
             </a>
@@ -363,12 +370,14 @@
 	  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
 	  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
 	  crossorigin="anonymous"></script>
+
     <script src="{base_url}js/utilities/fallback.js"></script>
-    <script src="{base_url}js/firefolio/project/update.js"></script>
-    <script src="{base_url}js/firefolio/project/description.js"></script>
     <script src="{base_url}js/utilities/to_ascii.js"></script>
     <script src="{base_url}js/utilities/ajax.js"></script>
     <script src="{base_url}js/utilities/debounce.js"></script>
+    
+    <script src="{base_url}js/firefolio/project/update.js"></script>
+    <script src="{base_url}js/firefolio/project/description.js"></script>
     <script src="{base_url}js/firefolio/datepicker.js"></script>
     <script src="{base_url}js/firefolio/languages/autocomplete.js"></script>
     <link rel="stylesheet" href="{base_url}js/vendor/jquery-ui-1.12.1/jquery-ui.min.css">

@@ -55,7 +55,8 @@ class Portfolio extends CI_Controller {
 
     $data = array(
       'base_url' => base_url(),
-      'title' => $this->profile_model->get_full_name(),
+      'index_page' => index_page(),
+      'full_name' => $this->profile_model->get_full_name(),
       'csrf_name' => $this->security->get_csrf_token_name(),
       'csrf_hash' => $this->security->get_csrf_hash(),
       'rows' => $rows,
@@ -82,6 +83,7 @@ class Portfolio extends CI_Controller {
         get_embed_url($project['trailer'])
       );
       $data['base_url'] = base_url();
+      $data['index_page'] = index_page();
       $data['name'] = htmlentities(
         $this->profile_model->get_full_name()
       );
@@ -104,7 +106,7 @@ class Portfolio extends CI_Controller {
       'success' => TRUE,
       'message' => 'No error message specified',
       'hash' => $this->security->get_csrf_hash(),
-      'html' => 'No error message specified'
+      'html' => 'No HTML data set'
     );
 
     if (isset($_POST['input']))

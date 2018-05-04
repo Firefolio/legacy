@@ -1,6 +1,7 @@
 $('document').ready(function () {
   var url = $('#base-url').val() +
-            'index.php/markdown/parse';
+            $('#index-page') +
+            '/markdown/parse';
   var limit = 128; // Milliseconds
 
   $('#description').on('input', debounce(function () {

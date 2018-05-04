@@ -1,7 +1,7 @@
 <!doctype html>
 <html class="no-js">
   <head>
-    <title>{title}</title>
+    <title>{full_name}</title>
 
     <!-- Meta Data -->
     <meta charset="utf-8">
@@ -29,7 +29,7 @@
       <header class="row header">
         <div class="one-full column">
           <a href="#">
-            <h1>{title}</h1>
+            <h1>{full_name}</h1>
           </a>
         </div>
       </header>
@@ -75,12 +75,14 @@
 
       <hr>
 
+      <!-- Output all of the projects as a responsive grid,
+      where the number of projects on each row is calculated on the server -->
       <div id="projects">
         {rows}
           <section class="row">
             {projects}
               <div class="four columns">
-                <a href="index.php/project/{uri}" class="thumbnail">
+                <a href="{index_page}/project/{uri}" class="thumbnail">
                   <h2>{title}</h2>
                   <img
                   class="responsive"
@@ -99,11 +101,11 @@
 
       <footer class="row footer">
         <div class="u-pull-left">
-          <small>Copyright &copy; {title} 2018</small>
+          <small>Copyright &copy; {full_name} 2018</small>
         </div>
         <div class="u-pull-right">
           <small>
-            <a href="{base_url}index.php/login">
+            <a href="{base_url}{index_page}/login">
               <img
               width="16px"
               height="16px"

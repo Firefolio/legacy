@@ -40,7 +40,7 @@
           <a
           class="button button-primary u-full-width"
           role="button"
-          href="{base_url}index.php/backend/projects/create">
+          href="{base_url}{index_page}/backend/projects/create">
             Create
           </a>
         </div>
@@ -101,9 +101,24 @@
       <section class="row">
         <div class="one-half column">
           <!-- Hidden Inputs -->
-          <input id="csrf" type="hidden" name="{csrf_name}" value="{csrf_hash}">
-          <input id="base-url" type="hidden" name="base_url" value="{base_url}">
-          <input id="index-page" type="hidden" name="index_page" value="{index_page}">
+          <!-- Base URL -->
+          <input
+          id="base-url"
+          type="hidden"
+          name="base_url"
+          value="{base_url}">
+          <!-- Index Page -->
+          <input
+          id="index-page"
+          type="hidden"
+          name="index_page"
+          alue="{index_page}">
+          <!-- Anti CSRF -->
+          <input
+          id="csrf"
+          type="hidden"
+          name="{csrf_name}"
+          value="{csrf_hash}">
 
           <!-- Projects List -->
           <table id="projects" class="u-full-width">
@@ -119,7 +134,7 @@
                     name="toggle"
                     value="false">
                     <input type="hidden" name="uri" value="{uri}">
-                    <a href="projects/update/{uri}">
+                    <a href="{base_url}{index_page}/projects/update/{uri}">
                       <strong>{title}</strong>
                     </a>
                   </td>
@@ -130,7 +145,7 @@
         </div>
       </section>
 
-      <!-- TODO: Add footer -->
+      <!-- TODO: Add footer and make it appear beneath the list -->
     </div>
 
     <!-- Modals -->

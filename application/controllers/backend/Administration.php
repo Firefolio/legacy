@@ -10,6 +10,7 @@ class Administration extends CI_Controller {
     $this->load->model('user_model');
     $this->load->model('application_model');
 
+    $this->load->helper('authentication');
     $this->load->helper('url');
     $this->load->helper('security');
 
@@ -18,24 +19,17 @@ class Administration extends CI_Controller {
 
   public function index()
   {
-    session_start();
+    require_authentication();
 
-    if (isset($_SESSION['user']))
-    {
-      $data = $this->get_parser_data();
+    $data = $this->get_parser_data();
 
-      $this->parser->parse('backend/administration/update.html', $data);
-    }
-    else
-    {
-      $url = base_url() . 'index.php/login';
-      header('Location: ' . $url);
-      exit();
-    }
+    $this->parser->parse('backend/administration/update.html', $data);
   }
 
   public function update($target)
   {
+    require_authentication();
+
     switch ($target)
     {
       case 'username':

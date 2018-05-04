@@ -5,7 +5,8 @@ $('document').ready(function () {
         var form = $('#update-username');
         var inputs = form.find('text, button');
         var url = $('#base-url').val() +
-                  'index.php/backend/administration/update/username';
+                  $('#index-page').val() +
+                  '/backend/administration/update/username';
         var data = {
           'username': $('#new-username').val()
         }
@@ -37,7 +38,8 @@ $('document').ready(function () {
         var form = $('#update-password');
         var inputs = form.find('text, button');
         var url = $('#base-url').val() +
-                  'index.php/backend/administration/update/password';
+                  $('#index-page') +
+                  '/backend/administration/update/password';
         var data = {
           'password': $('#new-password').val(),
           'confirmation': $('#new-password-confirmation').val()
