@@ -82,18 +82,28 @@ class Video {
     return $id;
   }
 
-  // Returns the type of video based on its URL as a lowercase string
+  // Returns the type of video based on its URL
+  // The type string will always be in lower case
+  // TODO: Find out how to return an enum value instead
   private function get_type($url)
   {
-    // Obtain the video ID through the use of regular expressions
-    if (preg_match('/youtube\.com\/watch\?v=([^\&\?\/]+)/', $url) OR
-        preg_match('/youtube\.com\/embed\/([^\&\?\/]+)/', $url) OR
-        preg_match('/youtube\.com\/v\/([^\&\?\/]+)/', $url) OR
-        preg_match('/youtu\.be\/([^\&\?\/]+)/', $url) OR
-        preg_match('/youtube\.com\/verify_age\?next_url=\/watch%3Fv%3D([^\&\?\/]+)/', $url))
+    $parsed_url = parse_url($url);
+
+    if ($parsed_url['host'] === 'www.youtube.com' OR
+        $parsed_url['host'] === 'youtube.com' OR
+        $parsed_url['host'] === 'youtu.be')
     {
-      // The link is from Youtube
       $type = 'youtube';
+    }
+    elseif ($parsed_url['host'] === 'www.vimeo.com' OR
+            $parsed_url['host'] === 'vimeo.com')
+    {
+      $type = 'vimeo';
+    }
+    else
+    {
+      // Assume self-hosted HTML5
+      $type = 'html5';
     }
 
     return $type;

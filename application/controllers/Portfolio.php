@@ -182,4 +182,12 @@ class Portfolio extends CI_Controller {
     $json = json_encode($response);
     echo $json;
   }
+
+  private function get_parser_data()
+  {
+    $data = array(
+      'base_url' => base_url(),
+      'index_page' => index_page()
+    );
+  }
 }
