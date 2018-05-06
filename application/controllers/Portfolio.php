@@ -75,19 +75,15 @@ class Portfolio extends CI_Controller {
   	if ($this->project_model->project_exists($uri))
     {
       // Get the data for the project from the database
-      $project = $this->project_model->get_project($uri);
-      $project['description'] = markdown_parse($project['description']);
-
-      // Clean the output with HTML purifyer
-      $data = html_purify($project);
+      $data = html_purify($this->get_parser_data($uri));
 
       // Check to see if the trailer field has been filled in
       // before purifying it
-      if (strlen($project['trailer']) > 0)
+      if (strlen($data['trailer']) > 0)
       {
         // Show the video with an appropriate view
         $data['trailer'] = $this->video->embed(
-          $project['trailer'], // URL
+          $data['trailer'], // URL
           TRUE, // Return HTML
           '100%', // Width
           '240px' // Height
@@ -102,11 +98,6 @@ class Portfolio extends CI_Controller {
           TRUE // Return result as a string
         );
       }
-      $data['base_url'] = base_url();
-      $data['index_page'] = index_page();
-      $data['name'] = htmlentities(
-        $this->profile_model->get_full_name()
-      );
       $data['date'] = date(
         'd.m.Y',
         strtotime($data['date'])
@@ -183,11 +174,33 @@ class Portfolio extends CI_Controller {
     echo $json;
   }
 
-  private function get_parser_data()
+  private function get_parser_data($uri = '')
   {
-    $data = array(
-      'base_url' => base_url(),
-      'index_page' => index_page()
+    // WARNING: the following function does not purify user output on its own.
+    // Use htmlentities and html_purify to prevent XSS attacks from user data!
+
+    // Determine whether a single project, or multiple projects are needed
+    if ($uri != '')
+    {
+      // Single project
+      $data = $this->project_model->get_project($uri);
+    }
+    else
+    {
+      // Multiple projects
+      $data['projects'] = $this->project_model->get_projects();
+    }
+
+    // Then add all of the other data we might need on top
+    $data['base_url'] = base_url();
+    $data['index_page'] = index_page();
+    $data['csrf_name'] = $this->security->get_csrf_token_name();
+    $data['csrf_hash'] = $this->security->get_csrf_hash();
+    $data['languages'] = $this->language_model->get_languages();
+    $data['full_name'] = htmlentities(
+      $this->profile_model->get_full_name()
     );
+
+    return $data;
   }
 }

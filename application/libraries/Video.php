@@ -46,14 +46,11 @@ class Video {
     $id = '';
     $expressions = array(
       'youtube' => array(
-        '/youtube\.com\/watch\?v=([^\&\?\/]+)/', // Regular video URL
+        '/youtube\.com\/watch\?v=([^\&\?\/]+)/', // Regular video URL (GET)
         '/youtube\.com\/embed\/([^\&\?\/]+)/', // Embed URl
         '/youtube\.com\/v\/([^\&\?\/]+)/', // Modern URL
         '/youtu\.be\/([^\&\?\/]+)/', // Shortened Youtube link
         '/youtube\.com\/verify_age\?next_url=\/watch%3Fv%3D([^\&\?\/]+)/' // Playlist URL
-      ),
-      'vimeo' => array(
-
       )
     );
 
@@ -69,13 +66,8 @@ class Video {
         }
         break;
       case 'vimeo':
-      // Check against every pattern that would suggest this is from Vimeo
-      for ($pattern = 0; $pattern < count($expressions['vimeo']); $pattern++) {
-        if (preg_match($expressions['vimeo'][$pattern], $url, $matches))
-        {
-          $id = $matches[1];
-        }
-      }
+        // We have to talk to Vimeos oEmbed API to find the ID for embedding
+        
         break;
     }
 
