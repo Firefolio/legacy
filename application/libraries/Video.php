@@ -42,6 +42,7 @@ class Video {
         }
         else
         {
+          // The user gave an invalid URL
           // Display an error message
           $html = '<strong>' .
                   'An error occured whilst trying to load this video.' .
@@ -59,7 +60,11 @@ class Video {
         }
         else
         {
-
+          // The user gave an invalid URL
+          // Display an error message
+          $html = '<strong>' .
+                  'An error occured whilst trying to load this video.' .
+                  '</strong>';
         }
         break;
       case 'html5':
