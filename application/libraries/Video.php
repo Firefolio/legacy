@@ -30,6 +30,19 @@ class Video {
         $data['source'] = 'https://youtube.com/embed/' . $this->get_video_id($url);
         $html = $this->CI->parser->parse('video/youtube.html', $data, $return);
         break;
+      case 'vimeo':
+        $endpoint = 'http://vimeo.com/api/oembed';
+        $request = $endpoint .
+                   '.json?url=' .
+                   rawurlencode($url) .
+                   '&width=' .
+                   rawurlencode($width) .
+                   '&height=' .
+                   rawurlencode($height);
+        $oembed = json_decode($this->curl_get($request));
+
+        $html = html_entity_decode($oembed->html);
+        break;
       default:
         break;
     }
@@ -67,7 +80,13 @@ class Video {
         break;
       case 'vimeo':
         // We have to talk to Vimeos oEmbed API to find the ID for embedding
-        
+        // This code was adapted from the following example:
+        // https://github.com/vimeo/vimeo-oembed-examples/blob/master/oembed/php-example.php
+        $endpoint = 'http://vimeo.com/api/oembed';
+        $request = $endpoint . '.json?url=' . rawurlencode($url);
+        $oembed = json_decode($this->curl_get($request));
+
+        $id = $oembed->video_id;
         break;
     }
 
@@ -99,5 +118,20 @@ class Video {
     }
 
     return $type;
+  }
+
+  private function curl_get($url)
+  {
+    // As in th PHP cURL library
+    $curl = curl_init($url);
+
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($curl, CURLOPT_TIMEOUT, 30);
+    curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
+
+    $value = curl_exec($curl);
+    curl_close($curl);
+
+    return $value;
   }
 }

@@ -43,9 +43,7 @@ class Portfolio extends CI_Controller {
         // Show the video with an appropriate view
         $data['trailer'] = $this->video->embed(
           $data['trailer'], // URL
-          TRUE, // Return HTML
-          '100%', // Width
-          '240px' // Height
+          TRUE // Return HTML
         );
       }
       else
