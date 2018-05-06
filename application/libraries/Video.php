@@ -32,18 +32,14 @@ class Video {
         break;
       case 'vimeo':
         $endpoint = 'http://vimeo.com/api/oembed';
-        $request = $endpoint .
-                   '.json?url=' .
-                   rawurlencode($url) .
-                   '&width=' .
-                   rawurlencode($width) .
-                   '&height=' .
-                   rawurlencode($height);
+        $request = $endpoint .'.json?url=' . rawurlencode($url);
         $oembed = json_decode($this->curl_get($request));
 
         $html = html_entity_decode($oembed->html);
         break;
-      default:
+      case 'html5':
+        $data['source'] = html_purify($url);
+        $html = $this->CI->parser->parse('video/html5.html', $data, $return);
         break;
     }
 
@@ -95,7 +91,7 @@ class Video {
 
   // Returns the type of video based on its URL
   // The type string will always be in lower case
-  // TODO: Find out how to return an enum value instead
+  // TODO: Find out how to return an enum value instead of a string
   private function get_type($url)
   {
     $parsed_url = parse_url($url);
