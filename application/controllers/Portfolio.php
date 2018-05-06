@@ -23,49 +23,8 @@ class Portfolio extends CI_Controller {
 
   public function index()
   {
-    $projects = html_purify($this->project_model->get_projects());
-    $rows = array();
-    $projects_per_row = 3;
-
-    for ($project = 0; $project < count($projects); $project++)
-    {
-      // Remove styles from visible data
-      $projects[$project]['title'] = htmlentities(
-        $projects[$project]['title']
-      );
-      $projects[$project]['subtitle'] = htmlentities(
-        $projects[$project]['subtitle']
-      );
-      $projects[$project]['language'] = htmlentities(
-        $projects[$project]['language']
-      );
-
-      // Process the date to show the year only
-      $projects[$project]['date'] = date(
-        'Y',
-        strtotime($projects[$project]['date'])
-      );
-
-      // Include URL data
-      $projects[$project]['base_url'] = base_url();
-      $projects[$project]['index_page'] = index_page();
-    }
-
-    // Split the projects into their own rows on the responsive grid
-    foreach (array_chunk($projects, $projects_per_row, TRUE) as $row)
-    {
-      array_push($rows, array('projects' => $row));
-    }
-
-    $data = array(
-      'base_url' => base_url(),
-      'index_page' => index_page(),
-      'full_name' => $this->profile_model->get_full_name(),
-      'csrf_name' => $this->security->get_csrf_token_name(),
-      'csrf_hash' => $this->security->get_csrf_hash(),
-      'rows' => $rows,
-      'languages' => $this->project_model->get_languages()
-    );
+    $data = $this->get_parser_data();
+    $data['rows'] = $this->get_project_rows();
 
     $this->parser->parse('frontend/portfolio.html', $data);
   }
@@ -98,10 +57,8 @@ class Portfolio extends CI_Controller {
           TRUE // Return result as a string
         );
       }
-      $data['date'] = date(
-        'd.m.Y',
-        strtotime($data['date'])
-      );
+
+      $data['date'] = date('d.m.Y', strtotime($data['date']));
 
     	$this->parser->parse('frontend/project.html', $data);
     }
@@ -131,30 +88,8 @@ class Portfolio extends CI_Controller {
 
       if (count($projects) > 0)
       {
-        // TODO: Turn this into a function
-        // Break the data back from the search into a responsive grid
-        $rows = array();
-        $projects_per_row = 3;
-
-        // Purify project data
-        foreach ($projects as $project)
-        {
-          $project['title'] = htmlentities($project['title']);
-          $project['subtitle'] = htmlentities($project['subtitle']);
-          $project['language'] = htmlentities($project['language']);
-        }
-
-        // Split the projects into their own rows
-        foreach (array_chunk($projects, $projects_per_row, TRUE) as $row)
-        {
-          array_push($rows, array('projects' => $row));
-        }
-
-        $data = array(
-          'base_url' => base_url(),
-          'title' => $this->profile_model->get_full_name(),
-          'rows' => $rows
-        );
+        $data = $this->get_parser_data();
+        $data['rows'] = $this->get_project_rows();
 
         $response['html'] = $this->parser->parse(
           'frontend/thumbnails.html',
@@ -172,6 +107,44 @@ class Portfolio extends CI_Controller {
 
     $json = json_encode($response);
     echo $json;
+  }
+
+  private function get_project_rows($projects_per_row = 3)
+  {
+    $projects = html_purify($this->project_model->get_projects());
+    $rows = array();
+
+    for ($project = 0; $project < count($projects); $project++)
+    {
+      // Remove styles from visible data
+      $projects[$project]['title'] = htmlentities(
+        $projects[$project]['title']
+      );
+      $projects[$project]['subtitle'] = htmlentities(
+        $projects[$project]['subtitle']
+      );
+      $projects[$project]['language'] = htmlentities(
+        $projects[$project]['language']
+      );
+
+      // Process the date to show the year only
+      $projects[$project]['date'] = date(
+        'Y',
+        strtotime($projects[$project]['date'])
+      );
+
+      // Include URL data
+      $projects[$project]['base_url'] = base_url();
+      $projects[$project]['index_page'] = index_page();
+    }
+
+    // Split the projects into their own rows on the responsive grid
+    foreach (array_chunk($projects, $projects_per_row, TRUE) as $row)
+    {
+      array_push($rows, array('projects' => $row));
+    }
+
+    return $rows;
   }
 
   private function get_parser_data($uri = '')
