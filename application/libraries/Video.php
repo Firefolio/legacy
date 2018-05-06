@@ -27,7 +27,7 @@ class Video {
     switch ($this->get_type($url))
     {
       case 'youtube':
-        $data['source'] = 'https://youtube.com/embed/' . get_video_id($url);
+        $data['source'] = 'https://youtube.com/embed/' . $this->get_video_id($url);
         $html = $this->CI->parser->parse('video/youtube.html', $data, $return);
         break;
       default:
@@ -40,7 +40,7 @@ class Video {
     }
   }
 
-  //
+  // Returns a video's ID based on it's type
   private function get_video_id($url)
   {
     $id = '';
@@ -67,6 +67,15 @@ class Video {
             $id = $matches[1];
           }
         }
+        break;
+      case 'vimeo':
+      // Check against every pattern that would suggest this is from Vimeo
+      for ($pattern = 0; $pattern < count($expressions['vimeo']); $pattern++) {
+        if (preg_match($expressions['vimeo'][$pattern], $url, $matches))
+        {
+          $id = $matches[1];
+        }
+      }
         break;
     }
 

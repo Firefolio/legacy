@@ -13,7 +13,6 @@ class Portfolio extends CI_Controller {
 
     $this->load->helper('date');
     $this->load->helper('security');
-    $this->load->helper('video');
     $this->load->helper('html_purifier');
     $this->load->helper('markdown');
     $this->load->helper('url');
