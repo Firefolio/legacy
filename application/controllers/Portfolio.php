@@ -85,6 +85,7 @@ class Portfolio extends CI_Controller {
       // before purifying it
       if (strlen($project['trailer']) > 0)
       {
+        // Embed the desired video inside the page
         $data['trailer'] = $this->parser->parse(
           'frontend/trailer/youtube.html',
           array(
@@ -95,11 +96,12 @@ class Portfolio extends CI_Controller {
       }
       else
       {
-        $data['trailer'] = '<img src="' .
-                          $data['thumbnail'] .
-                          '" alt="' .
-                          $data['title'] .
-                          ' Thumbnail">';
+        // Show a larger version of the thumbnail instead
+        $data['trailer'] = $this->parser->parse(
+          'frontend/trailer/none.html',
+          $data,
+          TRUE // Return result as a string
+        );
       }
       $data['base_url'] = base_url();
       $data['index_page'] = index_page();
