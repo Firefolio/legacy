@@ -27,15 +27,40 @@ class Video {
     switch ($this->get_type($url))
     {
       case 'youtube':
-        $data['source'] = 'https://youtube.com/embed/' . $this->get_video_id($url);
-        $html = $this->CI->parser->parse('video/youtube.html', $data, $return);
+        $endpoint = 'http://youtube.com/oembed';
+        $request = $endpoint .'?url='
+                   . rawurlencode($url)
+                   . '&format=json&width='
+                   . rawurlencode($width)
+                   . '&height'
+                   . rawurlencode($height);
+        $oembed = json_decode($this->curl_get($request));
+
+        if (isset($oembed))
+        {
+          $html = html_entity_decode($oembed->html);
+        }
+        else
+        {
+          // Display an error message
+          $html = '<strong>' .
+                  'An error occured whilst trying to load this video.' .
+                  '</strong>';
+        }
         break;
       case 'vimeo':
         $endpoint = 'http://vimeo.com/api/oembed';
         $request = $endpoint .'.json?url=' . rawurlencode($url);
         $oembed = json_decode($this->curl_get($request));
 
-        $html = html_entity_decode($oembed->html);
+        if (isset($oembed))
+        {
+          $html = html_entity_decode($oembed->html);
+        }
+        else
+        {
+
+        }
         break;
       case 'html5':
         $data['source'] = html_purify($url);
@@ -47,46 +72,6 @@ class Video {
     {
       return $html;
     }
-  }
-
-  // Returns a video's ID based on it's type
-  private function get_video_id($url)
-  {
-    $id = '';
-    $expressions = array(
-      'youtube' => array(
-        '/youtube\.com\/watch\?v=([^\&\?\/]+)/', // Regular video URL (GET)
-        '/youtube\.com\/embed\/([^\&\?\/]+)/', // Embed URl
-        '/youtube\.com\/v\/([^\&\?\/]+)/', // Modern URL
-        '/youtu\.be\/([^\&\?\/]+)/', // Shortened Youtube link
-        '/youtube\.com\/verify_age\?next_url=\/watch%3Fv%3D([^\&\?\/]+)/' // Playlist URL
-      )
-    );
-
-    switch ($this->get_type($url))
-    {
-      case 'youtube':
-        // Check against every pattern that would suggest this is a youtube video
-        for ($pattern = 0; $pattern < count($expressions['youtube']); $pattern++) {
-          if (preg_match($expressions['youtube'][$pattern], $url, $matches))
-          {
-            $id = $matches[1];
-          }
-        }
-        break;
-      case 'vimeo':
-        // We have to talk to Vimeos oEmbed API to find the ID for embedding
-        // This code was adapted from the following example:
-        // https://github.com/vimeo/vimeo-oembed-examples/blob/master/oembed/php-example.php
-        $endpoint = 'http://vimeo.com/api/oembed';
-        $request = $endpoint . '.json?url=' . rawurlencode($url);
-        $oembed = json_decode($this->curl_get($request));
-
-        $id = $oembed->video_id;
-        break;
-    }
-
-    return $id;
   }
 
   // Returns the type of video based on its URL
