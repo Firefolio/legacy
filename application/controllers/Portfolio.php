@@ -19,6 +19,7 @@ class Portfolio extends CI_Controller {
     $this->load->helper('url');
 
     $this->load->library('parser');
+    $this->load->library('video');
   }
 
   public function index()
@@ -85,14 +86,8 @@ class Portfolio extends CI_Controller {
       // before purifying it
       if (strlen($project['trailer']) > 0)
       {
-        // Embed the desired video inside the page
-        $data['trailer'] = $this->parser->parse(
-          'frontend/trailer/youtube.html',
-          array(
-            'trailer' => get_embed_url($project['trailer'])
-          ),
-          TRUE
-        );
+        // Embed the desired video inside the page depending on it's type
+        $data['trailer'] = $this->video->embed($project['trailer']);
       }
       else
       {
