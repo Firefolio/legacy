@@ -9,65 +9,72 @@ class Video {
   public function __construct()
   {
     $this->CI =& get_instance();
+
+    $this->CI->load->helper('html_purifier');
     $this->CI->load->library('parser');
   }
 
-  public function embed($url)
+  // Embeds a video onto the page using its type
+  // Optionally returning the embed code as a string
+  public function embed($url, $return = FALSE, $width = '100%', $height = 'auto')
   {
+    $data = array(
+      'width' => $width,
+      'height' => $height
+    );
+    $html = '';
 
-  }
-
-  public function get_embed_url($url)
-  {
     switch ($this->get_type($url))
     {
-      case 'Youtube':
-        $embed_url = 'https://youtube.com/embed/' .
-                     get_video_id($url);
+      case 'youtube':
+        $data['source'] = 'https://youtube.com/embed/' . get_video_id($url);
+        $html = $this->CI->parser->parse('video/youtube.html', $data, $return);
         break;
       default:
         break;
     }
 
-    return $embed_url;
+    if ($return)
+    {
+      return $html;
+    }
   }
 
+  //
   private function get_video_id($url)
   {
     $id = '';
+    $expressions = array(
+      'youtube' => array(
+        '/youtube\.com\/watch\?v=([^\&\?\/]+)/', // Regular video URL
+        '/youtube\.com\/embed\/([^\&\?\/]+)/', // Embed URl
+        '/youtube\.com\/v\/([^\&\?\/]+)/', // Modern URL
+        '/youtu\.be\/([^\&\?\/]+)/', // Shortened Youtube link
+        '/youtube\.com\/verify_age\?next_url=\/watch%3Fv%3D([^\&\?\/]+)/' // Playlist URL
+      ),
+      'vimeo' => array(
+
+      )
+    );
 
     switch ($this->get_type($url))
     {
-      case 'Youtube':
-      // Obtain the video ID through the use of regular expressions
-      // Checking against every pattern related to youtube
-      if (preg_match('/youtube\.com\/watch\?v=([^\&\?\/]+)/', $url, $matches))
-      {
-        $id = $matches[1];
-      }
-      else if (preg_match('/youtube\.com\/embed\/([^\&\?\/]+)/', $url, $matches))
-      {
-        $id = $matches[1];
-      }
-      else if (preg_match('/youtube\.com\/v\/([^\&\?\/]+)/', $url, $matches))
-      {
-        $id = $matches[1];
-      }
-      else if (preg_match('/youtu\.be\/([^\&\?\/]+)/', $url, $matches))
-      {
-        $id = $matches[1];
-      }
-      else if (preg_match('/youtube\.com\/verify_age\?next_url=\/watch%3Fv%3D([^\&\?\/]+)/', $url, $matches))
-      {
-        $id = $matches[1];
-      }
+      case 'youtube':
+        // Check against every pattern that would suggest this is a youtube video
+        for ($pattern = 0; $pattern < count($expressions['youtube']); $pattern++) {
+          if (preg_match($expressions['youtube'][$pattern], $url, $matches))
+          {
+            $id = $matches[1];
+          }
+        }
         break;
     }
 
     return $id;
   }
 
-  public function get_type($url)
+  // Returns the type of video based on its URL as a lowercase string
+  private function get_type($url)
   {
     // Obtain the video ID through the use of regular expressions
     if (preg_match('/youtube\.com\/watch\?v=([^\&\?\/]+)/', $url) OR
@@ -77,7 +84,7 @@ class Video {
         preg_match('/youtube\.com\/verify_age\?next_url=\/watch%3Fv%3D([^\&\?\/]+)/', $url))
     {
       // The link is from Youtube
-      $type = 'Youtube';
+      $type = 'youtube';
     }
 
     return $type;

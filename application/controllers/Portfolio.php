@@ -86,14 +86,19 @@ class Portfolio extends CI_Controller {
       // before purifying it
       if (strlen($project['trailer']) > 0)
       {
-        // Embed the desired video inside the page depending on it's type
-        $data['trailer'] = $this->video->embed($project['trailer']);
+        // Show the video with an appropriate view
+        $data['trailer'] = $this->video->embed(
+          $project['trailer'], // URL
+          TRUE, // Return HTML
+          '100%', // Width
+          '240px' // Height
+        );
       }
       else
       {
         // Show a larger version of the thumbnail instead
         $data['trailer'] = $this->parser->parse(
-          'frontend/trailer/none.html',
+          'frontend/thumbnail.html',
           $data,
           TRUE // Return result as a string
         );
