@@ -8,3 +8,5 @@
 - Add an `About` controller that credits people and libraries who worked on this
 - Tweak `projects` table design
 - Incorporate the application's index page into URLs.
+- Add Vimeo support for trailers
+- Add HTML5 support for trailers

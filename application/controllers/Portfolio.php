@@ -83,9 +83,24 @@ class Portfolio extends CI_Controller {
 
       // Check to see if the trailer field has been filled in
       // before purifying it
-      $data['trailer'] = html_purify(
-        get_embed_url($project['trailer'])
-      );
+      if (strlen($project['trailer']) > 0)
+      {
+        $data['trailer'] = $this->parser->parse(
+          'frontend/trailer/youtube.html',
+          array(
+            'trailer' => get_embed_url($project['trailer'])
+          ),
+          TRUE
+        );
+      }
+      else
+      {
+        $data['trailer'] = '<img src="' .
+                          $data['thumbnail'] .
+                          '" alt="' .
+                          $data['title'] .
+                          ' Thumbnail">';
+      }
       $data['base_url'] = base_url();
       $data['index_page'] = index_page();
       $data['name'] = htmlentities(
