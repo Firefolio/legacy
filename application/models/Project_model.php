@@ -20,12 +20,12 @@ class Project_model extends CI_Model {
 	  return $project;
   }
 
-  public function get_projects($options = array())
+  public function get_projects($where = array(), $order = 'DESC')
   {
     // Get all of the projects in the database,
     // then sort them such that the newest goes first
-    $this->db->order_by('id', 'DESC');
-    $query = $this->db->get_where('projects', $options);
+    $this->db->order_by('id', $order);
+    $query = $this->db->get_where('projects', $where);
 
     return $query->result_array();
   }
@@ -55,7 +55,13 @@ class Project_model extends CI_Model {
 
     for ($value = 0; $value < count($values); $value++)
     {
-      array_push($visibilities, array('visibility' => $values[$value]));
+      array_push(
+        $visibilities,
+        array(
+          'visibility' => $values[$value],
+          'selected' => '' // Will be set if the value matches up
+        )
+      );
     }
 
     return $visibilities;

@@ -79,7 +79,6 @@
       <header class="row">
         <!-- We use {header} instead of {title} here because it's had its markup escaped -->
         <h1>Update {header}</h1>
-        <hr>
       </header>
 
       <!-- Content -->
@@ -230,7 +229,7 @@
                 name="visibility">
                   {visibilities}
                     <option
-                    value="{visibility}">{visibility}</option>
+                    value="{visibility}" {selected}>{visibility}</option>
                   {/visibilities}
                 </select>
               </div>
@@ -256,6 +255,7 @@
                 value="{purpose}">
               </div>
             </div>
+            <!-- Form Buttons -->
             <div class="row">
               <div class="three columns">
                 <button class="button-primary u-full-width" type="submit" name="button">
@@ -268,7 +268,10 @@
                 </a>
               </div>
               <div class="three columns">
-                <button class="u-full-width" type="reset" name="button">
+                <button
+                class="u-full-width"
+                type="reset"
+                name="button">
                   Reset
                 </button>
               </div>

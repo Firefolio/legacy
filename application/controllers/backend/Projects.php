@@ -112,6 +112,20 @@ class Projects extends CI_Controller {
             markdown_parse($data['description'])
           );
 
+          // Then set all of the lists to their appropriate values
+          // Visibility
+          // TODO: Wrap this in a function
+          for ($visibility = 0; $visibility < count($data['visibilities']); $visibility++)
+          {
+            // If the current visibility value from the database equals
+            // the string from this iteration of the loop
+            if ($data['visibilities'][$visibility]['visibility'] === $data['visibility'])
+            {
+              // Mark this value as selected as selected
+              $data['visibilities'][$visibility]['selected'] = 'selected="selected"';
+            }
+          }
+
           $this->parser->parse('backend/projects/update.html', $data);
         }
         else

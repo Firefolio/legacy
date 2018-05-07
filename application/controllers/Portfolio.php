@@ -109,6 +109,8 @@ class Portfolio extends CI_Controller {
 
   private function get_project_rows($projects_per_row = 3)
   {
+    // Get the project data from the database in such a way that only
+    // publically visible projects are collected
     $projects = html_purify(
       $this->project_model->get_projects(array('visibility' => 'public'))
     );
