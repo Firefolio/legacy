@@ -23,7 +23,6 @@ class Portfolio extends CI_Controller {
 
   public function index()
   {
-    var_dump($this->project_model->get_visibilities());
     $data = $this->get_parser_data();
     $data['rows'] = $this->get_project_rows();
 
