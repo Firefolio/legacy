@@ -6,7 +6,9 @@ class Project_model extends CI_Model {
   function __construct()
   {
     parent::__construct();
+
     $this->load->helper('url');
+    $this->load->helper('enum');
   }
 
   public function get_project($uri)
