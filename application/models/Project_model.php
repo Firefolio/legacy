@@ -44,7 +44,7 @@ class Project_model extends CI_Model {
   {
     // Obtain the types from the column
     $type = $this->db->query(
-      'SHOW COLUMNS FROM `projects` WHERE Field = `visibility`'
+      'SHOW COLUMNS FROM `projects` WHERE Field = \'visibility\''
     )->row(0)->Type;
     // Use a regular expression to convert those types to an array of matched
     // strings
