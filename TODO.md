@@ -4,6 +4,7 @@
 - Add a project details list that allows for hyperlinks as well as text with headers
 - Add a screenshot gallery that allows the user to display their project
 - Provide validation on backend forms
-- Expand the amount of information the profile is able to store
+- Expand the amount of information the profile is able to store in its table
 - Add an `About` controller that credits people and libraries who worked on this
-- Tweak `projects` table design
+- Remove date field from projects table
+- Add search tags for projects

@@ -44,13 +44,7 @@ class Project_model extends CI_Model {
 
   public function get_visibilities()
   {
-    // Obtain the types from the column
-    $type = $this->db->query(
-      'SHOW COLUMNS FROM `projects` WHERE Field = \'visibility\''
-    )->row(0)->Type;
-    // Use a regular expression to convert those types to an array
-    preg_match('/^enum\(\'(.*)\'\)$/', $type, $matches);
-    $values = explode('\',\'', $matches[1]);
+    $values = get_sql_enum_values('projects', 'visibility');
 
     // Convert that array into a format acceptable by the template parser
     $visibilities = array();
@@ -67,6 +61,27 @@ class Project_model extends CI_Model {
     }
 
     return $visibilities;
+  }
+
+  public function get_statuses()
+  {
+    $values = get_sql_enum_values('projects', 'status');
+
+    // Convert that array into a format acceptable by the template parser
+    $statuses = array();
+
+    for ($value = 0; $value < count($values); $value++)
+    {
+      array_push(
+        $statuses,
+        array(
+          'statuses' => $values[$value],
+          'selected' => '' // Will be set if the value matches up
+        )
+      );
+    }
+
+    return $statuses;
   }
 
   public function insert_project($project)
