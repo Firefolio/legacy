@@ -20,13 +20,12 @@ class Project_model extends CI_Model {
 	  return $project;
   }
 
-  public function get_projects()
+  public function get_projects($options = array())
   {
     // Get all of the projects in the database,
     // then sort them such that the newest goes first
     $this->db->order_by('id', 'DESC');
-    $this->db->where('visibility', 'Public');
-    $query = $this->db->get('projects');
+    $query = $this->db->get_where('projects', $options);
 
     return $query->result_array();
   }

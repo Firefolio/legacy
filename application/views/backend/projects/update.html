@@ -227,12 +227,10 @@
                 <label for="visibility">Visibility</label>
                 <select
                 class="u-full-width"
-                name="visibility"
-                value="{visibility}">
+                name="visibility">
                   {visibilities}
                     <option
-                    value="{visibility}"
-                    selected="{selected}">{visibility}</option>
+                    value="{visibility}">{visibility}</option>
                   {/visibilities}
                 </select>
               </div>
@@ -241,9 +239,21 @@
                 <label for="status">Status</label>
                 <select
                 class="u-full-width"
-                name="status"
-                value="{status}">
+                name="status">
+                {statuses}
+                  <option
+                  value="{visibility}">{status}</option>
+                {/statuses}
                 </select>
+              </div>
+              <!-- Purpose -->
+              <div class="four columns">
+                <label for="purpose">Purpose</label>
+                <input
+                class="u-full-width"
+                type="text"
+                name="purpose"
+                value="{purpose}">
               </div>
             </div>
             <div class="row">

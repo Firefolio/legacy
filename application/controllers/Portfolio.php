@@ -109,7 +109,9 @@ class Portfolio extends CI_Controller {
 
   private function get_project_rows($projects_per_row = 3)
   {
-    $projects = html_purify($this->project_model->get_projects());
+    $projects = html_purify(
+      $this->project_model->get_projects(array('visibility' => 'public'))
+    );
     $rows = array();
 
     for ($project = 0; $project < count($projects); $project++)
