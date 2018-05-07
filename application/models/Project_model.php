@@ -75,7 +75,7 @@ class Project_model extends CI_Model {
       array_push(
         $statuses,
         array(
-          'statuses' => $values[$value],
+          'status' => $values[$value],
           'selected' => '' // Will be set if the value matches up
         )
       );

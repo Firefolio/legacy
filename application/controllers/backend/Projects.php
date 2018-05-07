@@ -293,6 +293,7 @@ class Projects extends CI_Controller {
       TRUE
     );
     $data['visibilities'] = $this->project_model->get_visibilities();
+    $data['statuses'] = $this->project_model->get_statuses();
 
     return $data;
   }
