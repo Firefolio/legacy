@@ -47,10 +47,17 @@ class Project_model extends CI_Model {
     $type = $this->db->query(
       'SHOW COLUMNS FROM `projects` WHERE Field = \'visibility\''
     )->row(0)->Type;
-    // Use a regular expression to convert those types to an array of matched
-    // strings
+    // Use a regular expression to convert those types to an array
     preg_match('/^enum\(\'(.*)\'\)$/', $type, $matches);
-    $visibilities = explode('\',\'', $matches[1]);
+    $values = explode('\',\'', $matches[1]);
+
+    // Convert that array into a format acceptable by the template parser
+    $visibilities = array();
+
+    for ($value = 0; $value < count($values); $value++)
+    {
+      array_push($visibilities, array('visibility' => $values[$value]));
+    }
 
     return $visibilities;
   }
