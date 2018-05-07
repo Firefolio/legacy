@@ -171,6 +171,7 @@ class Portfolio extends CI_Controller {
     $data['full_name'] = htmlentities(
       $this->profile_model->get_full_name()
     );
+    $data['visibilities'] = $this->project_model->get_visibilities();
 
     return $data;
   }
