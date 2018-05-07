@@ -167,7 +167,7 @@ class Portfolio extends CI_Controller {
     $data['index_page'] = index_page();
     $data['csrf_name'] = $this->security->get_csrf_token_name();
     $data['csrf_hash'] = $this->security->get_csrf_hash();
-    $data['languages'] = $this->language_model->get_languages();
+    $data['languages'] = $this->project_model->get_languages();
     $data['full_name'] = htmlentities(
       $this->profile_model->get_full_name()
     );

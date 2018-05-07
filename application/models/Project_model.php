@@ -40,6 +40,20 @@ class Project_model extends CI_Model {
     return $query->result_array();
   }
 
+  public function get_visibilities()
+  {
+    // Obtain the types from the column
+    $type = $this->db->query(
+      'SHOW COLUMNS FROM `projects` WHERE Field = `visibility`'
+    )->row(0)->Type;
+    // Use a regular expression to convert those types to an array of matched
+    // strings
+    preg_match('/^enum\(\'(.*)\'\)$/', $type, $matches);
+    $visibilities = explode('\',\'', $matches[1]);
+
+    return $visibilities;
+  }
+
   public function insert_project($project)
   {
     $this->db->insert('projects', $project);
