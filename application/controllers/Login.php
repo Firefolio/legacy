@@ -7,7 +7,7 @@ class Login extends CI_Controller
   {
     parent::__construct();
 
-    $this->load->model('user_model');
+    $this->load->model('application_model');
 
     $this->load->helper('url');
     $this->load->helper('security');
@@ -46,8 +46,7 @@ class Login extends CI_Controller
       'message' => 'No error message specified',
       'hash' => $this->security->get_csrf_hash()
     );
-
-    $user = $this->user_model->get_user();
+    $credentials = $this->application_model->get_credentials();
 
     session_start();
 
@@ -58,8 +57,8 @@ class Login extends CI_Controller
 
       if (strlen($username) > 0 AND strlen($password) > 0)
       {
-        if ($username === $user['username'] AND
-            password_verify($password, $user['password']))
+        if ($username === $credentials['username'] AND
+            password_verify($password, $credentials['password']))
         {
           $_SESSION['user'] = $username;
 

@@ -1,7 +1,7 @@
 - Store and force changes on the system's default password
 - Add a controller for programming languages so that autocomplete can happen on the database
 - Add cascading styles to the backend interface
-- Add a project details list that allows for hyperlinks as well as text with headers
+- Add an area for hyperlinks
 - Add a screenshot gallery that allows the user to display their project
 - Provide validation on backend forms
 - Expand the amount of information the profile is able to store in its table

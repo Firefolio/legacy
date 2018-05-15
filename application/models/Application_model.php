@@ -48,6 +48,32 @@ class Application_model extends CI_Model {
     return $row['website'];
   }
 
+  public function get_credentials()
+  {
+    $credentials = array(
+      'username' => $this->get_username(),
+      'password' => $this->get_password()
+    );
+
+    return $credentials;
+  }
+
+  public function get_username()
+  {
+    $query = $this->db->get('application');
+    $row = $query->row_array();
+
+    return $row['username'];
+  }
+
+  public function get_password()
+  {
+    $query = $this->db->get('application');
+    $row = $query->row_array();
+
+    return $row['password'];
+  }
+
   public function get_default_password()
   {
     $query = $this->db->get('application');
