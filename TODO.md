@@ -6,5 +6,4 @@
 - Provide validation on backend forms
 - Expand the amount of information the profile is able to store in its table
 - Add an `About` controller that credits people and libraries who worked on this
-- Remove date field from projects table
 - Add search tags for projects
