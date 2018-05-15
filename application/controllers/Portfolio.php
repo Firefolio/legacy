@@ -159,6 +159,7 @@ class Portfolio extends CI_Controller {
     {
       // Single project
       $data = $this->project_model->get_project($uri);
+      $data['details'] = $this->get_details($data);
     }
     else
     {
@@ -178,5 +179,53 @@ class Portfolio extends CI_Controller {
     $data['visibilities'] = $this->project_model->get_visibilities();
 
     return $data;
+  }
+
+  private function get_details($project)
+  {
+    $data = array(
+      'details' => array()
+    );
+    $columns = array(
+      'language',
+      'date',
+      'status',
+      'purpose',
+      'technology'
+    );
+    $html = '';
+
+    if (isset($project))
+    {
+      foreach ($project as $key => $value)
+      {
+        // Check if the key is one that could describe a detail
+        foreach ($columns as $column)
+        {
+          // If that column is in the array of approved columns
+          if ($key === $column)
+          {
+            if ($value != '')
+            {
+              array_push(
+                $data['details'],
+                array(
+                  'header' => ucfirst($key),
+                  'content' => $value
+                )
+              );
+            }
+          }
+        }
+      }
+
+      $html = $this->parser->parse(
+        'frontend/details.html',
+        $data,
+        TRUE
+      );
+    }
+
+    return $html;
   }
 }

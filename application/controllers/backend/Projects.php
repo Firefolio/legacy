@@ -37,6 +37,8 @@ class Projects extends CI_Controller {
       $data['projects'][$project]['index_page'] = index_page();
     }
 
+    var_dump($data['details']);
+
     $this->parser->parse('backend/projects/view.html', $data);
   }
 
@@ -310,11 +312,10 @@ class Projects extends CI_Controller {
       'description' => $_POST['description'] ?? '',
       'language' => $_POST['language'] ?? '',
       'date' => $_POST['date'] ?? '',
-      'start_date' => $_POST['start_date'] ?? '',
-      'release_date' => $_POST['release_date'] ?? '',
       'visibility' => $_POST['visibility'] ?? '',
       'status' => $_POST['status'] ?? '',
-      'purpose' => $_POST['purpose'] ?? ''
+      'purpose' => $_POST['purpose'] ?? '',
+      'technology' => $_POST['technology'] ?? ''
     );
 
     return $data;

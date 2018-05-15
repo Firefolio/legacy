@@ -133,7 +133,7 @@
             <!-- Visible Inputs -->
             <div class="row">
               <div class="one-half column">
-                <label for="title">Title</label>
+                <label for="title">Title*</label>
                 <input
                 class="u-full-width"
                 type="text"
@@ -217,7 +217,12 @@
               </div>
               <div class="one-half column">
                 <label for="date">Date</label>
-                <input id="datepicker" class="u-full-width" type="text" name="date" value="{date}">
+                <input
+                id="datepicker"
+                class="u-full-width"
+                type="text"
+                name="date"
+                value="{date}">
               </div>
             </div>
             <div class="row">
@@ -253,6 +258,18 @@
                 type="text"
                 name="purpose"
                 value="{purpose}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="one-full column">
+                <!-- Technology -->
+                <label for="technology">Technology</label>
+                <em>Seperate individual technologies with commas.</em>
+                <input
+                class="u-full-width"
+                type="text"
+                name="technology"
+                value="{technology}">
               </div>
             </div>
             <!-- Form Buttons -->
