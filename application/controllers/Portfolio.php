@@ -56,8 +56,6 @@ class Portfolio extends CI_Controller {
         );
       }
 
-      $data['date'] = date('d.m.Y', strtotime($data['date']));
-
     	$this->parser->parse('frontend/project.html', $data);
     }
     else
@@ -159,6 +157,7 @@ class Portfolio extends CI_Controller {
     {
       // Single project
       $data = $this->project_model->get_project($uri);
+      $data['date'] = date('d.m.Y', strtotime($data['date']));
       $data['details'] = $this->get_details($data);
     }
     else
@@ -184,27 +183,29 @@ class Portfolio extends CI_Controller {
   private function get_details($project)
   {
     $data = array(
-      'details' => array()
+      'details' => array(),
+      'technologies' => array()
     );
     $columns = array(
       'language',
       'date',
       'status',
-      'purpose',
-      'technology'
+      'purpose'
     );
     $html = '';
 
     if (isset($project))
     {
+      // Check each field of the project
       foreach ($project as $key => $value)
       {
-        // Check if the key is one that could describe a detail
+        // Check its key against all of the columns that could be a detail
         foreach ($columns as $column)
         {
           // If that column is in the array of approved columns
           if ($key === $column)
           {
+            // And the value of that column is valid
             if ($value != '')
             {
               array_push(
@@ -223,7 +224,7 @@ class Portfolio extends CI_Controller {
         'frontend/details.html',
         $data,
         TRUE
-      );
+      ) ?? '';
     }
 
     return $html;

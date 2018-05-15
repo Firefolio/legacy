@@ -37,8 +37,6 @@ class Projects extends CI_Controller {
       $data['projects'][$project]['index_page'] = index_page();
     }
 
-    var_dump($data['details']);
-
     $this->parser->parse('backend/projects/view.html', $data);
   }
 
