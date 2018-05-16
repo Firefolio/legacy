@@ -85,6 +85,7 @@
       <section class="row">
         <div class="one-full column">
             {form}
+
             <!-- Form Buttons -->
             <div class="row">
               <div class="three columns">
@@ -125,7 +126,7 @@
     </div>
 
     <!-- Modal -->
-    <div id="modal" title="Alert">
+    <div id="modal" title="Alert" style="z-index: 2" hidden>
       <p>
         Are you sure you want to navigate away from the page?
         All unsaved data will be lost...
@@ -133,6 +134,7 @@
     </div>
 
     <!-- Scripts -->
+    <!-- JQuery -->
     <script
     src="https://code.jquery.com/jquery-3.2.1.min.js"
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -148,11 +150,13 @@
     rel="stylesheet"
     href="{base_url}js/vendor/jquery-ui-1.12.1/jquery-ui.theme.min.css">
 
+    <!-- Utilities -->
     <script src="{base_url}js/utilities/fallback.js"></script>
     <script src="{base_url}js/utilities/to_ascii.js"></script>
     <script src="{base_url}js/utilities/ajax.js"></script>
     <script src="{base_url}js/utilities/debounce.js"></script>
 
+    <!-- Firefolio -->
     <script src="{base_url}js/firefolio/project/update.js"></script>
     <script src="{base_url}js/firefolio/project/description.js"></script>
     <script src="{base_url}js/firefolio/datepicker.js"></script>
