@@ -110,7 +110,7 @@ class Projects extends CI_Controller {
                          $uri .
                          '/attempt';
           // This is where the form will redirect to
-          $redirect = base_url() . index_page() . 'backend/projects';
+          $redirect = base_url() . index_page() . '/backend/projects';
 
           // Really, we should use html_purify on everything here,
           // but that could possibly corrupt the data input
