@@ -88,7 +88,9 @@
           </div>
           <div class="one-half column">
             <form
-            id="update-password">
+            id="update-password"
+            action="{base_url}{index_page}/backend/administration/update/password"
+            method="POST">
               <!-- Hidden Inputs -->
               <input
               id="base-url"
@@ -112,20 +114,17 @@
               <div class="row">
                 <label for="new-password">Password</label>
                 <input
-                id="new-password"
                 class="u-full-width"
                 type="password"
-                name="new-password"
-                value=""
+                name="password"
                 required>
               </div>
               <div class="row">
                 <label for="new-password">Confirm Password</label>
                 <input
-                id="new-password-confirmation"
                 class="u-full-width"
-                type="password" name="confirm-new-password"
-                value=""
+                type="password"
+                name="confirmation"
                 required>
               </div>
               <div class="row">

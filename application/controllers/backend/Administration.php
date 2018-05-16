@@ -41,9 +41,10 @@ class Administration extends CI_Controller {
         if (isset($_POST['username']))
         {
           $username = $_POST['username'];
+          $minimum_length = 3;
 
           // The username must be greater than 3 characters
-          if (strlen($username) >= 3)
+          if (strlen($username) >= $minimum_length)
           {
             $this->application_model->update_username($username);
 
@@ -81,7 +82,8 @@ class Administration extends CI_Controller {
 
             if (strlen($password) >= $minimum_length)
             {
-              $this->application_model->update_password($password);
+              $hash = password_hash($password, PASSWORD_DEFAULT);
+              $this->application_model->update_password($hash);
 
               $response['success'] = TRUE;
               $response['message'] = 'Changed password';
