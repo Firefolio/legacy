@@ -205,7 +205,7 @@ class Portfolio extends CI_Controller {
           // If that column is in the array of approved columns
           if ($key === $column)
           {
-            // And the value of that column is valid
+            // And the value of that column isn't blank
             if ($value != '')
             {
               array_push(

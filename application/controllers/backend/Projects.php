@@ -312,8 +312,7 @@ class Projects extends CI_Controller {
       'date' => $_POST['date'] ?? '',
       'visibility' => $_POST['visibility'] ?? '',
       'status' => $_POST['status'] ?? '',
-      'purpose' => $_POST['purpose'] ?? '',
-      'technology' => $_POST['technology'] ?? ''
+      'purpose' => $_POST['purpose'] ?? ''
     );
 
     return $data;
