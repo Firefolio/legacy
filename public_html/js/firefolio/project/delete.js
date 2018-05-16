@@ -57,6 +57,9 @@ $('document').ready(function () {
     if (checkboxes.length > 0) {
       $('#delete-modal').dialog({
         modal: true,
+        show: {
+          effect: 'bounce'
+        },
         buttons: {
           'Confirm': function () {
             del.attempt(checkboxes, uris);
