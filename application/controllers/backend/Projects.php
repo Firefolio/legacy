@@ -106,7 +106,7 @@ class Projects extends CI_Controller {
           // This is where the form input will be sent to
           $destination = base_url() .
                          index_page() .
-                         'backend/projects/update/' .
+                         '/backend/projects/update/' .
                          $uri .
                          '/attempt';
           // This is where the form will redirect to
@@ -316,8 +316,8 @@ class Projects extends CI_Controller {
   {
     $html = '';
     $data = $this->get_parser_data($uri);
-    $data['destination'] = $destination;
-    $data['redirect'] = $redirect;
+    $data['destination'] = $destination ?? '';
+    $data['redirect'] = $redirect ?? '';
     $data['preview'] = html_purify(
       markdown_parse($data['description'] ?? '')
     );
