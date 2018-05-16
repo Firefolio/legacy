@@ -8,6 +8,14 @@ class Application_model extends CI_Model {
     parent::__construct();
   }
 
+  public function get()
+  {
+    $query = $this->db->get('application');
+    $row = $query->row_array();
+
+    return $row;
+  }
+
   public function get_name()
   {
     $query = $this->db->get('application');
@@ -72,6 +80,16 @@ class Application_model extends CI_Model {
     $row = $query->row_array();
 
     return $row['password'];
+  }
+
+  public function update_username($username)
+  {
+    $this->db->update('application', array('username' => $username));
+  }
+
+  public function update_password($password)
+  {
+    $this->db->update('application', array('password' => $password));
   }
 
   public function get_default_password()

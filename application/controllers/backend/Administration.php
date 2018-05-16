@@ -7,7 +7,6 @@ class Administration extends CI_Controller {
   {
     parent::__construct();
 
-    $this->load->model('user_model');
     $this->load->model('application_model');
 
     $this->load->helper('authentication');
@@ -50,7 +49,7 @@ class Administration extends CI_Controller {
 
             if (strlen($password) >= $minimum_length)
             {
-              $this->user_model->update_password($password);
+              $this->application_model->update_password($password);
 
               $response['success'] = TRUE;
               $response['message'] = 'Changed password';
@@ -86,7 +85,7 @@ class Administration extends CI_Controller {
 
           if (strlen($username) >= 3)
           {
-            $this->user_model->update_username($username);
+            $this->application_model->update_username($username);
 
             $response['success'] = TRUE;
             $response['message'] = 'Changed username';
@@ -112,7 +111,7 @@ class Administration extends CI_Controller {
 
   private function get_parser_data()
   {
-    $data = $this->user_model->get_user();
+    $data = $this->application_model->get();
     $data['base_url'] = base_url();
     $data['index_page'] = index_page();
     $data['csrf_name'] = $this->security->get_csrf_token_name();

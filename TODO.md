@@ -6,10 +6,10 @@
 - Expand the amount of information the profile is able to store in its table
 - Add an `About` controller that credits people and libraries who worked on this
 - Output a list of social media links from the user's profile
+  - Add spam protection for e-mail links from the profile
 - Add a short biography paragraph to the bottom of the website
-- Add spam protection for e-mail links from the profile
 - Add search tags for projects
 - Filter details on output
 - Change the name of the `to_ascii` helper function to `uri_encode`
 - Fix the updating of the username and password
-- Use JQuery UI dialogs as modals instead of DOM content
+- Improve the user experience with effects, tooltips etc.

@@ -24,6 +24,7 @@ class Login extends CI_Controller
       $data = array(
         'base_url' => base_url(),
         'index_page' => index_page(),
+        'application_name' => $this->application_model->get_name(),
         'csrf_name' => $this->security->get_csrf_token_name(),
         'csrf_hash' => $this->security->get_csrf_hash()
       );
