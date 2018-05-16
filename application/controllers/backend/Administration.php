@@ -38,6 +38,38 @@ class Administration extends CI_Controller {
           'hash' => $this->security->get_csrf_hash()
         );
 
+        if (isset($_POST['username']))
+        {
+          $username = $_POST['username'];
+
+          // The username must be greater than 3 characters
+          if (strlen($username) >= 3)
+          {
+            $this->application_model->update_username($username);
+
+            $response['success'] = TRUE;
+            $response['message'] = 'Changed username';
+          }
+          else
+          {
+            $response['message'] = 'New username is too short';
+          }
+        }
+        else
+        {
+          $response['message'] = 'No username posted';
+        }
+
+        $json = json_encode($response);
+        echo $json;
+        break;
+      case 'password':
+        $response = array(
+          'success' => FALSE,
+          'message' => 'No error message specified',
+          'hash' => $this->security->get_csrf_hash()
+        );
+
         if (isset($_POST['password']) AND isset($_POST['confirmation']))
         {
           $password = $_POST['password'];
@@ -66,38 +98,7 @@ class Administration extends CI_Controller {
         }
         else
         {
-          $response['message'] = 'No username posted';
-        }
-
-        $json = json_encode($response);
-        echo $json;
-        break;
-      case 'password':
-        $response = array(
-          'success' => FALSE,
-          'message' => 'No error message specified',
-          'hash' => $this->security->get_csrf_hash()
-        );
-
-        if (isset($_POST['username']))
-        {
-          $username = $_POST['username'];
-
-          if (strlen($username) >= 3)
-          {
-            $this->application_model->update_username($username);
-
-            $response['success'] = TRUE;
-            $response['message'] = 'Changed username';
-          }
-          else
-          {
-            $response['message'] = 'New username is too short';
-          }
-        }
-        else
-        {
-          $response['message'] = 'No username posted';
+          $response['message'] = 'No password posted';
         }
 
         $json = json_encode($response);

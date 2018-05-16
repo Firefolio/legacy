@@ -35,27 +35,35 @@
             <h1>Administration</h1>
           </div>
         </header>
-
-        <!-- Hidden Inputs -->
-        <section class="row">
-          <input
-          id="base-url"
-          class="hidden"
-          type="hidden"
-          name="base_url"
-          value="{base_url}">
-          <input
-          id="csrf"
-          class="hidden"
-          type="hidden"
-          name="{csrf_name}"
-          value="{csrf_hash}">
-        </section>
-
         <!-- Administration Controls -->
+        <!-- Update -->
         <section class="row">
           <div class="one-half column">
-            <form id="update-username">
+            <!-- Username -->
+            <form
+            id="update-username"
+            action="{base_url}{index_page}/backend/administration/update/username"
+            method="POST">
+              <!-- Hidden Inputs -->
+              <input
+              id="base-url"
+              class="hidden"
+              type="hidden"
+              name="base_url"
+              value="{base_url}">
+              <input
+              id="base-url"
+              class="hidden"
+              type="hidden"
+              name="index_page"
+              value="{index_page}">
+              <input
+              id="csrf"
+              class="hidden"
+              type="hidden"
+              name="{csrf_name}"
+              value="{csrf_hash}">
+
               <div class="row">
                 <div class="one-full column">
                   <label for="username">Username</label>
@@ -79,7 +87,28 @@
             </form>
           </div>
           <div class="one-half column">
-            <form id="update-password">
+            <form
+            id="update-password">
+              <!-- Hidden Inputs -->
+              <input
+              id="base-url"
+              class="hidden"
+              type="hidden"
+              name="base_url"
+              value="{base_url}">
+              <input
+              id="base-url"
+              class="hidden"
+              type="hidden"
+              name="index_page"
+              value="{index_page}">
+              <input
+              id="csrf"
+              class="hidden"
+              type="hidden"
+              name="{csrf_name}"
+              value="{csrf_hash}">
+
               <div class="row">
                 <label for="new-password">Password</label>
                 <input
@@ -113,12 +142,18 @@
       </div>
 
       <!-- Scripts -->
+      <!-- Libraries -->
+      <!-- JQuery -->
       <script
       src="https://code.jquery.com/jquery-3.2.1.min.js"
       integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
       crossorigin="anonymous"></script>
-      <script src="{base_url}js/utilities/ajax.js"></script>
+
+      <!-- Utilities -->
       <script src="{base_url}js/utilities/fallback.js"></script>
+      <script src="{base_url}js/utilities/ajax.js"></script>
+
+      <!-- {application_name} -->
       <script src="{base_url}js/firefolio/administration/update.js"></script>
     </body>
 </html>
