@@ -3,7 +3,7 @@
 // by Matteo Spinelli
 // Source: http://cubiq.org/the-perfect-php-clean-url-generator
 
-function to_ascii(input) {
+function generate_uri(input) {
   var output = input;
   var delimeter = '-';
 

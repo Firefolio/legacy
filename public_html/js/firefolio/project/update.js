@@ -14,7 +14,7 @@ $(document).ready(function () {
           $('#base-url').val() +
             $('#index-page').val() +
             '/backend/projects/update/' +
-            to_ascii(title.current)
+            generate_uri(title.current)
         );
       } else {
         ajax.request.form(
@@ -74,7 +74,7 @@ $(document).ready(function () {
     $('input[name=title]').on('input', function () {
       title.current = $(this).val();
       console.log(title);
-      console.log(to_ascii(title.current));
+      console.log(generate_uri(title.current));
     });
 
     // Save and keep editing

@@ -3,13 +3,11 @@
 - Add an area for hyperlinks on project pages
 - Add a screenshot gallery that allows the user to display their project using images
 - Provide validation on backend forms
-- Expand the amount of information the profile is able to store in its table
 - Add an `About` controller that credits people and libraries who worked on this
+- Add a markdown guide
 - Output a list of social media links from the user's profile
   - Add spam protection for e-mail links from the profile
 - Add a short biography paragraph to the bottom of the website
 - Add search tags for projects
 - Filter details on output
-- Change the name of the `to_ascii` helper function to `uri_encode`
 - Fix the updating of the username and password
-- Improve the user experience with effects, tooltips etc.

@@ -1,12 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-if (!function_exists('to_ascii'))
+if (!function_exists('generate_uri'))
 {
   // From the 'Perfect Clean URL Generator'
   // Source: http://cubiq.org/the-perfect-php-clean-url-generator
 
-  function to_ascii($str, $replace = array(), $delimiter = '-')
+  function generate_uri($str, $replace = array(), $delimiter = '_')
   {
     if (!empty($replace))
     {
