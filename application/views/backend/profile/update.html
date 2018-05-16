@@ -1,7 +1,7 @@
 <!doctype html>
 <html class="no-js">
   <head>
-    <title>Profile - Firefolio</title>
+    <title>Profile - {application_name}</title>
 
     <!-- Meta Data -->
     <meta charset="utf-8">
@@ -32,7 +32,6 @@
       <section class="row">
         <div class="one-full column">
           <h1>Profile</h1>
-          <hr>
         </div>
       </section>
       <section class="row">
@@ -77,6 +76,12 @@
               </div>
             </div>
             <div class="row">
+              <label for="biography">Biography</label>
+              <textarea
+              class="u-full-width"
+              name="biography"></textarea>
+            </div>
+            <div class="row">
               <button type="submit" name="submit">
                 Update
               </button>
@@ -86,11 +91,19 @@
       </section>
     </div>
 
+    <!-- Scripts -->
+    <!-- Libraries -->
+    <!-- JQuery -->
     <script
     src="https://code.jquery.com/jquery-3.2.1.min.js"
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script>
+
+    <!-- Utilities -->
     <script src="{base_url}js/utilities/fallback.js"></script>
+    <script src="{base_url}js/utilities/ajax.js"></script>
+
+    <!-- Firefolio -->
     <script src="{base_url}js/firefolio/profile/update.js"></script>
   </body>
 </html>

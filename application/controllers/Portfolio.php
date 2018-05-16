@@ -9,7 +9,6 @@ class Portfolio extends CI_Controller {
 
     $this->load->model('profile_model');
     $this->load->model('project_model');
-    $this->load->model('language_model');
 
     $this->load->helper('date');
     $this->load->helper('security');

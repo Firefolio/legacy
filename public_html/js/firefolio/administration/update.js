@@ -85,9 +85,5 @@ $('document').ready(function () {
 
   $('#update-password').submit(function (event) {
     event.preventDefault();
-
-    ajax.request.form(
-      d
-    );
   });
 });

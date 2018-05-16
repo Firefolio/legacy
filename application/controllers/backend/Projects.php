@@ -9,7 +9,6 @@ class Projects extends CI_Controller {
 
     $this->load->model('application_model');
     $this->load->model('project_model');
-    $this->load->model('language_model');
 
     $this->load->library('parser');
 
@@ -285,7 +284,6 @@ class Projects extends CI_Controller {
     $data['minor_version'] = $this->application_model->get_minor_version();
     $data['patch'] = $this->application_model->get_patch();
     $data['website'] = $this->application_model->get_website();
-    $data['languages'] = $this->language_model->get_languages();
     // The navigation bar should be parsed last because it
     // relies on the above information
     $data['navbar'] = $this->parser->parse(

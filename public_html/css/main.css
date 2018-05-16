@@ -8,6 +8,11 @@ img.responsive {
   height: auto;
 }
 
+iframe {
+  width: 100%;
+  height: auto;
+}
+
 .header {
   margin-top: 32px;
   margin-bottom: 32px;
