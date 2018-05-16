@@ -1,7 +1,7 @@
 <!doctype html>
 <html class="no-js">
   <head>
-    <title>Projects - Firefolio</title>
+    <title>Projects - {application_name}</title>
 
     <!-- Meta Data -->
     <meta charset="utf-8">
@@ -61,10 +61,10 @@
           </a>
         </div>
         <div class="two columns">
-          <a class="button u-full-width"
-          role="button"
-          href="#delete-modal"
-          rel="modal:open">
+          <a
+          id="delete"
+          class="button u-full-width"
+          role="button">
             Delete
           </a>
         </div>
@@ -150,57 +150,35 @@
 
     <!-- Modals -->
     <!-- Deletion Verification Check -->
-    <div id="delete-modal" class="modal">
-      <div class="container">
-        <section class="row">
-          <div class="one-full column">
-            <h1>Warning!</h1>
-          </div>
-        </section>
-        <section class="row">
-          <div class="one-full column">
-            <p>
-              Once deleted, all data related to the project(s) will be lost.
-              Proceed?
-            </p>
-          </div>
-        </section>
-        <section class="row">
-          <div class="one-half column">
-            <a
-            id="delete"
-            class="button button-primary u-full-width"
-            href="#delete-modal"
-            rel="modal:close">
-              Confirm
-            </a>
-          </div>
-          <div class="one-half column">
-            <a
-            class="button u-full-width"
-            href="#delete-modal"
-            rel="modal:close">
-              Cancel
-            </a>
-          </div>
-        </section>
-      </div>
+    <div id="delete-modal" title="Warning" hidden>
+      <p>
+        Are you sure? All information related to the project(s) will be lost!
+      </p>
     </div>
 
     <!-- Scripts -->
+    <!-- Libraries -->
+    <!-- JQuery -->
     <script
     src="https://code.jquery.com/jquery-3.2.1.min.js"
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script>
+    <!-- JQuery UI -->
     <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+	  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+	  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+	  crossorigin="anonymous"></script>
     <link
     rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <!-- Utilities -->
     <script src="{base_url}js/utilities/ajax.js"></script>
     <script src="{base_url}js/utilities/fallback.js"></script>
     <script src="{base_url}js/utilities/open_window.js"></script>
     <script src="{base_url}js/utilities/debounce.js"></script>
+
+    <!-- Firefolio -->
     <script src="{base_url}js/firefolio/project/update.js"></script>
     <script src="{base_url}js/firefolio/project/preview.js"></script>
     <script src="{base_url}js/firefolio/project/delete.js"></script>

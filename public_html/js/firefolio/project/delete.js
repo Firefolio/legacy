@@ -1,7 +1,6 @@
 $('document').ready(function () {
   // Can't use 'delete' as that's a reserved keyword in Javascript
   var del = {
-    button: $('#delete'),
     url: 'projects/delete',
     attempt: function (checkboxes, uris) {
       var projects_to_delete = [];
@@ -51,14 +50,24 @@ $('document').ready(function () {
     }
   };
 
-  if (del.button != null) {
-    del.button.click(function (event) {
-      event.preventDefault();
+  $('#delete').click(function (event) {
+    var checkboxes = $('input[name=toggle]');
+    var uris = $('input[name=uri]');
 
-      var checkboxes = $('input[name=toggle]');
-      var uris = $('input[name=uri]');
-
-      del.attempt(checkboxes, uris);
-    });
-  }
+    if (checkboxes.length > 0) {
+      $('#delete-modal').dialog({
+        modal: true,
+        buttons: {
+          'Confirm': function () {
+            del.attempt(checkboxes, uris);
+          },
+          'Cancel': function () {
+            $(this).dialog('close');
+          }
+        }
+      });
+    } else {
+      // Tell the user to select something first
+    }
+  });
 });
