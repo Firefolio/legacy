@@ -103,21 +103,34 @@
 
       <hr>
 
-      <footer class="row footer">
-        <div class="u-pull-left">
-          <small>Copyright &copy; {full_name} 2018</small>
+      <footer class="footer">
+        <div class="row">
+          <div class="two-thirds column">
+            <!-- Biography -->
+            {biography}
+          </div>
         </div>
-        <div class="u-pull-right">
-          <small>
-            <a href="{base_url}{index_page}/login">
-              <img
-              width="16px"
-              height="16px"
-              src="{base_url}img/open-iconic/svg/account-login.svg"
-              alt="Icon">
-              Login
-            </a>
-          </small>
+        <div class="row">
+          <div class="two-thirds column">
+            <div class="u-pull-left">
+              <!-- License -->
+              <small>Copyright &copy; {full_name} 2018</small>
+            </div>
+          </div>
+          <div class="one-third column">
+            <div class="u-pull-right">
+              <p>
+                <a href="{base_url}{index_page}/login">
+                  <img
+                  width="16px"
+                  height="16px"
+                  src="{base_url}img/icons/open-iconic/account-login.svg"
+                  alt="Icon">
+                  Login
+                </a>
+              </p>
+            </div>
+          </div>
         </div>
       </footer>
     </div>

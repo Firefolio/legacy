@@ -36,12 +36,20 @@
       </section>
       <section class="row">
         <div class="one-full column">
-          <form id="form">
+          <form
+          id="form"
+          action="{base_url}{index_page}/backend/profile/update"
+          method="POST">
             <!-- Hidden Inputs -->
+            <!-- Base URL -->
             <input
             id="base-url"
             type="hidden"
             value="{base_url}">
+            <input
+            id="index-page"
+            type="hidden"
+            value="{index_page}">
             <input
             id="csrf"
             type="hidden"
@@ -76,10 +84,20 @@
               </div>
             </div>
             <div class="row">
+              <!-- Biography -->
               <label for="biography">Biography</label>
               <textarea
               class="u-full-width"
               name="biography"></textarea>
+            </div>
+            <div class="row">
+              <!-- E-Mail Address -->
+              <label for="email">E-Mail Address</label>
+              <input
+              class="u-full-width"
+              type="email"
+              name="email"
+              value="{email}">
             </div>
             <div class="row">
               <button type="submit" name="submit">

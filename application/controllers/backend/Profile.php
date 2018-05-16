@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Profile extends CI_Controller {
+
   function __construct()
   {
     parent::__construct();
@@ -57,7 +58,9 @@ class Profile extends CI_Controller {
     $data = array(
       'first_name' => $_POST['first_name'] ?? '',
       'middle_name' => $_POST['middle_name'] ?? '',
-      'last_name' => $_POST['last_name'] ?? ''
+      'last_name' => $_POST['last_name'] ?? '',
+      'biography' => $_POST['biography'] ?? '',
+      'email' => $_POST['email'] ?? ''
     );
 
     return $data;
