@@ -47,8 +47,13 @@ class Projects extends CI_Controller {
     switch ($action)
     {
       case 'form':
+        $destination = base_url() .
+                       index_page() .
+                       '/backend/projects/create/attempt';
+        $redirect = base_url() . index_page() . '/backend/projects';
+
         $data = $this->get_parser_data();
-        $data['form'] = $this->get_form();
+        $data['form'] = $this->get_form($destination, $redirect);
 
         $this->parser->parse('backend/projects/create.html', $data);
         break;
@@ -118,7 +123,7 @@ class Projects extends CI_Controller {
 
           // Instead, we configure each output manually
           $data['header'] = htmlentities($data['title']);
-          $data['form'] = $this->get_form($destination, $uri, $redirect);
+          $data['form'] = $this->get_form($destination, $redirect, $uri);
 
           $this->parser->parse('backend/projects/update.html', $data);
         }
@@ -257,7 +262,7 @@ class Projects extends CI_Controller {
     // Use htmlentities and html_purify to prevent XSS attacks from user data!
 
     // Determine whether a single project, or multiple projects are needed
-    if ($uri != '')
+    if ($uri !== '')
     {
       // Single project
       $data = $this->project_model->get_project($uri);
@@ -265,6 +270,8 @@ class Projects extends CI_Controller {
     else
     {
       // Multiple projects
+      // Also get blank project data in case it's used on it's own
+      $data = $this->project_model->get_project();
       $data['projects'] = $this->project_model->get_projects();
     }
 
@@ -312,10 +319,10 @@ class Projects extends CI_Controller {
     return $data;
   }
 
-  private function get_form($destination = '', $uri = '', $redirect = '')
+  private function get_form($destination = '', $redirect = '', $uri = '')
   {
     $html = '';
-    $data = $this->get_parser_data($uri);
+    $data = $this->get_parser_data($uri) ?? array();
     $data['destination'] = $destination ?? '';
     $data['redirect'] = $redirect ?? '';
     $data['preview'] = html_purify(
@@ -324,18 +331,10 @@ class Projects extends CI_Controller {
 
     if ($destination !== '')
     {
-      // Set all of the lists to their appropriate values
-      // TODO: Wrap this in a function
-      // Visibility
-      for ($visibility = 0; $visibility < count($data['visibilities']); $visibility++)
+      if ($uri !== '')
       {
-        // If the current visibility value from the database equals
-        // the string from this iteration of the loop
-        if ($data['visibilities'][$visibility]['visibility'] === $data['visibility'])
-        {
-          // Mark this value as selected as selected
-          $data['visibilities'][$visibility]['selected'] = 'selected="selected"';
-        }
+        // Set all of the lists to their appropriate values
+        $this->select_list_values($data);
       }
 
       $html = $this->parser->parse(
@@ -348,9 +347,18 @@ class Projects extends CI_Controller {
     return $html;
   }
 
-  public function select_lists($data)
+  public function select_list_values($data)
   {
-
+    for ($visibility = 0; $visibility < count($data['visibilities']); $visibility++)
+    {
+      // If the current visibility value from the database equals
+      // the string from this iteration of the loop
+      if ($data['visibilities'][$visibility]['visibility'] === $data['visibility'])
+      {
+        // Mark this value as selected as selected
+        $data['visibilities'][$visibility]['selected'] = 'selected="selected"';
+      }
+    }
   }
 
   private function prepare_response()

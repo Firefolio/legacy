@@ -11,13 +11,20 @@ class Project_model extends CI_Model {
     $this->load->helper('enum');
   }
 
-  public function get_project($uri)
+  public function get_project($uri = '')
   {
-    // Find a project based on the URI
-    $this->db->where('uri', $uri);
-	  $query = $this->db->get('projects');
+    if ($uri !== '')
+    {
+      // Find a project based on the URI
+      $this->db->where('uri', $uri);
+  	  $query = $this->db->get('projects');
 
-	  $project = $query->row_array();
+  	  $project = $query->row_array();
+    }
+    else
+    {
+      $project = $this->get_blank();
+    }
 
 	  return $project;
   }
@@ -30,6 +37,20 @@ class Project_model extends CI_Model {
     $query = $this->db->get_where('projects', $where);
 
     return $query->result_array();
+  }
+
+  public function get_blank()
+  {
+    $columns = $this->get_columns();
+    $project = array();
+
+    // Add a blank field for the name of each column
+    foreach ($columns as $column)
+    {
+      $project[$column['Field']] = '';
+    }
+
+    return $project;
   }
 
   public function get_languages()
@@ -82,6 +103,15 @@ class Project_model extends CI_Model {
     }
 
     return $statuses;
+  }
+
+  public function get_columns()
+  {
+    $query = $this->db->query('SHOW COLUMNS FROM `projects`');
+    $result = $query->result_array();
+    $columns = array();
+
+    return $result;
   }
 
   public function insert_project($project)

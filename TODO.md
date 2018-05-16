@@ -1,5 +1,4 @@
 - Store and force changes on the system's default password
-- Add a controller for programming languages so that autocomplete can happen on the database
 - Add cascading styles to the backend interface
 - Add an area for hyperlinks on project pages
 - Add a screenshot gallery that allows the user to display their project using images
@@ -13,3 +12,4 @@
 - Filter details on output
 - Change the name of the `to_ascii` helper function to `uri_encode`
 - Fix the updating of the username and password
+- Use JQuery UI dialogs as modals instead of DOM content

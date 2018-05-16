@@ -41,17 +41,17 @@
             </h1>
           </li>
           <li>
-            <a href="#projects-modal" rel="modal:open">
+            <a class="modal-trigger" href="{base_url}{index_page}/backend/projects">
               Projects
             </a>
           </li>
           <li>
-            <a href="#profile-modal" rel="modal:open">
+            <a class="modal-trigger" href="{base_url}{index_page}/backend/profile">
               Profile
             </a>
           </li>
           <li>
-            <a href="#profile-modal" rel="modal:open">
+            <a class="modal-trigger" href="">
               Administration
             </a>
           </li>
@@ -63,7 +63,7 @@
             </a>
           </li>
           <li>
-            <a href="#logout-modal" rel="modal:open">
+            <a class="modal-trigger" href="{base_url}{index_page}/login/logout">
               Logout
             </a>
           </li>
@@ -124,130 +124,12 @@
       </footer>
     </div>
 
-    <!-- Modals -->
-    <!-- Firefolio Website -->
-    <div id="firefolio-website-modal" class="modal">
-      <div class="container">
-        <section class="row">
-          <div class="one-full column">
-            <h1>Warning!</h1>
-            <p>
-              Are you sure you want to navigate away from the page?
-              All unsaved changes will be lost...
-            </p>
-          </div>
-        </section>
-        <section class="row">
-          <div class="one-half column">
-            <a
-            href="{website}"
-            class="button button-primary u-full-width">
-              Confirm
-            </a>
-          </div>
-          <div class="one-half column">
-            <a
-            href="#firefolio-website-modal"
-            rel="modal:close"
-            class="button u-full-width">
-              Cancel
-            </a>
-          </div>
-        </section>
-      </div>
-    </div>
-    <!-- Logout -->
-    <div id="logout-modal" class="modal">
-      <div class="container">
-        <section class="row">
-          <div class="one-full column">
-            <h1>Warning!</h1>
-            <p>
-              Are you sure you want to logout?
-              All unsaved changes will be lost...
-            </p>
-          </div>
-        </section>
-        <section class="row">
-          <div class="one-half column">
-            <a
-            href="{base_url}{index_page}/logout"
-            class="button button-primary u-full-width">
-              Confirm
-            </a>
-          </div>
-          <div class="one-half column">
-            <a
-            href="#firefolio-website-modal"
-            rel="modal:close"
-            class="button u-full-width">
-              Cancel
-            </a>
-          </div>
-        </section>
-      </div>
-    </div>
-    <!-- Projects View -->
-    <div id="projects-modal" class="modal">
-      <div class="container">
-        <section class="row">
-          <div class="one-full column">
-            <h1>Warning!</h1>
-            <p>
-              Are you sure you want to navigate away from the page?
-              All unsaved changes will be lost...
-            </p>
-          </div>
-        </section>
-        <section class="row">
-          <div class="one-half column">
-            <a
-            href="{base_url}{index_page}/backend/projects"
-            class="button button-primary u-full-width">
-              Confirm
-            </a>
-          </div>
-          <div class="one-half column">
-            <a
-            href="#firefolio-website-modal"
-            rel="modal:close"
-            class="button u-full-width">
-              Cancel
-            </a>
-          </div>
-        </section>
-      </div>
-    </div>
-    <!-- Profile Update -->
-    <div id="profile-modal" class="modal">
-      <div class="container">
-        <section class="row">
-          <div class="one-full column">
-            <h1>Warning!</h1>
-            <p>
-              Are you sure you want to navigate away from the page?
-              All unsaved changes will be lost...
-            </p>
-          </div>
-        </section>
-        <section class="row">
-          <div class="one-half column">
-            <a
-            href="{base_url}{index_page}/backend/profile"
-            class="button button-primary u-full-width">
-              Confirm
-            </a>
-          </div>
-          <div class="one-half column">
-            <a
-            href="#firefolio-website-modal"
-            rel="modal:close"
-            class="button u-full-width">
-              Cancel
-            </a>
-          </div>
-        </section>
-      </div>
+    <!-- Modal -->
+    <div id="modal" title="Alert">
+      <p>
+        Are you sure you want to navigate away from the page?
+        All unsaved data will be lost...
+      </p>
     </div>
 
     <!-- Scripts -->
@@ -259,6 +141,12 @@
 	  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
 	  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
 	  crossorigin="anonymous"></script>
+    <link
+    rel="stylesheet"
+    href="{base_url}js/vendor/jquery-ui-1.12.1/jquery-ui.min.css">
+    <link
+    rel="stylesheet"
+    href="{base_url}js/vendor/jquery-ui-1.12.1/jquery-ui.theme.min.css">
 
     <script src="{base_url}js/utilities/fallback.js"></script>
     <script src="{base_url}js/utilities/to_ascii.js"></script>
@@ -269,8 +157,5 @@
     <script src="{base_url}js/firefolio/project/description.js"></script>
     <script src="{base_url}js/firefolio/datepicker.js"></script>
     <script src="{base_url}js/firefolio/languages/autocomplete.js"></script>
-    <link rel="stylesheet" href="{base_url}js/vendor/jquery-ui-1.12.1/jquery-ui.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
   </body>
 </html>

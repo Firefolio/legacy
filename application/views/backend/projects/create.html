@@ -35,121 +35,8 @@
 
       <div class="content">
         <section class="row">
-          <p>
-            A Firefolio project is any single piece of work that
-            you want an employer to see. Make it a good one!
-          </p>
-        </section>
-
-        <section class="row">
           <div class="one-full column">
-            <form
-            id="form"
-            action="{base_url}{index_page}/backend/projects/create/attempt"
-            method="POST">
-              <!-- Anti CSRF -->
-              <input
-              id="csrf"
-              type="hidden"
-              name="{csrf_name}"
-              value="{csrf_hash}">
-              <!-- Base URL -->
-              <input
-              id="base-url"
-              type="hidden"
-              name="base_url"
-              value="{base_url}">
-              <!-- Index Page -->
-              <input
-              id="index-page"
-              type="hidden"
-              name="index_page"
-              value="{index_page}">
-              <!-- Redirect URL -->
-              <input
-              id="redirect-url"
-              type="hidden"
-              name="redirect_url"
-              value="{base_url}{index_page}/backend/projects">
-
-              <div class="row">
-                <div class="one-half column">
-                  <label for="title">Title*</label>
-                  <input
-                  class="u-full-width"
-                  type="text"
-                  name="title"
-                  value=""
-                  autofocus>
-                </div>
-                <div class="one-half column">
-                  <label for="subtitle">Subtitle</label>
-                  <input
-                  class="u-full-width"
-                  type="text"
-                  name="subtitle"
-                  value="">
-                </div>
-              </div>
-              <div class="row">
-                <div class="one-half column">
-                  <label for="description">
-                    Description (Code)
-                  </label>
-                  <textarea
-                  id="description"
-                  style="min-height: 256px"
-                  class="u-full-width"
-                  name="description"
-                  disabled></textarea>
-                </div>
-                <div class="one-half column">
-                  <label for="preview">
-                    Description (Preview)
-                  </label>
-                  <p id="description-preview">
-                    <!-- Contents will be taken from the textarea above -->
-                  </p>
-                </div>
-              </div>
-              <div class="row">
-                <label for="thumbnail">Thumbnail</label>
-                <input
-                class="u-full-width"
-                type="text"
-                name="thumbnail"
-                value="">
-              </div>
-              <div class="row">
-                <label for="thumbnail">Trailer</label>
-                <input
-                class="u-full-width"
-                type="text"
-                name="trailer"
-                value="">
-              </div>
-              <div class="row">
-                <div class="one-half column">
-                  <label for="language">Language</label>
-                  <input
-                  id="autocomplete"
-                  class="u-full-width"
-                  type="text"
-                  name="language"
-                  value="">
-                </div>
-                <div class="one-half column">
-                  <label for="date">Date</label>
-                  <input
-                  id="datepicker"
-                  class="u-full-width"
-                  type="text"
-                  name="date"
-                  value="">
-                </div>
-              </div>
-
-              <hr>
+            {form}
 
               <div class="row">
                 <div class="one-half column">
@@ -165,6 +52,7 @@
     </div>
 
     <!-- Scripts -->
+    <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script>
@@ -172,13 +60,16 @@
 	  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
 	  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
 	  crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{base_url}js/vendor/jquery-ui-1.12.1/jquery-ui.min.css">
 
+    <!-- Utilities -->
     <script src="{base_url}js/utilities/fallback.js"></script>
     <script src="{base_url}js/utilities/ajax.js"></script>
     <script src="{base_url}js/utilities/debounce.js"></script>
-    <script src="{base_url}js/firefolio/datepicker.js"></script>
 
-    <link rel="stylesheet" href="{base_url}js/vendor/jquery-ui-1.12.1/jquery-ui.min.css">
+    <!-- Firefolio -->
+    <script src="{base_url}js/firefolio/datepicker.js"></script>
+    <script src="{base_url}js/firefolio/datepicker.js"></script>
     <script src="{base_url}js/firefolio/languages/autocomplete.js"></script>
     <script src="{base_url}js/firefolio/project/create.js"></script>
   </body>
