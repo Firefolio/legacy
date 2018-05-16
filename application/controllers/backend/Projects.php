@@ -48,6 +48,7 @@ class Projects extends CI_Controller {
     {
       case 'form':
         $data = $this->get_parser_data();
+        $data['form'] = $this->get_form();
 
         $this->parser->parse('backend/projects/create.html', $data);
         break;
@@ -102,29 +103,22 @@ class Projects extends CI_Controller {
       case 'form':
         if ($this->project_model->project_exists($uri))
         {
+          // This is where the form input will be sent to
+          $destination = base_url() .
+                         index_page() .
+                         'backend/projects/update/' .
+                         $uri .
+                         '/attempt';
+          // This is where the form will redirect to
+          $redirect = base_url() . index_page() . 'backend/projects';
+
           // Really, we should use html_purify on everything here,
           // but that could possibly corrupt the data input
           $data = $this->get_parser_data($uri);
 
           // Instead, we configure each output manually
           $data['header'] = htmlentities($data['title']);
-          $data['preview'] = html_purify(
-            markdown_parse($data['description'])
-          );
-
-          // Then set all of the lists to their appropriate values
-          // Visibility
-          // TODO: Wrap this in a function
-          for ($visibility = 0; $visibility < count($data['visibilities']); $visibility++)
-          {
-            // If the current visibility value from the database equals
-            // the string from this iteration of the loop
-            if ($data['visibilities'][$visibility]['visibility'] === $data['visibility'])
-            {
-              // Mark this value as selected as selected
-              $data['visibilities'][$visibility]['selected'] = 'selected="selected"';
-            }
-          }
+          $data['form'] = $this->get_form($destination, $uri, $redirect);
 
           $this->parser->parse('backend/projects/update.html', $data);
         }
@@ -316,6 +310,47 @@ class Projects extends CI_Controller {
     );
 
     return $data;
+  }
+
+  private function get_form($destination = '', $uri = '', $redirect = '')
+  {
+    $html = '';
+    $data = $this->get_parser_data($uri);
+    $data['destination'] = $destination;
+    $data['redirect'] = $redirect;
+    $data['preview'] = html_purify(
+      markdown_parse($data['description'] ?? '')
+    );
+
+    if ($destination !== '')
+    {
+      // Set all of the lists to their appropriate values
+      // TODO: Wrap this in a function
+      // Visibility
+      for ($visibility = 0; $visibility < count($data['visibilities']); $visibility++)
+      {
+        // If the current visibility value from the database equals
+        // the string from this iteration of the loop
+        if ($data['visibilities'][$visibility]['visibility'] === $data['visibility'])
+        {
+          // Mark this value as selected as selected
+          $data['visibilities'][$visibility]['selected'] = 'selected="selected"';
+        }
+      }
+
+      $html = $this->parser->parse(
+        'backend/projects/form.html',
+        $data,
+        TRUE
+      );
+    }
+
+    return $html;
+  }
+
+  public function select_lists($data)
+  {
+
   }
 
   private function prepare_response()

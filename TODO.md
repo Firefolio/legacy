@@ -1,9 +1,15 @@
 - Store and force changes on the system's default password
 - Add a controller for programming languages so that autocomplete can happen on the database
 - Add cascading styles to the backend interface
-- Add an area for hyperlinks
-- Add a screenshot gallery that allows the user to display their project
+- Add an area for hyperlinks on project pages
+- Add a screenshot gallery that allows the user to display their project using images
 - Provide validation on backend forms
 - Expand the amount of information the profile is able to store in its table
 - Add an `About` controller that credits people and libraries who worked on this
+- Output a list of social media links from the user's profile
+- Add a short biography paragraph to the bottom of the website
+- Add spam protection for e-mail links from the profile
 - Add search tags for projects
+- Filter details on output
+- Change the name of the `to_ascii` helper function to `uri_encode`
+- Fix the updating of the username and password

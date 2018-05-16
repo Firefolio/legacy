@@ -1,0 +1,177 @@
+<form
+id="form"
+action="{destination}"
+method="POST">
+  <!-- Hidden Inputs -->
+  <!-- Base URL -->
+  <input
+  id="base-url"
+  type="hidden"
+  value="{base_url}">
+  <!-- Index Page -->
+  <input
+  id="index-page"
+  type="hidden"
+  value="{index_page}">
+  <!-- Anti CSRF -->
+  <input
+  id="csrf"
+  type="hidden"
+  name="{csrf_name}"
+  value="{csrf_hash}">
+  <!-- Redirect URL -->
+  <input
+  id="redirect-url"
+  type="hidden"
+  value="{redirect}">
+  <!-- ID -->
+  <!-- This is used to verify the AJAX request -->
+  <input
+  type="hidden"
+  name="id"
+  value="{id}">
+  <!-- URI -->
+  <!-- Original -->
+  <input
+  id="original-uri"
+  type="hidden"
+  name="original_uri"
+  value="{uri}">
+  <!-- Current -->
+  <input
+  id="uri"
+  type="hidden"
+  name="uri"
+  value="{uri}">
+
+  <!-- Visible Inputs -->
+  <div class="row">
+    <div class="one-half column">
+      <label for="title">Title*</label>
+      <input
+      class="u-full-width"
+      type="text"
+      name="title"
+      value="{title}"
+      required>
+    </div>
+    <div class="one-half column">
+      <label for="subtitle">Subtitle</label>
+      <input
+      class="u-full-width"
+      type="text"
+      name="subtitle"
+      value="{subtitle}">
+    </div>
+  </div>
+  <div class="row">
+    <div class="one-half column">
+      <label for="description">Description (Code)</label>
+      <textarea
+      id="description"
+      class="u-full-width"
+      style="min-height: 256px"
+      name="description">{description}</textarea>
+    </div>
+    <div class="one-half column">
+      <label for="preview">Description (Preview)</label>
+      <div id="description-preview">
+        <!-- {preview} here is used instead of {description}
+             because it's also been escaped -->
+        {preview}
+      </div>
+    </div>
+  </div>
+  <!-- Thumbnail -->
+  <div class="row">
+    <div class="eight columns">
+      <label for="thumbnail">Thumbnail</label>
+      <input
+      class="u-full-width"
+      type="text"
+      name="thumbnail"
+      value="{thumbnail}">
+    </div>
+    <div class="four columns">
+      <img
+      width="66%"
+      height="auto"
+      src="{thumbnail}"
+      alt="{title} Project Thumbnail Preview">
+    </div>
+  </div>
+  <!-- Trailer -->
+  <div class="row">
+    <div class="eight columns">
+      <label for="trailer">Trailer</label>
+      <input
+      class="u-full-width"
+      type="text"
+      name="trailer"
+      value="{trailer}">
+    </div>
+    <div class="four columns">
+      <img
+      width="66%"
+      height="auto"
+      src="{thumbnail}"
+      alt="{title} Project Trailer Preview">
+    </div>
+  </div>
+  <div class="row">
+    <div class="one-half column">
+      <!-- Language -->
+      <label for="language">Language</label>
+      <input
+      id="autocomplete"
+      class="u-full-width"
+      type="text"
+      name="language"
+      value="{language}">
+    </div>
+    <div class="one-half column">
+      <label for="date">Date</label>
+      <input
+      id="datepicker"
+      class="u-full-width"
+      type="text"
+      name="date"
+      value="{date}">
+    </div>
+  </div>
+  <div class="row">
+    <!-- Visibility -->
+    <div class="four columns">
+      <label for="visibility">Visibility</label>
+      <select
+      class="u-full-width"
+      name="visibility">
+        {visibilities}
+          <option
+          value="{visibility}" {selected}>{visibility}</option>
+        {/visibilities}
+      </select>
+    </div>
+    <!-- Status -->
+    <div class="four columns">
+      <label for="status">Status</label>
+      <select
+      class="u-full-width"
+      name="status">
+      {statuses}
+        <option
+        value="{visibility}">{status}</option>
+      {/statuses}
+      </select>
+    </div>
+    <!-- Purpose -->
+    <div class="four columns">
+      <label for="purpose">Purpose</label>
+      <input
+      class="u-full-width"
+      type="text"
+      name="purpose"
+      value="{purpose}">
+    </div>
+  </div>
+<!-- Make sure to close off the form with some buttons and an ending tag -->
