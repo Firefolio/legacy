@@ -9,6 +9,7 @@ class Portfolio extends CI_Controller {
 
     $this->load->model('profile_model');
     $this->load->model('project_model');
+    $this->load->model('screenshot_model');
 
     $this->load->helper('date');
     $this->load->helper('security');
@@ -34,6 +35,9 @@ class Portfolio extends CI_Controller {
     {
       // Get the data for the project from the database
       $data = html_purify($this->get_parser_data($uri));
+      // This has to be filtered in its own function to maintain
+      // necessary data attributes
+      $data['screenshots'] = $this->get_screenshots($data['id']);
 
       // Check to see if the trailer field has been filled in
       // before purifying it
@@ -156,6 +160,7 @@ class Portfolio extends CI_Controller {
     {
       // Single project
       $data = $this->project_model->get_project($uri);
+
       $data['date'] = date('d.m.Y', strtotime($data['date']));
       $data['details'] = $this->get_details($data);
     }
@@ -227,6 +232,28 @@ class Portfolio extends CI_Controller {
         $data,
         TRUE
       ) ?? '';
+    }
+
+    return $html;
+  }
+
+  private function get_screenshots($project, $screenshots_per_row = 2)
+  {
+    $data = array(
+      'screenshots' => html_purify($this->screenshot_model->get_screenshots($project))
+    );
+
+    if (!empty($data['screenshots']))
+    {
+      $html = $this->parser->parse(
+        'frontend/screenshots.html',
+        $data,
+        TRUE
+      );
+    }
+    else
+    {
+      $html = '';
     }
 
     return $html;
