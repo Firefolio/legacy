@@ -241,11 +241,17 @@ class Portfolio extends CI_Controller {
   {
     $screenshots = $this->screenshot_model->get_screenshots($project);
 
+    // Don't output the screenshot grid if it's empty
     if (!empty($screenshots))
     {
       $data = array(
-        'rows' => html_purify($this->get_screenshot_rows($project))
+        'rows' => array()
       );
+
+      foreach (array_chunk($screenshots, $screenshots_per_row, TRUE) as $row)
+      {
+        array_push($data['rows'], array('screenshots' => $row));
+      }
 
       $html = $this->parser->parse(
         'frontend/screenshots.html',
@@ -259,20 +265,5 @@ class Portfolio extends CI_Controller {
     }
 
     return $html;
-  }
-
-  public function get_screenshot_rows($project, $screenshots_per_row = 2)
-  {
-    $screenshots = html_purify(
-      $this->screenshot_model->get_screenshots($project)
-    );
-    $rows = array();
-
-    foreach (array_chunk($screenshots, $screenshots_per_row, TRUE) as $row)
-    {
-      array_push($rows, array('screenshots' => $row));
-    }
-
-    return $rows;
   }
 }
