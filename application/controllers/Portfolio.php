@@ -219,7 +219,7 @@ class Portfolio extends CI_Controller {
                 $data['details'],
                 array(
                   'header' => ucfirst($key),
-                  'content' => $value
+                  'content' => html_purify($value)
                 )
               );
             }
@@ -244,6 +244,7 @@ class Portfolio extends CI_Controller {
     // Don't output the screenshot grid if it's empty
     if (!empty($screenshots))
     {
+      // Put the screenshots in a responsive grid
       $data = array(
         'rows' => array()
       );

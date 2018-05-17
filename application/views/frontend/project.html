@@ -37,17 +37,22 @@
           <h2>{title}</h2>
           <h3>{subtitle}</h3>
 
-          <!-- Details List -->
-          {details}
+          <div class="accordion">
+            <!-- Details List -->
+            {details}
 
-          <!-- Screenshot Lightboxes -->
-          {screenshots}
+            <!-- Screenshots -->
+            <h4>Screenshots</h4>
+            <div>
+              {screenshots}
+            </div>
+          </div>
         </div>
         <div class="one-half column">
           {trailer}
 
           <h4>Description</h4>
-          
+
           {description}
         </div>
       </section>
@@ -64,11 +69,20 @@
     src="https://code.jquery.com/jquery-3.2.1.min.js"
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script>
+    <!-- JQuery UI -->
+    <script
+	  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+	  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+	  crossorigin="anonymous"></script>
+    <link
+    rel="stylesheet"
+    href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <!-- Lightbox 2 -->
     <script src="{base_url}js/vendor/lightbox2/js/lightbox.min.js"></script>
     <link rel="stylesheet" href="{base_url}js/vendor/lightbox2/css/lightbox.min.css">
 
     <!-- Utilities -->
+    <script src="{base_url}js/utilities/accordion.js"></script>
     <script src="{base_url}js/utilities/fallback.js"></script>
   </body>
 </html>
