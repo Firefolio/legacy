@@ -239,12 +239,14 @@ class Portfolio extends CI_Controller {
 
   private function get_screenshots($project, $screenshots_per_row = 2)
   {
-    $data = array(
-      'screenshots' => html_purify($this->screenshot_model->get_screenshots($project))
-    );
+    $screenshots = $this->screenshot_model->get_screenshots($project);
 
-    if (!empty($data['screenshots']))
+    if (!empty($screenshots))
     {
+      $data = array(
+        'screenshots' => html_purify($screenshots)
+      );
+
       $html = $this->parser->parse(
         'frontend/screenshots.html',
         $data,
