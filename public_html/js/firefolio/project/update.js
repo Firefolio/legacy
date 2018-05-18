@@ -55,6 +55,7 @@ $(document).ready(function () {
 
   // Save and exit
   if (update.form != null) {
+    // Submitting the form via the enter key
     update.form.submit(function (event) {
       event.preventDefault();
 
@@ -66,6 +67,7 @@ $(document).ready(function () {
       );
     });
 
+    // Clicking the 'Finish' button
     $('button#finish').click(function (event) {
       event.preventDefault();
 

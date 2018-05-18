@@ -356,7 +356,7 @@ class Projects extends CI_Controller {
     if (!empty($screenshots))
     {
       $data = array(
-        'screenshots' => $screenshots
+        'screenshots' => html_purify($screenshots)
       );
 
       $html = $this->parser->parse(
