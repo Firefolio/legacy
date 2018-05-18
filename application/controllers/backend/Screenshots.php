@@ -9,6 +9,8 @@ class Screenshots extends CI_Controller {
 
     $this->load->model('screenshot_model');
 
+    $this->load->library('parser');
+
     $this->load->helper('html_purifier');
     $this->load->helper('security');
     $this->load->helper('url');
@@ -20,11 +22,21 @@ class Screenshots extends CI_Controller {
     $screenshot = array(
       'project' => $project
     );
+    $data = $this->get_parser_data();
 
     $this->screenshot_model->insert($screenshot);
 
+    // Assume that the attempt was successful
+    $response['success'] = TRUE;
+    $response['message'] = 'Inserted a new screenshot into the database';
+    $response['html'] = $this->parser->parse(
+      'backend/screenshots/input.html',
+      $data,
+      TRUE
+    );
+
     $json = json_encode($response);
-    return $json;
+    echo $json;
   }
 
   private function prepare_response()
@@ -36,5 +48,15 @@ class Screenshots extends CI_Controller {
     );
 
     return $response;
+  }
+
+  private function get_parser_data()
+  {
+    $data = array(
+      'base_url' => base_url(),
+      'index_page' => index_page()
+    );
+
+    return $data;
   }
 }
