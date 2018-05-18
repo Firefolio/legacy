@@ -4,6 +4,7 @@
 - Provide validation on backend forms
 - Add an `About` controller that credits people and libraries who worked on this
 - Output a list of social media links from the user's profile
-- Add a short biography paragraph to the bottom of the website
 - Add search tags for projects
-- Fix the updating of the username and password
+- Allow the user to add new screenshots to project through the appropriate button
+- Add an `X` icon to each screenshot row and make that delete the project
+- Fix project update buttons

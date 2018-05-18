@@ -1,16 +1,26 @@
 <form>
   {screenshots}
     <div class="row">
-      <div class="two-thirds column">
+      <div class="one column">
+        <a class="delete-screenshot" href="">
+          <img
+          width="16px"
+          height="auto"
+          src="{base_url}img/icons/open-iconic/x.svg"
+          alt="X Icon">
+        </a>
+      </div>
+      <div class="nine columns">
         <input
         class="u-full-width"
         type="text"
         name="screenshot_{id}"
         value="{path}">
       </div>
-      <div class="one-third column">
+      <div class="two columns">
         <img
-        class="u-full-width"
+        width="66%"
+        height="auto"
         src="{path}"
         alt="Project Screenshot Preview">
       </div>

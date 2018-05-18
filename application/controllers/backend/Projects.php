@@ -359,6 +359,12 @@ class Projects extends CI_Controller {
         'screenshots' => html_purify($screenshots)
       );
 
+      // Add The base URL to allow for icons
+      foreach ($data['screenshots'] as &$screenshot)
+      {
+        $screenshot['base_url'] = base_url();
+      }
+
       $html = $this->parser->parse(
         'backend/projects/screenshots.html',
         $data,
