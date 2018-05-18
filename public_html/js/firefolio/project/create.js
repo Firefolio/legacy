@@ -10,6 +10,17 @@ $('document').ready(function () {
     );
   });
 
+  $('[name=create]').click(function (event) {
+    event.preventDefault();
+
+    ajax.request.form(
+      $('#form'),
+      $('#form').attr('action'),
+      $('#form').attr('method'),
+      $('#redirect-url').val()
+    );
+  });
+
   $('#description').removeAttr('disabled');
 
   $('#description').on('input', debounce(function () {

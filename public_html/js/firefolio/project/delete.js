@@ -63,6 +63,7 @@ $('document').ready(function () {
         buttons: {
           'Confirm': function () {
             del.attempt(checkboxes, uris);
+            $(this).dialog('close');
           },
           'Cancel': function () {
             $(this).dialog('close');

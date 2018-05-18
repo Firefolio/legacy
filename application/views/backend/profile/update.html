@@ -28,6 +28,22 @@
     <!-- Navigation Bar -->
     {navbar}
 
+    <!-- Hidden Inputs -->
+    <!-- Base URL -->
+    <input
+    id="base-url"
+    type="hidden"
+    value="{base_url}">
+    <input
+    id="index-page"
+    type="hidden"
+    value="{index_page}">
+    <input
+    id="csrf"
+    type="hidden"
+    name="{csrf_name}"
+    value="{csrf_hash}">
+
     <div class="container">
       <section class="row">
         <div class="one-full column">
@@ -40,23 +56,6 @@
           id="form"
           action="{base_url}{index_page}/backend/profile/update"
           method="POST">
-            <!-- Hidden Inputs -->
-            <!-- Base URL -->
-            <input
-            id="base-url"
-            type="hidden"
-            value="{base_url}">
-            <input
-            id="index-page"
-            type="hidden"
-            value="{index_page}">
-            <input
-            id="csrf"
-            type="hidden"
-            name="{csrf_name}"
-            value="{csrf_hash}">
-
-            <!-- Visible Inputs -->
             <div class="row">
               <div class="one-third column">
                 <label for="first_name">First Name</label>

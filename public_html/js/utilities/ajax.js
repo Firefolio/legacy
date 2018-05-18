@@ -1,8 +1,15 @@
+var csrf = {
+  name: $('#csrf').attr('name'),
+  hash: $('#csrf').val()
+};
 var ajax = {
   request: {
     form: function (form, url, method, redirect) {
       var inputs = form.find('input, textarea, button');
       var data = form.serialize();
+
+      // Ensure that the current CSRF token is sent on the end of the query
+      data += '&' + $('#csrf').attr('name') + '=' + $('#csrf').val();
 
       console.log(data);
 
@@ -22,7 +29,8 @@ var ajax = {
         console.log(response);
 
         // Update the anti-CSRF hash
-        form.find('[name=csrf]').val(response.hash);
+        csrf.hash = response.hash;
+        $('#csrf').val(response.hash);
 
         // Optionally redirect if the request succeeded
         if (response.success) {
@@ -45,7 +53,7 @@ var ajax = {
         inputs.prop('disabled', false);
       });
     },
-    html: function (input, output, url, append = false) {
+    html: function (input, output, url) {
       var data = {
         input: input
       }

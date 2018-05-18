@@ -35,6 +35,27 @@
             <h1>Administration</h1>
           </div>
         </header>
+
+        <!-- Hidden Inputs -->
+        <input
+        id="base_url"
+        class="hidden"
+        type="hidden"
+        name="base_url"
+        value="{base_url}">
+        <input
+        id="index_page"
+        class="hidden"
+        type="hidden"
+        name="index_page"
+        value="{index_page}">
+        <input
+        id="csrf"
+        class="hidden"
+        type="hidden"
+        name="{csrf_name}"
+        value="{csrf_hash}">
+
         <!-- Administration Controls -->
         <!-- Update -->
         <section class="row">
@@ -44,23 +65,6 @@
             id="update-username"
             action="{base_url}{index_page}/backend/administration/update/username"
             method="POST">
-              <!-- Hidden Inputs -->
-              <input
-              class="hidden"
-              type="hidden"
-              name="base_url"
-              value="{base_url}">
-              <input
-              class="hidden"
-              type="hidden"
-              name="index_page"
-              value="{index_page}">
-              <input
-              class="hidden"
-              type="hidden"
-              name="{csrf_name}"
-              value="{csrf_hash}">
-
               <div class="row">
                 <div class="one-full column">
                   <label for="username">Username</label>
