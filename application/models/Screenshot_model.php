@@ -27,4 +27,9 @@ class Screenshot_model extends CI_Model {
 
     return $screenshots;
   }
+
+  public function insert($screenshot = array())
+  {
+    $this->db->insert('screenshots', $screenshot);
+  }
 }
