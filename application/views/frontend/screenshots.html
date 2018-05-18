@@ -1,21 +1,24 @@
-<div class="container">
-  {rows}
-    <div class="row">
-      {screenshots}
-        <div class="one-half column">
-          <a
-          href="{path}"
-          data-lightbox="project"
-          data-title="{caption}">
-            <img
-            class="responsive"
-            width="100%"
-            height="auto"
-            src="{path}"
-            alt="Project Screenshot {id}">
-          </a>
-        </div>
-      {/screenshots}
-    </div>
-  {/rows}
+<h4>Screenshots</h4>
+<div>
+  <div class="container">
+    {rows}
+      <div class="row">
+        {screenshots}
+          <div class="one-half column">
+            <a
+            href="{path}"
+            data-lightbox="project"
+            data-title="{caption}">
+              <img
+              class="responsive"
+              width="100%"
+              height="auto"
+              src="{path}"
+              alt="Project Screenshot {id}">
+            </a>
+          </div>
+        {/screenshots}
+      </div>
+    {/rows}
+  </div>
 </div>

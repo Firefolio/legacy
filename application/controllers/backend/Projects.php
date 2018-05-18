@@ -9,6 +9,7 @@ class Projects extends CI_Controller {
 
     $this->load->model('application_model');
     $this->load->model('project_model');
+    $this->load->model('screenshot_model');
 
     $this->load->library('parser');
 
@@ -265,6 +266,7 @@ class Projects extends CI_Controller {
     {
       // Single project
       $data = $this->project_model->get_project($uri);
+      $data['screenshots'] = $this->get_screenshots($data['id']);
     }
     else
     {
@@ -301,7 +303,7 @@ class Projects extends CI_Controller {
   {
     $data = array(
       'id' => $_POST['id'] ?? '',
-      'uri' => to_ascii($_POST['title']) ?? '',
+      'uri' => generate_uri($_POST['title']) ?? '',
       'thumbnail' => $_POST['thumbnail'] ?? '',
       'trailer' => $_POST['trailer'] ?? '',
       'title' => $_POST['title'] ?? '',
@@ -345,7 +347,29 @@ class Projects extends CI_Controller {
     return $html;
   }
 
-  public function select_list_values($data)
+  private function get_screenshots($project)
+  {
+    $screenshots = $this->screenshot_model->get_screenshots($project);
+    $html = '';
+
+    // Don't add screenshots if none exist
+    if (!empty($screenshots))
+    {
+      $data = array(
+        'screenshots' => $screenshots
+      );
+
+      $html = $this->parser->parse(
+        'backend/projects/screenshots.html',
+        $data,
+        TRUE
+      );
+    }
+
+    return $html;
+  }
+
+  private function select_list_values($data)
   {
     for ($visibility = 0; $visibility < count($data['visibilities']); $visibility++)
     {

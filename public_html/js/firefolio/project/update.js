@@ -66,6 +66,17 @@ $(document).ready(function () {
       );
     });
 
+    $('button#finish').click(function (event) {
+      event.preventDefault();
+
+      ajax.request.form(
+        $('#form'),
+        $('#form').attr('action'),
+        $('#form').attr('method'),
+        $('#redirect-url').val()
+      );
+    })
+
     var title = {
       original: $('input[name=title]').val(),
       current: $('input[name=title]').val()

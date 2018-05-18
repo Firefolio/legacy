@@ -82,45 +82,73 @@
       </header>
 
       <!-- Content -->
-      <section class="row">
-        <div class="one-full column">
-            {form}
-
-            <!-- Form Buttons -->
-            <div class="row">
-              <div class="three columns">
-                <button class="button-primary u-full-width" type="submit" name="button">
-                  Finish
-                </button>
-              </div>
-              <div class="three columns">
-                <a id="save" class="button u-full-width">
-                  Save
-                </a>
-              </div>
-              <div class="three columns">
-                <button
-                class="u-full-width"
-                type="reset"
-                name="button">
-                  Reset
-                </button>
-              </div>
-              <div class="three columns">
-                <a
-                class="button u-full-width"
-                href="{base_url}{index_page}/backend/projects">
-                  Cancel
-                </a>
-              </div>
+      <div class="tabbed">
+        <!-- Tabs List -->
+        <ul>
+          <li>
+            <a href="#tab-1">Data</a>
+          </li>
+          <li>
+            <a href="#tab-2">Screenshots</a>
+          </li>
+        </ul>
+        <!-- Tabs -->
+        <!-- Form -->
+        <div id="tab-1">
+          <section class="row">
+            <div class="one-full column">
+              {form}
             </div>
-          </form>
+          </section>
         </div>
-      </section>
+        <!-- Screenshots -->
+        <div id="tab-2">
+          <a href="#">Add</a>
+          <!-- Screenshots -->
+          {screenshots}
+        </div>
+      </div>
+
+      <hr>
+
+      <!-- Control Buttons -->
+      <div class="row">
+        <div class="three columns">
+          <button
+          id="finish"
+          class="button button-primary u-full-width"
+          type="submit"
+          name="finish">
+            Finish
+          </button>
+        </div>
+        <div class="three columns">
+          <a
+          id="save"
+          class="button u-full-width">
+            Save
+          </a>
+        </div>
+        <div class="three columns">
+          <button
+          class="u-full-width"
+          type="reset"
+          name="reset">
+            Reset
+          </button>
+        </div>
+        <div class="three columns">
+          <a
+          class="button u-full-width"
+          href="{base_url}{index_page}/backend/projects">
+            Cancel
+          </a>
+        </div>
+      </div>
 
       <footer class="row">
         <small>
-          Firefolio Copyright &copy; 2018 Callum John @ItsSeaJay
+          {application_name} Copyright &copy; 2018 Callum John @ItsSeaJay
         </small>
       </footer>
     </div>
@@ -154,6 +182,7 @@
     <script src="{base_url}js/utilities/generate_uri.js"></script>
     <script src="{base_url}js/utilities/ajax.js"></script>
     <script src="{base_url}js/utilities/debounce.js"></script>
+    <script src="{base_url}js/utilities/tabs.js"></script>
 
     <!-- Firefolio -->
     <script src="{base_url}js/firefolio/project/update.js"></script>
