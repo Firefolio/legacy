@@ -113,7 +113,7 @@ class Projects extends CI_Controller {
                          index_page() .
                          '/backend/projects/update/' .
                          $uri .
-                         '/attempt';
+                         '/information';
           // This is where the form will redirect to
           $redirect = base_url() . index_page() . '/backend/projects';
 
@@ -132,7 +132,7 @@ class Projects extends CI_Controller {
           show_404();
         }
         break;
-      case 'attempt':
+      case 'information':
         $response = $this->prepare_response();
 
         if (isset($_POST['id']))

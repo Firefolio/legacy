@@ -5,7 +5,7 @@ $(document).ready(function () {
       primary: $('#update'),
       save: $('#save')
     },
-    save: function () {
+  save: function () {
       if (title.current != title.original) {
         ajax.request.form(
           $('#form'),
@@ -20,7 +20,7 @@ $(document).ready(function () {
         ajax.request.form(
           $('#form'),
           $('#form').attr('action'),
-          $('#form').attr('method'),
+          $('#form').attr('method')
         );
       }
     },
@@ -77,7 +77,7 @@ $(document).ready(function () {
         $('#form').attr('method'),
         $('#redirect-url').val()
       );
-    })
+    });
 
     var title = {
       original: $('input[name=title]').val(),
@@ -126,7 +126,3 @@ $(document).ready(function () {
     });
   }
 });
-
-function confirm_dialog() {
-
-}

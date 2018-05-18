@@ -53,7 +53,7 @@ var ajax = {
         inputs.prop('disabled', false);
       });
     },
-    html: function (input, output, url) {
+    html: function (input, output, url, append = false) {
       var data = {
         input: input
       }
@@ -78,7 +78,11 @@ var ajax = {
         $('#csrf').val(response.hash);
 
         if (response.success) {
-          $(output).html(response.html);
+          if (append) {
+            $(output).append(response.html);
+          } else {
+            $(output).html(response.html);
+          }
         } else {
           console.error(response.message);
         }
