@@ -1,7 +1,5 @@
 $('document').ready(function () {
-  $('#add-screenshot').click(function (event) {
-    event.preventDefault();
-
+  $('#add-screenshot').click(debounce(function () {
     ajax.request.html(
       $('#id').val(), // Input
       $('#screenshots'), // Output
@@ -11,5 +9,5 @@ $('document').ready(function () {
         $('#id').val(),
       true // Append HTML to DOM
     );
-  });
+  }));
 });
