@@ -44,7 +44,8 @@ class Screenshots extends CI_Controller {
     $response = array(
       'success' => false,
       'message' => 'No error message specified',
-      'html' => ''
+      'html' => '',
+      'hash' => $this->security->get_csrf_hash()
     );
 
     return $response;

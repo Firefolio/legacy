@@ -3,7 +3,7 @@ $('document').ready(function () {
     event.preventDefault();
 
     ajax.request.html(
-      $('input#id').val(), // Input
+      $('#id').val(), // Input
       $('#screenshots'), // Output
       $('#base-url').val() + // URL
         $('#index-page').val() +

@@ -20,7 +20,8 @@ class Markdown extends CI_Controller {
       'hash' => $this->security->get_csrf_hash()
     );
 
-    if (isset($_POST)) {
+    if (isset($_POST['input']))
+    {
       $html = html_purify(
         markdown_parse($_POST['input'])
       );
@@ -28,6 +29,10 @@ class Markdown extends CI_Controller {
       $response['success'] = TRUE;
       $response['message'] = 'Parsed Markdown successfully!';
       $response['html'] = $html;
+    }
+    else
+    {
+      $response['message'] = 'No markdown code sent to server';
     }
 
     $json = json_encode($response);

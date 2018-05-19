@@ -6,5 +6,5 @@
 - Output a list of social media links from the user's profile
 - Add search tags for projects
 - Allow the user to add new screenshots to project through the appropriate button
+- Make the information in each project screenshot update when the project is saved
 - Add an `X` icon to each screenshot row and make that delete the project
-- Fix project update buttons
