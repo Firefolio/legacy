@@ -3,6 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Screenshot_model extends CI_Model {
 
+  private $table = 'screenshots';
+
   public function __construct()
   {
     parent::__construct();
@@ -13,7 +15,7 @@ class Screenshot_model extends CI_Model {
     if (isset($project))
     {
       $query = $this->db->get_where(
-        'screenshots',
+        $this->table,
         array('project' => $project)
       );
 
@@ -31,5 +33,16 @@ class Screenshot_model extends CI_Model {
   public function insert($screenshot = array())
   {
     $this->db->insert('screenshots', $screenshot);
+
+    return $this->db->insert_id();
+  }
+
+  public function update($screenshot = array())
+  {
+    $this->db->update(
+      $this->table,
+      $screenshot,
+      array('id' => $screenshot['id'])
+    );
   }
 }

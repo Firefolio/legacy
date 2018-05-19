@@ -23,8 +23,7 @@ class Screenshots extends CI_Controller {
       'project' => $project
     );
     $data = $this->get_parser_data();
-
-    $this->screenshot_model->insert($screenshot);
+    $data['id'] = $this->screenshot_model->insert($screenshot);
 
     // Assume that the attempt was successful
     $response['success'] = TRUE;

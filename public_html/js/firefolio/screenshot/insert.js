@@ -9,5 +9,5 @@ $('document').ready(function () {
         $('#id').val(),
       true // Append HTML to DOM
     );
-  }));
+  }), 128);
 });
