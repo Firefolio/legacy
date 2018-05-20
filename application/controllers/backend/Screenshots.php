@@ -38,6 +38,31 @@ class Screenshots extends CI_Controller {
     echo $json;
   }
 
+  public function update()
+  {
+    $response = $this->prepare_response();
+
+    if (isset($_POST['screenshots']))
+    {
+      $screenshots = json_decode(stripslashes($_POST['screenshots']));
+
+      foreach ($screenshots as $screenshot)
+      {
+        $this->screenshot_model->update($screenshot);
+      }
+
+      $response['success'] = TRUE;
+      $response['message'] = 'Saved project screenshots';
+    }
+    else
+    {
+      $response['message'] = 'No data sent to server';
+    }
+
+    $json = json_encode($response);
+    echo $json;
+  }
+
   private function prepare_response()
   {
     $response = array(

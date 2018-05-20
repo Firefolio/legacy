@@ -91,6 +91,40 @@ var ajax = {
       request.fail(function (message) {
         console.error(message);
       });
+    },
+    data: function (data, url) {
+      data[$('#csrf').attr('name')] = $('#csrf').val();
+
+      console.log(data);
+
+      // Type is assumed to be POST
+      var request = $.ajax({
+        url: url,
+        data: data,
+        cache: false,
+        method: 'POST',
+        type: 'JSON'
+      });
+
+      request.done(function (response) {
+        console.log(response);
+        response = JSON.parse(response);
+        console.log(response);
+
+        // Always remember to set the new hash after
+        // a complete request
+        $('#csrf').val(response.hash);
+
+        if (response.success) {
+          console.log(response.message);
+        } else {
+          console.error(response.message);
+        }
+      });
+
+      request.fail(function (message) {
+        console.error(message);
+      });
     }
   }
 };
