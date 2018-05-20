@@ -44,7 +44,7 @@ class Screenshots extends CI_Controller {
 
     if (isset($_POST['screenshots']))
     {
-      $screenshots = json_decode(stripslashes($_POST['screenshots']));
+      $screenshots = $_POST['screenshots'];
 
       foreach ($screenshots as $screenshot)
       {

@@ -6,7 +6,7 @@ $('document').ready(function () {
 
 function save_screenshots() {
   var screenshots = [];
-  var url = $('#base-url') + $('#index-page') + '/backend/screenshots/update';
+  var url = $('#base-url').val() + $('#index-page').val() + '/backend/screenshots/update';
 
   // Iterate over each screenshot and add their data to the array
   $.each($('#screenshots').children(), function (index, value) {
@@ -17,10 +17,8 @@ function save_screenshots() {
   });
 
   var data = {
-    screenshots: JSON.stringify(screenshots)
+    screenshots: screenshots
   }
-
-  console.log('Data:', data);
 
   ajax.request.data(data, url);
 }

@@ -65,7 +65,7 @@ var ajax = {
         url: url,
         data: data,
         method: 'POST',
-        type: 'JSON'
+        dataType: 'JSON'
       });
 
       request.done(function (response) {
@@ -94,16 +94,13 @@ var ajax = {
     },
     data: function (data, url) {
       data[$('#csrf').attr('name')] = $('#csrf').val();
-
-      console.log(data);
-
+      
       // Type is assumed to be POST
       var request = $.ajax({
         url: url,
         data: data,
-        cache: false,
         method: 'POST',
-        type: 'JSON'
+        dataType: 'JSON'
       });
 
       request.done(function (response) {
