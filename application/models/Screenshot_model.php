@@ -37,12 +37,12 @@ class Screenshot_model extends CI_Model {
     return $this->db->insert_id();
   }
 
-  public function update($screenshot = array())
+  public function update($screenshot)
   {
     $this->db->update(
       $this->table,
       $screenshot,
-      array('id' => $screenshot['id'])
+      array('id' => $screenshot->id)
     );
   }
 }

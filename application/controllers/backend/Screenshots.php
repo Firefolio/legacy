@@ -44,7 +44,7 @@ class Screenshots extends CI_Controller {
 
     if (isset($_POST['screenshots']))
     {
-      $screenshots = $_POST['screenshots'];
+      $screenshots = json_decode($_POST['screenshots']);
 
       foreach ($screenshots as $screenshot)
       {
@@ -52,7 +52,7 @@ class Screenshots extends CI_Controller {
       }
 
       $response['success'] = TRUE;
-      $response['message'] = 'Saved project screenshots';
+      $response['message'] = 'Updated given screenshots';
     }
     else
     {

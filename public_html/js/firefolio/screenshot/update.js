@@ -11,13 +11,13 @@ function save_screenshots() {
   // Iterate over each screenshot and add their data to the array
   $.each($('#screenshots').children(), function (index, value) {
     screenshots.push({
-      id: $(this).data('id'),
-      path: $(this).find('input[name=path]').val()
+      'id': $(this).data('id'),
+      'path': $(this).find('input[name=path]').val()
     });
   });
 
   var data = {
-    screenshots: screenshots
+    screenshots: JSON.stringify(screenshots)
   }
 
   ajax.request.data(data, url);
