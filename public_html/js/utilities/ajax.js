@@ -94,7 +94,7 @@ var ajax = {
     },
     data: function (data, url) {
       data[$('#csrf').attr('name')] = $('#csrf').val();
-      
+
       // Type is assumed to be POST
       var request = $.ajax({
         url: url,
@@ -104,10 +104,6 @@ var ajax = {
       });
 
       request.done(function (response) {
-        console.log(response);
-        response = JSON.parse(response);
-        console.log(response);
-
         // Always remember to set the new hash after
         // a complete request
         $('#csrf').val(response.hash);

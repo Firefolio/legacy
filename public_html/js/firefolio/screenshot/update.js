@@ -2,6 +2,18 @@ $('document').ready(function () {
   $('#save').click(function () {
     save_screenshots();
   });
+
+  $(window).bind('keydown', function (event) {
+    if (event.ctrlKey || event.metaKey) {
+      switch (String.fromCharCode(event.which).toLowerCase()) {
+        case 's':
+          event.preventDefault();
+          
+          save_screenshots();
+          break;
+      }
+    }
+  });
 });
 
 function save_screenshots() {
