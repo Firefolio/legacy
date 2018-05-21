@@ -17,15 +17,12 @@ var ajax = {
         url: url,
         data: data,
         method: method,
-        type: 'JSON'
+        dataType: 'JSON'
       });
 
       inputs.prop('disabled', false);
 
       request.done(function (response) {
-        // Parse and debug server response
-        console.log(response);
-        response = JSON.parse(response);
         console.log(response);
 
         // Update the anti-CSRF hash
@@ -70,8 +67,6 @@ var ajax = {
 
       request.done(function (response) {
         console.log(response);
-        response = JSON.parse(response);
-        console.log(response);
 
         // Always remember to set the new hash after
         // a complete request
@@ -104,6 +99,8 @@ var ajax = {
       });
 
       request.done(function (response) {
+        console.log(response);
+
         // Always remember to set the new hash after
         // a complete request
         $('#csrf').val(response.hash);

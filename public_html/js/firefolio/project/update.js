@@ -5,7 +5,7 @@ $(document).ready(function () {
       primary: $('#update'),
       save: $('#save')
     },
-  save: function () {
+  save: function (redirect = false) {
       if (title.current != title.original) {
         ajax.request.form(
           $('#form'),
@@ -40,6 +40,7 @@ $(document).ready(function () {
     update.form.submit(function (event) {
       event.preventDefault();
 
+      save_screenshots();
       ajax.request.form(
         $('#form'),
         $('#form').attr('action'),
@@ -52,6 +53,7 @@ $(document).ready(function () {
     $('button#finish').click(function (event) {
       event.preventDefault();
 
+      save_screenshots();
       ajax.request.form(
         $('#form'),
         $('#form').attr('action'),
@@ -67,18 +69,18 @@ $(document).ready(function () {
 
     $('input[name=title]').on('input', function () {
       title.current = $(this).val();
-      console.log(title);
-      console.log(generate_uri(title.current));
     });
 
     // Save and keep editing
     if (update.button.save !== null) {
-    // Save the project when the button is clicked
-    update.button.save.click(function (event) {
-      event.preventDefault();
-      update.save();
-    });
-  }
+      // Save the project when the button is clicked
+      update.button.save.click(function (event) {
+        event.preventDefault();
+
+        save_screenshots();
+        update.save();
+      });
+    }
 
     // Override the keyboard shortcut to let them do that too
     $(window).bind('keydown', function (event) {
@@ -86,6 +88,8 @@ $(document).ready(function () {
         switch (String.fromCharCode(event.which).toLowerCase()) {
           case 's':
             event.preventDefault();
+
+            save_screenshots();
             update.save();
             break;
         }
