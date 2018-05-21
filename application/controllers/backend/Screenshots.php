@@ -22,6 +22,7 @@ class Screenshots extends CI_Controller {
     $screenshot = array(
       'project' => $project
     );
+
     $data = $this->get_parser_data();
     $data['id'] = $this->screenshot_model->insert($screenshot);
 
@@ -103,7 +104,9 @@ class Screenshots extends CI_Controller {
   {
     $data = array(
       'base_url' => base_url(),
-      'index_page' => index_page()
+      'index_page' => index_page(),
+      'path' => '',
+      'caption' => ''
     );
 
     return $data;

@@ -82,6 +82,14 @@ class Application_model extends CI_Model {
     return $row['password'];
   }
 
+  public function get_default_password()
+  {
+    $query = $this->db->get('application');
+    $row = $query->row_array();
+
+    return $row['default_password'];
+  }
+
   public function update_username($username)
   {
     $this->db->update('application', array('username' => $username));
@@ -90,13 +98,5 @@ class Application_model extends CI_Model {
   public function update_password($password)
   {
     $this->db->update('application', array('password' => $password));
-  }
-
-  public function get_default_password()
-  {
-    $query = $this->db->get('application');
-    $row = $query->row_array();
-
-    return $row['patch'];
   }
 }
