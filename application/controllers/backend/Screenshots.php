@@ -29,7 +29,7 @@ class Screenshots extends CI_Controller {
     $response['success'] = TRUE;
     $response['message'] = 'Inserted a new screenshot into the database';
     $response['html'] = $this->parser->parse(
-      'backend/screenshots/input.html',
+      'backend/screenshots/input/single.html',
       $data,
       TRUE
     );
@@ -57,6 +57,30 @@ class Screenshots extends CI_Controller {
     else
     {
       $response['message'] = 'No data sent to server';
+    }
+
+    $json = json_encode($response);
+    echo $json;
+  }
+
+  public function delete()
+  {
+    $response = $this->prepare_response();
+
+    if (isset($_POST['id']))
+    {
+      $screenshot = $_POST['id'];
+
+      $this->screenshot_model->delete($screenshot);
+
+      $response['success'] = true;
+      $response['message'] = 'Removed screenshot ' .
+                            $screenshot .
+                            ' from the database';
+    }
+    else
+    {
+      $response['message'] = 'No ID sent to server';
     }
 
     $json = json_encode($response);

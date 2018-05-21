@@ -26,8 +26,6 @@ class Portfolio extends CI_Controller {
     $data = $this->get_parser_data();
     $data['rows'] = $this->get_project_rows();
 
-    echo CI_VERSION;
-
     $this->parser->parse('frontend/portfolio.html', $data);
   }
 

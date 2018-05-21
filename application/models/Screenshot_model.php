@@ -45,4 +45,9 @@ class Screenshot_model extends CI_Model {
       array('id' => $screenshot->id)
     );
   }
+
+  public function delete($id)
+  {
+    $this->db->delete($this->table, array('id' => $id));
+  }
 }
