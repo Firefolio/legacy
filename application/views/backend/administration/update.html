@@ -56,10 +56,18 @@
         name="{csrf_name}"
         value="{csrf_hash}">
 
-        <!-- Administration Controls -->
-        <!-- Update -->
-        <section class="row">
-          <div class="one-half column">
+        <div class="tabbed">
+          <!-- Tab List -->
+          <ul>
+            <li>
+              <a href="#tab-1">Username</a>
+            </li>
+            <li>
+              <a href="#tab-2">Password</a>
+            </li>
+          </ul>
+
+          <div id="tab-1">
             <!-- Username -->
             <form
             id="update-username"
@@ -87,31 +95,12 @@
               </div>
             </form>
           </div>
-          <div class="one-half column">
+          <div id="tab-2">
+            <!-- Password -->
             <form
             id="update-password"
             action="{base_url}{index_page}/backend/administration/update/password"
             method="POST">
-              <!-- Hidden Inputs -->
-              <input
-              id="base-url"
-              class="hidden"
-              type="hidden"
-              name="base_url"
-              value="{base_url}">
-              <input
-              id="base-url"
-              class="hidden"
-              type="hidden"
-              name="index_page"
-              value="{index_page}">
-              <input
-              id="csrf"
-              class="hidden"
-              type="hidden"
-              name="{csrf_name}"
-              value="{csrf_hash}">
-
               <div class="row">
                 <label for="new-password">Password</label>
                 <input
@@ -138,7 +127,7 @@
               </div>
             </form>
           </div>
-        </section>
+        </div>
       </div>
 
       <!-- Scripts -->
@@ -148,10 +137,19 @@
       src="https://code.jquery.com/jquery-3.2.1.min.js"
       integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
       crossorigin="anonymous"></script>
+      <!-- JQuery UI -->
+      <script
+  	  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  	  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+  	  crossorigin="anonymous"></script>
+      <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
       <!-- Utilities -->
       <script src="{base_url}js/utilities/fallback.js"></script>
       <script src="{base_url}js/utilities/ajax.js"></script>
+      <script src="{base_url}js/utilities/tabs.js"></script>
 
       <!-- {application_name} -->
       <script src="{base_url}js/firefolio/administration/update.js"></script>
