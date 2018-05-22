@@ -1,4 +1,3 @@
-- Detect when the user is logged in and change the link at the bottom of the page accordingly
 - Store and force changes on the system's default password
 - Add cascading styles to the backend interface
 - Add an area for hyperlinks on project pages

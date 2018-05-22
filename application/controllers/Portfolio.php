@@ -7,6 +7,7 @@ class Portfolio extends CI_Controller {
   {
     parent::__construct();
 
+    $this->load->model('application_model');
     $this->load->model('profile_model');
     $this->load->model('project_model');
     $this->load->model('screenshot_model');
@@ -183,6 +184,8 @@ class Portfolio extends CI_Controller {
       markdown_parse($this->profile_model->get_biography() ?? '')
     );
     $data['visibilities'] = $this->project_model->get_visibilities();
+    $data['username'] = $this->application_model->get_username();
+    $data['login'] = $this->get_login($data);
 
     return $data;
   }
@@ -263,6 +266,32 @@ class Portfolio extends CI_Controller {
     else
     {
       $html = '';
+    }
+
+    return $html;
+  }
+
+  private function get_login($data)
+  {
+    $html = '';
+
+    session_start();
+
+    if (isset($_SESSION['user']))
+    {
+      $html = $this->parser->parse(
+        'frontend/logout.html',
+        $data,
+        TRUE
+      );
+    }
+    else
+    {
+      $html = $this->parser->parse(
+        'frontend/login.html',
+        $data,
+        TRUE
+      );
     }
 
     return $html;
