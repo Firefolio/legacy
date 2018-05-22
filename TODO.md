@@ -1,7 +1,7 @@
+- Detect when the user is logged in and change the link at the bottom of the page accordingly
 - Store and force changes on the system's default password
 - Add cascading styles to the backend interface
 - Add an area for hyperlinks on project pages
 - Provide validation on backend forms
-- Add an `About` controller that credits people and libraries who worked on this
 - Output a list of social media links from the user's profile
-- Add search tags for projects
+- Allow frontend users to search more finely through catagories
