@@ -61,20 +61,10 @@ class Login extends CI_Controller
         if ($username === $credentials['username'] AND
             password_verify($password, $credentials['password']))
         {
-          if (!password_verify($password, $credentials['default_password']))
-          {
-            $_SESSION['user'] = $username;
+          $_SESSION['user'] = $username;
 
-            $response['success'] = TRUE;
-            $response['message'] = 'Login attempt successful';
-          }
-          else
-          {
-            $url = base_url() . index_page() . '/default_password';
-
-            $response['message'] = 'Password is unchanged from the default';
-            header('Location: ');
-          }
+          $response['success'] = TRUE;
+          $response['message'] = 'Login attempt successful';
         }
         else
         {

@@ -1,7 +1,6 @@
-- Store and force changes on the system's default password
 - Add cascading styles to the backend interface
 - Add an area for hyperlinks on project pages
 - Provide validation on backend forms
 - Output a list of social media links from the user's profile
-- Allow frontend users to search more finely through catagories
+- Allow frontend users to search more finely through categories
 - Sort the authentication menu into tabs
