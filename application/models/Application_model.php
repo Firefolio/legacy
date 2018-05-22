@@ -60,7 +60,8 @@ class Application_model extends CI_Model {
   {
     $credentials = array(
       'username' => $this->get_username(),
-      'password' => $this->get_password()
+      'password' => $this->get_password(),
+      'default_password' => $this->get_default_password()
     );
 
     return $credentials;

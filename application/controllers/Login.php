@@ -51,7 +51,7 @@ class Login extends CI_Controller
 
     session_start();
 
-    if (isset($_POST['username']) && isset($_POST['password']))
+    if (isset($_POST['username']) AND isset($_POST['password']))
     {
       $username = $_POST['username'];
       $password = $_POST['password'];
@@ -61,14 +61,24 @@ class Login extends CI_Controller
         if ($username === $credentials['username'] AND
             password_verify($password, $credentials['password']))
         {
-          $_SESSION['user'] = $username;
+          if (!password_verify($password, $credentials['default_password']))
+          {
+            $_SESSION['user'] = $username;
 
-          $response['success'] = TRUE;
-          $response['message'] = 'Login attempt successful';
+            $response['success'] = TRUE;
+            $response['message'] = 'Login attempt successful';
+          }
+          else
+          {
+            $url = base_url() . index_page() . '/default_password';
+
+            $response['message'] = 'Password is unchanged from the default';
+            header('Location: ');
+          }
         }
         else
         {
-          $response['message'] = 'Incorrect login credentials';
+          $response['message'] = 'Login credentials are incorrect';
         }
       }
       else
@@ -97,5 +107,34 @@ class Login extends CI_Controller
     $url = base_url() . index_page() . '/login';
 
     header('Location: ' . $url);
+  }
+
+  public function security($column = 'password')
+  {
+    switch ($column)
+    {
+      case 'password':
+        $this->parser->parse(
+          'frontend/security/password.html',
+          $this->get_parser_data()
+        );
+        break;
+      default:
+        show_404();
+        break;
+    }
+  }
+
+  public function get_parser_data()
+  {
+    $data = array(
+      'base_url' => base_url(),
+      'index_page' => index_page(),
+      'application_name' => $this->application_model->get_name(),
+      'csrf_name' => $this->security->get_csrf_token_name(),
+      'csrf_hash' => $this->security->get_csrf_hash()
+    );
+
+    return $data;
   }
 }

@@ -37,6 +37,38 @@
                   Back to frontend
                 </a>
 
+                <!-- Hidden Inputs -->
+                <!-- Base URL -->
+                <input
+                id="base-url"
+                class="hidden"
+                type="hidden"
+                text="text"
+                value="{base_url}">
+                <!-- Index Page -->
+                <input
+                id="index-page"
+                class="hidden"
+                type="hidden"
+                text="text"
+                value="{index_page}">
+                <!-- Anti CSRF -->
+                <input
+                id="csrf"
+                class="hidden"
+                type="hidden"
+                text="text"
+                name="{csrf_name}"
+                value="{csrf_hash}">
+                <!-- Redirect URL -->
+                <input
+                id="redirect-url"
+                class="hidden"
+                type="hidden"
+                text="text"
+                name="redirect_url"
+                value="{base_url}{index_page}/backend/projects">
+
                 <!-- Login Form -->
                 <form
                 id="form"
@@ -45,39 +77,8 @@
                 method="POST">
                   <div class="row">
                     <div class="one-full column">
-                      <!-- Hidden Inputs -->
-                      <!-- Base URL -->
-                      <input
-                      id="base-url"
-                      class="hidden"
-                      type="hidden"
-                      text="text"
-                      value="{base_url}">
-                      <!-- Index Page -->
-                      <input
-                      id="index-page"
-                      class="hidden"
-                      type="hidden"
-                      text="text"
-                      value="{index_page}">
-                      <!-- Anti CSRF -->
-                      <input
-                      id="csrf"
-                      class="hidden"
-                      type="hidden"
-                      text="text"
-                      name="{csrf_name}"
-                      value="{csrf_hash}">
-                      <!-- Redirect URL -->
-                      <input
-                      id="redirect-url"
-                      class="hidden"
-                      type="hidden"
-                      text="text"
-                      name="redirect_url"
-                      value="{base_url}{index_page}/backend/projects">
-
                       <!-- Visible Inputs -->
+                      <!-- Username -->
   	                  <label for="username">Username</label>
                       <input
                       id="username"
@@ -119,6 +120,8 @@
                 height="auto"
                 src="{base_url}img/firefolio/icon-grey.svg"
                 alt="Left Arrow">
+
+                <!-- Error Display -->
                 <div id="error" class=""></div>
               </div>
             </div>

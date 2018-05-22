@@ -4,3 +4,4 @@
 - Provide validation on backend forms
 - Output a list of social media links from the user's profile
 - Allow frontend users to search more finely through catagories
+- Sort the authentication menu into tabs

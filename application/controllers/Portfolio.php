@@ -184,7 +184,7 @@ class Portfolio extends CI_Controller {
       markdown_parse($this->profile_model->get_biography() ?? '')
     );
     $data['visibilities'] = $this->project_model->get_visibilities();
-    $data['username'] = $this->application_model->get_username();
+    $data['username'] = htmlentities($this->application_model->get_username());
     $data['login'] = $this->get_login($data);
 
     return $data;
