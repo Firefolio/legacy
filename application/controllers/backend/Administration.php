@@ -6,14 +6,7 @@ class Administration extends CI_Controller {
   function __construct()
   {
     parent::__construct();
-
-    $this->load->model('application_model');
-
-    $this->load->helper('authentication');
-    $this->load->helper('url');
-    $this->load->helper('security');
-
-    $this->load->library('parser');
+    $this->load_assets();
   }
 
   public function index()
@@ -110,6 +103,20 @@ class Administration extends CI_Controller {
         show_404();
         break;
     }
+  }
+
+  private function load_assets()
+  {
+    // Models
+    $this->load->model('application_model');
+
+    // Helpers
+    $this->load->helper('authentication');
+    $this->load->helper('url');
+    $this->load->helper('security');
+
+    // Libraries
+    $this->load->library('parser');
   }
 
   private function get_parser_data()

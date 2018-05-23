@@ -6,18 +6,12 @@ class Markdown extends CI_Controller {
   function __construct()
   {
     parent::__construct();
-
     $this->load_assets();
   }
 
   public function parse()
   {
-    $response = array(
-      'success' => FALSE,
-      'message' => 'No error message specified',
-      'html' => 'Markdown parse failed',
-      'hash' => $this->security->get_csrf_hash()
-    );
+    $response = $this->prepare_response();
 
     if (isset($_POST['input']))
     {
@@ -40,8 +34,21 @@ class Markdown extends CI_Controller {
 
   private function load_assets()
   {
+    // Helpers
     $this->load->helper('html_purifier');
     $this->load->helper('markdown');
     $this->load->helper('security');
+  }
+
+  private function prepare_response()
+  {
+    $response = array(
+      'success' => FALSE,
+      'message' => 'No error message specified',
+      'html' => 'Markdown code could not be parsed',
+      'hash' => $this->security->get_csrf_hash()
+    );
+
+    return $response;
   }
 }

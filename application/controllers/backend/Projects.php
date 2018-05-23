@@ -6,19 +6,7 @@ class Projects extends CI_Controller {
   function __construct()
   {
     parent::__construct();
-
-    $this->load->model('application_model');
-    $this->load->model('project_model');
-    $this->load->model('screenshot_model');
-
-    $this->load->library('parser');
-
-    $this->load->helper('authentication');
-    $this->load->helper('url');
-    $this->load->helper('uri');
-    $this->load->helper('security');
-    $this->load->helper('html_purifier');
-    $this->load->helper('markdown');
+    $this->load_assets();
   }
 
   public function index()
@@ -108,13 +96,13 @@ class Projects extends CI_Controller {
       case 'form':
         if ($this->project_model->project_exists($uri))
         {
-          // This is where the form input will be sent to
+          // This is where the form's input will be sent to
           $destination = base_url() .
                          index_page() .
                          '/backend/projects/update/' .
                          $uri .
                          '/attempt';
-          // This is where the form will redirect to
+          // This is where the form will redirect to once submitted
           $redirect = base_url() . index_page() . '/backend/projects';
 
           // Really, we should use html_purify on everything here,
@@ -256,13 +244,32 @@ class Projects extends CI_Controller {
     echo $json;
   }
 
+  public function load_assets()
+  {
+    // Models
+    $this->load->model('application_model');
+    $this->load->model('project_model');
+    $this->load->model('screenshot_model');
+
+    // Libraries
+    $this->load->library('parser');
+
+    // Helpers
+    $this->load->helper('authentication');
+    $this->load->helper('url');
+    $this->load->helper('uri');
+    $this->load->helper('security');
+    $this->load->helper('html_purifier');
+    $this->load->helper('markdown');
+  }
+
   private function get_parser_data($uri = '')
   {
     // WARNING: the following function does not purify user output on its own.
     // Use htmlentities and html_purify to prevent XSS attacks from user data!
 
     // Determine whether a single project, or multiple projects are needed
-    if ($uri !== '')
+    if ($uri != '')
     {
       // Single project
       $data = $this->project_model->get_project($uri);

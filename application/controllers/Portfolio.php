@@ -6,20 +6,7 @@ class Portfolio extends CI_Controller {
   public function __construct()
   {
     parent::__construct();
-
-    $this->load->model('application_model');
-    $this->load->model('profile_model');
-    $this->load->model('project_model');
-    $this->load->model('screenshot_model');
-
-    $this->load->helper('date');
-    $this->load->helper('security');
-    $this->load->helper('html_purifier');
-    $this->load->helper('markdown');
-    $this->load->helper('url');
-
-    $this->load->library('parser');
-    $this->load->library('video');
+    $this->load_assets();
   }
 
   public function index()
@@ -109,6 +96,26 @@ class Portfolio extends CI_Controller {
     echo $json;
   }
 
+  private function load_assets()
+  {
+    // Models
+    $this->load->model('application_model');
+    $this->load->model('profile_model');
+    $this->load->model('project_model');
+    $this->load->model('screenshot_model');
+
+    // Helpers
+    $this->load->helper('date');
+    $this->load->helper('security');
+    $this->load->helper('html_purifier');
+    $this->load->helper('markdown');
+    $this->load->helper('url');
+
+    // Libraries
+    $this->load->library('parser');
+    $this->load->library('video');
+  }
+
   private function get_project_rows($projects_per_row = 3)
   {
     // Get the project data from the database in such a way that only
@@ -155,6 +162,7 @@ class Portfolio extends CI_Controller {
   {
     // WARNING: the following function does not purify user output on its own.
     // Use htmlentities and html_purify to prevent XSS attacks from user data!
+    $data = array();
 
     // Determine whether a single project, or multiple projects are needed
     if ($uri != '')
@@ -180,8 +188,8 @@ class Portfolio extends CI_Controller {
     $data['full_name'] = htmlentities(
       $this->profile_model->get_full_name()
     );
-    $data['biography'] = html_purify(
-      markdown_parse($this->profile_model->get_biography() ?? '')
+    $data['biography'] = htmlentities(
+      $this->profile_model->get_biography() ?? ''
     );
     $data['visibilities'] = $this->project_model->get_visibilities();
     $data['username'] = htmlentities($this->application_model->get_username());

@@ -6,14 +6,7 @@ class Screenshots extends CI_Controller {
   function __construct()
   {
     parent::__construct();
-
-    $this->load->model('screenshot_model');
-
-    $this->load->library('parser');
-
-    $this->load->helper('html_purifier');
-    $this->load->helper('security');
-    $this->load->helper('url');
+    $this->load_assets();
   }
 
   public function insert($project)
@@ -86,6 +79,20 @@ class Screenshots extends CI_Controller {
 
     $json = json_encode($response);
     echo $json;
+  }
+
+  private function load_assets()
+  {
+    // Models
+    $this->load->model('screenshot_model');
+
+    // Libraries
+    $this->load->library('parser');
+
+    // Helpers
+    $this->load->helper('html_purifier');
+    $this->load->helper('security');
+    $this->load->helper('url');
   }
 
   private function prepare_response()
