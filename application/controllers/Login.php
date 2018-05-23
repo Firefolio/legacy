@@ -7,27 +7,17 @@ class Login extends CI_Controller
   {
     parent::__construct();
 
-    $this->load->model('application_model');
-
-    $this->load->helper('url');
-    $this->load->helper('security');
-
-    $this->load->library('parser');
+    $this->load_assets();
   }
 
   public function index()
   {
     session_start();
 
+    // Only show the login form if the user hasn't been authenticated already
     if (!isset($_SESSION['user']))
     {
-      $data = array(
-        'base_url' => base_url(),
-        'index_page' => index_page(),
-        'application_name' => $this->application_model->get_name(),
-        'csrf_name' => $this->security->get_csrf_token_name(),
-        'csrf_hash' => $this->security->get_csrf_hash()
-      );
+      $data = $this->get_parser_data();
 
       $this->parser->parse('backend/login.html', $data);
     }
@@ -42,14 +32,10 @@ class Login extends CI_Controller
 
   public function attempt()
   {
-    $response = array(
-      'success' => FALSE,
-      'message' => 'No error message specified',
-      'hash' => $this->security->get_csrf_hash()
-    );
-    $credentials = $this->application_model->get_credentials();
-
     session_start();
+
+    $response = $this->prepare_response();
+    $credentials = $this->application_model->get_credentials();
 
     if (isset($_POST['username']) AND isset($_POST['password']))
     {
@@ -99,31 +85,39 @@ class Login extends CI_Controller
     header('Location: ' . $url);
   }
 
-  public function security($column = 'password')
+  private function load_assets()
   {
-    switch ($column)
-    {
-      case 'password':
-        $this->parser->parse(
-          'frontend/security/password.html',
-          $this->get_parser_data()
-        );
-        break;
-      default:
-        show_404();
-        break;
-    }
+    // Models
+    $this->load->model('application_model');
+
+    // Helpers
+    $this->load->helper('url');
+    $this->load->helper('security');
+
+    // Libraries
+    $this->load->library('parser');
+  }
+
+  private function prepare_response()
+  {
+    $response = array(
+      'success' => FALSE,
+      'message' => 'No error message specified',
+      'hash' => $this->security->get_csrf_hash()
+    );
+
+    return $response;
   }
 
   public function get_parser_data()
   {
-    $data = array(
-      'base_url' => base_url(),
-      'index_page' => index_page(),
-      'application_name' => $this->application_model->get_name(),
-      'csrf_name' => $this->security->get_csrf_token_name(),
-      'csrf_hash' => $this->security->get_csrf_hash()
-    );
+    $data = array();
+    $data['base_url'] = base_url();
+    $data['index_page'] = index_page();
+    $data['application_name'] = $this->application_model->get_name();
+    $data['csrf_name'] = $this->security->get_csrf_token_name();
+    $data['csrf_hash'] = $this->security->get_csrf_hash();
+    $data['stylesheets'] = $this->parser->parse('backend/stylesheets.html', $data, TRUE);
 
     return $data;
   }

@@ -2,13 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Markdown extends CI_Controller {
+
   function __construct()
   {
     parent::__construct();
 
-    $this->load->helper('html_purifier');
-    $this->load->helper('markdown');
-    $this->load->helper('security');
+    $this->load_assets();
   }
 
   public function parse()
@@ -37,5 +36,12 @@ class Markdown extends CI_Controller {
 
     $json = json_encode($response);
     echo $json;
+  }
+
+  private function load_assets()
+  {
+    $this->load->helper('html_purifier');
+    $this->load->helper('markdown');
+    $this->load->helper('security');
   }
 }

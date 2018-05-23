@@ -288,11 +288,8 @@ class Projects extends CI_Controller {
     $data['website'] = $this->application_model->get_website();
     // The navigation bar should be parsed last because it
     // relies on the above information
-    $data['navbar'] = $this->parser->parse(
-      'backend/navbar.html',
-      $data,
-      TRUE
-    );
+    $data['navbar'] = $this->parser->parse('backend/navbar.html', $data, TRUE);
+    $data['stylesheets'] = $this->parser->parse('backend/stylesheets.html', $data, TRUE);
     $data['visibilities'] = $this->project_model->get_visibilities();
     $data['statuses'] = $this->project_model->get_statuses();
 

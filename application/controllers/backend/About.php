@@ -31,6 +31,7 @@ class About extends CI_Controller {
     $data['patch'] = $this->application_model->get_patch();
     $data['website'] = $this->application_model->get_website();
     $data['navbar'] = $this->parser->parse('backend/navbar.html', $data, TRUE);
+    $data['stylesheets'] = $this->parser->parse('backend/stylesheets.html', $data, TRUE);
 
     return $data;
   }
