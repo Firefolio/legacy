@@ -74,7 +74,7 @@ var ajax = {
 
         if (response.success) {
           if (append) {
-            if (input.html() != '') {
+            if (output.html() != '') {
               output.append(response.html);
             } else {
               output.html(response.html);
