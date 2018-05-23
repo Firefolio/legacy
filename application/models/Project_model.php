@@ -57,7 +57,6 @@ class Project_model extends CI_Model {
 
   public function get_languages()
   {
-    // TODO: Use a pointer to get the name from the languages table
     $this->db->select('language');
     $this->db->distinct();
     $query = $this->db->get('projects');

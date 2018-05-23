@@ -81,7 +81,6 @@ class Video {
 
   // Returns the type of video based on its URL
   // The type string will always be in lower case
-  // TODO: Find out how to return an enum value instead of a string
   private function get_type($url)
   {
     $parsed_url = parse_url($url);
