@@ -56,7 +56,8 @@
 
       <!-- Search Form -->
       <section class="row">
-        <div class="eight columns">
+        <!-- String -->
+        <div class="three columns">
           <label for="language">Search</label>
           <input
           id="search"
@@ -66,13 +67,33 @@
           value=""
           placeholder="Search">
         </div>
-        <div class="four columns">
-          <label for="language">Language</label>
-          <select id="language" class="u-full-width" name="language">
+        <!-- Through -->
+        <div class="three columns">
+          <label for="columns">Through</label>
+          <select id="column" class="u-full-width" name="language">
             <option value="All">All</option>
-            {languages}
-             <option value="{name}">{language}</option>
-            {/languages}
+            {columns}
+             <option value="{name}">{name}</option>
+            {/columns}
+          </select>
+        </div>
+        <!-- By -->
+        <div class="three columns">
+          <label for="columns">By</label>
+          <select id="column" class="u-full-width" name="language">
+            <option value="None">None</option>
+            {columns}
+             <option value="{name}">{name}</option>
+            {/columns}
+          </select>
+        </div>
+        <!-- Sort Order -->
+        <div class="three columns">
+          <label for="columns">Sort Order</label>
+          <select id="order" class="u-full-width" name="language">
+            <option value="ASC">Ascending</option>
+            <option value="DESC">Descending</option>
+            <option value="RAND">Random</option>
           </select>
         </div>
       </section>

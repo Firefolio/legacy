@@ -3,6 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Project_model extends CI_Model {
 
+  private $table = 'projects';
+
   function __construct()
   {
     parent::__construct();
@@ -47,7 +49,7 @@ class Project_model extends CI_Model {
     // Add a blank field for the name of each column
     foreach ($columns as $column)
     {
-      $project[$column['Field']] = '';
+      $project[$column['name']] = '';
     }
 
     return $project;
@@ -105,13 +107,38 @@ class Project_model extends CI_Model {
     return $statuses;
   }
 
-  public function get_columns()
+  public function get_columns($format = FALSE)
   {
-    $query = $this->db->query('SHOW COLUMNS FROM `projects`');
-    $result = $query->result_array();
+    $fields = $this->db->field_data($this->table);
     $columns = array();
 
-    return $result;
+    if ($format === TRUE)
+    {
+      foreach ($fields as $field)
+      {
+        array_push(
+          $columns, // Array
+          array(
+            'name' => ucwords(
+              str_replace(
+                '_', // Search
+                ' ', // Replacement
+                $field->name // String
+              )
+            )
+          )
+        );
+      }
+    }
+    else
+    {
+      foreach ($fields as $field)
+      {
+        array_push($columns, array('name' => $field->name));
+      }
+    }
+
+    return $columns;
   }
 
   public function insert_project($project)

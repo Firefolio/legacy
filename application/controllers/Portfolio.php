@@ -194,6 +194,7 @@ class Portfolio extends CI_Controller {
     $data['visibilities'] = $this->project_model->get_visibilities();
     $data['username'] = htmlentities($this->application_model->get_username());
     $data['login'] = $this->get_login($data);
+    $data['columns'] = $this->project_model->get_columns(TRUE); // Formatted
 
     return $data;
   }

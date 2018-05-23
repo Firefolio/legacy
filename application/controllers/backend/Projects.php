@@ -96,13 +96,13 @@ class Projects extends CI_Controller {
       case 'form':
         if ($this->project_model->project_exists($uri))
         {
-          // This is where the form's input will be sent to
+          // Define where the form will send it's data
           $destination = base_url() .
                          index_page() .
                          '/backend/projects/update/' .
                          $uri .
                          '/attempt';
-          // This is where the form will redirect to once submitted
+          // Define where the page will redirect to once submitted
           $redirect = base_url() . index_page() . '/backend/projects';
 
           // Really, we should use html_purify on everything here,
