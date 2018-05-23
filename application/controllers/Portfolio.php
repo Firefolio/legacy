@@ -195,6 +195,7 @@ class Portfolio extends CI_Controller {
     $data['username'] = htmlentities($this->application_model->get_username());
     $data['login'] = $this->get_login($data);
     $data['columns'] = $this->project_model->get_columns(TRUE); // Formatted
+    $data['year'] = date('Y');
 
     return $data;
   }

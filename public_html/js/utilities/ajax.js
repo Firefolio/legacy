@@ -91,7 +91,7 @@ var ajax = {
         console.error(message);
       });
     },
-    data: function (data, url) {
+    data: function (data, url, done = function() {}) {
       data[$('#csrf').attr('name')] = $('#csrf').val();
 
       // Type is assumed to be POST

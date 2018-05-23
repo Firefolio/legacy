@@ -79,18 +79,17 @@
         </div>
         <!-- By -->
         <div class="three columns">
-          <label for="columns">By</label>
-          <select id="column" class="u-full-width" name="language">
-            <option value="None">None</option>
+          <label for="columns">Order By</label>
+          <select id="order" class="u-full-width" name="language">
             {columns}
-             <option value="{name}">{name}</option>
+              <option value="{name}">{name}</option>
             {/columns}
           </select>
         </div>
         <!-- Sort Order -->
         <div class="three columns">
-          <label for="columns">Sort Order</label>
-          <select id="order" class="u-full-width" name="language">
+          <label for="columns">Sort</label>
+          <select id="sort" class="u-full-width" name="language">
             <option value="ASC">Ascending</option>
             <option value="DESC">Descending</option>
             <option value="RAND">Random</option>
@@ -135,7 +134,7 @@
           <div class="two-thirds column">
             <div class="u-pull-left">
               <!-- License -->
-              <small>Copyright &copy; {full_name} 2018</small>
+              <small>Copyright &copy; {full_name} {year}</small>
             </div>
           </div>
           <div class="one-third column">
