@@ -65,13 +65,12 @@
           type="text"
           name="search"
           value=""
-          placeholder="Search">
+          placeholder="Keywords">
         </div>
         <!-- Through -->
         <div class="three columns">
-          <label for="columns">Through</label>
-          <select id="column" class="u-full-width" name="language">
-            <option value="All">All</option>
+          <label for="columns">Category</label>
+          <select id="like" class="u-full-width" name="language">
             {columns}
              <option value="{name}">{name}</option>
             {/columns}
@@ -80,7 +79,7 @@
         <!-- By -->
         <div class="three columns">
           <label for="columns">Order By</label>
-          <select id="order" class="u-full-width" name="language">
+          <select id="by" class="u-full-width" name="language">
             {columns}
               <option value="{name}">{name}</option>
             {/columns}
@@ -88,11 +87,11 @@
         </div>
         <!-- Sort Order -->
         <div class="three columns">
-          <label for="columns">Sort</label>
-          <select id="sort" class="u-full-width" name="language">
+          <label for="order">Sort</label>
+          <select id="order" class="u-full-width" name="order">
             <option value="ASC">Ascending</option>
-            <option value="DESC">Descending</option>
-            <option value="RAND">Random</option>
+            <option value="DESC" selected>Descending</option>
+            <option value="RANDOM">Random</option>
           </select>
         </div>
       </section>

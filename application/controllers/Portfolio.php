@@ -12,7 +12,7 @@ class Portfolio extends CI_Controller {
   public function index()
   {
     $data = $this->get_parser_data();
-    $data['rows'] = $this->get_project_rows();
+    $data['rows'] = $this->get_project_rows($data['projects']);
 
     $this->parser->parse('frontend/portfolio.html', $data);
   }
@@ -64,19 +64,23 @@ class Portfolio extends CI_Controller {
       'html' => 'No HTML data set'
     );
 
-    if (isset($_POST['input']))
+    if (isset($_POST['search']))
     {
-      $title = $_POST['input'];
+      // Create shortcut variables for each stage of the query
+      $search = $_POST['search'] ?? '';
+      $like = $_POST['like'] ?? '';
+      $by = $_POST['by'] ?? '';
+      $order = $_POST['order'] ?? '';
 
       $response['success'] = TRUE;
       $response['message'] = 'Found some projects from query';
 
-      $projects = $this->project_model->search_projects($title);
+      $projects = $this->project_model->search_projects($search, $like, $by, $order);
 
       if (count($projects) > 0)
       {
         $data = $this->get_parser_data();
-        $data['rows'] = $this->get_project_rows();
+        $data['rows'] = $this->get_project_rows($projects);
 
         $response['html'] = $this->parser->parse(
           'frontend/thumbnails.html',
@@ -86,9 +90,7 @@ class Portfolio extends CI_Controller {
       }
       else
       {
-        $response['html'] = 'No projects like "' .
-                             htmlentities($title) .
-                             '" were found.';
+        $response['html'] = 'No projects with the given parameters were found.';
       }
     }
 
@@ -116,13 +118,10 @@ class Portfolio extends CI_Controller {
     $this->load->library('video');
   }
 
-  private function get_project_rows($projects_per_row = 3)
+  private function get_project_rows($projects = array(), $projects_per_row = 3)
   {
     // Get the project data from the database in such a way that only
     // publically visible projects are collected
-    $projects = html_purify(
-      $this->project_model->get_projects(array('visibility' => 'public'))
-    );
     $rows = array();
 
     for ($project = 0; $project < count($projects); $project++)
@@ -194,7 +193,7 @@ class Portfolio extends CI_Controller {
     $data['visibilities'] = $this->project_model->get_visibilities();
     $data['username'] = htmlentities($this->application_model->get_username());
     $data['login'] = $this->get_login($data);
-    $data['columns'] = $this->project_model->get_columns(TRUE); // Formatted
+    $data['columns'] = $this->project_model->get_columns(FALSE);
     $data['year'] = date('Y');
 
     return $data;

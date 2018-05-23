@@ -8,8 +8,12 @@ $('document').ready(function () {
   $('#search').removeAttr('disabled');
 
   $('#search').on('input', debounce(function () {
+    var data = {
+      input: $('#search').val()
+    }
+
     ajax.request.html(
-      $('#search').val(), // Query
+      data, // Query
       '#projects', // Node
       url // Search URL
     );

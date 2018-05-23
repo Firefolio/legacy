@@ -50,10 +50,7 @@ var ajax = {
         inputs.prop('disabled', false);
       });
     },
-    html: function (input, output, url, append = false) {
-      var data = {
-        input: input
-      }
+    html: function (data, output, url, append = false) {
       // Ensure that the current CSRF token is sent
       data[$('#csrf').attr('name')] = $('#csrf').val();
 
@@ -91,7 +88,7 @@ var ajax = {
         console.error(message);
       });
     },
-    data: function (data, url, done = function() {}) {
+    data: function (data, url, success = function() {}) {
       data[$('#csrf').attr('name')] = $('#csrf').val();
 
       // Type is assumed to be POST
@@ -110,6 +107,7 @@ var ajax = {
         $('#csrf').val(response.hash);
 
         if (response.success) {
+          success();
           console.log(response.message);
         } else {
           console.error(response.message);

@@ -159,22 +159,18 @@ class Project_model extends CI_Model {
     $this->db->delete('projects', array('uri' => $uri));
   }
 
-  public function search_projects($title, $language = 'All')
+  public function search_projects($search = '', $like = 'title', $by = 'id', $order = 'DESC')
   {
-    if ($language === 'All')
-    {
-      // Don't filter by language
-      $this->db->like('title', $title);
-      $query = $this->db->get('projects');
-    }
-    else
-    {
-      $this->db->like('title', $title);
-      $this->db->where('language', $language);
-      $query = $this->db->get('projects');
-    }
+    // Prepare the query
+    $this->db->order_by($by, $order);
+    $this->db->like($like, $search);
+    $this->db->from($this->table);
 
-    return $query->result_array();
+    // Execute that query and store the result from the database
+    $query = $this->db->get();
+    $result = $query->result_array();
+
+    return $result;
   }
 
   public function project_exists($uri)
