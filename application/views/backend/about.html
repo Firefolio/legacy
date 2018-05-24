@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+  <head>
+    <title>About - {application_name}</title>
+
+    <!-- Meta Data -->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" href="icon.png">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{base_url}css/normalize.css">
+    <link rel="stylesheet" href="{base_url}css/boilerplate.css">
+    <link rel="stylesheet" href="{base_url}css/skeleton.css">
+    <link rel="stylesheet" href="{base_url}css/firefolio.css">
+  </head>
+  <body>
+    {navbar}
+
+    <div class="container">
+      <header class="row">
+        <div class="one-full column">
+          <h1>About</h1>
+        </div>
+      </header>
+
+      <section class="row">
+        <div class="one-half column">
+          <img
+          width="100%"
+          height="auto"
+          src="{base_url}img/firefolio/logo.png"
+          alt="Burning Quill Logo">
+          <hr>
+          <p>
+            <strong>{application_name}</strong>,
+            the burning quill logo and associated software are all copyright
+            &copy; Callum John @ItsSeaJay 2018, and released as free software
+            under the terms of the MIT Open Source License. Inspired by Rami
+            Ismail's
+            <strong>Presskit()</strong>,
+            with special thanks to Martin, Dan, and Mark.
+          </p>
+        </div>
+        <div class="one-half column">
+          <p>
+            <strong>{application_name}</strong>
+            Wouldn't be possible without the following libraries and frameworks:
+          </p>
+          <ul>
+            <li>
+              Parsedown MIT Emanuil Rusev 2013
+            </li>
+            <li>
+              HTML Purifier LGPL Edward Z. Yang 2003
+            </li>
+            <li>
+              CodeIgniter PHP Framework MIT British Columbia Institute of Technology 2018
+            </li>
+            <li>
+              JQuery
+            </li>
+            <li>
+              Lightbox2
+            </li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

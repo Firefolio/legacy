@@ -9,24 +9,28 @@ class Screenshots extends CI_Controller {
     $this->load_assets();
   }
 
-  public function insert($project)
+  public function insert()
   {
     $response = $this->prepare_response();
-    $screenshot = array(
-      'project' => $project
-    );
 
-    $data = $this->get_parser_data();
-    $data['id'] = $this->screenshot_model->insert($screenshot);
+    if (isset($_POST['project']))
+    {
+      $screenshot = array(
+        'project' => $_POST['project']
+      );
 
-    // Assume that the attempt was successful
-    $response['success'] = TRUE;
-    $response['message'] = 'Inserted a new screenshot into the database';
-    $response['html'] = $this->parser->parse(
-      'backend/screenshots/input/single.html',
-      $data,
-      TRUE
-    );
+      $data = $this->get_parser_data();
+      $data['id'] = $this->screenshot_model->insert($screenshot);
+
+      // Assume that the attempt was successful
+      $response['success'] = TRUE;
+      $response['message'] = 'Inserted a new screenshot into the database';
+      $response['html'] = $this->parser->parse(
+        'backend/screenshots/input/single.html',
+        $data,
+        TRUE
+      );
+    }
 
     $json = json_encode($response);
     echo $json;

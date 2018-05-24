@@ -17,7 +17,7 @@ class About extends CI_Controller {
   public function index()
   {
     $data = $this->get_parser_data();
-    $this->parser->parse('backend/about/view.html', $data);
+    $this->parser->parse('backend/about.html', $data);
   }
 
   private function get_parser_data()
