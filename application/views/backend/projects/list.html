@@ -1,15 +1,20 @@
-<!-- This is used during a search.js AJAX request -->
 {projects}
   <tr>
+    <!-- ID -->
+    <td>
+      #{id}
+    </td>
+    <td>
+      <input type="hidden" name="uri" value="{uri}">
+      <a href="projects/update/{uri}">
+        <strong>{title}</strong>
+      </a>
+    </td>
     <td>
       <input
       type="checkbox"
       name="toggle"
       value="false">
-      <input type="hidden" name="uri" value="{uri}">
-      <a href="projects/update/{uri}">
-        <strong>{title}</strong>
-      </a>
     </td>
   </tr>
 {/projects}

@@ -99,7 +99,7 @@
       </section>
 
       <section class="row">
-        <div class="one-half column">
+        <div class="one-full column">
           <!-- Hidden Inputs -->
           <!-- Base URL -->
           <input
@@ -121,22 +121,22 @@
           value="{csrf_hash}">
 
           <!-- Projects List -->
-          <table id="projects" class="u-full-width">
-            <tbody>
-              {projects}
-                <tr>
-                  <td>
-                    <input
-                    type="checkbox"
-                    name="toggle"
-                    value="false">
-                    <input type="hidden" name="uri" value="{uri}">
-                    <a href="{base_url}{index_page}/backend/projects/update/{uri}">
-                      <strong>{title}</strong>
-                    </a>
-                  </td>
-                </tr>
-              {/projects}
+          <table class="u-full-width">
+            <thead>
+              <tr>
+                <td>
+                  ID
+                </td>
+                <td>
+                  Title
+                </td>
+                <td>
+                  Selected
+                </td>
+              </tr>
+            </thead>
+            <tbody id="projects">
+              {project_list}
             </tbody>
           </div>
         </div>

@@ -17,6 +17,11 @@ class Projects extends CI_Controller {
     $data['projects'] = $this->clean_project_titles(
       html_purify($data['projects'])
     );
+    $data['project_list']= $this->parser->parse(
+      'backend/projects/list.html',
+      $data,
+      TRUE
+    );
 
     // Include URL data in each project for the parser
     for ($project = 0; $project < count($data['projects']); $project++)
