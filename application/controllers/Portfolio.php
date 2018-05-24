@@ -11,8 +11,23 @@ class Portfolio extends CI_Controller {
 
   public function index()
   {
+    $categories = array(
+      'title',
+      'subtitle',
+      'description',
+      'status',
+      'language',
+      'purpose'
+    );
+    $orders = array(
+      'id',
+      'title',
+      'date'
+    );
     $data = $this->get_parser_data();
     $data['rows'] = $this->get_project_rows($data['projects']);
+    $data['categories'] = $this->filter_columns($categories);
+    $data['orders'] = $this->filter_columns($orders);
 
     $this->parser->parse('frontend/portfolio.html', $data);
   }
@@ -193,7 +208,6 @@ class Portfolio extends CI_Controller {
     $data['visibilities'] = $this->project_model->get_visibilities();
     $data['username'] = htmlentities($this->application_model->get_username());
     $data['login'] = $this->get_login($data);
-    $data['columns'] = $this->project_model->get_columns(FALSE);
     $data['year'] = date('Y');
 
     return $data;
@@ -304,5 +318,29 @@ class Portfolio extends CI_Controller {
     }
 
     return $html;
+  }
+
+  private function filter_columns($whitelist = array())
+  {
+    $columns = $this->project_model->get_columns(FALSE);
+    $categories = array();
+
+    // Only return categories on the whitelist
+    foreach ($columns as $column)
+    {
+      foreach ($whitelist as $item)
+      {
+        if ($column['name'] == $item)
+        {
+          $category = array(
+            'name' => $column['name']
+          );
+
+          array_push($categories, $category);
+        }
+      }
+    }
+
+    return $categories;
   }
 }

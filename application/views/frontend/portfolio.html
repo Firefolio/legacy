@@ -71,18 +71,18 @@
         <div class="three columns">
           <label for="columns">Category</label>
           <select id="like" class="u-full-width" name="language">
-            {columns}
+            {categories}
              <option value="{name}">{name}</option>
-            {/columns}
+            {/categories}
           </select>
         </div>
         <!-- By -->
         <div class="three columns">
           <label for="columns">Order By</label>
           <select id="by" class="u-full-width" name="language">
-            {columns}
+            {orders}
               <option value="{name}">{name}</option>
-            {/columns}
+            {/orders}
           </select>
         </div>
         <!-- Sort Order -->
@@ -126,15 +126,11 @@
         <div class="row">
           <div class="two-thirds column">
             <!-- Biography -->
-            {biography}
-          </div>
-        </div>
-        <div class="row">
-          <div class="two-thirds column">
-            <div class="u-pull-left">
-              <!-- License -->
-              <small>Copyright &copy; {full_name} {year}</small>
-            </div>
+            <i>
+              {biography}
+            </i>
+            <br>
+            <small>Copyright &copy; {full_name} {year}</small>
           </div>
           <div class="one-third column">
             <div class="u-pull-right">

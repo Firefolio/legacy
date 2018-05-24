@@ -2,6 +2,4 @@
 - Add an area for hyperlinks on project pages
 - Provide validation on backend forms
 - Output a list of social media links from the user's profile
-- Allow frontend users to search more finely through categories
 - Allow images to be uploaded via AJAX
-- Use the Database Meta Data class to obtain project column names
