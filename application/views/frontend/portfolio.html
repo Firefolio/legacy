@@ -65,12 +65,13 @@
           type="text"
           name="search"
           value=""
-          placeholder="Keywords">
+          placeholder="Keywords"
+          disabled>
         </div>
         <!-- Through -->
         <div class="three columns">
           <label for="columns">Category</label>
-          <select id="like" class="u-full-width" name="language">
+          <select id="like" class="u-full-width" name="language" disabled>
             {categories}
              <option value="{name}">{name}</option>
             {/categories}
@@ -79,7 +80,7 @@
         <!-- By -->
         <div class="three columns">
           <label for="columns">Order By</label>
-          <select id="by" class="u-full-width" name="language">
+          <select id="by" class="u-full-width" name="language" disabled>
             {orders}
               <option value="{name}">{name}</option>
             {/orders}

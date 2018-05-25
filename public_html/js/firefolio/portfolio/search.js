@@ -1,4 +1,10 @@
 $('document').ready(function () {
+  // Enable each of the inputs
+  $('#search').prop('disabled', false);
+  $('#like').prop('disabled', false);
+  $('#by').prop('disabled', false);
+  $('#order').prop('disabled', false);
+
   $('#search').on('input', debounce(search, 128));
   $('#like').on('input', debounce(search, 128));
   $('#by').on('input', debounce(search, 128));
@@ -16,9 +22,6 @@ function search() {
     by: $('#by').val(),
     order: $('#order').val()
   }
-
-  console.log('URL', url);
-  console.log('Data:', data);
 
   ajax.request.html(data, $('#projects'), url);
 }

@@ -3,6 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Portfolio extends CI_Controller {
 
+  private $projects_per_row = 4;
+
   public function __construct()
   {
     parent::__construct();
@@ -24,9 +26,9 @@ class Portfolio extends CI_Controller {
       'title',
       'date'
     );
-    
+
     $data = $this->get_parser_data();
-    $data['rows'] = $this->get_project_rows($data['projects'], 6);
+    $data['rows'] = $this->get_project_rows($data['projects'], $this->projects_per_row);
     $data['project_grid'] = $this->parser->parse(
       'frontend/project/grid.html',
       $data,
@@ -101,10 +103,10 @@ class Portfolio extends CI_Controller {
       if (count($projects) > 0)
       {
         $data = $this->get_parser_data();
-        $data['rows'] = $this->get_project_rows($projects);
+        $data['rows'] = $this->get_project_rows($projects, $this->projects_per_row);
 
         $response['html'] = $this->parser->parse(
-          'frontend/thumbnails.html',
+          'frontend/project/grid.html',
           $data,
           TRUE
         );
@@ -142,6 +144,7 @@ class Portfolio extends CI_Controller {
   private function get_project_rows($projects = array(), $projects_per_row = 3)
   {
     // Figure out the width of each column in the grid
+    // based on how many columns should be in each row
     switch ($projects_per_row)
     {
       case 12:
@@ -362,8 +365,7 @@ class Portfolio extends CI_Controller {
         if ($column['name'] == $item)
         {
           $category = array(
-            'name' => $column['name'] == 'id' ? 'ID' : ucfirst($column['name']),
-            'value' => $column['name']
+            'name' => $column['name']
           );
 
           array_push($categories, $category);
