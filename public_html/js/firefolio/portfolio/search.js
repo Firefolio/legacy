@@ -6,7 +6,6 @@ $('document').ready(function () {
 
   // Clear inputs if they were previously changed
   $('#search').val('');
-  $('#like').val('title');
 });
 
 function search() {

@@ -101,23 +101,7 @@
       <!-- Output all of the projects as a responsive grid,
       where the number of projects on each row is calculated on the server -->
       <div id="projects">
-        {rows}
-          <section class="row">
-            {projects}
-              <div class="four columns">
-                <a href="{base_url}{index_page}/project/{uri}" class="thumbnail">
-                  <h2>{title}</h2>
-                  <img
-                  class="responsive"
-                  src="{thumbnail}"
-                  alt="{title} Project Thumbnail">
-                  <h3>{subtitle}</h3>
-                  <small>{language}, {date}</small>
-                </a>
-              </div>
-            {/projects}
-          </section>
-        {/rows}
+        {project_grid}
       </div>
 
       <hr>

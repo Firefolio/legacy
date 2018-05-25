@@ -24,8 +24,14 @@ class Portfolio extends CI_Controller {
       'title',
       'date'
     );
+    
     $data = $this->get_parser_data();
-    $data['rows'] = $this->get_project_rows($data['projects']);
+    $data['rows'] = $this->get_project_rows($data['projects'], 6);
+    $data['project_grid'] = $this->parser->parse(
+      'frontend/project/grid.html',
+      $data,
+      TRUE
+    );
     $data['categories'] = $this->filter_columns($categories);
     $data['orders'] = $this->filter_columns($orders);
 
@@ -135,32 +141,55 @@ class Portfolio extends CI_Controller {
 
   private function get_project_rows($projects = array(), $projects_per_row = 3)
   {
+    // Figure out the width of each column in the grid
+    switch ($projects_per_row)
+    {
+      case 12:
+        $column_size = 'one column';
+        break;
+      case 6:
+        $column_size = 'two columns';
+        break;
+      case 4:
+        $column_size = 'three columns';
+        break;
+      case 3:
+        $column_size = 'four columns';
+        break;
+      case 2:
+        $column_size = 'six columns';
+        break;
+      case 1:
+        $column_size = 'twelve columns';
+        break;
+      default:
+        $column_size = '';
+        break;
+    }
+
     // Get the project data from the database in such a way that only
     // publically visible projects are collected
     $rows = array();
 
-    for ($project = 0; $project < count($projects); $project++)
+    // Filter the output of each project and format it
+    foreach ($projects as &$project)
     {
-      // Remove styles from visible data
-      $projects[$project]['title'] = htmlentities(
-        $projects[$project]['title']
-      );
-      $projects[$project]['subtitle'] = htmlentities(
-        $projects[$project]['subtitle']
-      );
-      $projects[$project]['language'] = htmlentities(
-        $projects[$project]['language']
-      );
-
-      // Process the date to show the year only
-      $projects[$project]['date'] = date(
-        'Y',
-        strtotime($projects[$project]['date'])
+      $project['title'] = htmlentities($project['title']);
+      $project['subtitle'] = htmlentities($project['subtitle']);
+      $project['language'] = htmlentities($project['language']);
+      $project['date'] = htmlentities(
+        date(
+          'Y',
+          strtotime($project['date'])
+        )
       );
 
       // Include URL data
-      $projects[$project]['base_url'] = base_url();
-      $projects[$project]['index_page'] = index_page();
+      $project['base_url'] = base_url();
+      $project['index_page'] = index_page();
+
+      // Add in the size of the column
+      $project['column_size'] = $column_size;
     }
 
     // Split the projects into their own rows on the responsive grid
@@ -333,7 +362,8 @@ class Portfolio extends CI_Controller {
         if ($column['name'] == $item)
         {
           $category = array(
-            'name' => $column['name']
+            'name' => $column['name'] == 'id' ? 'ID' : ucfirst($column['name']),
+            'value' => $column['name']
           );
 
           array_push($categories, $category);
