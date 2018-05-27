@@ -145,30 +145,15 @@ class Portfolio extends CI_Controller {
   {
     // Figure out the width of each column in the grid
     // based on how many columns should be in each row
-    switch ($projects_per_row)
-    {
-      case 12:
-        $column_size = 'one column';
-        break;
-      case 6:
-        $column_size = 'two columns';
-        break;
-      case 4:
-        $column_size = 'three columns';
-        break;
-      case 3:
-        $column_size = 'four columns';
-        break;
-      case 2:
-        $column_size = 'six columns';
-        break;
-      case 1:
-        $column_size = 'twelve columns';
-        break;
-      default:
-        $column_size = '';
-        break;
-    }
+    $column_sizes = array(
+      12 => 'one column',
+      6  => 'two columns',
+      4  => 'three columns',
+      3  => 'four columns',
+      2  => 'six columns',
+      1  => 'twelve columns',
+    );
+    $column_size = $column_sizes[$projects_per_row] ?? '';
 
     // Get the project data from the database in such a way that only
     // publically visible projects are collected
