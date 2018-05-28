@@ -256,6 +256,7 @@ class Projects extends CI_Controller {
     $this->load->model('application_model');
     $this->load->model('project_model');
     $this->load->model('screenshot_model');
+    $this->load->model('hyperlink_model');
 
     // Libraries
     $this->load->library('parser');
@@ -280,6 +281,7 @@ class Projects extends CI_Controller {
       // Single project
       $data = $this->project_model->get_project($uri);
       $data['screenshots'] = $this->get_screenshots($data['id']);
+      $data['hyperlinks'] = $this->get_hyperlinks($data['id']);
     }
     else
     {
@@ -401,6 +403,14 @@ class Projects extends CI_Controller {
         TRUE
       );
     }
+
+    return $html;
+  }
+
+  public function get_hyperlinks($project)
+  {
+    $hyperlinks = $this->hyperlink_model->get_hyperlinks($project);
+    $html = '';
 
     return $html;
   }

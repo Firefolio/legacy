@@ -20,14 +20,4 @@ $('document').ready(function () {
       $('#redirect-url').val()
     );
   });
-
-  $('#description').removeAttr('disabled');
-
-  $('#description').on('input', debounce(function () {
-    ajax.request.html(
-      $('#description').val(),
-      '#description-preview',
-      $('#base-url').val() + $('#index-page').val() + '/markdown/parse'
-    );
-  }, 128));
 });
