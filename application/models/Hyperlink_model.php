@@ -10,11 +10,17 @@ class Hyperlink_model extends CI_Model {
     parent::__construct();
   }
 
-  public function get_hyperlinks($project)
+  public function get_project_hyperlinks($project)
   {
     $query = $this->db->get_where(
       $this->table,
-      array('project' => $project)
+      array(
+        'type' => 'project',
+        'project' => $project
+      )
     );
+    $result = $query->result_array();
+
+    return $result;
   }
 }

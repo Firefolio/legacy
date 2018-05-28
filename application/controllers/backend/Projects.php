@@ -409,8 +409,27 @@ class Projects extends CI_Controller {
 
   public function get_hyperlinks($project)
   {
-    $hyperlinks = $this->hyperlink_model->get_hyperlinks($project);
+    $data = array(
+      'hyperlinks' => html_purify(
+        $this->hyperlink_model->get_project_hyperlinks($project)
+      )
+    );
     $html = '';
+
+    if (!empty($data['hyperlinks']))
+    {
+      foreach ($data['hyperlinks'] as &$hyperlink)
+      {
+        $hyperlink['base_url'] = base_url();
+        $hyperlink['index_page'] = index_page();
+      }
+
+      $html = $this->parser->parse(
+        'backend/hyperlinks/input/list.html',
+        $data,
+        TRUE
+      );
+    }
 
     return $html;
   }
