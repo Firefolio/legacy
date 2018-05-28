@@ -13,10 +13,10 @@ class Markdown extends CI_Controller {
   {
     $response = $this->prepare_response();
 
-    if (isset($_POST['input']))
+    if (isset($_POST['description']))
     {
       $html = html_purify(
-        markdown_parse($_POST['input'])
+        markdown_parse($_POST['description'])
       );
 
       $response['success'] = TRUE;

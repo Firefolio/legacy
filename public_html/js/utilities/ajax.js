@@ -73,7 +73,7 @@ var ajax = {
           if (append) {
             output.append(response.html);
           } else {
-            $(output).html(response.html);
+            output.html(response.html);
           }
         } else {
           console.error(response.message);

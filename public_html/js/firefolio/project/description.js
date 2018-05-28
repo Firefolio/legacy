@@ -1,11 +1,12 @@
 $('document').ready(function () {
-  var url = $('#base-url').val() + $('#index-page') + '/markdown/parse';
+  var url = $('#base-url').val() + $('#index-page').val() + '/markdown/parse';
   var limit = 128; // Milliseconds
-  var data = {
-    description: $('#description').val()
-  }
 
   $('#description').on('input', debounce(function () {
+    var data = {
+      description: $('#description').val()
+    }
+
     ajax.request.html(
       data, // Input markdown
       $('#description-preview'), // Output node
