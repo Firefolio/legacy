@@ -39,7 +39,7 @@ projects.delete = function (projects) {
         'input[value=' +
         projects[project] +
         ']'
-      ).parents().hide();
+      ).parents('tr').remove();
     }
   });
 }

@@ -184,6 +184,7 @@ class Projects extends CI_Controller {
 
       if (count($_POST['projects'] > 0))
       {
+        // The response's message will be expanded as projects are deleted
         $response['message'] = 'Deleted';
 
         foreach ($projects as $project)
@@ -193,7 +194,7 @@ class Projects extends CI_Controller {
           $response['message'] = $response['message'] . ', ' . $project;
         }
 
-        $response['message'] = $response['message'] . ' ' . 'successfully';
+        $response['message'] = $response['message'] . ' successfully';
         $response['success'] = TRUE;
       }
       else

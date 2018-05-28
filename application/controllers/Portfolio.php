@@ -64,7 +64,7 @@ class Portfolio extends CI_Controller {
       {
         // Show a larger version of the thumbnail instead
         $data['trailer'] = $this->parser->parse(
-          'frontend/thumbnail.html',
+          'frontend/project/thumbnail.html',
           $data,
           TRUE // Return result as a string
         );

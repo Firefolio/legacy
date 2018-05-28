@@ -2,4 +2,4 @@
 - Add an area for hyperlinks on project pages
 - Provide validation on backend forms
 - Output a list of social media links from the user's profile
-- Allow images to be uploaded via AJAX
+- Allow the system database to be backed up and restored to a previous state
