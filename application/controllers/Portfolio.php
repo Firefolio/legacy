@@ -13,7 +13,7 @@ class Portfolio extends CI_Controller {
 
   public function index()
   {
-    // Get the project categories and orders from JSON files on the server 
+    // Get the project categories and orders from JSON files on the server
     $categories = json_decode(
       file_get_contents(
         base_url() . 'json/project/categories.json'
@@ -116,6 +116,25 @@ class Portfolio extends CI_Controller {
     }
 
     $json = json_encode($response);
+    echo $json;
+  }
+
+  public function backup()
+  {
+    // Test function for downloading information as a JSON file
+    $data = array(
+      'application' => $this->application_model->get(),
+      'projects' => $this->project_model->get_projects(),
+      'profile' => $this->profile_model->get_profile()
+    );
+    $json = json_encode($data, JSON_PRETTY_PRINT);
+    $file_name = 'firefolio_backup_' . date('Y.m.d_h.i.sa');
+
+    header('Content-Disposition: attachment; filename="'. $file_name . '.json"');
+    header('Content-Type: text/json');
+    header('Content-Length: ' . strlen($json));
+    header('Connection: close');
+
     echo $json;
   }
 

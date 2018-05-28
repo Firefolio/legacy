@@ -407,12 +407,11 @@ class Projects extends CI_Controller {
     return $html;
   }
 
+  // WARNING: Data returned from this function is unfiltered!
   public function get_hyperlinks($project)
   {
     $data = array(
-      'hyperlinks' => html_purify(
-        $this->hyperlink_model->get_project_hyperlinks($project)
-      )
+      'hyperlinks' => $this->hyperlink_model->get_project_hyperlinks($project)
     );
     $html = '';
 
