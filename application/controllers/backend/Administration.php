@@ -105,10 +105,35 @@ class Administration extends CI_Controller {
     }
   }
 
+  public function backup()
+  {
+    require_authentication();
+
+    $data = array(
+      'application' => $this->application_model->get(),
+      'projects' => $this->project_model->get_projects(),
+      'profile' => $this->profile_model->get_profile(),
+      'hyperlinks' => $this->hyperlink_model->get_hyperlinks()
+    );
+    $json = json_encode($data, JSON_PRETTY_PRINT);
+    $file_name = $data['application']['name'] . '_backup_' . date('Y.m.d_h.i.sa');
+
+    header('Content-Disposition: attachment; filename="' . $file_name .'.json"');
+    header('Content-Type: text/json');
+    header('Content-Length: ' . strlen($json));
+    header('Connection: close');
+
+    echo $json;
+  }
+
   private function load_assets()
   {
     // Models
     $this->load->model('application_model');
+    $this->load->model('project_model');
+    $this->load->model('profile_model');
+    $this->load->model('screenshot_model');
+    $this->load->model('hyperlink_model');
 
     // Helpers
     $this->load->helper('authentication');

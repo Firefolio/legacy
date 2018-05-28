@@ -119,25 +119,6 @@ class Portfolio extends CI_Controller {
     echo $json;
   }
 
-  public function backup()
-  {
-    // Test function for downloading information as a JSON file
-    $data = array(
-      'application' => $this->application_model->get(),
-      'projects' => $this->project_model->get_projects(),
-      'profile' => $this->profile_model->get_profile()
-    );
-    $json = json_encode($data, JSON_PRETTY_PRINT);
-    $file_name = 'firefolio_backup_' . date('Y.m.d_h.i.sa');
-
-    header('Content-Disposition: attachment; filename="'. $file_name . '.json"');
-    header('Content-Type: text/json');
-    header('Content-Length: ' . strlen($json));
-    header('Connection: close');
-
-    echo $json;
-  }
-
   private function load_assets()
   {
     // Models
