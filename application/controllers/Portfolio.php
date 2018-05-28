@@ -13,18 +13,15 @@ class Portfolio extends CI_Controller {
 
   public function index()
   {
-    $categories = array(
-      'title',
-      'subtitle',
-      'description',
-      'status',
-      'language',
-      'purpose'
+    $categories = json_decode(
+      file_get_contents(
+        base_url() . 'json/project/categories.json'
+      )
     );
-    $orders = array(
-      'id',
-      'title',
-      'date'
+    $orders = json_decode(
+      file_get_contents(
+        base_url() . 'json/project/orders.json'
+      )
     );
 
     $data = $this->get_parser_data();
