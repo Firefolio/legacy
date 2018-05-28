@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 16, 2018 at 07:45 PM
+-- Generation Time: May 28, 2018 at 12:59 PM
 -- Server version: 10.1.24-MariaDB
 -- PHP Version: 7.1.6
 
@@ -45,7 +45,21 @@ CREATE TABLE `application` (
 --
 
 INSERT INTO `application` (`name`, `major_version`, `minor_version`, `patch`, `website`, `installed`, `username`, `password`, `default_password`) VALUES
-('Firefolio', 0, 9, 0, 'http://firefolio.org/', 1, 'root', '$2y$10$enuAFYVxC6pAeRptkT.AheARTjZzLF35R1s/49fcuF6s4Epu0/mTa', '$2y$10$ranonBYKC2Rd/KNsPQNy1uDokpNGAw80gEPHZu4qyvvqhFJ1WQEmO');
+('Firefolio', 0, 10, 0, 'http://firefolio.org/', 1, 'Root', '$2y$10$G7IiggHdf7JXf0CQ2r/NQOYiSaobtvE66PIF/cfIsZMnzptv3XSm2', '$2y$10$ranonBYKC2Rd/KNsPQNy1uDokpNGAw80gEPHZu4qyvvqhFJ1WQEmO');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hyperlinks`
+--
+
+CREATE TABLE `hyperlinks` (
+  `id` int(128) NOT NULL,
+  `type` enum('profile','project') COLLATE utf8_unicode_ci NOT NULL,
+  `header` varchar(1024) COLLATE utf8_unicode_ci NOT NULL,
+  `url` varchar(2048) COLLATE utf8_unicode_ci NOT NULL,
+  `project` int(16) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -66,7 +80,7 @@ CREATE TABLE `profile` (
 --
 
 INSERT INTO `profile` (`first_name`, `middle_name`, `last_name`, `biography`, `email`) VALUES
-('John', '\'Rasmuselerdorf\'', 'Doe', '**Lorem Ipsum** is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'example@example.com');
+('John', '\'Rasmuselerdorf\'', 'Doe', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'example@example.com');
 
 -- --------------------------------------------------------
 
@@ -104,6 +118,19 @@ INSERT INTO `projects` (`id`, `uri`, `thumbnail`, `trailer`, `title`, `subtitle`
 (8, 'uranus', 'https://via.placeholder.com/640x360', 'https://youtu.be/sgHz35ikAkY', 'Uranus', '', 'Uranus is the seventh planet from the Sun. It has the third-largest planetary radius and fourth-largest planetary mass in the Solar System. Uranus is similar in composition to Neptune, and both have different bulk chemical composition from that of the larger gas giants Jupiter and Saturn.', 'GLSL', '2018-02-24', 'Public', '', ''),
 (9, 'neptune', 'https://via.placeholder.com/640x360', 'https://youtu.be/sgHz35ikAkY', 'Neptune', '', 'Neptune is the eighth and farthest known planet from the Sun in the Solar System. In the Solar System, it is the fourth-largest planet by diameter, the third-most-massive planet, and the densest giant planet.', 'HLSL', '2018-02-24', 'Public', '', '');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `screenshots`
+--
+
+CREATE TABLE `screenshots` (
+  `id` int(32) NOT NULL,
+  `path` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  `caption` text COLLATE utf8_unicode_ci NOT NULL,
+  `project` int(16) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 --
 -- Indexes for dumped tables
 --
@@ -128,6 +155,12 @@ ALTER TABLE `projects`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `screenshots`
+--
+ALTER TABLE `screenshots`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -135,7 +168,12 @@ ALTER TABLE `projects`
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;COMMIT;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+--
+-- AUTO_INCREMENT for table `screenshots`
+--
+ALTER TABLE `screenshots`
+  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -13,6 +13,7 @@ class Portfolio extends CI_Controller {
 
   public function index()
   {
+    // Get the project categories and orders from JSON files on the server 
     $categories = json_decode(
       file_get_contents(
         base_url() . 'json/project/categories.json'
