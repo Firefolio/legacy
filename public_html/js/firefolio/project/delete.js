@@ -1,60 +1,8 @@
 $('document').ready(function () {
-  // Can't use 'delete' as that's a reserved keyword in Javascript
-  var del = {
-    url: 'projects/delete',
-    attempt: function (checkboxes, uris) {
-      var projects_to_delete = [];
-
-      for (var checkbox = 0; checkbox < checkboxes.length; checkbox++) {
-        if (checkboxes[checkbox].checked) {
-          projects_to_delete.push(uris[checkbox].value);
-        }
-      }
-
-      var data = {
-        'projects': JSON.stringify(projects_to_delete)
-      };
-      data[$('#csrf').attr('name')] = $('#csrf').val();
-
-      console.log(data);
-
-      request = $.post(
-        del.url,
-        data,
-        'JSON'
-      );
-
-      request.done(function (response) {
-        console.log(response);
-        response = JSON.parse(response);
-        console.log(response);
-
-        // Get a new anti-CSRF hash from the response
-        $('#csrf').val(response.hash);
-
-        if (response.success) {
-          // Hide deleted inputs
-          for (var project = 0; project < projects_to_delete.length; project++) {
-            $('input[value=' +
-              projects_to_delete[project] +
-              ']').parent().hide();
-          }
-        } else {
-          console.error(response.message);
-        }
-      });
-
-      request.fail(function (message) {
-        console.error(message);
-      });
-    }
-  };
-
+  // Bring up a modal when the delete button is clicked
   $('#delete').click(function (event) {
-    var checkboxes = $('input[name=toggle]');
-    var uris = $('input[name=uri]');
-
-    if (checkboxes.length > 0) {
+    // Only if there have been some projects selected
+    if (projects.get_selected().length > 0) {
       $('#delete-modal').dialog({
         modal: true,
         show: {
@@ -62,7 +10,7 @@ $('document').ready(function () {
         },
         buttons: {
           'Confirm': function () {
-            del.attempt(checkboxes, uris);
+            projects.delete(projects.get_selected());
             $(this).dialog('close');
           },
           'Cancel': function () {
@@ -75,3 +23,23 @@ $('document').ready(function () {
     }
   });
 });
+
+projects.delete = function (projects) {
+  var url = $('#base-url').val() + $('#index-page').val() + '/backend/projects/delete';
+  var data = {
+    'projects': projects
+  }
+
+  console.log(url);
+
+  ajax.request.data(data, url, function () {
+    // Hide inputs of deleted projects
+    for (var project = 0; project < projects.length; project++) {
+      $(
+        'input[value=' +
+        projects[project] +
+        ']'
+      ).parents().hide();
+    }
+  });
+}

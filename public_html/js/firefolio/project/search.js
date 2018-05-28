@@ -7,6 +7,8 @@ $('document').ready(function () {
   // Make sure that the search bar is ready before allowing input
   $('#search').removeAttr('disabled');
 
+  // Send an AJAX request when the user inputs text into the box,
+  // but only if there hasn't been another request within the time limit
   $('#search').on('input', debounce(function () {
     var data = {
       input: $('#search').val()

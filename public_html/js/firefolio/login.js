@@ -1,7 +1,4 @@
 // Hide all elements so their entrance can be animated later
-$('#logo').hide();
-$('#form').hide();
-
 $('document').ready(function () {
   var login = {
     validate: function (username, password) {
@@ -17,8 +14,16 @@ $('document').ready(function () {
     }
   };
 
+  // Fade in the login form
+  // Remove the attribute that hides it from the browser
+  $('#form').removeAttr('hidden');
+  $('#logo').removeAttr('hidden');
+  // Then play the animation
+  $('#form').hide();
+  $('#logo').hide();
   $('#form').show('fade');
-  $('#logo').show('fade');
+  // Make sure the logo appears after the form
+  $('#logo').delay('medium').show('fade');
 
   $('#form').submit(function (event) {
     event.preventDefault();

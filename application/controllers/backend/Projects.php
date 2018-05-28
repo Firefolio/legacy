@@ -180,7 +180,7 @@ class Projects extends CI_Controller {
 
     if (isset($_POST['projects']))
     {
-      $projects = json_decode($_POST['projects']);
+      $projects = $_POST['projects'];
 
       if (count($_POST['projects'] > 0))
       {
@@ -283,9 +283,9 @@ class Projects extends CI_Controller {
     else
     {
       // Multiple projects
-      // Also get blank project data in case it's used on it's own
+      // Also get blank project data in case it's used on its own
       $data = $this->project_model->get_project();
-      $data['projects'] = $this->project_model->get_projects();
+      $data['projects'] = $this->get_projects();
     }
 
     // Then add all of the other data we might need on top
@@ -354,6 +354,21 @@ class Projects extends CI_Controller {
     }
 
     return $html;
+  }
+
+  private function get_projects()
+  {
+    $projects = $this->project_model->get_projects();
+
+    // Encode extra information into each project
+    foreach ($projects as &$project)
+    {
+      // Allow each project to build the base URL and index page
+      $project['base_url'] = base_url();
+      $project['index_page'] = index_page();
+    }
+
+    return $projects;
   }
 
   private function get_screenshots($project)
