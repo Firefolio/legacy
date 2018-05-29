@@ -16,7 +16,7 @@ $('document').ready(function () {
 
     ajax.request.html(
       data, // Query
-      '#projects', // Node
+      $('#projects'), // Node
       url // Search URL
     );
   }, limit));

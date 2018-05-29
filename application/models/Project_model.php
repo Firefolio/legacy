@@ -159,14 +159,21 @@ class Project_model extends CI_Model {
     $this->db->delete('projects', array('uri' => $uri));
   }
 
-  public function search_projects($search = '', $like = 'title', $by = 'id', $order = 'DESC')
+  public function search_projects($search = '', $like = 'title', $by = 'id', $order = 'DESC', $show_private_projects = TRUE)
   {
     // Prepare the query
     $this->db->order_by($by, $order);
     $this->db->like($like, $search);
+
+    if (!$show_private_projects)
+    {
+      // Filter out all private projects from the results
+      $this->db->where('visibility', 'public');
+    }
+
     $this->db->from($this->table);
 
-    // Execute that query and store the result from the database
+    // Execute that query and return the result from the database
     $query = $this->db->get();
     $result = $query->result_array();
 

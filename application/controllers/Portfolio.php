@@ -97,7 +97,13 @@ class Portfolio extends CI_Controller {
       $response['success'] = TRUE;
       $response['message'] = 'Found some projects from query';
 
-      $projects = $this->project_model->search_projects($search, $like, $by, $order);
+      $projects = $this->project_model->search_projects(
+        $search,
+        $like,
+        $by,
+        $order,
+        FALSE // Show private projects
+      );
 
       if (count($projects) > 0)
       {
@@ -207,7 +213,7 @@ class Portfolio extends CI_Controller {
     else
     {
       // Multiple projects
-      $data['projects'] = $this->project_model->get_projects();
+      $data['projects'] = $this->project_model->get_projects(array('visibility' => 'public'));
     }
 
     // Then add all of the other data we might need on top
