@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2018 at 12:59 PM
+-- Generation Time: May 29, 2018 at 07:10 PM
 -- Server version: 10.1.24-MariaDB
 -- PHP Version: 7.1.6
 
@@ -45,7 +45,7 @@ CREATE TABLE `application` (
 --
 
 INSERT INTO `application` (`name`, `major_version`, `minor_version`, `patch`, `website`, `installed`, `username`, `password`, `default_password`) VALUES
-('Firefolio', 0, 10, 0, 'http://firefolio.org/', 1, 'Root', '$2y$10$G7IiggHdf7JXf0CQ2r/NQOYiSaobtvE66PIF/cfIsZMnzptv3XSm2', '$2y$10$ranonBYKC2Rd/KNsPQNy1uDokpNGAw80gEPHZu4qyvvqhFJ1WQEmO');
+('Firefolio', 0, 11, 0, 'http://firefolio.org/', 1, 'Root', '$2y$10$G7IiggHdf7JXf0CQ2r/NQOYiSaobtvE66PIF/cfIsZMnzptv3XSm2', '$2y$10$ranonBYKC2Rd/KNsPQNy1uDokpNGAw80gEPHZu4qyvvqhFJ1WQEmO');
 
 -- --------------------------------------------------------
 
@@ -60,6 +60,19 @@ CREATE TABLE `hyperlinks` (
   `url` varchar(2048) COLLATE utf8_unicode_ci NOT NULL,
   `project` int(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `hyperlinks`
+--
+
+INSERT INTO `hyperlinks` (`id`, `type`, `header`, `url`, `project`) VALUES
+(10, 'project', 'Official Website', 'https://firefolio.org/', 10),
+(18, 'project', '', '', 0),
+(22, 'profile', 'Google Play', 'https://play.google.com/store', 0),
+(23, 'profile', 'Many a True Nerd', 'https://youtu.be/I4w9NGaK510', 0),
+(24, 'profile', 'Twitter', 'https://twitter.com/firefolio', 0),
+(25, 'profile', 'Firefolio', 'https://firefolio.org/', 0),
+(27, 'profile', 'Itch', 'https://itch.io/', 0);
 
 -- --------------------------------------------------------
 
@@ -114,9 +127,10 @@ INSERT INTO `projects` (`id`, `uri`, `thumbnail`, `trailer`, `title`, `subtitle`
 (4, 'earth', 'https://via.placeholder.com/640x360', 'https://youtu.be/sgHz35ikAkY', 'Earth', '', 'Earth is the third planet from the Sun and the only object in the Universe known to harbor life. According to radiometric dating and other sources of evidence, Earth formed over 4 billion years ago. Earth\'s gravity interacts with other objects in space, especially the Sun and the Moon, Earth\'s only natural satellite. Earth revolves around the Sun in 365.26 days, a period known as an Earth year. During this time, Earth rotates about its axis about 366.26 times.', 'D', '2018-02-14', 'Public', '', ''),
 (5, 'mars', 'https://via.placeholder.com/640x360', 'https://youtu.be/sgHz35ikAkY', 'Mars', '', 'Mars is the fourth planet from the Sun and the second-smallest planet in the Solar System after Mercury. In English, Mars carries a name of the Roman god of war, and is often referred to as the \"Red Planet\" because the reddish iron oxide prevalent on its surface gives it a reddish appearance that is distinctive among the astronomical bodies visible to the naked eye.', 'Dart', '2018-02-03', 'Public', '', ''),
 (6, 'jupiter', 'https://via.placeholder.com/640x360', 'https://youtu.be/sgHz35ikAkY', 'Jupiter', '', 'Jupiter is the fifth planet from the Sun and the largest in the Solar System. It is a giant planet with a mass one-thousandth that of the Sun, but two-and-a-half times that of all the other planets in the Solar System combined. Jupiter and Saturn are gas giants; the other two giant planets, Uranus and Neptune are ice giants.', 'Erlang', '2018-02-16', 'Public', '', ''),
-(7, 'saturn', 'https://via.placeholder.com/640x360', 'https://youtu.be/sgHz35ikAkY', 'Saturn', '', 'Saturn is the sixth planet from the Sun and the second-largest in the Solar System, after Jupiter. It is a gas giant with an average radius about nine times that of Earth. It has only one-eighth the average density of Earth, but with its larger volume Saturn is over 95 times more massive. Saturn is named after the Roman god of agriculture; its astronomical symbol represents the god\'s sickle.', 'Lua', '2018-02-04', 'Public', '', ''),
-(8, 'uranus', 'https://via.placeholder.com/640x360', 'https://youtu.be/sgHz35ikAkY', 'Uranus', '', 'Uranus is the seventh planet from the Sun. It has the third-largest planetary radius and fourth-largest planetary mass in the Solar System. Uranus is similar in composition to Neptune, and both have different bulk chemical composition from that of the larger gas giants Jupiter and Saturn.', 'GLSL', '2018-02-24', 'Public', '', ''),
-(9, 'neptune', 'https://via.placeholder.com/640x360', 'https://youtu.be/sgHz35ikAkY', 'Neptune', '', 'Neptune is the eighth and farthest known planet from the Sun in the Solar System. In the Solar System, it is the fourth-largest planet by diameter, the third-most-massive planet, and the densest giant planet.', 'HLSL', '2018-02-24', 'Public', '', '');
+(7, 'saturn', 'https://via.placeholder.com/640x360', 'http://clips.vorwaerts-gmbh.de/VfE_html5.mp4', 'Saturn', '', 'Saturn is the sixth planet from the Sun and the second-largest in the Solar System, after Jupiter. It is a gas giant with an average radius about nine times that of Earth. It has only one-eighth the average density of Earth, but with its larger volume Saturn is over 95 times more massive. Saturn is named after the Roman god of agriculture; its astronomical symbol represents the god\'s sickle.', 'Lua', '2018-02-04', 'Public', '', ''),
+(8, 'uranus', 'https://via.placeholder.com/640x360', 'https://vimeo.com/1084537', 'Uranus', '', 'Uranus is the seventh planet from the Sun. It has the third-largest planetary radius and fourth-largest planetary mass in the Solar System. Uranus is similar in composition to Neptune, and both have different bulk chemical composition from that of the larger gas giants Jupiter and Saturn.', 'GLSL', '2018-02-24', 'Public', '', ''),
+(9, 'neptune', 'https://via.placeholder.com/640x360', 'https://youtu.be/YE7VzlLtp-4', 'Neptune', '', 'Neptune is the eighth and farthest known planet from the Sun in the Solar System. In the Solar System, it is the fourth-largest planet by diameter, the third-most-massive planet, and the densest giant planet.', 'HLSL', '2018-02-24', 'Public', '', ''),
+(10, 'firefolio', 'http://localhost/firefolio/public_html/img/firefolio/logo.png', '', 'Firefolio', 'Online Portfolio System', '**Firefolio** is a self-hosted web application that allows programmers to showcase their work to employers.', 'PHP', '2018-05-29', 'Public', '', 'Solo Project');
 
 -- --------------------------------------------------------
 
@@ -132,6 +146,14 @@ CREATE TABLE `screenshots` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
+-- Dumping data for table `screenshots`
+--
+
+INSERT INTO `screenshots` (`id`, `path`, `caption`, `project`) VALUES
+(5, 'https://i.imgur.com/51y1WW9.png', 'Project View', 10),
+(7, '', '', 10);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -141,6 +163,12 @@ CREATE TABLE `screenshots` (
 ALTER TABLE `application`
   ADD PRIMARY KEY (`name`),
   ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indexes for table `hyperlinks`
+--
+ALTER TABLE `hyperlinks`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `profile`
@@ -165,15 +193,20 @@ ALTER TABLE `screenshots`
 --
 
 --
+-- AUTO_INCREMENT for table `hyperlinks`
+--
+ALTER TABLE `hyperlinks`
+  MODIFY `id` int(128) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+--
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `screenshots`
 --
 ALTER TABLE `screenshots`
-  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT;COMMIT;
+  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
