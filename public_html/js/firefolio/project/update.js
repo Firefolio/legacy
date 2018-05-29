@@ -40,7 +40,8 @@ $(document).ready(function () {
     update.form.submit(function (event) {
       event.preventDefault();
 
-      save_screenshots();
+      screenshots.update();
+      hyperlinks.update();
       ajax.request.form(
         $('#form'),
         $('#form').attr('action'),
@@ -77,7 +78,8 @@ $(document).ready(function () {
       update.button.save.click(function (event) {
         event.preventDefault();
 
-        save_screenshots();
+        screenshots.update();
+        hyperlinks.update();
         update.save();
       });
     }
@@ -89,7 +91,8 @@ $(document).ready(function () {
           case 's':
             event.preventDefault();
 
-            save_screenshots();
+            screenshots.update();
+            hyperlinks.update();
             update.save();
             break;
         }

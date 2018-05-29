@@ -35,5 +35,16 @@ class Hyperlink_model extends CI_Model {
   public function insert($hyperlink)
   {
     $this->db->insert($this->table, $hyperlink);
+
+    return $this->db->insert_id();
+  }
+
+  public function update($hyperlink)
+  {
+    $this->db->update(
+      $this->table,
+      $hyperlink,
+      array('id' => $hyperlink->id)
+    );
   }
 }

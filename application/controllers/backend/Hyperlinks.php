@@ -21,10 +21,11 @@ class Hyperlinks extends CI_Controller {
         {
           $project = $_POST['project'];
           $hyperlink = array(
+            'type' => 'project',
             'project' => $project
           );
 
-          $this->hyperlink_model->insert($hyperlink);
+          $data['id'] = $this->hyperlink_model->insert($hyperlink);
 
           $response['success'] = TRUE;
           $response['message'] = 'Inserted a screenshot into project ' . $project;
@@ -45,6 +46,27 @@ class Hyperlinks extends CI_Controller {
       default:
         // code...
         break;
+    }
+
+    $json = json_encode($response);
+    echo $json;
+  }
+
+  public function update()
+  {
+    $response = $this->prepare_response();
+
+    if (isset($_POST['hyperlinks']))
+    {
+      $hyperlinks = json_decode($_POST['hyperlinks']);
+
+      foreach ($hyperlinks as $hyperlink)
+      {
+        $this->hyperlink_model->update($hyperlink);
+      }
+
+      $response['success'] = TRUE;
+      $response['message'] = 'Updated hyperlinks';
     }
 
     $json = json_encode($response);
