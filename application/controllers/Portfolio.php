@@ -46,6 +46,7 @@ class Portfolio extends CI_Controller {
       $data = html_purify($this->get_parser_data($uri));
       // This has to be filtered in its own function to maintain
       // necessary data attributes
+      $data['description'] = markdown_parse(html_purify($data['description']));
       $data['screenshots'] = $this->get_screenshots($data['id']);
 
       // Check to see if the trailer field has been filled in
