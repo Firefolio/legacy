@@ -25,6 +25,8 @@ class Portfolio extends CI_Controller {
       )
     );
 
+    backup_database();
+
     $data = $this->get_parser_data();
     $data['rows'] = $this->get_project_rows($data['projects'], $this->projects_per_row);
     $data['project_grid'] = $this->parser->parse(
@@ -136,6 +138,7 @@ class Portfolio extends CI_Controller {
     $this->load->model('hyperlink_model');
 
     // Helpers
+    $this->load->helper('backup');
     $this->load->helper('date');
     $this->load->helper('security');
     $this->load->helper('html_purifier');
