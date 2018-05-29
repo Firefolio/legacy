@@ -232,6 +232,7 @@ class Portfolio extends CI_Controller {
     $data['username'] = htmlentities($this->application_model->get_username());
     $data['login'] = $this->get_login($data);
     $data['year'] = date('Y');
+    $data['hyperlinks'] = $this->get_hyperlinks();
 
     return $data;
   }
@@ -285,6 +286,68 @@ class Portfolio extends CI_Controller {
     }
 
     return $html;
+  }
+
+  private function get_hyperlinks()
+  {
+    // NOTE: This function refers to social media links
+    $data = array(
+      'hyperlinks' => $this->hyperlink_model->get_profile_hyperlinks()
+    );
+    $html = '';
+
+    if (!empty($data['hyperlinks']))
+    {
+      foreach($data['hyperlinks'] as &$hyperlink)
+      {
+        $hyperlink['icon'] = html_purify($this->get_icon_path($hyperlink['url']));
+      }
+
+      $html = $this->parser->parse(
+        'frontend/profile/hyperlinks.html',
+         $data,
+         TRUE
+      );
+    }
+
+    return $html;
+  }
+
+  private function get_icon_path($url = '')
+  {
+    // Parse the url sent to the function
+    $parsed_url = parse_url($url);
+    // Declare every kind of icon that can be used as a replacement
+    $icons = array(
+      'apple.com' => base_url() . 'img/icons/brands/app-store.svg',
+      'appstore.com' => base_url() . 'img/icons/brands/app-store.svg',
+      'bitbucket.org' => base_url() . 'img/icons/brands/bitbucket.svg',
+      'blogger.com' => base_url() . 'img/icons/brands/blogger.svg',
+      'codepen.io' => base_url() . 'img/icons/brands/codepen.svg',
+      'facebook.com' => base_url() . 'img/icons/brands/facebook.svg',
+      'github.com' => base_url() . 'img/icons/brands/github.svg',
+      'gitlab.com' => base_url() . 'img/icons/brands/gitlab.svg',
+      'play.google.com' => base_url() . 'img/icons/brands/google-play.svg',
+      'itch.io' => base_url() . 'img/icons/brands/itch.svg',
+      'linkedin.com' => base_url() . 'img/icons/brands/linkedin.svg',
+      'medium.com' => base_url() . 'img/icons/brands/linkedin.svg',
+      'stackoverflow.com' => base_url() . 'img/icons/brands/stack-overflow.svg',
+      'steampowered.com' => base_url() . 'img/icons/brands/steam.svg',
+      'tumblr.com' => base_url() . 'img/icons/brands/tumblr.svg',
+      'twitter.com' => base_url() . 'img/icons/brands/twitter.svg',
+      'vimeo.com' => base_url() . 'img/icons/brands/twitter.svg',
+      'vimeo.com' => base_url() . 'img/icons/brands/wordpress.svg',
+      'youtube.com' => base_url() . 'img/icons/brands/youtube.svg',
+      'youtu.be' => base_url() . 'img/icons/brands/youtube.svg', // Shortened YouTube link
+    );
+    // This will be the default icon if the host isn't recognised
+    $default_icon = base_url() . '/img/icons/open-iconic/link-intact.svg';
+    // Ensure that the index we're checking doesn't use the World Wide Web
+    $host = preg_replace('/^www\./', '', $parsed_url['host'] ?? '');
+    // Set the path based on the host of the parse
+    $path = $icons[$host] ?? $default_icon;
+
+    return $path;
   }
 
   private function get_screenshots($project, $screenshots_per_row = 2)
