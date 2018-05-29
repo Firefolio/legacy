@@ -13,6 +13,15 @@ class Portfolio extends CI_Controller {
 
   public function index()
   {
+    // Configure data for the template parser specific to this page
+    $data = $this->get_parser_data();
+    $data['rows'] = $this->get_project_rows($data['projects'], $this->projects_per_row);
+    $data['project_grid'] = $this->parser->parse(
+      'frontend/project/grid.html',
+      $data,
+      TRUE
+    );
+
     // Get the project categories and orders from JSON files on the server
     $categories = json_decode(
       file_get_contents(
@@ -23,16 +32,6 @@ class Portfolio extends CI_Controller {
       file_get_contents(
         base_url() . 'json/project/orders.json'
       )
-    );
-
-    backup_database();
-
-    $data = $this->get_parser_data();
-    $data['rows'] = $this->get_project_rows($data['projects'], $this->projects_per_row);
-    $data['project_grid'] = $this->parser->parse(
-      'frontend/project/grid.html',
-      $data,
-      TRUE
     );
     $data['categories'] = $this->filter_columns($categories);
     $data['orders'] = $this->filter_columns($orders);
@@ -386,9 +385,9 @@ class Portfolio extends CI_Controller {
 
   private function get_login($data)
   {
-    $html = '';
-
     session_start();
+
+    $html = '';
 
     if (isset($_SESSION['user']))
     {
