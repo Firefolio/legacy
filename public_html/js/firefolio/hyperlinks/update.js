@@ -10,7 +10,7 @@ var hyperlinks = {
       hyperlinks.push({
         'id': $(this).data('id'),
         'header': $(this).find('input[name=header]').val(),
-        'url': $(this).find('input[name=header]').val()
+        'url': $(this).find('input[name=url]').val()
       });
     });
 
