@@ -73,6 +73,24 @@ class Hyperlinks extends CI_Controller {
     echo $json;
   }
 
+  public function delete()
+  {
+    $response = $this->prepare_response();
+
+    if (isset($_POST['id']))
+    {
+      $id = $_POST['id'];
+
+      $this->hyperlink_model->delete($id);
+
+      $response['success'] = TRUE;
+      $response['message'] = 'Deleted hyperlink ' . $id;
+    }
+
+    $json = json_encode($response);
+    echo $json;
+  }
+
   private function load_assets()
   {
     // Helpers

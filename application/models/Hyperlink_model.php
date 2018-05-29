@@ -47,4 +47,9 @@ class Hyperlink_model extends CI_Model {
       array('id' => $hyperlink->id)
     );
   }
+
+  public function delete($id)
+  {
+    $this->db->delete($this->table, array('id' => $id));
+  }
 }

@@ -54,7 +54,7 @@ $(document).ready(function () {
     $('button#finish').click(function (event) {
       event.preventDefault();
 
-      save_screenshots();
+      screenshots.update();
       ajax.request.form(
         $('#form'),
         $('#form').attr('action'),

@@ -126,6 +126,7 @@ class Portfolio extends CI_Controller {
     $this->load->model('profile_model');
     $this->load->model('project_model');
     $this->load->model('screenshot_model');
+    $this->load->model('hyperlink_model');
 
     // Helpers
     $this->load->helper('date');
@@ -232,7 +233,8 @@ class Portfolio extends CI_Controller {
   {
     $data = array(
       'details' => array(),
-      'technologies' => array()
+      'technologies' => array(),
+      'hyperlinks' => $this->hyperlink_model->get_project_hyperlinks($project['id'])
     );
     $columns = array(
       'language',

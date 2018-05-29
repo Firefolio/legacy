@@ -407,20 +407,27 @@ class Projects extends CI_Controller {
     return $html;
   }
 
-  // WARNING: Data returned from this function is unfiltered!
-  public function get_hyperlinks($project)
+  private function get_hyperlinks($project)
   {
-    $data = array(
-      'hyperlinks' => $this->hyperlink_model->get_project_hyperlinks($project)
-    );
+    $hyperlinks = $this->screenshot_model->get_screenshots($project);
     $html = '';
 
-    if (!empty($data['hyperlinks']))
+    // Don't add screenshots if none exist
+    if (!empty($screenshots))
     {
+      $data = array(
+        'hyperlinks' => html_purify($hyperlinks)
+      );
+
+      // Parse the data for each screenshot input
       foreach ($data['hyperlinks'] as &$hyperlink)
       {
-        $hyperlink['base_url'] = base_url();
-        $hyperlink['index_page'] = index_page();
+        $screenshot['base_url'] = base_url();
+        $screenshot['input'] = $this->parser->parse(
+          'backend/hyperlinks/input/single.html',
+          $hyperlink,
+          TRUE
+        );
       }
 
       $html = $this->parser->parse(
