@@ -336,7 +336,7 @@ class Portfolio extends CI_Controller {
       'tumblr.com' => base_url() . 'img/icons/brands/tumblr.svg',
       'twitter.com' => base_url() . 'img/icons/brands/twitter.svg',
       'vimeo.com' => base_url() . 'img/icons/brands/twitter.svg',
-      'vimeo.com' => base_url() . 'img/icons/brands/wordpress.svg',
+      'wordpress.com' => base_url() . 'img/icons/brands/wordpress.svg',
       'youtube.com' => base_url() . 'img/icons/brands/youtube.svg',
       'youtu.be' => base_url() . 'img/icons/brands/youtube.svg', // Shortened YouTube link
     );
