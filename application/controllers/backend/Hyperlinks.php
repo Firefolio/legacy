@@ -26,6 +26,8 @@ class Hyperlinks extends CI_Controller {
           );
 
           $data['id'] = $this->hyperlink_model->insert($hyperlink);
+          $data['header'] = '';
+          $data['url'] = '';
 
           $response['success'] = TRUE;
           $response['message'] = 'Inserted a screenshot into project ' . $project;

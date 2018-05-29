@@ -383,7 +383,7 @@ class Projects extends CI_Controller {
     if (!empty($screenshots))
     {
       $data = array(
-        'screenshots' => html_purify($screenshots)
+        'screenshots' => $screenshots
       );
 
       // Parse the data for each screenshot input
@@ -409,21 +409,21 @@ class Projects extends CI_Controller {
 
   private function get_hyperlinks($project)
   {
-    $hyperlinks = $this->screenshot_model->get_screenshots($project);
+    $hyperlinks = $this->hyperlink_model->get_project_hyperlinks($project);
     $html = '';
 
     // Don't add screenshots if none exist
-    if (!empty($screenshots))
+    if (!empty($hyperlinks))
     {
       $data = array(
-        'hyperlinks' => html_purify($hyperlinks)
+        'hyperlinks' => $hyperlinks
       );
 
       // Parse the data for each screenshot input
       foreach ($data['hyperlinks'] as &$hyperlink)
       {
-        $screenshot['base_url'] = base_url();
-        $screenshot['input'] = $this->parser->parse(
+        $hyperlink['base_url'] = base_url();
+        $hyperlink['input'] = $this->parser->parse(
           'backend/hyperlinks/input/single.html',
           $hyperlink,
           TRUE
@@ -451,6 +451,11 @@ class Projects extends CI_Controller {
         // Mark this value as selected as selected
         $data['visibilities'][$visibility]['selected'] = 'selected="selected"';
       }
+    }
+
+    foreach($data['visibilities'] as &$visibility)
+    {
+      // TODO: move above code to here
     }
   }
 
