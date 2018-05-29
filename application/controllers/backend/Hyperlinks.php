@@ -1,0 +1,87 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Hyperlinks extends CI_Controller {
+
+  function __construct()
+  {
+    parent::__construct();
+    $this->load_assets();
+  }
+
+  public function insert($type = '')
+  {
+    $response = $this->prepare_response();
+    $data = $this->get_parser_data();
+
+    switch ($type)
+    {
+      case 'project':
+        if (isset($_POST['project']))
+        {
+          $project = $_POST['project'];
+          $hyperlink = array(
+            'project' => $project
+          );
+
+          $this->hyperlink_model->insert($hyperlink);
+
+          $response['success'] = TRUE;
+          $response['message'] = 'Inserted a screenshot into project ' . $project;
+          $response['html'] = $this->parser->parse(
+            'backend/hyperlinks/input/single.html',
+            $data,
+            TRUE
+          );
+        }
+        else
+        {
+          $response['message'] = 'No post data received';
+        }
+        break;
+      case 'profile':
+
+        break;
+      default:
+        // code...
+        break;
+    }
+
+    $json = json_encode($response);
+    echo $json;
+  }
+
+  private function load_assets()
+  {
+    // Helpers
+    $this->load->helper('url');
+    $this->load->helper('security');
+    // Models
+    $this->load->model('hyperlink_model');
+    // Libraries
+    $this->load->library('parser');
+  }
+
+  private function get_parser_data()
+  {
+    $data = array();
+    $data['base_url'] = base_url();
+    $data['index_page'] = index_page();
+    $data['navbar'] = $this->parser->parse('backend/navbar.html', $data, TRUE);
+    $data['stylesheets'] = $this->parser->parse('backend/stylesheets.html', $data, TRUE);
+
+    return $data;
+  }
+
+  private function prepare_response()
+  {
+    $response = array(
+      'success' => FALSE,
+      'message' => 'No error message specified',
+      'hash' => $this->security->get_csrf_hash(),
+      'html' => ''
+    );
+
+    return $response;
+  }
+}

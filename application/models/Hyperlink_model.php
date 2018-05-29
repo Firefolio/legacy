@@ -31,4 +31,9 @@ class Hyperlink_model extends CI_Model {
 
     return $result;
   }
+
+  public function insert($hyperlink)
+  {
+    $this->db->insert($this->table, $hyperlink);
+  }
 }
