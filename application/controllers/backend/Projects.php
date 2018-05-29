@@ -147,6 +147,8 @@ class Projects extends CI_Controller {
 
               $response['success'] = TRUE;
               $response['message'] = 'Project updated successfully';
+
+              backup_database();
             }
             else
             {
@@ -263,6 +265,7 @@ class Projects extends CI_Controller {
 
     // Helpers
     $this->load->helper('authentication');
+    $this->load->helper('backup');
     $this->load->helper('url');
     $this->load->helper('uri');
     $this->load->helper('security');

@@ -7,6 +7,12 @@ if (!function_exists('backup_database'))
   {
     // Get a reference to the CodeIgniter framework
     $CI =& get_instance();
+    // Load all of the needed models;
+    $CI->load->model('application_model');
+    $CI->load->model('profile_model');
+    $CI->load->model('project_model');
+    $CI->load->model('screenshot_model');
+    $CI->load->model('hyperlink_model');
     // Encode all data in the database as an associative array
     $data = array(
       'application' => $CI->application_model->get(),
