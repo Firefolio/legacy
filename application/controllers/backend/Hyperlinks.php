@@ -9,7 +9,7 @@ class Hyperlinks extends CI_Controller {
     $this->load_assets();
   }
 
-  public function insert($type = '')
+  public function insert($type = 'project')
   {
     $response = $this->prepare_response();
     $data = $this->get_parser_data();
@@ -30,7 +30,7 @@ class Hyperlinks extends CI_Controller {
           $data['url'] = '';
 
           $response['success'] = TRUE;
-          $response['message'] = 'Inserted a screenshot into project ' . $project;
+          $response['message'] = 'Inserted a hyperlink into project ' . $project;
           $response['html'] = $this->parser->parse(
             'backend/hyperlinks/input/single.html',
             $data,
@@ -43,10 +43,24 @@ class Hyperlinks extends CI_Controller {
         }
         break;
       case 'profile':
+        $hyperlink = array(
+          'type' => 'profile'
+        );
 
+        $data['id'] = $this->hyperlink_model->insert($hyperlink);
+        $data['header'] = '';
+        $data['url'] = '';
+
+        $response['success'] = TRUE;
+        $response['message'] = 'Inserted a hyperlink onto the profile';
+        $response['html'] = $this->parser->parse(
+          'backend/hyperlinks/input/single.html',
+          $data,
+          TRUE
+        );
         break;
       default:
-        // code...
+        show_404();
         break;
     }
 

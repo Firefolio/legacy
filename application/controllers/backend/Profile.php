@@ -6,15 +6,7 @@ class Profile extends CI_Controller {
   function __construct()
   {
     parent::__construct();
-
-    $this->load->model('profile_model');
-    $this->load->model('application_model');
-
-    $this->load->library('parser');
-
-    $this->load->helper('authentication');
-    $this->load->helper('url');
-    $this->load->helper('security');
+    $this->load_assets();
   }
 
   public function index()
@@ -53,6 +45,20 @@ class Profile extends CI_Controller {
     echo $json;
   }
 
+  public function load_assets()
+  {
+    // Models
+    $this->load->model('profile_model');
+    $this->load->model('application_model');
+    $this->load->model('hyperlink_model');
+    // Libraries
+    $this->load->library('parser');
+    // Helpers
+    $this->load->helper('authentication');
+    $this->load->helper('url');
+    $this->load->helper('security');
+  }
+
   private function get_post_data()
   {
     $data = array(
@@ -80,7 +86,41 @@ class Profile extends CI_Controller {
     $data['website'] = $this->application_model->get_website();
     $data['navbar'] = $this->parser->parse('backend/navbar.html', $data, TRUE);
     $data['stylesheets'] = $this->parser->parse('backend/stylesheets.html', $data, TRUE);
+    $data['hyperlinks'] = $this->get_hyperlinks();
 
     return $data;
+  }
+
+  private function get_hyperlinks()
+  {
+    $hyperlinks = $this->hyperlink_model->get_profile_hyperlinks();
+    $html = '';
+
+    // Don't add screenshots if none exist
+    if (!empty($hyperlinks))
+    {
+      $data = array(
+        'hyperlinks' => $hyperlinks
+      );
+
+      // Parse the data for each screenshot input
+      foreach ($data['hyperlinks'] as &$hyperlink)
+      {
+        $hyperlink['base_url'] = base_url();
+        $hyperlink['input'] = $this->parser->parse(
+          'backend/hyperlinks/input/single.html',
+          $hyperlink,
+          TRUE
+        );
+      }
+
+      $html = $this->parser->parse(
+        'backend/hyperlinks/input/list.html',
+        $data,
+        TRUE
+      );
+    }
+
+    return $html;
   }
 }

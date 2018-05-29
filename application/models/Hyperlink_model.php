@@ -32,6 +32,19 @@ class Hyperlink_model extends CI_Model {
     return $result;
   }
 
+  public function get_profile_hyperlinks()
+  {
+    $query = $this->db->get_where(
+      $this->table,
+      array(
+        'type' => 'profile'
+      )
+    );
+    $result = $query->result_array();
+
+    return $result;
+  }
+
   public function insert($hyperlink)
   {
     $this->db->insert($this->table, $hyperlink);

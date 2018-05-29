@@ -52,56 +52,98 @@
       </section>
       <section class="row">
         <div class="one-full column">
-          <form
-          id="form"
-          action="{base_url}{index_page}/backend/profile/update"
-          method="POST">
-            <div class="row">
-              <div class="one-third column">
-                <label for="first_name">First Name</label>
-                <input
-                class="u-full-width"
-                type="text"
-                name="first_name"
-                value="{first_name}">
+          <div class="tabbed">
+            <ul>
+              <li>
+                <a href="#tab-1">Information</a>
+              </li>
+              <li>
+                <a href="#tab-2">Hyperlinks</a>
+              </li>
+            </ul>
+            <!-- Information Form -->
+            <div id="tab-1">
+              <form
+              id="form"
+              action="{base_url}{index_page}/backend/profile/update"
+              method="POST">
+                <div class="row">
+                  <div class="one-third column">
+                    <label for="first_name">First Name</label>
+                    <input
+                    class="u-full-width"
+                    type="text"
+                    name="first_name"
+                    value="{first_name}">
+                  </div>
+                  <div class="one-third column">
+                    <label for="middle_name">Middle Name</label>
+                    <input
+                    class="u-full-width"
+                    type="text"
+                    name="middle_name"
+                    value="{middle_name}">
+                  </div>
+                  <div class="one-third column">
+                    <label for="last_name">Last Name</label>
+                    <input
+                    class="u-full-width"
+                    type="text"
+                    name="last_name"
+                    value="{last_name}">
+                  </div>
+                </div>
+                <div class="row">
+                  <!-- Biography -->
+                  <label for="biography">Biography</label>
+                  <textarea
+                  class="u-full-width"
+                  name="biography">{biography}</textarea>
+                </div>
+                <div class="row">
+                  <!-- E-Mail Address -->
+                  <label for="email">E-Mail Address</label>
+                  <input
+                  class="u-full-width"
+                  type="email"
+                  name="email"
+                  value="{email}">
+                </div>
+              </form>
+            </div>
+            <div id="tab-2">
+              <div class="row">
+                <div class="three columns">
+                  <a
+                  id="insert-hyperlink"
+                  class="button u-full-width"
+                  data-type="profile">
+                    Insert
+                  </a>
+                  <input
+                  id="hyperlink-type"
+                  class="hidden"
+                  type="hidden"
+                  value="profile">
+                </div>
               </div>
-              <div class="one-third column">
-                <label for="middle_name">Middle Name</label>
-                <input
-                class="u-full-width"
-                type="text"
-                name="middle_name"
-                value="{middle_name}">
-              </div>
-              <div class="one-third column">
-                <label for="last_name">Last Name</label>
-                <input
-                class="u-full-width"
-                type="text"
-                name="last_name"
-                value="{last_name}">
+              <div id="hyperlinks">
+                {hyperlinks}
               </div>
             </div>
+          </div>
+
+          <hr>
+
+          <!-- Submit Button -->
             <div class="row">
-              <!-- Biography -->
-              <label for="biography">Biography</label>
-              <textarea
-              class="u-full-width"
-              name="biography">{biography}</textarea>
-            </div>
-            <div class="row">
-              <!-- E-Mail Address -->
-              <label for="email">E-Mail Address</label>
-              <input
-              class="u-full-width"
-              type="email"
-              name="email"
-              value="{email}">
-            </div>
-            <div class="row">
-              <button type="submit" name="submit">
-                Update
-              </button>
+              <div class="three columns">
+                <a
+                id="save"
+                class="button u-full-width">
+                  Save
+                </a>
+              </div>
             </div>
           </form>
         </div>
@@ -115,12 +157,27 @@
     src="https://code.jquery.com/jquery-3.2.1.min.js"
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script>
+    <!-- JQuery UI -->
+    <script
+	  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+	  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+	  crossorigin="anonymous"></script>
+    <link
+    rel="stylesheet"
+    href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <!-- Utilities -->
     <script src="{base_url}js/utilities/fallback.js"></script>
     <script src="{base_url}js/utilities/ajax.js"></script>
+    <script src="{base_url}js/utilities/debounce.js"></script>
+    <script src="{base_url}js/utilities/tabs.js"></script>
 
     <!-- Firefolio -->
+    <!-- Profile -->
     <script src="{base_url}js/firefolio/profile/update.js"></script>
+    <!-- Hyperlinks -->
+    <script src="{base_url}js/firefolio/hyperlinks/insert.js"></script>
+    <script src="{base_url}js/firefolio/hyperlinks/update.js"></script>
+    <script src="{base_url}js/firefolio/hyperlinks/delete.js"></script>
   </body>
 </html>

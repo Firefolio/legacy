@@ -4,7 +4,8 @@ $('document').ready(function () {
   $('#insert-hyperlink').click(debounce(function () {
     var url = $('#base-url').val() +
       $('#index-page').val() +
-      '/backend/hyperlinks/insert/project';
+      '/backend/hyperlinks/insert/' +
+      $('#hyperlink-type').val();
     var data = {
       project: $('#id').val()
     }
