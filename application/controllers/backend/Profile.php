@@ -22,6 +22,7 @@ class Profile extends CI_Controller {
   public function update()
   {
     require_authentication();
+    backup_database();
 
     $response = array(
       'success' => FALSE,
@@ -35,6 +36,8 @@ class Profile extends CI_Controller {
 
       $response['success'] = TRUE;
       $response['message'] = 'Profile updated successfully';
+
+      backup_database();
     }
     else
     {
@@ -55,6 +58,7 @@ class Profile extends CI_Controller {
     $this->load->library('parser');
     // Helpers
     $this->load->helper('authentication');
+    $this->load->helper('backup');
     $this->load->helper('url');
     $this->load->helper('security');
   }

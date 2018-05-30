@@ -172,13 +172,17 @@ class Portfolio extends CI_Controller {
     {
       $project['title'] = htmlentities($project['title']);
       $project['subtitle'] = htmlentities($project['subtitle']);
-      $project['language'] = htmlentities($project['language']);
-      $project['date'] = htmlentities(
+      // Filter the project language if it's been set
+      $project['language'] = ($project['language'] != '') ? htmlentities(
+        $project['language']
+      ) : 'Unspecified';
+      // Filter and format the date of the project if it's been set
+      $project['date'] = ($project['date'] != '0000-00-00') ? htmlentities(
         date(
-          'Y',
+          'Y', // Show only the year of release
           strtotime($project['date'])
         )
-      );
+      ) : 'TBD';
 
       // Include URL data
       $project['base_url'] = base_url();
@@ -186,6 +190,8 @@ class Portfolio extends CI_Controller {
 
       // Add in the size of the column
       $project['column_size'] = $column_size;
+
+      // WARNING: Any other data from this function will be unfiltered!
     }
 
     // Split the projects into their own rows on the responsive grid

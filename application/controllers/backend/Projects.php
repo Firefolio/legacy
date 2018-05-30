@@ -68,8 +68,6 @@ class Projects extends CI_Controller {
               $response['message'] = 'Inserted ' .
                                      $project['title'] .
                                      ' into database';
-
-              backup_database();
             }
             else
             {
@@ -449,22 +447,30 @@ class Projects extends CI_Controller {
     return $html;
   }
 
-  private function select_list_values($data)
+  private function select_list_values(&$data)
   {
-    for ($visibility = 0; $visibility < count($data['visibilities']); $visibility++)
+    // Visibility
+    foreach($data['visibilities'] as &$visibility)
     {
       // If the current visibility value from the database equals
       // the string from this iteration of the loop
-      if ($data['visibilities'][$visibility]['visibility'] === $data['visibility'])
+      if ($visibility['visibility'] === $data['visibility'])
       {
-        // Mark this value as selected as selected
-        $data['visibilities'][$visibility]['selected'] = 'selected="selected"';
+        // Mark this value as selected
+        $visibility['selected'] = 'selected="selected"';
       }
     }
 
-    foreach($data['visibilities'] as &$visibility)
+    // Status
+    foreach($data['statuses'] as &$status)
     {
-      // TODO: move above code to here
+      // If the current visibility value from the database equals
+      // the string from this iteration of the loop
+      if ($status['status'] === $data['status'])
+      {
+        // Mark this value as selected
+        $status['selected'] = 'selected="selected"';
+      }
     }
   }
 
