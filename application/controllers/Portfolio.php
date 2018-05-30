@@ -15,7 +15,6 @@ class Portfolio extends CI_Controller {
   {
     // Configure data for the template parser specific to this page
     $data = $this->get_parser_data();
-    $data['header'] = $this->get_header();
     $data['rows'] = $this->get_project_rows($data['projects'], $this->projects_per_row);
     $data['project_grid'] = $this->parser->parse(
       'frontend/project/grid.html',
@@ -48,7 +47,9 @@ class Portfolio extends CI_Controller {
       $data = html_purify($this->get_parser_data($uri));
       // This has to be filtered in its own function to maintain
       // necessary data attributes
-      $data['description'] = markdown_parse(html_purify($data['description']));
+      $data['description'] = markdown_parse(
+        html_purify($data['description'])
+      );
       $data['screenshots'] = $this->get_screenshots($data['id']);
 
       // Check to see if the trailer field has been filled in
@@ -71,7 +72,15 @@ class Portfolio extends CI_Controller {
         );
       }
 
-    	$this->parser->parse('frontend/project.html', $data);
+      // Don't show private projects unless the user is logged in
+    	if ($data['visibility'] !== 'Private' OR isset($_SESSION['user']))
+      {
+        $this->parser->parse('frontend/project.html', $data);
+      }
+      else
+      {
+        show_404();
+      }
     }
     else
     {
@@ -277,6 +286,7 @@ class Portfolio extends CI_Controller {
     $data['login'] = $this->get_login($data);
     $data['year'] = date('Y');
     $data['hyperlinks'] = $this->get_hyperlinks();
+    $data['header'] = $this->get_header();
 
     return $data;
   }
