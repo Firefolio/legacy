@@ -44,7 +44,7 @@ class Portfolio extends CI_Controller {
   	if ($this->project_model->project_exists($uri))
     {
       // Get the data for the project from the database
-      $data = html_purify($this->get_parser_data($uri));
+      $data = $this->get_parser_data($uri);
       // This has to be filtered in its own function to maintain
       // necessary data attributes
       $data['description'] = markdown_parse(
@@ -287,6 +287,11 @@ class Portfolio extends CI_Controller {
     $data['year'] = date('Y');
     $data['hyperlinks'] = $this->get_hyperlinks();
     $data['header'] = $this->get_header();
+    $data['stylesheets'] = $this->parser->parse(
+      'frontend/stylesheets.html',
+      $data,
+      TRUE
+    );
 
     return $data;
   }
