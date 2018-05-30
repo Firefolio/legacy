@@ -179,7 +179,7 @@ class Portfolio extends CI_Controller {
     $data = array();
     $data['base_url'] = base_url();
     $data['index_page'] = index_page();
-    $data['email'] = $this->profile_model->get_email() ?? '';
+    $data['email'] = html_purify($this->profile_model->get_email()) ?? '';
     $html = '';
 
     if (strlen($data['email']) > 0)
@@ -215,19 +215,7 @@ class Portfolio extends CI_Controller {
     // Filter the output of each project and format it
     foreach ($projects as &$project)
     {
-      $project['title'] = htmlentities($project['title']);
-      $project['subtitle'] = htmlentities($project['subtitle']);
-      // Filter the project language if it's been set
-      $project['language'] = ($project['language'] != '') ? htmlentities(
-        $project['language']
-      ) : 'Unspecified';
-      // Filter and format the date of the project if it's been set
-      $project['date'] = ($project['date'] != '0000-00-00') ? htmlentities(
-        date(
-          'Y', // Show only the year of release
-          strtotime($project['date'])
-        )
-      ) : 'TBD';
+      $project = $this->format_project($project);
 
       // Include URL data
       $project['base_url'] = base_url();
@@ -235,8 +223,6 @@ class Portfolio extends CI_Controller {
 
       // Add in the size of the column
       $project['column_size'] = $column_size;
-
-      // WARNING: Any other data from this function will be unfiltered!
     }
 
     // Split the projects into their own rows on the responsive grid
@@ -258,9 +244,10 @@ class Portfolio extends CI_Controller {
     if ($uri != '')
     {
       // Single project
-      $data = $this->project_model->get_project($uri);
-
-      $data['date'] = date('d.m.Y', strtotime($data['date']));
+      $data = $this->format_project(
+        $this->project_model->get_project($uri), // Project
+        'd.m.Y' // Date format
+      );
       $data['details'] = $this->get_details($data);
     }
     else
@@ -270,10 +257,13 @@ class Portfolio extends CI_Controller {
     }
 
     // Then add all of the other data we might need on top
+    // URL data
     $data['base_url'] = base_url();
     $data['index_page'] = index_page();
+    // CSRF token data
     $data['csrf_name'] = $this->security->get_csrf_token_name();
     $data['csrf_hash'] = $this->security->get_csrf_hash();
+    // List of programming languages
     $data['languages'] = $this->project_model->get_languages();
     $data['full_name'] = htmlentities(
       $this->profile_model->get_full_name()
@@ -399,6 +389,8 @@ class Portfolio extends CI_Controller {
         'rows' => array()
       );
 
+      html_purify($screenshots);
+
       foreach (array_chunk($screenshots, $screenshots_per_row, TRUE) as $row)
       {
         array_push($data['rows'], array('screenshots' => $row));
@@ -442,6 +434,31 @@ class Portfolio extends CI_Controller {
     }
 
     return $html;
+  }
+
+  private function format_project($project = array(), $date_format = 'Y')
+  {
+    if (!empty($project))
+    {
+      $project['title'] = htmlentities($project['title']);
+      $project['subtitle'] = htmlentities($project['subtitle']);
+      $project['description'] = html_purify(
+        markdown_parse($project['description'])
+      );
+      // Filter the project language if it's been set
+      $project['language'] = ($project['language'] != '') ? htmlentities(
+        $project['language']
+      ) : 'Unspecified';
+      // Filter and format the date of the project if it's been set
+      $project['date'] = ($project['date'] != '0000-00-00') ? htmlentities(
+        date(
+          $date_format,
+          strtotime($project['date'])
+        )
+      ) : 'TBD';
+    }
+
+    return $project;
   }
 
   private function filter_columns($whitelist = array())
