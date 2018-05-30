@@ -109,14 +109,9 @@ class Administration extends CI_Controller {
   {
     require_authentication();
 
-    $data = array(
-      'application' => $this->application_model->get(),
-      'projects' => $this->project_model->get_projects(),
-      'profile' => $this->profile_model->get_profile(),
-      'hyperlinks' => $this->hyperlink_model->get_hyperlinks()
-    );
-    $json = json_encode($data, JSON_PRETTY_PRINT);
-    $file_name = $data['application']['name'] . '_backup_' . date('Y.m.d_h.i.sa');
+    $data = $this->get_parser_data();
+    $json = backup_database();
+    $file_name = $data['application_name'] . '_backup_' . date('Y.m.d_h.i.sa');
 
     header('Content-Disposition: attachment; filename="' . $file_name .'.json"');
     header('Content-Type: text/json');
@@ -124,6 +119,36 @@ class Administration extends CI_Controller {
     header('Connection: close');
 
     echo $json;
+  }
+
+  public function restore()
+  {
+    require_authentication();
+
+    $data = $this->get_parser_data();
+    $config['upload_path'] = APPPATH . '/restores/';
+    $config['max_size'] = 7200; // TODO: Find out what this is measured in
+
+    $this->load->library('upload', $config);
+
+    if ($this->upload->do_upload('backup'))
+    {
+      $data['upload_data'] = $this->upload->data();
+
+      $this->parser->parse(
+        'backend/administration/restore.html',
+        $data
+      );
+    }
+    else
+    {
+      $data['upload_data'] = $this->upload->display_errors();
+
+      $this->parser->parse(
+        'backend/administration/restore.html',
+        $data
+      );
+    }
   }
 
   private function load_assets()
@@ -134,12 +159,12 @@ class Administration extends CI_Controller {
     $this->load->model('profile_model');
     $this->load->model('screenshot_model');
     $this->load->model('hyperlink_model');
-
     // Helpers
     $this->load->helper('authentication');
+    $this->load->helper('backup');
+    $this->load->helper('form');
     $this->load->helper('url');
     $this->load->helper('security');
-
     // Libraries
     $this->load->library('parser');
   }
@@ -158,6 +183,7 @@ class Administration extends CI_Controller {
     $data['website'] = $this->application_model->get_website();
     $data['navbar'] = $this->parser->parse('backend/navbar.html', $data, TRUE);
     $data['stylesheets'] = $this->parser->parse('backend/stylesheets.html', $data, TRUE);
+    $data['restoration_form'] = form_open_multipart('backend/administration/restore');
 
     return $data;
   }
