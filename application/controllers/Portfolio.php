@@ -317,37 +317,15 @@ class Portfolio extends CI_Controller {
 
   private function get_icon_path($url = '')
   {
+    $this->config->load('social_media_icons', TRUE);
     // Parse the url sent to the function
     $parsed_url = parse_url($url);
-    // Declare every kind of icon that can be used as a replacement
-    $icons = array(
-      'apple.com' => base_url() . 'img/icons/brands/app-store.svg',
-      'appstore.com' => base_url() . 'img/icons/brands/app-store.svg',
-      'bitbucket.org' => base_url() . 'img/icons/brands/bitbucket.svg',
-      'blogger.com' => base_url() . 'img/icons/brands/blogger.svg',
-      'codepen.io' => base_url() . 'img/icons/brands/codepen.svg',
-      'facebook.com' => base_url() . 'img/icons/brands/facebook.svg',
-      'github.com' => base_url() . 'img/icons/brands/github.svg',
-      'gitlab.com' => base_url() . 'img/icons/brands/gitlab.svg',
-      'play.google.com' => base_url() . 'img/icons/brands/google-play.svg',
-      'itch.io' => base_url() . 'img/icons/brands/itch.svg',
-      'linkedin.com' => base_url() . 'img/icons/brands/linkedin.svg',
-      'medium.com' => base_url() . 'img/icons/brands/linkedin.svg',
-      'stackoverflow.com' => base_url() . 'img/icons/brands/stack-overflow.svg',
-      'steampowered.com' => base_url() . 'img/icons/brands/steam.svg',
-      'tumblr.com' => base_url() . 'img/icons/brands/tumblr.svg',
-      'twitter.com' => base_url() . 'img/icons/brands/twitter.svg',
-      'vimeo.com' => base_url() . 'img/icons/brands/twitter.svg',
-      'wordpress.com' => base_url() . 'img/icons/brands/wordpress.svg',
-      'youtube.com' => base_url() . 'img/icons/brands/youtube.svg',
-      'youtu.be' => base_url() . 'img/icons/brands/youtube.svg', // Shortened YouTube link
-    );
     // This will be the default icon if the host isn't recognised
     $default_icon = base_url() . '/img/icons/open-iconic/link-intact.svg';
     // Ensure that the index we're checking doesn't use the World Wide Web
     $host = preg_replace('/^www\./', '', $parsed_url['host'] ?? '');
-    // Set the path based on the host of the parse
-    $path = $icons[$host] ?? $default_icon;
+    // Set the path based on the host of the parsed URL
+    $path = $this->config->item('social_media_icons')[$host] ?? $default_icon;
 
     return $path;
   }

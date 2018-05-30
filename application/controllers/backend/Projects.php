@@ -36,6 +36,7 @@ class Projects extends CI_Controller {
   public function create($action = 'form')
   {
     require_authentication();
+    backup_database();
 
     switch ($action)
     {
@@ -67,6 +68,8 @@ class Projects extends CI_Controller {
               $response['message'] = 'Inserted ' .
                                      $project['title'] .
                                      ' into database';
+
+              backup_database();
             }
             else
             {
@@ -126,6 +129,8 @@ class Projects extends CI_Controller {
         }
         break;
       case 'attempt':
+        backup_database();
+
         $response = $this->prepare_response();
 
         if (isset($_POST['id']))
@@ -177,6 +182,7 @@ class Projects extends CI_Controller {
   public function delete()
   {
     require_authentication();
+    backup_database();
 
     $response = $this->prepare_response();
 
