@@ -105,52 +105,6 @@ class Administration extends CI_Controller {
     }
   }
 
-  public function backup()
-  {
-    require_authentication();
-
-    $data = $this->get_parser_data();
-    $json = backup_database();
-    $file_name = $data['application_name'] . '_backup_' . date('Y.m.d_h.i.sa');
-
-    header('Content-Disposition: attachment; filename="' . $file_name .'.json"');
-    header('Content-Type: text/json');
-    header('Content-Length: ' . strlen($json));
-    header('Connection: close');
-
-    echo $json;
-  }
-
-  public function restore()
-  {
-    require_authentication();
-
-    $data = $this->get_parser_data();
-    $config['upload_path'] = APPPATH . '/restores/';
-    $config['max_size'] = 7200; // TODO: Find out what this is measured in
-
-    $this->load->library('upload', $config);
-
-    if ($this->upload->do_upload('backup'))
-    {
-      $data['upload_data'] = $this->upload->data();
-
-      $this->parser->parse(
-        'backend/administration/restore.html',
-        $data
-      );
-    }
-    else
-    {
-      $data['upload_data'] = $this->upload->display_errors();
-
-      $this->parser->parse(
-        'backend/administration/restore.html',
-        $data
-      );
-    }
-  }
-
   private function load_assets()
   {
     // Models

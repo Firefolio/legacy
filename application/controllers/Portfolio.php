@@ -15,6 +15,7 @@ class Portfolio extends CI_Controller {
   {
     // Configure data for the template parser specific to this page
     $data = $this->get_parser_data();
+    $data['header'] = $this->get_header();
     $data['rows'] = $this->get_project_rows($data['projects'], $this->projects_per_row);
     $data['project_grid'] = $this->parser->parse(
       'frontend/project/grid.html',
@@ -135,7 +136,6 @@ class Portfolio extends CI_Controller {
     $this->load->model('project_model');
     $this->load->model('screenshot_model');
     $this->load->model('hyperlink_model');
-
     // Helpers
     $this->load->helper('backup');
     $this->load->helper('date');
@@ -143,10 +143,46 @@ class Portfolio extends CI_Controller {
     $this->load->helper('html_purifier');
     $this->load->helper('markdown');
     $this->load->helper('url');
-
     // Libraries
     $this->load->library('parser');
     $this->load->library('video');
+  }
+
+  private function get_header()
+  {
+    $data = array();
+    $data['base_url'] = base_url();
+    $data['index_page'] = index_page();
+    $data['full_name'] = htmlentities($this->profile_model->get_full_name());
+    $data['email'] = $this->get_email();
+    $data['hyperlinks'] = $this->get_hyperlinks();
+    $html = $this->parser->parse(
+      'frontend/portfolio/header.html',
+      $data,
+      TRUE
+    ) ?? '';
+
+    return $html;
+  }
+
+  private function get_email()
+  {
+    $data = array();
+    $data['base_url'] = base_url();
+    $data['index_page'] = index_page();
+    $data['email'] = $this->profile_model->get_email() ?? '';
+    $html = '';
+
+    if (strlen($data['email']) > 0)
+    {
+      $html = $this->parser->parse(
+        'frontend/profile/email.html',
+        $data,
+        TRUE
+      );
+    }
+
+    return $html;
   }
 
   private function get_project_rows($projects = array(), $projects_per_row = 3)

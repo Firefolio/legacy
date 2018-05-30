@@ -1,7 +1,3 @@
-var csrf = {
-  name: $('#csrf').attr('name'),
-  hash: $('#csrf').val()
-};
 var ajax = {
   request: {
     form: function (form, url, method, redirect) {
@@ -26,7 +22,6 @@ var ajax = {
         console.log(response);
 
         // Update the anti-CSRF hash
-        csrf.hash = response.hash;
         $('#csrf').val(response.hash);
 
         // Optionally redirect if the request succeeded

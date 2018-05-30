@@ -61,6 +61,14 @@ class Profile_model extends CI_Model {
     return $row['biography'];
   }
 
+  public function get_email()
+  {
+    $query = $this->db->get('profile');
+    $row = $query->row_array();
+
+    return $row['email'];
+  }
+
   public function update_profile($profile)
   {
     $this->db->update('profile', $profile);
