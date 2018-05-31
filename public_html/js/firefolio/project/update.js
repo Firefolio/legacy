@@ -5,6 +5,19 @@ $(document).ready(function () {
       primary: $('#update'),
       save: $('#save')
     },
+  finish: function () {
+    // A nasty series of chained AJAX calls to ensure that everything is saved
+    hyperlinks.update(function () {
+      screenshots.update(function () {
+        ajax.request.form(
+          $('#form'),
+          $('#form').attr('action'),
+          $('#form').attr('method'),
+          $('#redirect-url').val()
+        );
+      });
+    });
+  },
   save: function (redirect = false) {
       if (title.current != title.original) {
         ajax.request.form(
@@ -40,27 +53,14 @@ $(document).ready(function () {
     update.form.submit(function (event) {
       event.preventDefault();
 
-      screenshots.update();
-      hyperlinks.update();
-      ajax.request.form(
-        $('#form'),
-        $('#form').attr('action'),
-        $('#form').attr('method'),
-        $('#redirect-url').val()
-      );
+      update.finish();
     });
 
     // Clicking the 'Finish' button
     $('button#finish').click(function (event) {
       event.preventDefault();
 
-      screenshots.update();
-      ajax.request.form(
-        $('#form'),
-        $('#form').attr('action'),
-        $('#form').attr('method'),
-        $('#redirect-url').val()
-      );
+      update.finish();
     });
 
     var title = {

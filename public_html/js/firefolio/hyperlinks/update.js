@@ -1,5 +1,5 @@
 var hyperlinks = {
-  update: function () {
+  update: function (success = function() {}) {
     var hyperlinks = [];
     var url = $('#base-url').val() +
       $('#index-page').val() +
@@ -18,6 +18,6 @@ var hyperlinks = {
       hyperlinks: JSON.stringify(hyperlinks)
     }
 
-    ajax.request.data(data, url);
+    ajax.request.data(data, url, success());
   }
 }

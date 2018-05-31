@@ -1,5 +1,5 @@
 var screenshots = {
-  update: function () {
+  update: function (success = function() {}) {
     var screenshots = [];
     var url = $('#base-url').val() +
       $('#index-page').val() +
@@ -18,6 +18,6 @@ var screenshots = {
       screenshots: JSON.stringify(screenshots)
     }
 
-    ajax.request.data(data, url);
+    ajax.request.data(data, url, success());
   }
 };
