@@ -9,7 +9,7 @@ $('document').ready(function () {
       input: $(this).val()
     }
 
-    ajax.request.data(data, url, function () {
+    ajax.request.data(data, url, function (response) {
       $('#thumbnail-preview').attr('src', response.result);
     });
   }, limit));

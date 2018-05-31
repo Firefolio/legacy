@@ -7,6 +7,7 @@ class Purifier extends CI_Controller {
   {
     parent::__construct();
     $this->load->helper('html_purifier');
+    $this->load->helper('security');
   }
 
   public function purify()
@@ -14,13 +15,14 @@ class Purifier extends CI_Controller {
     $response = array(
       'success' => FALSE,
       'message' => 'No error message specified',
-      'result' => ''
+      'result' => '',
+      'hash' => $this->security->get_csrf_hash()
     );
 
     if (isset($_POST['input']))
     {
       $response['success'] = TRUE;
-      $response['message'] = TRUE;
+      $response['message'] = 'Purified input';
       $response['result'] = html_purify($_POST['input']);
     }
 

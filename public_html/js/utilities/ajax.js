@@ -80,7 +80,7 @@ var ajax = {
         console.error(message);
       });
     },
-    data: function (data, url, success = function() {}) {
+    data: function (data, url, success = function(response) {}) {
       data[$('#csrf').attr('name')] = $('#csrf').val();
 
       // Type is assumed to be POST
@@ -99,7 +99,7 @@ var ajax = {
         $('#csrf').val(response.hash);
 
         if (response.success) {
-          success();
+          success(response);
           console.log(response.message);
         } else {
           console.error(response.message);
