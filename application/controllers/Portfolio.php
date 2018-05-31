@@ -36,7 +36,7 @@ class Portfolio extends CI_Controller {
     $data['categories'] = $this->filter_columns($categories);
     $data['orders'] = $this->filter_columns($orders);
 
-    $this->parser->parse('frontend/portfolio.html', $data);
+    $this->parser->parse('frontend/portfolio/frontpage.html', $data);
   }
 
   public function project($uri)
@@ -75,7 +75,7 @@ class Portfolio extends CI_Controller {
       // Don't show private projects unless the user is logged in
     	if ($data['visibility'] !== 'Private' OR isset($_SESSION['user']))
       {
-        $this->parser->parse('frontend/project.html', $data);
+        $this->parser->parse('frontend/portfolio/project.html', $data);
       }
       else
       {
@@ -328,7 +328,7 @@ class Portfolio extends CI_Controller {
       }
 
       $html = $this->parser->parse(
-        'frontend/details.html',
+        'frontend/project/details.html',
         $data,
         TRUE
       ) ?? '';
@@ -397,7 +397,7 @@ class Portfolio extends CI_Controller {
       }
 
       $html = $this->parser->parse(
-        'frontend/screenshots.html',
+        'frontend/project/screenshots.html',
         $data,
         TRUE
       );
