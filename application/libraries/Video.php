@@ -88,9 +88,7 @@ class Video {
     {
       case 'youtube':
         $endpoint = 'http://youtube.com/oembed';
-        $request = $endpoint .'?url='
-                   . rawurlencode($url)
-                   . '&format=json';
+        $request = $endpoint .'?url=' . rawurlencode($url) . '&format=json';
         $oembed = json_decode($this->curl_get($request));
 
         if (isset($oembed))
@@ -109,7 +107,12 @@ class Video {
         }
         break;
       case 'html5':
-        // TODO: return a
+        // TODO: Figure out how to show a poster for html5 video
+        $html = '';
+        break;
+      default:
+        // Show some tv static
+        $html = 'https://media.giphy.com/media/Yqn9tE2E00k4U/giphy.gif';
         break;
     }
 
@@ -121,8 +124,7 @@ class Video {
   private function get_type($url)
   {
     if (filter_var($url, FILTER_VALIDATE_URL) !== FALSE)
-    {
-      $parsed_url = parse_url($url);
+    {      $parsed_url = parse_url($url);
 
       if ($parsed_url['host'] === 'www.youtube.com' OR
           $parsed_url['host'] === 'youtube.com' OR
@@ -142,7 +144,7 @@ class Video {
       }
     }
 
-    return $type ?? 'html5';
+    return $type ?? '';
   }
 
   private function curl_get($url)

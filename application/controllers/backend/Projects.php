@@ -290,7 +290,6 @@ class Projects extends CI_Controller {
       $data = $this->project_model->get_project($uri);
       $data['screenshots'] = $this->get_screenshots($data['id']);
       $data['hyperlinks'] = $this->get_hyperlinks($data['id']);
-      $data['trailer_preview'] = $this->video->get_thumbnail($data['trailer']);
     }
     else
     {
@@ -316,6 +315,8 @@ class Projects extends CI_Controller {
     $data['stylesheets'] = $this->parser->parse('backend/stylesheets.html', $data, TRUE);
     $data['visibilities'] = $this->project_model->get_visibilities();
     $data['statuses'] = $this->project_model->get_statuses();
+    $data['thumbnail_preview'] = html_purify($data['thumbnail'] ?? '');
+    $data['trailer_preview'] = $this->video->get_thumbnail($data['trailer'] ?? '');
 
     return $data;
   }
