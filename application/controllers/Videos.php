@@ -14,15 +14,15 @@ class Videos extends CI_Controller {
     $response = array(
       'success' => FALSE,
       'message' => 'No error message specified',
-      'html' => '',
+      'result' => '',
       'hash' => $this->security->get_csrf_hash()
     );
 
     if (isset($_POST['url']))
     {
       $response['success'] = TRUE;
-      $response['message'] = 'Purified input';
-      $response['html'] = $this->video->embed($_POST['url'], TRUE);
+      $response['message'] = 'Got thumbnail path';
+      $response['result'] = $this->video->get_thumbnail($_POST['url']);
     }
 
     $json = json_encode($response);
@@ -31,8 +31,10 @@ class Videos extends CI_Controller {
 
   private function load_assets()
   {
+    // Helpers
     $this->load->helper('html_purifier');
     $this->load->helper('security');
+    // Libraries
     $this->load->library('video');
   }
 }

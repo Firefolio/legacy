@@ -266,6 +266,7 @@ class Projects extends CI_Controller {
 
     // Libraries
     $this->load->library('parser');
+    $this->load->library('video');
 
     // Helpers
     $this->load->helper('authentication');
@@ -289,6 +290,7 @@ class Projects extends CI_Controller {
       $data = $this->project_model->get_project($uri);
       $data['screenshots'] = $this->get_screenshots($data['id']);
       $data['hyperlinks'] = $this->get_hyperlinks($data['id']);
+      $data['trailer_preview'] = $this->video->get_thumbnail($data['trailer']);
     }
     else
     {

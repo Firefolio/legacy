@@ -69,7 +69,7 @@ class Video {
         break;
       case 'html5':
         $data['source'] = html_purify($url);
-        $html = $this->CI->parser->parse('video/html5.html', $data, $return);
+        $html = $this->CI->parser->parse('video/html5/controls.html', $data, $return);
         break;
     }
 
@@ -79,30 +79,70 @@ class Video {
     }
   }
 
+  public function get_thumbnail($url)
+  {
+    $data = array();
+    $html = '';
+
+    switch ($this->get_type($url))
+    {
+      case 'youtube':
+        $endpoint = 'http://youtube.com/oembed';
+        $request = $endpoint .'?url='
+                   . rawurlencode($url)
+                   . '&format=json';
+        $oembed = json_decode($this->curl_get($request));
+
+        if (isset($oembed))
+        {
+          $html = html_entity_decode($oembed->thumbnail_url);
+        }
+        break;
+      case 'vimeo':
+        $endpoint = 'http://vimeo.com/api/oembed';
+        $request = $endpoint .'.json?url=' . rawurlencode($url);
+        $oembed = json_decode($this->curl_get($request));
+
+        if (isset($oembed))
+        {
+          $html = html_entity_decode($oembed->thumbnail_url);
+        }
+        break;
+      case 'html5':
+        // TODO: return a
+        break;
+    }
+
+    return $html;
+  }
+
   // Returns the type of video based on its URL
   // The type string will always be in lower case
   private function get_type($url)
   {
-    $parsed_url = parse_url($url);
+    if (filter_var($url, FILTER_VALIDATE_URL) !== FALSE)
+    {
+      $parsed_url = parse_url($url);
 
-    if ($parsed_url['host'] === 'www.youtube.com' OR
-        $parsed_url['host'] === 'youtube.com' OR
-        $parsed_url['host'] === 'youtu.be')
-    {
-      $type = 'youtube';
-    }
-    elseif ($parsed_url['host'] === 'www.vimeo.com' OR
-            $parsed_url['host'] === 'vimeo.com')
-    {
-      $type = 'vimeo';
-    }
-    else
-    {
-      // Assume self-hosted HTML5
-      $type = 'html5';
+      if ($parsed_url['host'] === 'www.youtube.com' OR
+          $parsed_url['host'] === 'youtube.com' OR
+          $parsed_url['host'] === 'youtu.be')
+      {
+        $type = 'youtube';
+      }
+      elseif ($parsed_url['host'] === 'www.vimeo.com' OR
+              $parsed_url['host'] === 'vimeo.com')
+      {
+        $type = 'vimeo';
+      }
+      else
+      {
+        // Assume self-hosted HTML5
+        $type = 'html5';
+      }
     }
 
-    return $type;
+    return $type ?? 'html5';
   }
 
   private function curl_get($url)

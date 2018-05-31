@@ -5,13 +5,13 @@ $('document').ready(function () {
   $('#trailer').on('input', debounce(function () {
     var url = $('#base-url').val() +
       $('#index-page').val() +
-      '/backend/trailers/get_thumbnail';
+      '/videos/get_thumbnail';
     var data = {
-      input: $(this).val()
+      url: $(this).val()
     }
 
     ajax.request.data(data, url, function (response) {
-      $('#thumbnail-preview').attr('src', response.result);
+      $('#trailer-preview').attr('src', response.result)
     });
   }, limit));
 });
