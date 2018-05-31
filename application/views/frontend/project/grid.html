@@ -1,17 +1,20 @@
-{rows}
-  <section class="row">
-    {projects}
-      <div class="{column_size}">
-        <a href="{base_url}{index_page}/project/{uri}" class="thumbnail">
-          <h2>{title}</h2>
-          <img
-          class="responsive"
-          src="{thumbnail}"
-          alt="{title} Project Thumbnail">
-          <h3>{subtitle}</h3>
-          <small>{language}, {date}</small>
-        </a>
-      </div>
-    {/projects}
-  </section>
-{/rows}
+<div class="project-grid">
+  {rows}
+    <section class="row">
+      {projects}
+        <div class="{column_size}">
+          <a class="thumbnail" href="{base_url}{index_page}/project/{uri}">
+            <h2>{title}</h2>
+            <img
+            width="100%"
+            height="auto"
+            src="{thumbnail}"
+            alt="{title} Project Thumbnail">
+            <h3>{subtitle}</h3>
+            <small>{language}, {date}</small>
+          </a>
+        </div>
+      {/projects}
+    </section>
+  {/rows}
+</div>
