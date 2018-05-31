@@ -1,19 +1,22 @@
-// Hide all elements so their entrance can be animated later
-$('document').ready(function () {
-  var login = {
-    validate: function (username, password) {
-      var valid = false;
+var login = {
+  validate: function (username, password) {
+    var valid = false;
 
-      if (username.length > 0 && username.length > 0) {
-        valid = true;
-      } else {
-        $('#error').html('Please fill in all form fields');
-      }
-
-      return valid;
+    if (username.length > 0 && username.length > 0) {
+      valid = true;
+    } else {
+      $('#error').html('Please fill in all form fields');
+      $('#error').effect('pulsate');
     }
-  };
 
+    return valid;
+  },
+  attempt: function () {
+
+  }
+};
+
+$('document').ready(function () {
   // Fade in the login form
   // Remove the attribute that hides it from the browser
   $('#form').removeAttr('hidden');
@@ -35,9 +38,6 @@ $('document').ready(function () {
         $('#form').attr('method'),
         $('#redirect-url').val()
       );
-    } else {
-      // Reset the password field for another attempt
-      $('#password').val('');
     }
   });
 });

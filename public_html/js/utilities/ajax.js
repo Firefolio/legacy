@@ -33,7 +33,8 @@ var ajax = {
             window.location.replace(redirect);
           }
         } else {
-          console.error(response.message);
+          $('#error').html('ERROR: ' + response.message);
+          $('#error').effect('pulsate');
         }
       });
 
