@@ -8,8 +8,23 @@ html {
   height: 100%;
 }
 
-h1 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+
+p,
+small,
+i,
+b,
+em,
+strong,
+li {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
 a {
@@ -36,7 +51,7 @@ iframe {
 }
 
 .copyright {
-  
+
 }
 
 .content {
@@ -73,19 +88,25 @@ iframe {
   font-size: 1.8rem;
 }
 
+.hyperlink-header {
+  font-size: 2.4rem;
+}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 400px) {
   h1 { font-size: 3.0rem; }
-  h2 { font-size: 3.6rem; }
-  h3 { font-size: 3.0rem; }
-  h4 { font-size: 2.4rem; }
-  h5 { font-size: 1.5rem; }
-  h6 { font-size: 1.1rem; }
+  h2 { font-size: 2.8rem; }
+  h3 { font-size: 2.4rem; }
+  h4 { font-size: 2.2rem; }
+  h5 { font-size: 2.0rem; }
+  h6 { font-size: 1.8rem; }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 550px) {
-
+  .hyperlink-header {
+    display: none;
+  }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
