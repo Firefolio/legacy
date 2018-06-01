@@ -277,6 +277,7 @@ class Portfolio extends CI_Controller {
     $data['year'] = date('Y');
     $data['hyperlinks'] = $this->get_hyperlinks();
     $data['header'] = $this->get_header();
+    $data['footer'] = $this->get_footer($data);
     $data['stylesheets'] = $this->parser->parse(
       'frontend/stylesheets.html',
       $data,
@@ -408,6 +409,20 @@ class Portfolio extends CI_Controller {
     }
 
     return $html;
+  }
+
+  private function get_footer($data = array())
+  {
+    if (!empty($data))
+    {
+      $html = $this->parser->parse(
+        'frontend/portfolio/footer.html',
+        $data,
+        TRUE
+      );
+    }
+
+    return $html ?? '';
   }
 
   private function get_login($data)

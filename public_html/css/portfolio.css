@@ -1,11 +1,23 @@
+* {
+  margin: 0;
+}
+
 body,
 html {
   background-color: #FAFAFA;
+  height: 100%;
 }
 
-img.responsive {
-  width: 100%;
-  height: auto;
+h1 {
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 iframe {
@@ -19,9 +31,19 @@ iframe {
   margin-bottom: 32px;
 }
 
+.biography {
+  padding-bottom: 16px;
+}
+
+.copyright {
+  
+}
+
 .content {
+  min-height: 100%;
   background-color: white;
   padding: 32px;
+  background-color: #FEFEFE;
 }
 
 .footer {
@@ -34,7 +56,7 @@ iframe {
 }
 
 .thumbnail > img {
-  border: 1px solid #F8F8F8;
+  border: 1px solid #EFEFEF;
   border-radius: 4px;
   padding: 2px;
 }
@@ -49,4 +71,34 @@ iframe {
 
 .thumbnail > small {
   font-size: 1.8rem;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 400px) {
+  h1 { font-size: 3.0rem; }
+  h2 { font-size: 3.6rem; }
+  h3 { font-size: 3.0rem; }
+  h4 { font-size: 2.4rem; }
+  h5 { font-size: 1.5rem; }
+  h6 { font-size: 1.1rem; }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 550px) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 750px) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 1000px) {
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
 }
