@@ -58,6 +58,11 @@ a:hover {
 	border-color: #DF7B3F;
 }
 
+.button.button-primary:hover {
+	background-color: #AA492A;
+	border-color: #DF7B3F;
+}
+
 /* Container */
 .container {
 	background-color: #FAFAFA;
@@ -133,4 +138,5 @@ nav > ul > .u-pull-right > li {
 	width: 100%;
 	height: auto;
 	background-color: #CE5C54;
+	padding: 8px;
 }

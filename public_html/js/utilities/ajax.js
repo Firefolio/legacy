@@ -112,3 +112,8 @@ var ajax = {
     }
   }
 };
+
+$('document').ready(function () {
+  // TODO: Hide error alert properly
+  $('#error').hide();
+});
