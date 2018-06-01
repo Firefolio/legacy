@@ -1,19 +1,92 @@
 /* Firefolio Backend CSS MIT License */
 
+/* Fonts */
+@import url('https://fonts.googleapis.com/css?family=Philosopher');
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans');
+
+/* Globals */
+* {
+	font-family: 'Fira Sans', sans-serif;
+}
+
+body,
+html {
+	background-color: #EEDDC9;
+}
+
+/* HTML Elements */
+/* Headers */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+thead {
+	font-family: 'Philosopher', sans-serif;
+}
+
+/* Inputs */
+input {
+	border-radius: 0 !important;
+}
+
+/* Anchors */
+a {
+	color: #DF7B3F;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #AA492A;
+	text-decoration: underline;
+}
+
+/* Buttons */
+.button {
+	font-family: 'Fira Sans', sans-serif;
+	border-radius: 0 !important;
+}
+
+.button.back {
+	border-radius: 0;
+}
+
+.button.button-primary {
+	color: #FAFAFA;
+	background-color: #DF7B3F;
+	border-color: #DF7B3F;
+}
+
+/* Container */
+.container {
+	background-color: #FAFAFA;
+	padding: 32px;
+}
+
+/* Forms */
 form.login {
 	width: 100%;
 	border: 1px solid lightgrey;
 	padding: 16px;
 }
 
+/* Navigation Bar */
 nav {
+	background-color: #FFFFFF;
 	overflow: hidden;
+	text-decoration: none;
 }
 
 nav > ul {
 	list-style: none;
 	margin: auto;
 	height: 32px;
+}
+
+nav > ul li {
+	font-size: 1.6rem;
+	margin-bottom: 0px !important;
 }
 
 nav > ul > .u-pull-left > li {
@@ -54,6 +127,10 @@ nav > ul > .u-pull-right > li {
 	text-align: 50%;
 }
 
+/* Form error message */
 #error {
-	color: #FF0000;
+	color: #FAFAFA;
+	width: 100%;
+	height: auto;
+	background-color: #CE5C54;
 }
