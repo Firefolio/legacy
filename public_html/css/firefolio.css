@@ -2,15 +2,17 @@
 
 /* Fonts */
 @import url('https://fonts.googleapis.com/css?family=Philosopher');
-@import url('https://fonts.googleapis.com/css?family=Fira+Sans');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 /* Globals */
 * {
-	font-family: 'Fira Sans', sans-serif;
+	font-family: 'Open Sans', sans-serif;
 }
 
 body,
 html {
+	height: 100%;
+	margin: 0;
 	background-color: #EEDDC9;
 }
 
@@ -44,7 +46,7 @@ a:hover {
 
 /* Buttons */
 .button {
-	font-family: 'Fira Sans', sans-serif;
+	font-family: 'Open Sans', sans-serif;
 	border-radius: 0 !important;
 }
 
@@ -61,6 +63,24 @@ a:hover {
 .button.button-primary:hover {
 	background-color: #AA492A;
 	border-color: #DF7B3F;
+}
+
+.button.button-primary:focus {
+	background-color: #AA492A;
+	border-color: #DF7B3F;
+}
+
+/* Previews */
+#thumbnail-preview {
+	margin: 4px;
+	padding: 4px;
+	border: 1px solid lightgrey;
+}
+
+#trailer-preview {
+	margin: 4px;
+	padding: 4px;
+	border: 1px solid lightgrey;
 }
 
 /* Container */
@@ -91,7 +111,7 @@ nav > ul {
 
 nav > ul li {
 	font-size: 1.6rem;
-	margin-bottom: 0px !important;
+	margin-bottom: 0px;
 }
 
 nav > ul > .u-pull-left > li {
@@ -139,4 +159,29 @@ nav > ul > .u-pull-right > li {
 	height: auto;
 	background-color: #CE5C54;
 	padding: 8px;
+}
+
+/* Media Queries */
+@media only screen and (min-width: 400px) {
+
+}
+
+/* Small devices (portrait tablets and large phones) */
+@media only screen and (min-width: 550px) {
+
+}
+
+/* Medium devices (landscape tablets) */
+@media only screen and (min-width: 750px) {
+
+}
+
+/* Large devices (laptops/desktops) */
+@media only screen and (min-width: 1000px) {
+
+}
+
+/* Extra large devices (large laptops and desktops) */
+@media only screen and (min-width: 1200px) {
+
 }

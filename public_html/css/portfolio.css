@@ -1,4 +1,4 @@
-* {
+b* {
   margin: 0;
 }
 
@@ -47,11 +47,12 @@ iframe {
 }
 
 .biography {
-  padding-bottom: 16px;
+  margin-bottom: 8px;
 }
 
 .copyright {
-
+  margin-bottom: 8px;
+  color: grey;
 }
 
 .content {
@@ -89,6 +90,7 @@ iframe {
 }
 
 .hyperlink-header {
+  margin-left: 16px;
   font-size: 2.4rem;
 }
 
@@ -104,6 +106,7 @@ iframe {
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 550px) {
+  /* Hyperlinks */
   .hyperlink-header {
     display: none;
   }
