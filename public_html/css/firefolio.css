@@ -97,40 +97,29 @@ form.login {
 }
 
 /* Navigation Bar */
+/* (Mobile Version) */
 nav {
 	background-color: #FFFFFF;
 	overflow: hidden;
-	text-decoration: none;
 }
 
-nav > ul {
+nav ul li {
 	list-style: none;
-	margin: auto;
-	height: 32px;
+	padding: 8px;
+	display: none;
 }
 
-nav > ul li {
-	font-size: 1.6rem;
-	margin-bottom: 0px;
-}
-
-nav > ul > .u-pull-left > li {
+/* Show the firefolio icon that pulls down the navbar */
+#open-navbar {
 	display: block;
-	text-decoration: none;
-	float: left;
-	padding: 16px 16px;
 }
 
-nav > ul > .u-pull-right > li {
+/* Display all navbar items when active */
+nav.active ul li {
 	display: block;
-	text-decoration: none;
-	float: left;
-	padding: 16px 16px;
 }
 
-.project {
-	/* TODO: add styles to projects */
-}
+/* Utilities */
 
 .u-view-height {
 	height: 100vh;
@@ -162,26 +151,38 @@ nav > ul > .u-pull-right > li {
 }
 
 /* Media Queries */
-@media only screen and (min-width: 400px) {
-
-}
-
-/* Small devices (portrait tablets and large phones) */
-@media only screen and (min-width: 550px) {
-
-}
-
-/* Medium devices (landscape tablets) */
-@media only screen and (min-width: 750px) {
-
-}
-
 /* Large devices (laptops/desktops) */
 @media only screen and (min-width: 1000px) {
+	/* Navigation Bar */
+	/* (Desktop Version) */
+	nav {
+		background-color: #FFFFFF;
+		overflow: hidden;
+		text-decoration: none;
+	}
 
-}
+	nav > ul {
+		list-style: none;
+		margin: auto;
+		height: 32px;
+	}
 
-/* Extra large devices (large laptops and desktops) */
-@media only screen and (min-width: 1200px) {
+	nav > ul li {
+		font-size: 1.6rem;
+		margin-bottom: 0px;
+	}
 
+	nav > ul > .u-pull-left > li {
+		display: block;
+		text-decoration: none;
+		float: left;
+		padding: 16px 16px;
+	}
+
+	nav > ul > .u-pull-right > li {
+		display: block;
+		text-decoration: none;
+		float: left;
+		padding: 16px 16px;
+	}
 }
