@@ -83,6 +83,12 @@ a:hover {
 	border: 1px solid lightgrey;
 }
 
+.screenshot-preview {
+	margin: 4px;
+	padding: 4px;
+	border: 1px solid lightgrey;
+}
+
 /* Container */
 .container {
 	background-color: #FAFAFA;
