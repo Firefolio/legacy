@@ -111,8 +111,8 @@ class Video {
         $html = '';
         break;
       default:
-        // Show some tv static
-        $html = 'https://media.giphy.com/media/Yqn9tE2E00k4U/giphy.gif';
+        // Show some tv static as a placeholder image
+        $html = base_url() . 'img/tv_static.gif';
         break;
     }
 
