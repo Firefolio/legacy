@@ -162,5 +162,10 @@ $installer->install();
   </head>
   <body>
     <h1>Welcome to Firefolio!</h1>
+
+    <p>
+      Your brand new portfolio site can be found at
+      <?php echo $config['base_url'] ?>
+    </p>
   </body>
 </html>
