@@ -14,9 +14,14 @@ class Projects extends CI_Controller {
     require_authentication();
 
     $data = $this->get_parser_data();
-    $data['projects'] = $this->clean_project_titles(
-      html_purify($data['projects'])
-    );
+
+    if (!empty($data['projects']))
+    {
+      $data['projects'] = $this->clean_project_titles(
+        html_purify($data['projects'])
+      );
+    }
+
     $data['project_list'] = $this->parser->parse(
       'backend/projects/list.html',
       $data,

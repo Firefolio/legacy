@@ -48,10 +48,11 @@ class Installer
 
     echo 'Verifying that the application isn\'t already installed...' . '<br>';
 
-    if ($this->installed($pdo))
-    {
-      exit('Application already installed. No direct script access allowed.');
-    }
+    // TODO: Turn this check back on
+    // if ($this->installed($pdo))
+    // {
+    //   exit('Application already installed. No direct script access allowed.');
+    // }
 
     echo 'No valid installation found.' . '<br>';
     echo 'Inserting default values into database...' . '<br>';
@@ -201,20 +202,17 @@ $installer->install();
             In order for your password to be secure, it <em>must</em> be:
             <ul>
               <li>Greater than 16 characters</li>
-              <li>Different from your username</li>
-            </ul>
-          </p>
-          <p>
-            In addition to this, your password <em>should</em> be:
-            <ul>
-              <li>Something that can't be found online based on your name</li>
-              <li>Free of identifiable patterns such as <code>12345</code></li>
             </ul>
           </p>
         </div>
         <!-- Security Form -->
         <div class="one-half column">
-          <form action="index.html" method="post">
+          <!-- Hidden inputs -->
+
+          <form
+          id="form"
+          action="<?php echo $config['base_url'] . $config['index_page'] ?>/installer/install"
+          method="POST">
             <div class="row">
               <div class="one-full column">
                 <label for="username">Username</label>
@@ -230,7 +228,7 @@ $installer->install();
                 <label for="password">Password</label>
                 <input
                 class="u-full-width"
-                type="text"
+                type="password"
                 name="password"
                 value="">
               </div>
@@ -238,7 +236,7 @@ $installer->install();
                 <label for="confirmation">Confirm Password</label>
                 <input
                 class="u-full-width"
-                type="text"
+                type="password"
                 name="confirmation"
                 value="">
               </div>
@@ -256,5 +254,19 @@ $installer->install();
         </div>
       </div>
     </div>
+
+    <!-- Scripts -->
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+
+    <!-- Utilities -->
+    <script src="<?php echo $config['base_url'] ?>js/utilities/fallback.js"></script>
+    <script src="<?php echo $config['base_url'] ?>js/utilities/ajax.js"></script>
+    <script src="<?php echo $config['base_url'] ?>js/utilities/debounce.js"></script>
+
+    <!-- Firefolio -->
+    <script src="<?php echo $config['base_url'] ?>js/firefolio/install.js"></script>
   </body>
 </html>
