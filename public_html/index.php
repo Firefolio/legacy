@@ -39,7 +39,7 @@
 // Normally, CodeIgniter would declare some configuration variables here,
 // but since the installer file also needs them, they have been moved
 // to their own file.
-// Set a constant to authenticate access to the config file
+// This file requires a constant to be set before it can be accessed
 define('CONFIG', TRUE);
 
 // Include that file in order to access its variables
