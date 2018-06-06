@@ -159,7 +159,9 @@ $installer->install();
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title></title>
+
+    <title>Firefolio - Installer</title>
+
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -168,7 +170,8 @@ $installer->install();
     <!-- Place favicon.ico in the root directory -->
 
     <link rel="stylesheet" href="<?php echo $config['base_url'] ?>css/normalize.css">
-    <link rel="stylesheet" href="<?php echo $config['base_url'] ?>css/main.css">
+    <link rel="stylesheet" href="<?php echo $config['base_url'] ?>css/boilerplate.css">
+    <link rel="stylesheet" href="<?php echo $config['base_url'] ?>css/skeleton.css">
   </head>
   <body>
     <!--[if lte IE 9]>
@@ -179,12 +182,78 @@ $installer->install();
 
     <div class="container">
       <div class="row">
-        <h1>Welcome to Firefolio!</h1>
+        <div class="one-full column">
+          <h1>Welcome to Firefolio!</h1>
 
-        <p>
-          Your brand new portfolio site can be found at
-          <?php echo $config['base_url'] ?>
-        </p>
+          <p>
+            <strong>Don't navigate away from this page!</strong>
+            Before you can continue,
+            we're going to need you to change your username and password.
+            This is an important step to ensure that your data is safe.
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <!-- Password Advice -->
+        <div class="one-half column">
+          <h2>Password</h2>
+          <p>
+            In order for your password to be secure, it <em>must</em> be:
+            <ul>
+              <li>Greater than 16 characters</li>
+              <li>Different from your username</li>
+            </ul>
+          </p>
+          <p>
+            In addition to this, your password <em>should</em> be:
+            <ul>
+              <li>Something that can't be found online based on your name</li>
+              <li>Free of identifiable patterns such as <code>12345</code></li>
+            </ul>
+          </p>
+        </div>
+        <!-- Security Form -->
+        <div class="one-half column">
+          <form action="index.html" method="post">
+            <div class="row">
+              <div class="one-full column">
+                <label for="username">Username</label>
+                <input
+                class="u-full-width"
+                type="text"
+                name="username"
+                value="">
+              </div>
+            </div>
+            <div class="row">
+              <div class="one-half column">
+                <label for="password">Password</label>
+                <input
+                class="u-full-width"
+                type="text"
+                name="password"
+                value="">
+              </div>
+              <div class="one-half column">
+                <label for="confirmation">Confirm Password</label>
+                <input
+                class="u-full-width"
+                type="text"
+                name="confirmation"
+                value="">
+              </div>
+            </div>
+            <div class="row">
+              <div class="four columns">
+                <button
+                class="button button-primary u-full-width"
+                type="submit"
+                name="submit"
+                value="submit">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </body>

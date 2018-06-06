@@ -27,11 +27,8 @@ class Uninstaller
     $dsn = $this->get_dsn();
     $pdo = $this->get_pdo();
 
-    foreach ($this->table_names as $table)
-    {
-      $statement = $pdo->query('DROP TABLE ' . $table);
-      $statement->execute();
-    }
+    $statement = $pdo->prepare('DROP TABLE application');
+    $statement->execute();
 
     echo 'The application has been uninstalled.';
   }
