@@ -3,6 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Application_model extends CI_Model {
 
+  private $table = 'application';
+
   function __construct()
   {
     parent::__construct();
@@ -97,6 +99,11 @@ class Application_model extends CI_Model {
     $row = $query->row_array();
 
     return $row['default_password'];
+  }
+
+  public function update($data = array())
+  {
+    $this->db->update($this->table, $data);
   }
 
   public function update_username($username)

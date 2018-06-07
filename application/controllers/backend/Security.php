@@ -18,7 +18,7 @@ class Security extends CI_Controller {
     switch ($what)
     {
       case 'credentials':
-        switch ($credentials)
+        switch ($action)
         {
           case 'form':
             $this->parser->parse(
@@ -27,11 +27,51 @@ class Security extends CI_Controller {
             );
             break;
           case 'request':
-            $respsonse = $this->prepare_response();
+            $response = $this->prepare_response();
+            $min_length = array(
+              'username' => 0,
+              'password' => 16
+            );
 
             if (isset($_POST['username']))
             {
-              
+              $username = $_POST['username'];
+              $password = $_POST['password'];
+              $confirmation = $_POST['password'];
+
+              if (strlen($username) > $min_length['username'] AND
+                  strlen($password) > $min_length['password'])
+              {
+                if (strtolower($username) !== strtolower($password))
+                {
+                  if ($password === $confirmation)
+                  {
+                    $hash = password_hash($password, PASSWORD_DEFAULT);
+
+                    $this->application_model->update(
+                      array(
+                        'username' => $username,
+                        'password' => $hash // Never store passwords in plain text
+                      )
+                    );
+
+                    $response['success'] = TRUE;
+                    $response['message'] = 'Altered user credentials';
+                  }
+                  else
+                  {
+                    $response['message'] = 'Password and confirmation don\'t match';
+                  }
+                }
+                else
+                {
+                  $response['message'] = 'Password cannot be equal to the username';
+                }
+              }
+              else
+              {
+                $response['message'] = 'Username and/or password is too short';
+              }
             }
             else
             {
@@ -57,11 +97,9 @@ class Security extends CI_Controller {
     $data = array();
     $data['base_url'] = base_url();
     $data['index_page'] = index_page();
-    $data['navbar'] = $this->parser->parse(
-      'backend/navbar.html',
-      $data,
-      TRUE
-    );
+    $data['application_name'] = $this->application_model->get_name();
+    $data['csrf_name'] = $this->security->get_csrf_token_name();
+    $data['csrf_hash'] = $this->security->get_csrf_hash();
 
     return $data;
   }

@@ -12,6 +12,7 @@ class Projects extends CI_Controller {
   public function index()
   {
     require_authentication();
+    validate_user_credentials();
 
     $data = $this->get_parser_data();
 
@@ -46,6 +47,8 @@ class Projects extends CI_Controller {
     switch ($action)
     {
       case 'form':
+        validate_user_credentials();
+
         $destination = base_url() .
                        index_page() .
                        '/backend/projects/create/attempt';
@@ -107,6 +110,8 @@ class Projects extends CI_Controller {
       case 'form':
         if ($this->project_model->project_exists($uri))
         {
+          validate_user_credentials();
+
           // Define where the form will send it's data
           $destination = base_url() .
                          index_page() .
@@ -273,6 +278,7 @@ class Projects extends CI_Controller {
     $this->load->library('video');
     // Helpers
     $this->load->helper('authentication');
+    $this->load->helper('credentials');
     $this->load->helper('backup');
     $this->load->helper('url');
     $this->load->helper('uri');
