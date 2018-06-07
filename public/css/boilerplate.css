@@ -27,12 +27,12 @@ html {
  */
 
 ::-moz-selection {
-    background: #b3d4fc;
+    background: #f2bc48;
     text-shadow: none;
 }
 
 ::selection {
-    background: #b3d4fc;
+    background: #f2bc48;
     text-shadow: none;
 }
 

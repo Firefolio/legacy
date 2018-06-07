@@ -48,11 +48,10 @@ class Installer
 
     echo 'Verifying that the application isn\'t already installed...' . '<br>';
 
-    // TODO: Turn this check back on
-    // if ($this->installed($pdo))
-    // {
-    //   exit('Application already installed. No direct script access allowed.');
-    // }
+    if ($this->installed($pdo))
+    {
+      exit('Application already installed. No direct script access allowed.');
+    }
 
     echo 'No valid installation found.' . '<br>';
     echo 'Inserting default values into database...' . '<br>';
@@ -158,21 +157,29 @@ $installer->install();
 <!doctype html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-
     <title>Firefolio - Installer</title>
 
-    <meta name="description" content="">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="manifest" href="site.webmanifest">
     <link rel="apple-touch-icon" href="icon.png">
     <!-- Place favicon.ico in the root directory -->
 
-    <link rel="stylesheet" href="<?php echo $config['base_url'] ?>css/normalize.css">
-    <link rel="stylesheet" href="<?php echo $config['base_url'] ?>css/boilerplate.css">
-    <link rel="stylesheet" href="<?php echo $config['base_url'] ?>css/skeleton.css">
+    <!-- Stylesheets -->
+    <link
+    rel="stylesheet"
+    href="<?php echo $config['base_url'] ?>css/normalize.css">
+    <link
+    rel="stylesheet"
+    href="<?php echo $config['base_url'] ?>css/boilerplate.css">
+    <link
+    rel="stylesheet"
+    href="<?php echo $config['base_url'] ?>css/skeleton.css">
+    <link
+    rel="stylesheet"
+    href="<?php echo $config['base_url'] ?>css/firefolio.css">
   </head>
   <body>
     <!--[if lte IE 9]>
@@ -185,88 +192,40 @@ $installer->install();
       <div class="row">
         <div class="one-full column">
           <h1>Welcome to Firefolio!</h1>
+          <h2>
+            Don't leave this page just yet!
+          </h2>
 
           <p>
-            <strong>Don't navigate away from this page!</strong>
-            Before you can continue,
-            we're going to need you to change your username and password.
-            This is an important step to ensure that your data is safe.
+            Once you do, you won't be able to look at it again until you
+            uninstall the application from your server.
           </p>
-        </div>
-      </div>
-      <div class="row">
-        <!-- Password Advice -->
-        <div class="one-half column">
-          <h2>Password</h2>
           <p>
-            In order for your password to be secure, it <em>must</em> be:
-            <ul>
-              <li>Greater than 16 characters</li>
-            </ul>
-          </p>
-        </div>
-        <!-- Security Form -->
-        <div class="one-half column">
-          <!-- Hidden inputs -->
+            Your brand new portfolio site can be accessed
+            <a href="<?php echo $config['base_url']; ?>">here</a>.
+            To make changes, log into your account using the link at the
+            bottom-right. By default, your credentials are:
 
-          <form
-          id="form"
-          action="<?php echo $config['base_url'] . $config['index_page'] ?>/installer/install"
-          method="POST">
-            <div class="row">
-              <div class="one-full column">
-                <label for="username">Username</label>
-                <input
-                class="u-full-width"
-                type="text"
-                name="username"
-                value="">
-              </div>
-            </div>
-            <div class="row">
-              <div class="one-half column">
-                <label for="password">Password</label>
-                <input
-                class="u-full-width"
-                type="password"
-                name="password"
-                value="">
-              </div>
-              <div class="one-half column">
-                <label for="confirmation">Confirm Password</label>
-                <input
-                class="u-full-width"
-                type="password"
-                name="confirmation"
-                value="">
-              </div>
-            </div>
-            <div class="row">
-              <div class="four columns">
-                <button
-                class="button button-primary u-full-width"
-                type="submit"
-                name="submit"
-                value="submit">Submit</button>
-              </div>
-            </div>
-          </form>
+            <table class="u-full-width">
+              <thead>
+                <tr>
+                  <td>Username</td>
+                  <td>Password</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>root</td>
+                  <td>changeitnow</td>
+                </tr>
+              </tbody>
+            </table>
+
+            but you'll be forced to change them until they're different from the
+            default.
+          </p>
         </div>
       </div>
     </div>
-
-    <!-- Scripts -->
-    <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
-    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-    crossorigin="anonymous"></script>
-
-    <!-- Utilities -->
-    <script src="<?php echo $config['base_url'] ?>js/utilities/fallback.js"></script>
-    <script src="<?php echo $config['base_url'] ?>js/utilities/ajax.js"></script>
-    <script src="<?php echo $config['base_url'] ?>js/utilities/debounce.js"></script>
-
-    <!-- Firefolio -->
-    <script src="<?php echo $config['base_url'] ?>js/firefolio/install.js"></script>
   </body>
 </html>
