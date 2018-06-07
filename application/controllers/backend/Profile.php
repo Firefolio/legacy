@@ -12,6 +12,7 @@ class Profile extends CI_Controller {
   public function index()
   {
     require_authentication();
+    validate_user_credentials();
 
     $this->parser->parse(
       'backend/profile/update.html', // View
@@ -59,6 +60,7 @@ class Profile extends CI_Controller {
     // Helpers
     $this->load->helper('authentication');
     $this->load->helper('backup');
+    $this->load->helper('credentials');
     $this->load->helper('url');
     $this->load->helper('security');
   }

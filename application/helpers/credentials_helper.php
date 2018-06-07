@@ -27,7 +27,7 @@ if (!function_exists('validate_user_credentials'))
     }
 
     // Make sure the password isn't the default
-    if ($current_password === $default_password OR // If the hash is the same for some reason
+    if ($current_password === $default_password OR // If the hash is the same
         password_verify($default_password, $current_password))
     {
       header('Location: ' . $url);

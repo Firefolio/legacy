@@ -12,6 +12,7 @@ class Administration extends CI_Controller {
   public function index()
   {
     require_authentication();
+    validate_user_credentials();
 
     $data = $this->get_parser_data();
 
@@ -116,6 +117,7 @@ class Administration extends CI_Controller {
     // Helpers
     $this->load->helper('authentication');
     $this->load->helper('backup');
+    $this->load->helper('credentials');
     $this->load->helper('form');
     $this->load->helper('url');
     $this->load->helper('security');

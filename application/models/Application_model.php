@@ -90,7 +90,7 @@ class Application_model extends CI_Model {
     $query = $this->db->get('application');
     $row = $query->row_array();
 
-    return $row['default_password'];
+    return $row['default_username'];
   }
 
   public function get_default_password()
