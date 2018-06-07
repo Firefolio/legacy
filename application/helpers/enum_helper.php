@@ -5,7 +5,7 @@ if (!function_exists('get_sql_enum_values'))
 {
   // WARNING: Don't let the user input values into this function!
   // It's not been escaped properly!
-  // Try to only use this for dropdown lists where text input isn't possible.
+  // Try to only use this for outputting information to the user only
   function get_sql_enum_values($table, $column)
   {
     if (isset($table) && isset($column))

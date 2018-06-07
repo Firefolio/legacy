@@ -268,11 +268,9 @@ class Projects extends CI_Controller {
     $this->load->model('project_model');
     $this->load->model('screenshot_model');
     $this->load->model('hyperlink_model');
-
     // Libraries
     $this->load->library('parser');
     $this->load->library('video');
-
     // Helpers
     $this->load->helper('authentication');
     $this->load->helper('backup');
