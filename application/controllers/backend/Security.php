@@ -29,7 +29,7 @@ class Security extends CI_Controller {
           case 'request':
             $response = $this->prepare_response();
             $min_length = array(
-              'username' => 0,
+              'username' => 4,
               'password' => 16
             );
 
