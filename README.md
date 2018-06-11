@@ -17,6 +17,13 @@ focused eniterly on creating a single kind of website.
 developing **Firefolio**. It's a web server that runs locally on your computer
 and meets all of the above requirements.
 
+## History
+**Firefolio** was originally a prototype called [Blue Carbon](https://github.com/blue-carbon)
+which was made as part of a university assignment in web design. After being
+dissatisfied with it's performance and myriad of design quirks,
+I decided to rebuild the entire thing from scratch in order for it to be more
+accessible to a wider audience outside of myself.
+
 ## License
 Firefolio is released under the terms of the
 [MIT Open Source License](http://www.opensource.org/licenses/MIT). Feel free to
