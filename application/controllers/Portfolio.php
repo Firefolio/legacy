@@ -338,7 +338,7 @@ class Portfolio extends CI_Controller {
     return $html;
   }
 
-  private function get_hyperlinks()
+  private function get_hyperlinks($hyperlinks = array(), $hyperlinks_per_row = 12)
   {
     // NOTE: This function refers to social media links
     $data = array(
