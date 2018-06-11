@@ -68,7 +68,7 @@ class Hyperlink_model extends CI_Model {
 
   public function get_row_count()
   {
-    $query->get($this->table);
+    $query = $this->db->get($this->table);
     $total = $query->num_rows();
 
     return $total;

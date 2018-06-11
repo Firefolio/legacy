@@ -47,7 +47,7 @@ class Hyperlinks extends CI_Controller {
           'type' => 'profile'
         );
 
-        if ($this->hyperlink_model->get_row_count() < 12)
+        if ($this->hyperlink_model->get_row_count() < 11)
         {
           $data['id'] = $this->hyperlink_model->insert($hyperlink);
           $data['header'] = '';
