@@ -13,6 +13,8 @@ class Portfolio extends CI_Controller {
 
   public function index()
   {
+    validate_user_credentials();
+
     // Configure data for the template parser specific to this page
     $data = $this->get_parser_data();
     $data['rows'] = $this->get_project_rows($data['projects'], $this->projects_per_row);
@@ -41,6 +43,8 @@ class Portfolio extends CI_Controller {
 
   public function project($uri)
   {
+    validate_user_credentials();
+
   	if ($this->project_model->project_exists($uri))
     {
       // Get the data for the project from the database
@@ -147,6 +151,7 @@ class Portfolio extends CI_Controller {
     $this->load->model('hyperlink_model');
     // Helpers
     $this->load->helper('backup');
+    $this->load->helper('credentials');
     $this->load->helper('date');
     $this->load->helper('security');
     $this->load->helper('html_purifier');
