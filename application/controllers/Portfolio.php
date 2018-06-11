@@ -168,8 +168,9 @@ class Portfolio extends CI_Controller {
     $data['base_url'] = base_url();
     $data['index_page'] = index_page();
     $data['full_name'] = htmlentities(
-      $this->profile_model->get_full_name()
-    ENT_QUOTES);
+      $this->profile_model->get_full_name(),
+      ENT_QUOTES
+    );
     $data['email'] = $this->get_email();
     $data['hyperlinks'] = $this->get_hyperlinks();
     $html = $this->parser->parse(
@@ -273,15 +274,17 @@ class Portfolio extends CI_Controller {
     // List of programming languages
     $data['languages'] = $this->project_model->get_languages();
     $data['full_name'] = htmlentities(
-      $this->profile_model->get_full_name()
-    ENT_QUOTES);
+      $this->profile_model->get_full_name(),
+      ENT_QUOTES);
     $data['biography'] = htmlentities(
-      $this->profile_model->get_biography() ?? ''
-    ENT_QUOTES);
+      $this->profile_model->get_biography() ?? '',
+      ENT_QUOTES
+    );
     $data['visibilities'] = $this->project_model->get_visibilities();
     $data['username'] = htmlentities(
-      $this->application_model->get_username()
-    ENT_QUOTES);
+      $this->application_model->get_username(),
+      ENT_QUOTES
+    );
     $data['login'] = $this->get_login($data);
     $data['year'] = date('Y');
     $data['hyperlinks'] = $this->get_hyperlinks();
