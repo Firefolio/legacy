@@ -192,3 +192,14 @@ nav.active ul li {
 		padding: 16px 16px;
 	}
 }
+
+/* Selection Colours */
+::-moz-selection {
+    background: #e8934a;
+    text-shadow: none;
+}
+
+::selection {
+    background: #e8934a;
+    text-shadow: none;
+}

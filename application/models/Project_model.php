@@ -140,6 +140,14 @@ class Project_model extends CI_Model {
     return $columns;
   }
 
+  public function get_row_count()
+  {
+    $query = $this->db->get($this->table);
+    $total = $query->num_rows();
+
+    return $total;
+  }
+
   public function insert_project($project)
   {
     $this->db->insert('projects', $project);

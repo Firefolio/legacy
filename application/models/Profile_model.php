@@ -3,6 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Profile_model extends CI_Model {
 
+  private $table = 'profile';
+
   function __construct()
   {
     parent::__construct();
@@ -10,14 +12,14 @@ class Profile_model extends CI_Model {
 
   public function get_profile()
   {
-    $query = $this->db->get('profile');
+    $query = $this->db->get($this->table);
 
     return $query->row_array();
   }
 
   public function get_first_name()
   {
-    $query = $this->db->get('profile');
+    $query = $this->db->get($this->table);
     $row = $query->row_array();
 
     return $row['first_name'];
@@ -25,7 +27,7 @@ class Profile_model extends CI_Model {
 
   public function get_middle_name()
   {
-    $query = $this->db->get('profile');
+    $query = $this->db->get($this->table);
     $row = $query->row_array();
 
     return $row['middle_name'];
@@ -33,7 +35,7 @@ class Profile_model extends CI_Model {
 
   public function get_last_name()
   {
-    $query = $this->db->get('profile');
+    $query = $this->db->get($this->table);
     $row = $query->row_array();
 
     return $row['last_name'];
@@ -42,7 +44,7 @@ class Profile_model extends CI_Model {
   public function get_full_name()
   {
     $this->db->select('first_name, last_name, middle_name');
-    $query = $this->db->get('profile');
+    $query = $this->db->get($this->table);
     $row = $query->row_array();
     $full_name = $row['first_name'] .
                  ' ' .
@@ -55,7 +57,7 @@ class Profile_model extends CI_Model {
 
   public function get_biography()
   {
-    $query = $this->db->get('profile');
+    $query = $this->db->get($this->table);
     $row = $query->row_array();
 
     return $row['biography'];
@@ -63,7 +65,7 @@ class Profile_model extends CI_Model {
 
   public function get_email()
   {
-    $query = $this->db->get('profile');
+    $query = $this->db->get($this->table);
     $row = $query->row_array();
 
     return $row['email'];
@@ -71,6 +73,11 @@ class Profile_model extends CI_Model {
 
   public function update_profile($profile)
   {
-    $this->db->update('profile', $profile);
+    $this->db->update($this->table, $profile);
+  }
+
+  public function get_row_count()
+  {
+
   }
 }
