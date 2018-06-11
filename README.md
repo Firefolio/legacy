@@ -6,7 +6,7 @@ An Online Portfolio System for Professional Programmers
 ## About
 **Firefolio** is a self-hosted web application designed to help programmers
 showcase their work to employers. It's like a content managament system, but
-focused eniterly on creating a single kind of website
+focused eniterly on creating a single kind of website.
 
 ## Requirements
 - PHP v`7.0.0` or greater
