@@ -126,7 +126,10 @@ class Projects extends CI_Controller {
           $data = $this->get_parser_data($uri);
 
           // Instead, we configure each output manually
-          $data['header'] = htmlentities($data['title']);
+          $data['header'] = htmlentities(
+            $data['title'],
+            ENT_QUOTES
+          );
           $data['form'] = $this->get_form($destination, $redirect, $uri);
 
           $this->parser->parse('backend/projects/update.html', $data);
@@ -253,7 +256,10 @@ class Projects extends CI_Controller {
       else
       {
         $response['html'] = '<em>No projects like "' .
-                            htmlentities($title) .
+                            htmlentities(
+                              $title,
+                              ENT_QUOTES
+                            ) .
                             '" were found...</em>';
       }
     }
@@ -505,7 +511,10 @@ class Projects extends CI_Controller {
     {
       // Remove dangerous symbols from each title using htmlentities
       $dirty_title = $projects[$project]['title'];
-      $clean_title = htmlentities($dirty_title);
+      $clean_title = htmlentities(
+        $dirty_title,
+        ENT_QUOTES
+      );
       $projects[$project]['title'] = $clean_title;
     }
 

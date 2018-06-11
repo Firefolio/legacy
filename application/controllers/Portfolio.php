@@ -167,7 +167,9 @@ class Portfolio extends CI_Controller {
     $data = array();
     $data['base_url'] = base_url();
     $data['index_page'] = index_page();
-    $data['full_name'] = htmlentities($this->profile_model->get_full_name());
+    $data['full_name'] = htmlentities(
+      $this->profile_model->get_full_name()
+    ENT_QUOTES);
     $data['email'] = $this->get_email();
     $data['hyperlinks'] = $this->get_hyperlinks();
     $html = $this->parser->parse(
@@ -272,12 +274,14 @@ class Portfolio extends CI_Controller {
     $data['languages'] = $this->project_model->get_languages();
     $data['full_name'] = htmlentities(
       $this->profile_model->get_full_name()
-    );
+    ENT_QUOTES);
     $data['biography'] = htmlentities(
       $this->profile_model->get_biography() ?? ''
-    );
+    ENT_QUOTES);
     $data['visibilities'] = $this->project_model->get_visibilities();
-    $data['username'] = htmlentities($this->application_model->get_username());
+    $data['username'] = htmlentities(
+      $this->application_model->get_username()
+    ENT_QUOTES);
     $data['login'] = $this->get_login($data);
     $data['year'] = date('Y');
     $data['hyperlinks'] = $this->get_hyperlinks();
@@ -460,22 +464,22 @@ class Portfolio extends CI_Controller {
   {
     if (!empty($project))
     {
-      $project['title'] = htmlentities($project['title']);
-      $project['subtitle'] = htmlentities($project['subtitle']);
+      $project['title'] = htmlentities($project['title'], ENT_QUOTES);
+      $project['subtitle'] = htmlentities($project['subtitle'], ENT_QUOTES);
       $project['description'] = html_purify(
         markdown_parse($project['description'])
       );
       // Filter the project language if it's been set
       $project['language'] = ($project['language'] != '') ? htmlentities(
         $project['language']
-      ) : 'Unspecified';
+      , ENT_QUOTES) : 'Unspecified';
       // Filter and format the date of the project if it's been set
       $project['date'] = ($project['date'] != '0000-00-00') ? htmlentities(
         date(
           $date_format,
           strtotime($project['date'])
         )
-      ) : 'TBD';
+      , ENT_QUOTES) : 'TBD';
     }
 
     return $project;
