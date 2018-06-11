@@ -47,17 +47,24 @@ class Hyperlinks extends CI_Controller {
           'type' => 'profile'
         );
 
-        $data['id'] = $this->hyperlink_model->insert($hyperlink);
-        $data['header'] = '';
-        $data['url'] = '';
+        if ($this->hyperlink_model->get_row_count() < 12)
+        {
+          $data['id'] = $this->hyperlink_model->insert($hyperlink);
+          $data['header'] = '';
+          $data['url'] = '';
 
-        $response['success'] = TRUE;
-        $response['message'] = 'Inserted a hyperlink onto the profile';
-        $response['html'] = $this->parser->parse(
-          'backend/hyperlinks/input/single.html',
-          $data,
-          TRUE
-        );
+          $response['success'] = TRUE;
+          $response['message'] = 'Inserted a hyperlink onto the profile';
+          $response['html'] = $this->parser->parse(
+            'backend/hyperlinks/input/single.html',
+            $data,
+            TRUE
+          );
+        }
+        else
+        {
+          $response['message'] = 'Maximum number of profile hyperlinks reached';
+        }
         break;
       default:
         show_404();

@@ -1,3 +1,0 @@
-- Provide validation on backend forms
-- Force the user to change their login credentials on install
-- Remove the uninstaller from public view

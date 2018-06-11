@@ -65,4 +65,12 @@ class Hyperlink_model extends CI_Model {
   {
     $this->db->delete($this->table, array('id' => $id));
   }
+
+  public function get_row_count()
+  {
+    $query->get($this->table);
+    $total = $query->num_rows();
+
+    return $total;
+  }
 }
