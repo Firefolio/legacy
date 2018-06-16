@@ -18,3 +18,5 @@ application/logs/*
 
 # Firefolio
 application/backups/*
+
+firefolio\.zip
