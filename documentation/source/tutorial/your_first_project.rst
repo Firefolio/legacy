@@ -96,4 +96,6 @@ When you've finished, click the "finish" button. After a short wait, you'll be
 taken back to the projects menu. If you've followed the steps correctly, the
 title of the example projects should have changed:
 
-.. image:: firefox_2018-06-21_14-09-01.png
+.. image:: firefox_2018-06-21_16-12-51.png
+
+Make sure to navigate to the frontend and investigate your new project!
