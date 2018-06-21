@@ -40,7 +40,7 @@ CREATE TABLE `application` (
 --
 
 INSERT INTO `application` (`name`, `major_version`, `minor_version`, `patch`, `website`, `username`, `default_username`, `password`, `default_password`, `mode`) VALUES
-('Firefolio', 1, 0, 0, 'http://firefolio.org/', 'root', 'root', '$2y$10$xnEuArz9F2S0gt311YBNxu6YNuPxZHNgBozxQl8kn0IlACCg5gDjm', 'changeitnow', 'Release');
+('Firefolio', 1, 0, 1, 'http://firefolio.org/', 'root', 'root', '$2y$10$xnEuArz9F2S0gt311YBNxu6YNuPxZHNgBozxQl8kn0IlACCg5gDjm', 'changeitnow', 'Release');
 
 -- --------------------------------------------------------
 
@@ -103,7 +103,7 @@ CREATE TABLE `projects` (
 --
 
 INSERT INTO `projects` (`id`, `uri`, `thumbnail`, `trailer`, `title`, `subtitle`, `description`, `language`, `date`, `visibility`, `status`, `purpose`) VALUES
-(1, 'hello_world', 'https://via.placeholder.com/640x480', '', 'Hello, World!', '', 'This is your first project. Keep it, edit it or throw it away.', '', '2018-06-11', 'Public', 'Prototype', 'Demo');
+(1, 'hello_world', 'https://via.placeholder.com/640x480', '', 'Hello, World!', '', 'This is your first project. Keep it, edit it or throw it away. Be sure to [read the documentation](https://firefolio.readthedocs.io/) if you\'re stuck!', '', '2018-06-21', 'Public', 'Prototype', 'Demo');
 
 -- --------------------------------------------------------
 
