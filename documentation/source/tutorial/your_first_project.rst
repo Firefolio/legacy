@@ -51,14 +51,49 @@ who else worked on it, what programming language it used, and digging up the exe
 in order to take some screenshots and videos from it being played and so-on.
 
 The good thing about "Lace Invaders" however, is that it doesn't exist.
-as such, I've made up all of the information for you:
+This means I get to make up all of the information for you:
 
 +-------------------+-------------------------------------------+
 | Title             | Lace Invaders                             |
 +-------------------+-------------------------------------------+
-| Subtitle          | Tie their shoes today                     |
+| Subtitle          | Arcade shoelace shooter                   |
 +-------------------+-------------------------------------------+
-| Thumbnail         | Link                                      |
+| Thumbnail         | https://via.example.com/640x480           |
 +-------------------+-------------------------------------------+
-| Screenshot        | .. _Link: https://i.imgur.com/JgosWT8.png |
+| Trailer           | https://youtu.be/dQw4w9WgXcQ              |
 +-------------------+-------------------------------------------+
+| Screenshot        | https://i.imgur.com/JgosWT8.png           |
++-------------------+-------------------------------------------+
+| Language          | C++                                       |
++-------------------+-------------------------------------------+
+| Status            | Released                                  |
++-------------------+-------------------------------------------+
+| Purpose           | Individual Project (Game)                 |
++-------------------+-------------------------------------------+
+| Release Date      | 2018-06-13                                |
++-------------------+-------------------------------------------+
+| Official Website  | http://itsseajay.github.io/lace-invaders  |
++-------------------+-------------------------------------------+
+
+Updating Projects
+^^^^^^^^^^^^^^^^^
+
+Now that we've got all of the required information, we can now use it to fill in
+the main form. Note that trailer, thumbnail and screenshot(s) for "Lace Invaders"
+are given as external hyperlinks. As of release version ``1.0.0`` there isn't any
+kind of upload functionality within Firefolio itself. In order to add images
+and videos, you'll need to upload them to the server directly through FTP, or
+have them hosted through an external service elsewhere on the internet.
+
+Proceed to fill in each field with the appropriate information above.
+As you do so, it might be a good idea for you to ocassionally click
+the "save" button near the bottom left of the page, which updates its information
+asynchronously without you having to navigate away. There's also a keyboard
+shortcut for this; on a Windows computer, you can push the ``Ctrl + S`` keys to
+save, or ``Cmd + S`` on a Mac.
+
+When you've finished, click the "finish" button. After a short wait, you'll be
+taken back to the projects menu. If you've followed the steps correctly, the
+title of the example projects should have changed:
+
+.. image:: firefox_2018-06-21_14-09-01.png

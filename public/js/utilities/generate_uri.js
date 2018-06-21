@@ -5,7 +5,7 @@
 
 function generate_uri(input) {
   var output = input;
-  var delimeter = '-';
+  var delimeter = '_';
 
   output = output.replace(/[^a-zA-Z0-9\/_|+ -]/g, '');
   output = output.toLowerCase();
