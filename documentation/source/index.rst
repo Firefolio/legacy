@@ -6,14 +6,26 @@
 Welcome to Firefolio's documentation!
 =====================================
 
+User
+----
+
 Installation
-------------
+^^^^^^^^^^^^
 
 .. toctree::
     :maxdepth: 2
     :titlesonly:
 
     installation/index
+
+Tutorial
+^^^^^^^^
+
+.. toctree::
+    :maxdepth: 2
+
+    tutorial/index
+    tutorial/your_first_project
 
 Indices and Tables
 ==================

@@ -7,7 +7,7 @@ Manual
 
 Installing Firefolio on your server manually is fairly simple:
 
-#. Unzip the program to a temporary location on your computer
+#. Download and unzip the program to a temporary location on your computer
 #. Open the *application/config/config.php* file with a text editor and change
    the value of the ``$config['base_url']`` variable to that of your website,
    such as *www.example.com*
