@@ -45,5 +45,20 @@ be anything, but for the sake of this tutorial, let's say that you worked on a g
 called "Lace Invaders", about tying the shoes of invading aliens, and you'd
 like to show it off. How do you do that?
 
-In order to get your employer to care about "Lace Invaders" you'll need to gather
-information on it.
+In order to get your employer to care about "Lace Invaders" you'll first need to gather
+some information on it. Normally, this would involve racking your brain to remember
+who else worked on it, what programming language it used, and digging up the executable
+in order to take some screenshots and videos from it being played and so-on.
+
+The good thing about "Lace Invaders" however, is that it doesn't exist.
+as such, I've made up all of the information for you:
+
++-------------------+-------------------------------------------+
+| Title             | Lace Invaders                             |
++-------------------+-------------------------------------------+
+| Subtitle          | Tie their shoes today                     |
++-------------------+-------------------------------------------+
+| Thumbnail         | Link                                      |
++-------------------+-------------------------------------------+
+| Screenshot        | .. _Link: https://i.imgur.com/JgosWT8.png |
++-------------------+-------------------------------------------+
