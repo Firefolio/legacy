@@ -20,3 +20,5 @@ application/logs/*
 application/backups/*
 
 firefolio\.zip
+
+documentation/build/

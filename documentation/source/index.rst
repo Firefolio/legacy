@@ -6,13 +6,16 @@
 Welcome to Firefolio's documentation!
 =====================================
 
+Installation
+------------
+
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+    :maxdepth: 2
+    :titlesonly:
 
+    installation/index
 
-
-Indices and tables
+Indices and Tables
 ==================
 
 * :ref:`genindex`
