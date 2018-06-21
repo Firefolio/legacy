@@ -98,4 +98,4 @@ title of the example projects should have changed:
 
 .. image:: firefox_2018-06-21_16-12-51.png
 
-Make sure to navigate to the frontend and investigate your new project!
+Make sure to navigate to the frontend and check out your renewed project!
